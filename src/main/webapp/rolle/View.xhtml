@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewRolleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewRolleLabel_brukernavn}"/>
+                    <h:outputText value="#{rolleController.selected.brukernavn}" title="#{bundle.ViewRolleTitle_brukernavn}"/>
+                    <h:outputText value="#{bundle.ViewRolleLabel_rollen}"/>
+                    <h:outputText value="#{rolleController.selected.rollen}" title="#{bundle.ViewRolleTitle_rollen}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{rolleController.destroyAndView}" value="#{bundle.ViewRolleDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewRolleEditLink}"/>
+                <br />
+                <h:commandLink action="#{rolleController.prepareCreate}" value="#{bundle.ViewRolleCreateLink}" />
+                <br />
+                <h:commandLink action="#{rolleController.prepareList}" value="#{bundle.ViewRolleShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewRolleIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

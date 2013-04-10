@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSelgereTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSelgereLabel_brukernavn}" for="brukernavn" />
+                    <h:inputText id="brukernavn" value="#{selgereController.selected.brukernavn}" title="#{bundle.CreateSelgereTitle_brukernavn}" required="true" requiredMessage="#{bundle.CreateSelgereRequiredMessage_brukernavn}"/>
+                    <h:outputLabel value="#{bundle.CreateSelgereLabel_salgPerManed}" for="salgPerManed" />
+                    <h:inputText id="salgPerManed" value="#{selgereController.selected.salgPerManed}" title="#{bundle.CreateSelgereTitle_salgPerManed}" />
+                    <h:outputLabel value="#{bundle.CreateSelgereLabel_opparbeidetProvisjon}" for="opparbeidetProvisjon" />
+                    <h:inputText id="opparbeidetProvisjon" value="#{selgereController.selected.opparbeidetProvisjon}" title="#{bundle.CreateSelgereTitle_opparbeidetProvisjon}" />
+                    <h:outputLabel value="#{bundle.CreateSelgereLabel_antSalg}" for="antSalg" />
+                    <h:inputText id="antSalg" value="#{selgereController.selected.antSalg}" title="#{bundle.CreateSelgereTitle_antSalg}" />
+                    <h:outputLabel value="#{bundle.CreateSelgereLabel_timer}" for="timer" />
+                    <h:inputText id="timer" value="#{selgereController.selected.timer}" title="#{bundle.CreateSelgereTitle_timer}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{selgereController.create}" value="#{bundle.CreateSelgereSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{selgereController.prepareList}" value="#{bundle.CreateSelgereShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateSelgereIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

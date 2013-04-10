@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateUtkjoringTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateUtkjoringLabel_utkjoringPK_bilnr}" for="utkjoringPK_bilnr" />
+                    <h:inputText id="utkjoringPK_bilnr" value="#{utkjoringController.selected.utkjoringPK.bilnr}" title="#{bundle.CreateUtkjoringTitle_utkjoringPK_bilnr}" required="true" requiredMessage="#{bundle.CreateUtkjoringRequiredMessage_utkjoringPK_bilnr}"/>
+                    <h:outputLabel value="#{bundle.CreateUtkjoringLabel_utkjoringPK_salgsnummer}" for="utkjoringPK_salgsnummer" />
+                    <h:inputText id="utkjoringPK_salgsnummer" value="#{utkjoringController.selected.utkjoringPK.salgsnummer}" title="#{bundle.CreateUtkjoringTitle_utkjoringPK_salgsnummer}" required="true" requiredMessage="#{bundle.CreateUtkjoringRequiredMessage_utkjoringPK_salgsnummer}"/>
+                    <h:outputLabel value="#{bundle.CreateUtkjoringLabel_utkjoringPK_sjoforBrukernavn}" for="utkjoringPK_sjoforBrukernavn" />
+                    <h:inputText id="utkjoringPK_sjoforBrukernavn" value="#{utkjoringController.selected.utkjoringPK.sjoforBrukernavn}" title="#{bundle.CreateUtkjoringTitle_utkjoringPK_sjoforBrukernavn}" required="true" requiredMessage="#{bundle.CreateUtkjoringRequiredMessage_utkjoringPK_sjoforBrukernavn}"/>
+                    <h:outputLabel value="#{bundle.CreateUtkjoringLabel_utkjoringPK_brukernavn}" for="utkjoringPK_brukernavn" />
+                    <h:inputText id="utkjoringPK_brukernavn" value="#{utkjoringController.selected.utkjoringPK.brukernavn}" title="#{bundle.CreateUtkjoringTitle_utkjoringPK_brukernavn}" required="true" requiredMessage="#{bundle.CreateUtkjoringRequiredMessage_utkjoringPK_brukernavn}"/>
+                    <h:outputLabel value="#{bundle.CreateUtkjoringLabel_utkorinKogstatus}" for="utkorinKogstatus" />
+                    <h:inputText id="utkorinKogstatus" value="#{utkjoringController.selected.utkorinKogstatus}" title="#{bundle.CreateUtkjoringTitle_utkorinKogstatus}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{utkjoringController.create}" value="#{bundle.CreateUtkjoringSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{utkjoringController.prepareList}" value="#{bundle.CreateUtkjoringShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateUtkjoringIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

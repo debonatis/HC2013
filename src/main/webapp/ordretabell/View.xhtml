@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewOrdretabellTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewOrdretabellLabel_ordretabellPK_salgsnummer}"/>
+                    <h:outputText value="#{ordretabellController.selected.ordretabellPK.salgsnummer}" title="#{bundle.ViewOrdretabellTitle_ordretabellPK_salgsnummer}"/>
+                    <h:outputText value="#{bundle.ViewOrdretabellLabel_ordretabellPK_kundebrukernavn}"/>
+                    <h:outputText value="#{ordretabellController.selected.ordretabellPK.kundebrukernavn}" title="#{bundle.ViewOrdretabellTitle_ordretabellPK_kundebrukernavn}"/>
+                    <h:outputText value="#{bundle.ViewOrdretabellLabel_ordretabellPK_selgerbrukernavn}"/>
+                    <h:outputText value="#{ordretabellController.selected.ordretabellPK.selgerbrukernavn}" title="#{bundle.ViewOrdretabellTitle_ordretabellPK_selgerbrukernavn}"/>
+                    <h:outputText value="#{bundle.ViewOrdretabellLabel_rettnummer}"/>
+                    <h:outputText value="#{ordretabellController.selected.rettnummer}" title="#{bundle.ViewOrdretabellTitle_rettnummer}"/>
+                    <h:outputText value="#{bundle.ViewOrdretabellLabel_status}"/>
+                    <h:outputText value="#{ordretabellController.selected.status}" title="#{bundle.ViewOrdretabellTitle_status}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ordretabellController.destroyAndView}" value="#{bundle.ViewOrdretabellDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewOrdretabellEditLink}"/>
+                <br />
+                <h:commandLink action="#{ordretabellController.prepareCreate}" value="#{bundle.ViewOrdretabellCreateLink}" />
+                <br />
+                <h:commandLink action="#{ordretabellController.prepareList}" value="#{bundle.ViewOrdretabellShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewOrdretabellIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

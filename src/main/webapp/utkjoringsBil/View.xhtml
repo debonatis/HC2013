@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewUtkjoringsBilTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewUtkjoringsBilLabel_bilnr}"/>
+                    <h:outputText value="#{utkjoringsBilController.selected.bilnr}" title="#{bundle.ViewUtkjoringsBilTitle_bilnr}"/>
+                    <h:outputText value="#{bundle.ViewUtkjoringsBilLabel_regnummer}"/>
+                    <h:outputText value="#{utkjoringsBilController.selected.regnummer}" title="#{bundle.ViewUtkjoringsBilTitle_regnummer}"/>
+                    <h:outputText value="#{bundle.ViewUtkjoringsBilLabel_status}"/>
+                    <h:outputText value="#{utkjoringsBilController.selected.status}" title="#{bundle.ViewUtkjoringsBilTitle_status}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{utkjoringsBilController.destroyAndView}" value="#{bundle.ViewUtkjoringsBilDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewUtkjoringsBilEditLink}"/>
+                <br />
+                <h:commandLink action="#{utkjoringsBilController.prepareCreate}" value="#{bundle.ViewUtkjoringsBilCreateLink}" />
+                <br />
+                <h:commandLink action="#{utkjoringsBilController.prepareList}" value="#{bundle.ViewUtkjoringsBilShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewUtkjoringsBilIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

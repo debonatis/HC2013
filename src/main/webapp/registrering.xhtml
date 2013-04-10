@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+
+        </ui:define>
+        <ui:define name="sideBar">
+            <h:form>
+                <p:growl id="messages"/>
+                <p:menu>                        
+                    <p:submenu label="Navigations">  
+                        <p:menuitem value="External" url="http://www.vg.no" />  
+                        <p:menuitem value="Home" outcome="/index" />
+                        <p:menuitem outcome="/administrator/List" value="Show All Administrator Items"/>
+
+                        <p:menuitem outcome="/annet/List" value="Show All Annet Items"/>
+
+                        <p:menuitem outcome="/bosted/List" value="Show All Bosted Items"/>
+
+                        <p:menuitem outcome="/bruker/List" value="Show All Bruker Items"/>
+
+                        <p:menuitem outcome="/kunde/List" value="Show All Kunde Items"/>
+
+                        <p:menuitem outcome="/ordre/List" value="Show All Ordre Items"/>
+
+                        <p:menuitem outcome="/ordretabell/List" value="Show All Ordretabell Items"/>
+
+                        <p:menuitem outcome="/retter/List" value="Show All Retter Items"/>
+
+                        <p:menuitem outcome="/rolle/List" value="Show All Rolle Items"/>
+
+                        <p:menuitem outcome="/salg/List" value="Show All Salg Items"/>
+                    </p:submenu>  
+                </p:menu> 
+            </h:form>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <p:growl id="growl" sticky="true" showDetail="true"/>  
+
+                <p:wizard widgetVar="wiz"  
+                          flowListener="#{registrering.onFlowProcess}">  
+
+                    <p:tab id="personal" title="Personal">  
+
+                        <p:panel header="Personal Details">  
+
+                            <h:messages errorClass="error"/>  
+
+                            <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">  
+                                <h:outputText value="Firstname: *" />  
+                                <p:inputText required="true" label="Firstname"  
+                                             value="#{registrering.bruker.fornavn}" />  
+
+                                <h:outputText value="Lastname: *" />  
+                                <p:inputText required="true" label="Lastname"  
+                                             value="#{registrering.bruker.etternavn}" />  
+
+                                <h:outputText value="Username: " />  
+                                <p:inputText id="brukernavn" value="#{registrering.bruker.brukernavn}" />                                
+
+                                
+                                <h:outputText value="Password:"/>
+                                <p:password id="sjekkpassord" binding="#{passwordComponent}" value="#{registrering.bruker.passord}" >
+                                    <f:validator validatorId="validatorTekst2" />
+                                </p:password>
+                                <p:message for="sjekkpassord" />
+                                <h:outputText value="Confirm Password: " />
+                                <p:password id="confirmPassword" required="#{not empty passwordComponent.value}">
+                                    <f:validator validatorId="validatorTekst" />
+                                    <f:attribute name="passwordComponent" value="#{passwordComponent}" />
+                                </p:password>
+                                <p:message for="confirmPassword" />                            
+                               
+
+
+
+
+                               
+                            </h:panelGrid>  
+                        </p:panel>  
+                    </p:tab>  
+
+                    <p:tab id="address" title="Address">  
+                        <p:panel header="Adress Details">  
+
+                            <h:messages errorClass="error"/>  
+
+                            <h:panelGrid columns="2" columnClasses="label, value">  
+                                <h:outputText value="Street address: " />  
+                                <p:inputText value="#{registrering.bruker.adresse}" />
+
+                                <h:outputText value="City " />  
+                                <p:inputText value="#{registrering.bosted.poststed}" />
+
+                                <h:outputText value="ZIP-code: " />  
+                                <p:inputText value="#{registrering.bosted.postnummer}" /> 
+
+                                
+                            </h:panelGrid>  
+                        </p:panel>  
+                    </p:tab>  
+
+                    <p:tab id="contact" title="Contact">  
+                        <p:panel header="Contact Information">  
+
+                            <h:messages errorClass="error"/>  
+
+                            <h:panelGrid columns="2" columnClasses="label, value">  
+                                <h:outputText value="Email: *" />  
+                                <p:inputText required="true" label="Email"  
+                                             value="#{registrering.bruker.email}" />  
+
+                                <h:outputText value="Phone: " />  
+                                <p:inputText value="#{registrering.bruker.telefon}"/>  
+
+
+                            </h:panelGrid>  
+                        </p:panel>  
+                    </p:tab>  
+
+                    <p:tab id="confirm" title="Confirmation">  
+                        <p:panel header="Confirmation">  
+
+                            <h:panelGrid id="confirmation" columns="6">  
+                                <h:outputText value="Firstname: " />  
+                                <h:outputText styleClass="outputLabel"  
+                                              value="#{registrering.bruker.fornavn}" />  
+
+                                <h:outputText value="Lastname: " />  
+                                <h:outputText  styleClass="outputLabel"  
+                                               value="#{registrering.bruker.etternavn}"/>  
+
+
+
+                                <h:outputText value="Street: " />  
+                                <h:outputText styleClass="outputLabel"  
+                                              value="#{registrering.bruker.adresse}" />  
+
+                                <h:outputText value="Postal Code: " />  
+                                <h:outputText styleClass="outputLabel"  
+                                              value="#{registrering.bosted.postnummer}" />  
+
+                                <h:outputText value="City: " />  
+                                <h:outputText styleClass="outputLabel"  
+                                              value="#{registrering.bosted.poststed}" />  
+
+                                <h:outputText value="Email: " />  
+                                <h:outputText styleClass="outputLabel"  
+                                              value="#{registrering.bruker.email}" />  
+
+                                <h:outputText value="Phone " />  
+                                <h:outputText styleClass="outputLabel"  
+                                              value="#{registrering.bruker.telefon}"/>  
+
+                                <h:outputText value="Username: " />  
+                                <h:outputText styleClass="outputLabel"  
+                                              value="#{registrering.bruker.brukernavn}" />  
+
+                                <h:outputText />  
+                                <h:outputText />  
+                            </h:panelGrid>  
+
+                            <p:commandButton value="Submit" update="growl"   
+                                             actionListener="#{registrering.save}"/>  
+
+                        </p:panel>  
+                    </p:tab>  
+
+                </p:wizard>  
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

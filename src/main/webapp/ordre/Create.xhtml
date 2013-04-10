@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateOrdreTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateOrdreLabel_ordrePK_salgsnummer}" for="ordrePK_salgsnummer" />
+                    <h:inputText id="ordrePK_salgsnummer" value="#{ordreController.selected.ordrePK.salgsnummer}" title="#{bundle.CreateOrdreTitle_ordrePK_salgsnummer}" required="true" requiredMessage="#{bundle.CreateOrdreRequiredMessage_ordrePK_salgsnummer}"/>
+                    <h:outputLabel value="#{bundle.CreateOrdreLabel_ordrePK_brukernavn}" for="ordrePK_brukernavn" />
+                    <h:inputText id="ordrePK_brukernavn" value="#{ordreController.selected.ordrePK.brukernavn}" title="#{bundle.CreateOrdreTitle_ordrePK_brukernavn}" required="true" requiredMessage="#{bundle.CreateOrdreRequiredMessage_ordrePK_brukernavn}"/>
+                    <h:outputLabel value="#{bundle.CreateOrdreLabel_datoEndret}" for="datoEndret" />
+                    <h:inputText id="datoEndret" value="#{ordreController.selected.datoEndret}" title="#{bundle.CreateOrdreTitle_datoEndret}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateOrdreLabel_datoLevert}" for="datoLevert" />
+                    <h:inputText id="datoLevert" value="#{ordreController.selected.datoLevert}" title="#{bundle.CreateOrdreTitle_datoLevert}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateOrdreLabel_bekreftet}" for="bekreftet" />
+                    <h:inputText id="bekreftet" value="#{ordreController.selected.bekreftet}" title="#{bundle.CreateOrdreTitle_bekreftet}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateOrdreLabel_betaltstatus}" for="betaltstatus" />
+                    <h:inputText id="betaltstatus" value="#{ordreController.selected.betaltstatus}" title="#{bundle.CreateOrdreTitle_betaltstatus}" />
+                    <h:outputLabel value="#{bundle.CreateOrdreLabel_selskapnr}" for="selskapnr" />
+                    <h:inputText id="selskapnr" value="#{ordreController.selected.selskapnr}" title="#{bundle.CreateOrdreTitle_selskapnr}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ordreController.create}" value="#{bundle.CreateOrdreSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{ordreController.prepareList}" value="#{bundle.CreateOrdreShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateOrdreIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

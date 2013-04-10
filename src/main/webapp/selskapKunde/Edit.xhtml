@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditSelskapKundeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditSelskapKundeLabel_selskapKundePK_brukernavn}" for="selskapKundePK_brukernavn" />
+                    <h:inputText id="selskapKundePK_brukernavn" value="#{selskapKundeController.selected.selskapKundePK.brukernavn}" title="#{bundle.EditSelskapKundeTitle_selskapKundePK_brukernavn}" required="true" requiredMessage="#{bundle.EditSelskapKundeRequiredMessage_selskapKundePK_brukernavn}"/>
+                    <h:outputLabel value="#{bundle.EditSelskapKundeLabel_selskapKundePK_selskapnr}" for="selskapKundePK_selskapnr" />
+                    <h:inputText id="selskapKundePK_selskapnr" value="#{selskapKundeController.selected.selskapKundePK.selskapnr}" title="#{bundle.EditSelskapKundeTitle_selskapKundePK_selskapnr}" required="true" requiredMessage="#{bundle.EditSelskapKundeRequiredMessage_selskapKundePK_selskapnr}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{selskapKundeController.update}" value="#{bundle.EditSelskapKundeSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditSelskapKundeViewLink}"/>
+                <br />
+                <h:commandLink action="#{selskapKundeController.prepareList}" value="#{bundle.EditSelskapKundeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditSelskapKundeIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

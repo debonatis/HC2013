@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAnnetTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListAnnetEmpty}" rendered="#{annetController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{annetController.items.rowCount > 0}">
+                    <h:outputText value="#{annetController.pagination.pageFirstItem + 1}..#{annetController.pagination.pageLastItem + 1}/#{annetController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{annetController.previous}" value="#{bundle.Previous} #{annetController.pagination.pageSize}" rendered="#{annetController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{annetController.next}" value="#{bundle.Next} #{annetController.pagination.pageSize}" rendered="#{annetController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{annetController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAnnetTitle_brukernavn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.brukernavn}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAnnetTitle_fastlonn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fastlonn}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{annetController.prepareView}" value="#{bundle.ListAnnetViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{annetController.prepareEdit}" value="#{bundle.ListAnnetEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{annetController.destroy}" value="#{bundle.ListAnnetDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{annetController.prepareCreate}" value="#{bundle.ListAnnetCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListAnnetIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

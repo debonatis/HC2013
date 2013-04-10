@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateRetterTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateRetterLabel_rettnummer}" for="rettnummer" />
+                    <h:inputText id="rettnummer" value="#{retterController.selected.rettnummer}" title="#{bundle.CreateRetterTitle_rettnummer}" required="true" requiredMessage="#{bundle.CreateRetterRequiredMessage_rettnummer}"/>
+                    <h:outputLabel value="#{bundle.CreateRetterLabel_navn}" for="navn" />
+                    <h:inputText id="navn" value="#{retterController.selected.navn}" title="#{bundle.CreateRetterTitle_navn}" required="true" requiredMessage="#{bundle.CreateRetterRequiredMessage_navn}"/>
+                    <h:outputLabel value="#{bundle.CreateRetterLabel_beskrivelse}" for="beskrivelse" />
+                    <h:inputText id="beskrivelse" value="#{retterController.selected.beskrivelse}" title="#{bundle.CreateRetterTitle_beskrivelse}" />
+                    <h:outputLabel value="#{bundle.CreateRetterLabel_ingredienser}" for="ingredienser" />
+                    <h:inputText id="ingredienser" value="#{retterController.selected.ingredienser}" title="#{bundle.CreateRetterTitle_ingredienser}" />
+                    <h:outputLabel value="#{bundle.CreateRetterLabel_kalorier}" for="kalorier" />
+                    <h:inputText id="kalorier" value="#{retterController.selected.kalorier}" title="#{bundle.CreateRetterTitle_kalorier}" />
+                    <h:outputLabel value="#{bundle.CreateRetterLabel_vekt}" for="vekt" />
+                    <h:inputText id="vekt" value="#{retterController.selected.vekt}" title="#{bundle.CreateRetterTitle_vekt}" />
+                    <h:outputLabel value="#{bundle.CreateRetterLabel_pris}" for="pris" />
+                    <h:inputText id="pris" value="#{retterController.selected.pris}" title="#{bundle.CreateRetterTitle_pris}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{retterController.create}" value="#{bundle.CreateRetterSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{retterController.prepareList}" value="#{bundle.CreateRetterShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateRetterIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

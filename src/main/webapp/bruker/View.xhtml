@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewBrukerTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewBrukerLabel_brukernavn}"/>
+                    <h:outputText value="#{brukerController.selected.brukernavn}" title="#{bundle.ViewBrukerTitle_brukernavn}"/>
+                    <h:outputText value="#{bundle.ViewBrukerLabel_passord}"/>
+                    <h:outputText value="#{brukerController.selected.passord}" title="#{bundle.ViewBrukerTitle_passord}"/>
+                    <h:outputText value="#{bundle.ViewBrukerLabel_fornavn}"/>
+                    <h:outputText value="#{brukerController.selected.fornavn}" title="#{bundle.ViewBrukerTitle_fornavn}"/>
+                    <h:outputText value="#{bundle.ViewBrukerLabel_etternavn}"/>
+                    <h:outputText value="#{brukerController.selected.etternavn}" title="#{bundle.ViewBrukerTitle_etternavn}"/>
+                    <h:outputText value="#{bundle.ViewBrukerLabel_adresse}"/>
+                    <h:outputText value="#{brukerController.selected.adresse}" title="#{bundle.ViewBrukerTitle_adresse}"/>
+                    <h:outputText value="#{bundle.ViewBrukerLabel_email}"/>
+                    <h:outputText value="#{brukerController.selected.email}" title="#{bundle.ViewBrukerTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewBrukerLabel_telefon}"/>
+                    <h:outputText value="#{brukerController.selected.telefon}" title="#{bundle.ViewBrukerTitle_telefon}"/>
+                    <h:outputText value="#{bundle.ViewBrukerLabel_postnummer}"/>
+                    <h:outputText value="#{brukerController.selected.postnummer}" title="#{bundle.ViewBrukerTitle_postnummer}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{brukerController.destroyAndView}" value="#{bundle.ViewBrukerDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewBrukerEditLink}"/>
+                <br />
+                <h:commandLink action="#{brukerController.prepareCreate}" value="#{bundle.ViewBrukerCreateLink}" />
+                <br />
+                <h:commandLink action="#{brukerController.prepareList}" value="#{bundle.ViewBrukerShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewBrukerIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

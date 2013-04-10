@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSalgTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListSalgEmpty}" rendered="#{salgController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{salgController.items.rowCount > 0}">
+                    <h:outputText value="#{salgController.pagination.pageFirstItem + 1}..#{salgController.pagination.pageLastItem + 1}/#{salgController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{salgController.previous}" value="#{bundle.Previous} #{salgController.pagination.pageSize}" rendered="#{salgController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{salgController.next}" value="#{bundle.Next} #{salgController.pagination.pageSize}" rendered="#{salgController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{salgController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSalgTitle_salgsnummer}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.salgsnummer}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSalgTitle_sumSalg}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sumSalg}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{salgController.prepareView}" value="#{bundle.ListSalgViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{salgController.prepareEdit}" value="#{bundle.ListSalgEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{salgController.destroy}" value="#{bundle.ListSalgDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{salgController.prepareCreate}" value="#{bundle.ListSalgCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListSalgIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

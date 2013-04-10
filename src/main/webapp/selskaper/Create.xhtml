@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSelskaperTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSelskaperLabel_selskapnr}" for="selskapnr" />
+                    <h:inputText id="selskapnr" value="#{selskaperController.selected.selskapnr}" title="#{bundle.CreateSelskaperTitle_selskapnr}" required="true" requiredMessage="#{bundle.CreateSelskaperRequiredMessage_selskapnr}"/>
+                    <h:outputLabel value="#{bundle.CreateSelskaperLabel_avslag}" for="avslag" />
+                    <h:inputText id="avslag" value="#{selskaperController.selected.avslag}" title="#{bundle.CreateSelskaperTitle_avslag}" />
+                    <h:outputLabel value="#{bundle.CreateSelskaperLabel_akkumulertSalg}" for="akkumulertSalg" />
+                    <h:inputText id="akkumulertSalg" value="#{selskaperController.selected.akkumulertSalg}" title="#{bundle.CreateSelskaperTitle_akkumulertSalg}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{selskaperController.create}" value="#{bundle.CreateSelskaperSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{selskaperController.prepareList}" value="#{bundle.CreateSelskaperShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateSelskaperIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

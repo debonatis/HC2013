@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewRetterTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewRetterLabel_rettnummer}"/>
+                    <h:outputText value="#{retterController.selected.rettnummer}" title="#{bundle.ViewRetterTitle_rettnummer}"/>
+                    <h:outputText value="#{bundle.ViewRetterLabel_navn}"/>
+                    <h:outputText value="#{retterController.selected.navn}" title="#{bundle.ViewRetterTitle_navn}"/>
+                    <h:outputText value="#{bundle.ViewRetterLabel_beskrivelse}"/>
+                    <h:outputText value="#{retterController.selected.beskrivelse}" title="#{bundle.ViewRetterTitle_beskrivelse}"/>
+                    <h:outputText value="#{bundle.ViewRetterLabel_ingredienser}"/>
+                    <h:outputText value="#{retterController.selected.ingredienser}" title="#{bundle.ViewRetterTitle_ingredienser}"/>
+                    <h:outputText value="#{bundle.ViewRetterLabel_kalorier}"/>
+                    <h:outputText value="#{retterController.selected.kalorier}" title="#{bundle.ViewRetterTitle_kalorier}"/>
+                    <h:outputText value="#{bundle.ViewRetterLabel_vekt}"/>
+                    <h:outputText value="#{retterController.selected.vekt}" title="#{bundle.ViewRetterTitle_vekt}"/>
+                    <h:outputText value="#{bundle.ViewRetterLabel_pris}"/>
+                    <h:outputText value="#{retterController.selected.pris}" title="#{bundle.ViewRetterTitle_pris}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{retterController.destroyAndView}" value="#{bundle.ViewRetterDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewRetterEditLink}"/>
+                <br />
+                <h:commandLink action="#{retterController.prepareCreate}" value="#{bundle.ViewRetterCreateLink}" />
+                <br />
+                <h:commandLink action="#{retterController.prepareList}" value="#{bundle.ViewRetterShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewRetterIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

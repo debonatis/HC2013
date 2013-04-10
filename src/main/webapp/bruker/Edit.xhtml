@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditBrukerTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditBrukerLabel_brukernavn}" for="brukernavn" />
+                    <h:inputText id="brukernavn" value="#{brukerController.selected.brukernavn}" title="#{bundle.EditBrukerTitle_brukernavn}" required="true" requiredMessage="#{bundle.EditBrukerRequiredMessage_brukernavn}"/>
+                    <h:outputLabel value="#{bundle.EditBrukerLabel_passord}" for="passord" />
+                    <h:inputText id="passord" value="#{brukerController.selected.passord}" title="#{bundle.EditBrukerTitle_passord}" required="true" requiredMessage="#{bundle.EditBrukerRequiredMessage_passord}"/>
+                    <h:outputLabel value="#{bundle.EditBrukerLabel_fornavn}" for="fornavn" />
+                    <h:inputText id="fornavn" value="#{brukerController.selected.fornavn}" title="#{bundle.EditBrukerTitle_fornavn}" required="true" requiredMessage="#{bundle.EditBrukerRequiredMessage_fornavn}"/>
+                    <h:outputLabel value="#{bundle.EditBrukerLabel_etternavn}" for="etternavn" />
+                    <h:inputText id="etternavn" value="#{brukerController.selected.etternavn}" title="#{bundle.EditBrukerTitle_etternavn}" required="true" requiredMessage="#{bundle.EditBrukerRequiredMessage_etternavn}"/>
+                    <h:outputLabel value="#{bundle.EditBrukerLabel_adresse}" for="adresse" />
+                    <h:inputText id="adresse" value="#{brukerController.selected.adresse}" title="#{bundle.EditBrukerTitle_adresse}" required="true" requiredMessage="#{bundle.EditBrukerRequiredMessage_adresse}"/>
+                    <h:outputLabel value="#{bundle.EditBrukerLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{brukerController.selected.email}" title="#{bundle.EditBrukerTitle_email}" required="true" requiredMessage="#{bundle.EditBrukerRequiredMessage_email}"/>
+                    <h:outputLabel value="#{bundle.EditBrukerLabel_telefon}" for="telefon" />
+                    <h:inputText id="telefon" value="#{brukerController.selected.telefon}" title="#{bundle.EditBrukerTitle_telefon}" required="true" requiredMessage="#{bundle.EditBrukerRequiredMessage_telefon}"/>
+                    <h:outputLabel value="#{bundle.EditBrukerLabel_postnummer}" for="postnummer" />
+                    <h:inputText id="postnummer" value="#{brukerController.selected.postnummer}" title="#{bundle.EditBrukerTitle_postnummer}" />
+                </h:panelGrid>
+                <h:commandLink action="#{brukerController.update}" value="#{bundle.EditBrukerSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditBrukerViewLink}"/>
+                <br />
+                <h:commandLink action="#{brukerController.prepareList}" value="#{bundle.EditBrukerShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditBrukerIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

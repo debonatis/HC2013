@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSalgTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSalgLabel_salgsnummer}" for="salgsnummer" />
+                    <h:inputText id="salgsnummer" value="#{salgController.selected.salgsnummer}" title="#{bundle.CreateSalgTitle_salgsnummer}" required="true" requiredMessage="#{bundle.CreateSalgRequiredMessage_salgsnummer}"/>
+                    <h:outputLabel value="#{bundle.CreateSalgLabel_sumSalg}" for="sumSalg" />
+                    <h:inputText id="sumSalg" value="#{salgController.selected.sumSalg}" title="#{bundle.CreateSalgTitle_sumSalg}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{salgController.create}" value="#{bundle.CreateSalgSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{salgController.prepareList}" value="#{bundle.CreateSalgShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateSalgIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

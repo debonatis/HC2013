@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListUtkjoringTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListUtkjoringEmpty}" rendered="#{utkjoringController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{utkjoringController.items.rowCount > 0}">
+                    <h:outputText value="#{utkjoringController.pagination.pageFirstItem + 1}..#{utkjoringController.pagination.pageLastItem + 1}/#{utkjoringController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{utkjoringController.previous}" value="#{bundle.Previous} #{utkjoringController.pagination.pageSize}" rendered="#{utkjoringController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{utkjoringController.next}" value="#{bundle.Next} #{utkjoringController.pagination.pageSize}" rendered="#{utkjoringController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{utkjoringController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUtkjoringTitle_utkjoringPK_sjoforBrukernavn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.utkjoringPK.sjoforBrukernavn}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUtkjoringTitle_utkjoringPK_brukernavn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.utkjoringPK.brukernavn}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUtkjoringTitle_utkjoringPK_bilnr}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.utkjoringPK.bilnr}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUtkjoringTitle_utkjoringPK_salgsnummer}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.utkjoringPK.salgsnummer}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUtkjoringTitle_utkorinKogstatus}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.utkorinKogstatus}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{utkjoringController.prepareView}" value="#{bundle.ListUtkjoringViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{utkjoringController.prepareEdit}" value="#{bundle.ListUtkjoringEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{utkjoringController.destroy}" value="#{bundle.ListUtkjoringDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{utkjoringController.prepareCreate}" value="#{bundle.ListUtkjoringCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListUtkjoringIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

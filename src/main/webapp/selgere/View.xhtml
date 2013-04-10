@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewSelgereTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewSelgereLabel_brukernavn}"/>
+                    <h:outputText value="#{selgereController.selected.brukernavn}" title="#{bundle.ViewSelgereTitle_brukernavn}"/>
+                    <h:outputText value="#{bundle.ViewSelgereLabel_salgPerManed}"/>
+                    <h:outputText value="#{selgereController.selected.salgPerManed}" title="#{bundle.ViewSelgereTitle_salgPerManed}"/>
+                    <h:outputText value="#{bundle.ViewSelgereLabel_opparbeidetProvisjon}"/>
+                    <h:outputText value="#{selgereController.selected.opparbeidetProvisjon}" title="#{bundle.ViewSelgereTitle_opparbeidetProvisjon}"/>
+                    <h:outputText value="#{bundle.ViewSelgereLabel_antSalg}"/>
+                    <h:outputText value="#{selgereController.selected.antSalg}" title="#{bundle.ViewSelgereTitle_antSalg}"/>
+                    <h:outputText value="#{bundle.ViewSelgereLabel_timer}"/>
+                    <h:outputText value="#{selgereController.selected.timer}" title="#{bundle.ViewSelgereTitle_timer}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{selgereController.destroyAndView}" value="#{bundle.ViewSelgereDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewSelgereEditLink}"/>
+                <br />
+                <h:commandLink action="#{selgereController.prepareCreate}" value="#{bundle.ViewSelgereCreateLink}" />
+                <br />
+                <h:commandLink action="#{selgereController.prepareList}" value="#{bundle.ViewSelgereShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewSelgereIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
