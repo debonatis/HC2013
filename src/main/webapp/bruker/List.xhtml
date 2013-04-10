@@ -3,13 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
+    <ui:composition template="/admin/adminTemplate.xhtml">
+        <ui:define name="header">
             <h:outputText value="#{bundle.ListBrukerTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
+            <p:panel>
             <h:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
@@ -86,7 +88,9 @@
                 <br />
                 <h:link outcome="/index" value="#{bundle.ListBrukerIndexLink}"/>
             </h:form>
+                </p:panel>
         </ui:define>
+        
     </ui:composition>
 
 </html>

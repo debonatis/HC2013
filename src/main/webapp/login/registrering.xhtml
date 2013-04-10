@@ -7,40 +7,11 @@
       xmlns:p="http://primefaces.org/ui">
 
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/login/mainTemplate.xhtml">
         <ui:define name="title">
 
         </ui:define>
-        <ui:define name="sideBar">
-            <h:form>
-                <p:growl id="messages"/>
-                <p:menu>                        
-                    <p:submenu label="Navigations">  
-                        <p:menuitem value="External" url="http://www.vg.no" />  
-                        <p:menuitem value="Home" outcome="/index" />
-                        <p:menuitem outcome="/administrator/List" value="Show All Administrator Items"/>
-
-                        <p:menuitem outcome="/annet/List" value="Show All Annet Items"/>
-
-                        <p:menuitem outcome="/bosted/List" value="Show All Bosted Items"/>
-
-                        <p:menuitem outcome="/bruker/List" value="Show All Bruker Items"/>
-
-                        <p:menuitem outcome="/kunde/List" value="Show All Kunde Items"/>
-
-                        <p:menuitem outcome="/ordre/List" value="Show All Ordre Items"/>
-
-                        <p:menuitem outcome="/ordretabell/List" value="Show All Ordretabell Items"/>
-
-                        <p:menuitem outcome="/retter/List" value="Show All Retter Items"/>
-
-                        <p:menuitem outcome="/rolle/List" value="Show All Rolle Items"/>
-
-                        <p:menuitem outcome="/salg/List" value="Show All Salg Items"/>
-                    </p:submenu>  
-                </p:menu> 
-            </h:form>
-        </ui:define>
+        
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
@@ -55,9 +26,9 @@
 
                         <p:panel header="Personal Details">  
 
-                            <h:messages errorClass="error"/>  
+                            <h:messages for="reg"/>  
 
-                            <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">  
+                            <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid" id="reg">  
                                 <h:outputText value="Firstname: *" />  
                                 <p:inputText required="true" label="Firstname"  
                                              value="#{registrering.bruker.fornavn}" />  
@@ -74,19 +45,12 @@
                                 <p:password id="sjekkpassord" binding="#{passwordComponent}" value="#{registrering.bruker.passord}" >
                                     <f:validator validatorId="validatorTekst2" />
                                 </p:password>
-                                <p:message for="sjekkpassord" />
                                 <h:outputText value="Confirm Password: " />
                                 <p:password id="confirmPassword" required="#{not empty passwordComponent.value}">
                                     <f:validator validatorId="validatorTekst" />
                                     <f:attribute name="passwordComponent" value="#{passwordComponent}" />
                                 </p:password>
                                 <p:message for="confirmPassword" />                            
-                               
-
-
-
-
-                               
                             </h:panelGrid>  
                         </p:panel>  
                     </p:tab>  
