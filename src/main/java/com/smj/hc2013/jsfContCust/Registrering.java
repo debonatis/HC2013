@@ -162,15 +162,16 @@ public class Registrering implements Serializable {
             kunde.setBrukernavn(bruker.getBrukernavn());
             kunde.setAvslag(0);
             kundeFacade.create(kunde);
-            selskaperFacade.create(selskaper);
-            
+            selskaperFacade.create(selskaper);            
             for (Selskaper s : selskaperFacade.findAll()) {
                if(s.getBrId().equalsIgnoreCase(selskaper.getBrId())){
                    selskaper = s;
+                   selskapKunde = new SelskapKunde(bruker.getBrukernavn(), selskaper.getSelskapnr()); 
+                   selskapKundeFacade.create(selskapKunde);
                }                
             }
-            selskapKunde = new SelskapKunde(bruker.getBrukernavn(), selskaperFacade.find(selskaper).getSelskapnr());
-            selskapKundeFacade.create(selskapKunde);
+            
+           
             JsfUtil.addMessage("Welcome :" + bruker.getFornavn());
             prepareCreate();
         } catch (Exception e) {
