@@ -143,8 +143,9 @@ public class Registrering implements Serializable {
 
     public void save() {
 
-        bruker.setPostnummer(bosted.getPostnummer());
+
         bostedFacade.create(bosted);
+        bruker.setPostnummer(bosted.getPostnummer());
         brukerFacade.create(bruker);
         rolle.setBrukernavn(bruker.getBrukernavn());
         rolle.setRollen("customer");
@@ -153,12 +154,8 @@ public class Registrering implements Serializable {
         kunde.setAvslag(0);
         kundeFacade.create(kunde);
         selskaperFacade.create(selskaper);
-        selskapKunde = new SelskapKunde(bruker.getBrukernavn(), selskaper.getSelskapnr());        
+        selskapKunde = new SelskapKunde(bruker.getBrukernavn(), selskaperFacade.find(selskaper).getSelskapnr());
         selskapKundeFacade.create(selskapKunde);
-
-
-
-
 
         JsfUtil.addMessage("Welcome :" + bruker.getFornavn());
 
