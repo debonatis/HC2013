@@ -11,7 +11,7 @@
             <h:outputText value="#{bundle.CreateBrukerTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <p:panel>
+            <p:panel id="panel" header="Create new user">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
@@ -35,13 +35,11 @@
                         <h:inputText id="postnummer" value="#{brukerController.selected.postnummer}" title="#{bundle.CreateBrukerTitle_postnummer}" />
                     </h:panelGrid>
                     <br />
-                    <h:commandLink action="#{brukerController.create}" value="#{bundle.CreateBrukerSaveLink}" />
-                    <br />
-                    <br />
-                    <h:commandLink action="#{brukerController.prepareList}" value="#{bundle.CreateBrukerShowAllLink}" immediate="true"/>
-                    <br />
-                    <br />
-                    <h:link outcome="/index" value="#{bundle.CreateBrukerIndexLink}"/>
+                    <p:menubar>
+                        <p:menuitem action="#{brukerController.create}" value="#{bundle.CreateBrukerSaveLink}"/> 
+                        <p:menuitem action="#{brukerController.prepareList}" value="#{bundle.CreateBrukerShowAllLink}" immediate="true"/>  
+                        <p:menuitem outcome="/index" value="#{bundle.CreateBrukerIndexLink}" style="margin-left:550px"/> 
+                    </p:menubar>
                 </h:form>
             </p:panel>
         </ui:define>

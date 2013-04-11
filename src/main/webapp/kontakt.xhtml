@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/admin/adminTemplate.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListBrukerTitle}"/>
+        </ui:define>
+        <ui:define name="body">
+            <p:panel id="panel" header="Contact information">  
+                <h:form>
+                    <h:panelGrid columns="2">
+                                <p:outputLabel value="HealthyCatering AS" /><br/>
+                                <p:outputLabel value="Mikkenveien 1337" /><br/>
+                                <p:outputLabel value="1337 YoloTown" /><br/>
+                                <p:outputLabel value="Norway" /><br/><br/>
+                                <p:outputLabel value="hcmikken@yolo.com" /><br/>
+                                <p:outputLabel value="Tlf. 13377331" /><br/>
+                    </h:panelGrid>  
+                </h:form>
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+</html>

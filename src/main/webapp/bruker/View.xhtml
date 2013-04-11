@@ -11,7 +11,7 @@
             <h:outputText value="#{bundle.ViewBrukerTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <p:panel>
+            <p:panel id="panel" header="User information">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
@@ -35,13 +35,11 @@
                         <h:outputText value="#{brukerController.selected.postnummer}" title="#{bundle.ViewBrukerTitle_postnummer}"/>
                     </h:panelGrid>
                     <br />
-                    
-                    <h:commandLink action="#{brukerController.destroyAndView}" value="#{bundle.ViewBrukerDestroyLink}"/>
-                    
                     <p:menubar>
+                        <p:menuitem action="#{brukerController.destroyAndView}" value="#{bundle.ViewBrukerDestroyLink}"/> 
                         <p:menuitem value="#{bundle.ViewBrukerEditLink}" outcome="/bruker/Edit"/>  
                         <p:menuitem action="#{brukerController.prepareList}" value="#{bundle.ViewBrukerShowAllLink}" /> 
-                        <p:menuitem value="#{bundle.ViewBrukerIndexLink}" outcome="/index"/>
+                        <p:menuitem value="#{bundle.ViewBrukerIndexLink}" outcome="/index" style="margin-left:550px"/>
                     </p:menubar>
                 </h:form>
             </p:panel>

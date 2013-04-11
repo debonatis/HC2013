@@ -11,7 +11,7 @@
             <h:outputText value="#{bundle.EditBrukerTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <p:panel>
+            <p:panel id="panel" header="Edit information">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
@@ -34,20 +34,13 @@
                         <h:outputLabel value="#{bundle.EditBrukerLabel_postnummer}" for="postnummer" />
                         <h:inputText id="postnummer" value="#{brukerController.selected.postnummer}" title="#{bundle.EditBrukerTitle_postnummer}" />
                     </h:panelGrid>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
+                    <br/><br/><br/><br/><br/>
                     <p:menubar>
                         <p:menuitem action="#{brukerController.update}" value="#{bundle.EditBrukerSaveLink}"/>  
                         <p:menuitem outcome="View" value="#{bundle.EditBrukerViewLink}" /> 
                         <p:menuitem action="#{brukerController.prepareList}" value="#{bundle.EditBrukerShowAllLink}" immediate="true"/>
-                        <p:menuitem outcome="/index" value="#{bundle.EditBrukerIndexLink}" />
+                        <p:menuitem outcome="/index" value="#{bundle.EditBrukerIndexLink}" style="margin-left:550px"/>
                     </p:menubar>
-
-
-                    <h:link  />
                 </h:form>
             </p:panel>
         </ui:define>
