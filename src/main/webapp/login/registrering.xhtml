@@ -26,9 +26,9 @@
 
                         <p:panel header="Personal Details">  
 
-                            <h:messages for="reg"/>  
+                            <h:messages errorClass="info"/>  
 
-                            <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid" id="reg">  
+                            <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">  
                                 <h:outputText value="Firstname: *" />  
                                 <p:inputText required="true" label="Firstname"  
                                              value="#{registrering.bruker.fornavn}" />  
@@ -38,7 +38,8 @@
                                              value="#{registrering.bruker.etternavn}" />  
 
                                 <h:outputText value="Username: " />  
-                                <p:inputText id="brukernavn" value="#{registrering.bruker.brukernavn}" />                                
+                                <p:inputText id="brukernavn" value="#{registrering.bruker.brukernavn}" /> 
+                                
 
                                 
                                 <h:outputText value="Password:"/>
@@ -49,8 +50,7 @@
                                 <p:password id="confirmPassword" required="#{not empty passwordComponent.value}">
                                     <f:validator validatorId="validatorTekst" />
                                     <f:attribute name="passwordComponent" value="#{passwordComponent}" />
-                                </p:password>
-                                <p:message for="confirmPassword" />                            
+                                </p:password>                                                          
                             </h:panelGrid>  
                         </p:panel>  
                     </p:tab>  
