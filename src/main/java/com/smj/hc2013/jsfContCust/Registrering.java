@@ -142,9 +142,18 @@ public class Registrering implements Serializable {
     }
 
     public void save() {
-
-
-        bostedFacade.create(bosted);
+        
+         boolean bostedFins = false;
+         
+         for(Bosted b : bostedFacade.findAll()){
+             if(b.getPostnummer() == bosted.getPostnummer()){
+                 bostedFins = true;
+             }
+         }
+        if(!bostedFins){
+            bostedFacade.create(bosted);
+        }
+        
         bruker.setPostnummer(bosted.getPostnummer());
         brukerFacade.create(bruker);
         rolle.setBrukernavn(bruker.getBrukernavn());
