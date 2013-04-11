@@ -4,6 +4,7 @@ package com.smj.hc2013.jsfContCust;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.smj.hc2013.jsfContl.util.JsfUtil;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -73,6 +74,22 @@ public class BrukerBehandling implements Serializable {
         }
         return "ok";
     }
+    
+     public String logout2() {
+    String result="/index?faces-redirect=true";
+     
+    FacesContext context = FacesContext.getCurrentInstance();
+    HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest();
+     
+    try {
+      request.logout();
+    } catch (ServletException e) {
+      JsfUtil.addErrorMessage("Failes to log you our!");       
+      result = "/loginError?faces-redirect=true";
+    }
+     
+    return result;
+  }
 
     public static boolean isInRole(String k) {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
