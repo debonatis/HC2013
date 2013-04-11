@@ -1,16 +1,14 @@
 package com.smj.hc2013.jsfCont;
 
-import com.smj.hc2013.jsfContCust.FileOpplasting;
-import com.smj.hc2013.model.Retter;
 import com.smj.hc2013.jsfContl.util.JsfUtil;
 import com.smj.hc2013.jsfContl.util.PaginationHelper;
+import com.smj.hc2013.model.Retter;
 import com.smj.hc2013.session.RetterFacade;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
 import java.io.Serializable;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
@@ -24,6 +22,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpServlet;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.FlowEvent;
 
@@ -36,11 +35,9 @@ public class RetterController implements Serializable {
     @EJB
     private com.smj.hc2013.session.RetterFacade ejbFacade;
     private PaginationHelper pagination;
-    private int selectedItemIndex;
-    private FileOpplasting opp;
+    private int selectedItemIndex;   
     private static final Logger logger = Logger.getLogger(RetterController.class.getName());
     private boolean skip;
-    private boolean skrivFil = true;
 
     public RetterController() {
     }
@@ -230,14 +227,15 @@ public class RetterController implements Serializable {
     public void handleFileUpload(FileUploadEvent event) {
 
         try {
-
+              HttpServlet servlet = new HttpServlet() {};
             File targetFolder = new File("/upload/images");
 
             InputStream inputStream = event.getFile().getInputstream();
-
-            OutputStream out = new FileOutputStream(new File(targetFolder,
-                    event.getFile().getFileName()));
             current.setFil(event.getFile().getFileName());
+            OutputStream out = new FileOutputStream(new File(servlet.getServletContext().getRealPath(
+                "upload/"),
+                    event.getFile().getFileName()));
+
 
             int read = 0;
 
