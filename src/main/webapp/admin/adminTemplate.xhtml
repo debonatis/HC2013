@@ -17,23 +17,22 @@
         </div>
     </h:head>
 
-         <h:body>       
+    <h:body>       
         <div id="body">
             <ui:insert name="body"/>
         </div>  
+        <div id="sideBar">
+            <h:form>
+                <p:growl id="messages"/>
+                <p:menu>          
+                    <p:submenu label="Navigations">  
+                        <p:menuitem value="User overview" outcome="/bruker/List" />  
+                        <p:menuitem value="Register new user" outcome="/login/registrering" />
+                    </p:submenu>  
+                </p:menu> 
+            </h:form>           
+        </div>
+        <ui:debug/>
 
-            <div id="sideBar">
-                <h:form>
-                    <p:growl id="messages"/>
-                    <p:menu>          
-                        <p:submenu label="Navigations">  
-                            <p:menuitem value="User overview" outcome="/bruker/List" />  
-                            <p:menuitem value="Register new user" outcome="/login/registrering" />
-                        </p:submenu>  
-                    </p:menu> 
-                </h:form>           
-            </div>
-            <ui:debug/>
-
-        </h:body>
+    </h:body>
 </html>
