@@ -14,22 +14,13 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form enctype="multipart/form-data">
+            <h:form >
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateRetterLabel_rettnummer}" for="rettnummer" />
                     <h:inputText id="rettnummer" value="#{retterController.selected.rettnummer}" title="#{bundle.CreateRetterTitle_rettnummer}" required="true" requiredMessage="#{bundle.CreateRetterRequiredMessage_rettnummer}"/>
                     <h:outputLabel value="#{bundle.CreateRetterLabel_navn}" for="navn" />
-                    <h:inputText id="navn" value="#{retterController.selected.navn}" title="#{bundle.CreateRetterTitle_navn}" required="true" requiredMessage="#{bundle.CreateRetterRequiredMessage_navn}"/>
-                    <h:outputLabel value="#{bundle.CreateRetterLabel_beskrivelse}" for="beskrivelse" />
-                   
-                    <p:fileUpload fileUploadListener="#{fileOpplasting.handleFileUpload}"  
-                                  mode="advanced"  
-                                  update="messages"  
-                                  auto="true"  
-                                  sizeLimit="100000"   
-                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>  
+                    <h:inputText id="navn" value="#{retterController.selected.navn}" title="#{bundle.CreateRetterTitle_navn}" required="true" requiredMessage="#{bundle.CreateRetterRequiredMessage_navn}"/>                   
 
-                    <p:growl id="messages" showDetail="true"/> 
                     <h:outputLabel value="#{bundle.CreateRetterLabel_ingredienser}" for="ingredienser" />
                     <h:inputText id="ingredienser" value="#{retterController.selected.ingredienser}" title="#{bundle.CreateRetterTitle_ingredienser}" />
                     <h:outputLabel value="#{bundle.CreateRetterLabel_kalorier}" for="kalorier" />
@@ -47,7 +38,23 @@
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.CreateRetterIndexLink}"/>
+                <br />
+                <br />
+                <br />
+                <br />
             </h:form>
+            <h:form enctype="multipart/form-data">  
+                <p:panel>
+                    <p:fileUpload fileUploadListener="#{fileUploadController.handleFileUpload}"  
+                                  mode="advanced"  
+                                  update="messages"  
+                                  auto="true"  
+                                  sizeLimit="100000"   
+                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>  
+
+                    <p:growl id="messages" showDetail="true"/>  
+                </p:panel>
+            </h:form>  
         </ui:define>
     </ui:composition>
 

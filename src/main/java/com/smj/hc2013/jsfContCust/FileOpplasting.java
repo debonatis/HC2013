@@ -7,19 +7,10 @@ package com.smj.hc2013.jsfContCust;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Scanner;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.Part;
-import org.primefaces.context.RequestContext;
-import org.primefaces.event.FileUploadEvent;
 
 /**
  *
@@ -28,15 +19,53 @@ import org.primefaces.event.FileUploadEvent;
 @ManagedBean
 @RequestScoped
 public class FileOpplasting extends HttpServlet {
+    
+    private String fil;
+    
+    private InputStream is;
+    
+    private String filename;
+    
+    private FileOutputStream os;
 
-    public boolean skrivFil(InputStream is, String filename) throws ServletException, IOException {
+    public InputStream getIs() {
+        return is;
+    }
 
+    public void setIs(InputStream is) {
+        this.is = is;
+    }
 
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+    
+    public String getFil() {
+        return fil;
+    }
+
+    public void setFil(String fil) {
+        this.fil = fil;
+    }
+
+    public FileOutputStream getOs() {
+        return os;
+    }
+
+    public void setOs(FileOutputStream os) {
+        this.os = os;
+    }
+
+    public boolean skrivFil() throws ServletException, IOException {
 
         try {
-            String outputfile = getServletContext().getRealPath("upload/" + filename);
+            fil = getServletContext().getRealPath("upload/" + filename);
 
-            FileOutputStream os = new FileOutputStream(outputfile);
+            os = new FileOutputStream(fil);
 
 
             int ch = is.read();

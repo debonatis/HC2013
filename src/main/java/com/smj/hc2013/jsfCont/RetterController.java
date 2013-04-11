@@ -34,7 +34,7 @@ public class RetterController implements Serializable {
     private com.smj.hc2013.session.RetterFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
-    private FileOpplasting opp = new FileOpplasting();
+    private FileOpplasting opp;
 
     public RetterController() {
     }
@@ -194,6 +194,23 @@ public class RetterController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
+    public void handleFileUpload(FileUploadEvent event) {
+        boolean skrivFil = true;
+        try {
+            InputStream is = event.getFile().getInputstream();
+            String filename = event.getFile().getFileName();
+            opp.setIs(is);
+            opp.setFilename(filename);
+            skrivFil = opp.skrivFil();
+        } catch (Exception ex) {
+            skrivFil = false;
+        }
+        if (skrivFil) {
+            FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+    }
+
     @FacesConverter(forClass = Retter.class)
     public static class RetterControllerConverter implements Converter {
 
@@ -228,23 +245,6 @@ public class RetterController implements Serializable {
             } else {
                 throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Retter.class.getName());
             }
-        }
-
-        public void handleFileUpload(FileUploadEvent event) {
-
-            try {
-
-                InputStream is = event.getFile().getInputstream();
-                String filename = event.getFile().getFileName();
-
-
-            } catch (Exception ex) {
-            } finally {
-            }
-
-
-            FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
         }
     }
 }
