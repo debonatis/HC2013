@@ -6,7 +6,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/admin/adminTemplate.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.ViewBrukerTitle}"></h:outputText>
         </ui:define>
@@ -35,18 +35,14 @@
                         <h:outputText value="#{brukerController.selected.postnummer}" title="#{bundle.ViewBrukerTitle_postnummer}"/>
                     </h:panelGrid>
                     <br />
+                    
                     <h:commandLink action="#{brukerController.destroyAndView}" value="#{bundle.ViewBrukerDestroyLink}"/>
-                    <br />
-                    <br />
-                    <h:link outcome="Edit" value="#{bundle.ViewBrukerEditLink}"/>
-                    <br />
-                    <h:commandLink action="#{brukerController.prepareCreate}" value="#{bundle.ViewBrukerCreateLink}" />
-                    <br />
-                    <h:commandLink action="#{brukerController.prepareList}" value="#{bundle.ViewBrukerShowAllLink}"/>
-                    <br />
-                    <br />
-                    <h:link outcome="/index" value="#{bundle.ViewBrukerIndexLink}"/>
-
+                    
+                    <p:menubar>
+                        <p:menuitem value="#{bundle.ViewBrukerEditLink}" outcome="/bruker/Edit"/>  
+                        <p:menuitem action="#{brukerController.prepareList}" value="#{bundle.ViewBrukerShowAllLink}" /> 
+                        <p:menuitem value="#{bundle.ViewBrukerIndexLink}" outcome="/index"/>
+                    </p:menubar>
                 </h:form>
             </p:panel>
         </ui:define>
