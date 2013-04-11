@@ -22,6 +22,7 @@ import com.smj.hc2013.session.SelgereFacade;
 import com.smj.hc2013.session.SelskapKundeFacade;
 import com.smj.hc2013.session.SelskaperFacade;
 import java.io.Serializable;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -142,33 +143,40 @@ public class Registrering implements Serializable {
     }
 
     public void save() {
-        
-         boolean bostedFinsikke = true;
-         
-         for(Bosted b : bostedFacade.findAll()){
-             if(b.getPostnummer() == bosted.getPostnummer()){
-                 bostedFinsikke = false;
-             }
-         }
-        if(bostedFinsikke){
-            bostedFacade.create(bosted);
+
+        try {
+            boolean bostedFinsikke = true;
+            for (Bosted b : bostedFacade.findAll()) {
+                if (b.getPostnummer().intValue() == bosted.getPostnummer().intValue()) {
+                    bostedFinsikke = false;
+                }
+            }
+            if (bostedFinsikke) {
+                bostedFacade.create(bosted);
+            }
+            bruker.setPostnummer(bosted.getPostnummer());
+            brukerFacade.create(bruker);
+            rolle.setBrukernavn(bruker.getBrukernavn());
+            rolle.setRollen("customer");
+            rolleFacade.create(rolle);
+            kunde.setBrukernavn(bruker.getBrukernavn());
+            kunde.setAvslag(0);
+            kundeFacade.create(kunde);
+            selskaperFacade.create(selskaper);
+            
+            for (Selskaper s : selskaperFacade.findAll()) {
+               if(s.getBrId().equalsIgnoreCase(selskaper.getBrId())){
+                   selskaper = s;
+               }                
+            }
+            selskapKunde = new SelskapKunde(bruker.getBrukernavn(), selskaperFacade.find(selskaper).getSelskapnr());
+            selskapKundeFacade.create(selskapKunde);
+            JsfUtil.addMessage("Welcome :" + bruker.getFornavn());
+            prepareCreate();
+        } catch (Exception e) {
+            JsfUtil.addMessage(ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured") + "This could be double registration or faulty registration inputs! Check your inputs");
+
         }
-        
-        bruker.setPostnummer(bosted.getPostnummer());
-        brukerFacade.create(bruker);
-        rolle.setBrukernavn(bruker.getBrukernavn());
-        rolle.setRollen("customer");
-        rolleFacade.create(rolle);
-        kunde.setBrukernavn(bruker.getBrukernavn());
-        kunde.setAvslag(0);
-        kundeFacade.create(kunde);
-        selskaperFacade.create(selskaper);
-        selskapKunde = new SelskapKunde(bruker.getBrukernavn(), selskaperFacade.find(selskaper).getSelskapnr());
-        selskapKundeFacade.create(selskapKunde);
-
-        JsfUtil.addMessage("Welcome :" + bruker.getFornavn());
-
-        prepareCreate();
     }
 
     public boolean isSkip() {
