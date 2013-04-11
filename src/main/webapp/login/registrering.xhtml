@@ -7,13 +7,11 @@
       xmlns:p="http://primefaces.org/ui">
 
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/login/loginTemplate.xhtml">
         <ui:define name="title">
 
         </ui:define>
-        <ui:define name="sideBar">
-            
-        </ui:define>
+        
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
@@ -28,9 +26,9 @@
 
                         <p:panel header="Personal Details">  
 
-                            <h:messages errorClass="error"/>  
+                            <h:messages for="reg"/>  
 
-                            <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">  
+                            <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid" id="reg">  
                                 <h:outputText value="Firstname: *" />  
                                 <p:inputText required="true" label="Firstname"  
                                              value="#{registrering.bruker.fornavn}" />  
@@ -47,19 +45,12 @@
                                 <p:password id="sjekkpassord" binding="#{passwordComponent}" value="#{registrering.bruker.passord}" >
                                     <f:validator validatorId="validatorTekst2" />
                                 </p:password>
-                                <p:message for="sjekkpassord" />
                                 <h:outputText value="Confirm Password: " />
                                 <p:password id="confirmPassword" required="#{not empty passwordComponent.value}">
                                     <f:validator validatorId="validatorTekst" />
                                     <f:attribute name="passwordComponent" value="#{passwordComponent}" />
                                 </p:password>
                                 <p:message for="confirmPassword" />                            
-                               
-
-
-
-
-                               
                             </h:panelGrid>  
                         </p:panel>  
                     </p:tab>  
