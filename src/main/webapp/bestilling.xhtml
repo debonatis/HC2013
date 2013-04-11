@@ -44,7 +44,7 @@
                 <p:growl id="growl" sticky="true" showDetail="true"/>  
 
                 <p:wizard widgetVar="wiz"  
-                          flowListener="#{userWizard.onFlowProcess}">  
+                          flowListener="#{bestilling.onFlowProcess}">  
 
                     <p:tab id="personal" title="Pick dish/es">  
 
@@ -56,10 +56,7 @@
                             <p:pickList id="pojoPickList" value="#{bestilling.retterPick}" var="rett" effect="bounce"  
                                         itemValue="#{rett}" itemLabel="#{rett.navn}" converter="rett"  
                                         showSourceControls="true" showTargetControls="true" showCheckbox="true"  
-                                        showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" >  
-                                <p:notificationBar position="bottom" effect="slide" widgetVar="bar" styleClass="top">  
-                                    <h:outputText value="What PrimeFaces has so far is just the beginning!" style="color:#FFCC00;font-size:36px;" />  
-                                </p:notificationBar> 
+                                        showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" >                                  
 
                                 <f:facet name="sourceCaption">Available</f:facet>  
                                 <f:facet name="targetCaption">Picked</f:facet>  
@@ -68,30 +65,30 @@
 
 
 
-                                <p:column style="width:75%;"> 
-                                    <p:notificationBar position="bottom" effect="slide" widgetVar="bar" styleClass="top">  
-                                        <h:outputText value="#{rett.navn}" style="color:#6D6D6D;font-size:7px;" />  
-                                    </p:notificationBar>  
-                                    <p:commandButton value="#{rett.navn}" onclick="bar.show()" type="button" />
-                                    
+                                <p:column style="width:25%">  
+                                    <p:graphicImage value="/images/barca/#{player.photo}" width="30" height="40" />  
+                                </p:column>  
+
+                                <p:column style="width:75%;">  
+                                    #{player.name}  
                                 </p:column>  
 
                             </p:pickList>  
 
-                            <p:commandButton id="pojoSubmit" value="Submit" update="displayPlayers" oncomplete="playerDialog.show()" style="margin-top:5px"/>  
+                            <p:commandButton id="pojoSubmit" value="Submit" update="displayPlayers" oncomplete="rettDialog.show()" style="margin-top:5px"/>  
 
 
 
-                            <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="playerDialog">  
+                            <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="rettDialog">  
                                 <h:panelGrid id="displayPlayers" columns="2">  
                                     <h:outputText value="Source: " style="font-weight:bold"/>  
-                                    <ui:repeat value="#{bestilling.retterPick.source}" var="player">  
-                                        <h:outputText value="#{player.name}" style="margin-right:5px" />  
+                                    <ui:repeat value="#{bestilling.retterPick.source}" var="rett">  
+                                        <h:outputText value="#{rett.nanv}" style="margin-right:5px" />  
                                     </ui:repeat>  
 
                                     <h:outputText value="Target: " style="font-weight:bold"/>  
                                     <ui:repeat value="#{bestilling.retterPick.target}" var="player">  
-                                        <h:outputText value="#{player.name}" style="margin-right:5px" />  
+                                        <h:outputText value="#{player.navn}" style="margin-right:5px" />  
                                     </ui:repeat>  
                                 </h:panelGrid>  
                             </p:dialog>  
@@ -102,19 +99,18 @@
 
                             <h:messages errorClass="error"/>  
 
-                            <h:panelGrid columns="2" columnClasses="label, value">  
-                                <h:outputText value="Street: " />  
-                                <p:inputText value="#{userWizard.user.street}" />  
+                            <p:dataTable var="items" value="#{bestilling.settAntallList}">
 
-                                <h:outputText value="Postal Code: " />  
-                                <p:inputText value="#{userWizard.user.postalCode}" />  
+                                <p:column headerText="Dish" sortBy="#{car.model}" filterBy="#{car.model}">  
+                                    <h:outputText value="#{items.rett.navn}" />  
+                                </p:column>  
 
-                                <h:outputText value="City: " />  
-                                <p:inputText value="#{userWizard.user.city}" />  
+                                <p:column headerText="Quantity" sortBy="#{car.year}" filterBy="#{car.year}">  
+                                    <p:inputText value="#{items.antall}" />  
+                                </p:column>  
 
-                                <h:outputText value="Skip to last: " />  
-                                <h:selectBooleanCheckbox value="#{userWizard.skip}" />  
-                            </h:panelGrid>  
+
+                            </p:dataTable>  
                         </p:panel>  
                     </p:tab>  
 

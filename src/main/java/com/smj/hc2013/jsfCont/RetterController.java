@@ -1,13 +1,17 @@
 package com.smj.hc2013.jsfCont;
 
+import com.smj.hc2013.jsfContCust.FileOpplasting;
 import com.smj.hc2013.model.Retter;
 import com.smj.hc2013.jsfContl.util.JsfUtil;
 import com.smj.hc2013.jsfContl.util.PaginationHelper;
 import com.smj.hc2013.session.RetterFacade;
+import java.io.IOException;
+import java.io.InputStream;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
@@ -17,6 +21,8 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.servlet.ServletException;
+import org.primefaces.event.FileUploadEvent;
 
 @ManagedBean(name = "retterController")
 @SessionScoped
@@ -28,6 +34,7 @@ public class RetterController implements Serializable {
     private com.smj.hc2013.session.RetterFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private FileOpplasting opp = new FileOpplasting();
 
     public RetterController() {
     }
@@ -221,6 +228,23 @@ public class RetterController implements Serializable {
             } else {
                 throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Retter.class.getName());
             }
+        }
+
+        public void handleFileUpload(FileUploadEvent event) {
+
+            try {
+
+                InputStream is = event.getFile().getInputstream();
+                String filename = event.getFile().getFileName();
+
+
+            } catch (Exception ex) {
+            } finally {
+            }
+
+
+            FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
         }
     }
 }

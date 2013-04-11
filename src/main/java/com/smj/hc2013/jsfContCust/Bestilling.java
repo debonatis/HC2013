@@ -7,7 +7,6 @@ package com.smj.hc2013.jsfContCust;
 import com.smj.hc2013.model.Ordre;
 import com.smj.hc2013.model.OrdreBestilling;
 import com.smj.hc2013.model.Ordretabell;
-import com.smj.hc2013.model.OrdretabellPK;
 import com.smj.hc2013.model.Retter;
 import com.smj.hc2013.session.OrdretabellFacade;
 import com.smj.hc2013.session.RetterFacade;
