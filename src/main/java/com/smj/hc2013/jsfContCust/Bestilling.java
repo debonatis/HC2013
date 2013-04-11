@@ -22,10 +22,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.FlowEvent;
 import org.primefaces.event.TransferEvent;
@@ -36,7 +37,7 @@ import org.primefaces.model.DualListModel;
  * @author deb
  */
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class Bestilling implements Serializable {
 
     private List<Retter> retter;
@@ -61,7 +62,7 @@ public class Bestilling implements Serializable {
     @EJB
     private UtkjoringFacade utkjoringFacade;
     private Ordre ordre = new Ordre();
-    private Ordretabell ordreT = new Ordretabell();    
+    private Ordretabell ordreT = new Ordretabell();
     private Retter selected = new Retter();
     private boolean skip;
     private static Logger logger = Logger.getLogger(Bestilling.class.getName());
@@ -75,7 +76,6 @@ public class Bestilling implements Serializable {
         this.ordre = ordre;
     }
 
-    
     public List<OrdreBestilling> getSettAntallList() {
         settAntallList.clear();
         for (Retter r : maal) {
@@ -91,12 +91,16 @@ public class Bestilling implements Serializable {
     private void oppdaterRetterList() {
         retter = retterFacade.findAll();
     }
-   
 
-    public DualListModel<Retter> getRetterPick() {
+    @PostConstruct
+    public void init() {
         oppdaterRetterList();
         maal = new ArrayList<Retter>();
         retterPick = new DualListModel<Retter>(retter, maal);
+    }
+
+    public DualListModel<Retter> getRetterPick() {
+
         return retterPick;
     }
 
@@ -144,7 +148,7 @@ public class Bestilling implements Serializable {
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-    
+
     public UUID getUUID() {
         UUID idOne = UUID.randomUUID();
         return idOne;
