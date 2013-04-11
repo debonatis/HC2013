@@ -228,12 +228,11 @@ public class RetterController implements Serializable {
 
         try {
               HttpServlet servlet = new HttpServlet() {};
-            File targetFolder = new File("/upload/images");
+            File maalMappe = new File("C:\\HC2013\\bilder");
 
             InputStream inputStream = event.getFile().getInputstream();
             current.setFil(event.getFile().getFileName());
-            OutputStream out = new FileOutputStream(new File(servlet.getServletContext().getRealPath(
-                "upload/"),
+            OutputStream out = new FileOutputStream(new File(maalMappe,
                     event.getFile().getFileName()));
 
 
