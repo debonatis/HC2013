@@ -53,14 +53,14 @@ public class Registrering implements Serializable {
     private SelgereFacade SelgereFacade;
     @EJB
     private SalgFacade SalgFacade;
-    private Bruker bruker;
-    private Rolle rolle;
-    private Bosted bosted;
-    private Kunde kunde;
-    private Selskaper selskaper;
-    private SelskapKunde selskapKunde;
-    private Salg salg;
-    private Selgere selgere;
+    private Bruker bruker = new Bruker();
+    private Rolle rolle = new Rolle();
+    private Bosted bosted = new Bosted();
+    private Kunde kunde = new Kunde();
+    private Selskaper selskaper = new Selskaper();
+    private SelskapKunde selskapKunde = new SelskapKunde();
+    private Salg salg = new Salg();
+    private Selgere selgere = new Selgere();
     private boolean skip;
     private static final Logger logger = Logger.getLogger(Registrering.class.getName());
 
@@ -77,16 +77,7 @@ public class Registrering implements Serializable {
 
     }
 
-    public Registrering() {
-        bruker = new Bruker();
-        rolle = new Rolle();
-        bosted = new Bosted();
-        kunde = new Kunde();
-        selskaper = new Selskaper();
-        selskapKunde = new SelskapKunde();
-        salg = new Salg();
-        selgere = new Selgere();
-    }
+   
 
     public Kunde getKunde() {
         return kunde;

@@ -43,15 +43,15 @@
 
                                 <p:password label="Password" id="sjekkpassord" binding="#{passwordComponent}" value="#{registrering.bruker.passord}" >
                                     <f:validator validatorId="validatorTekst2" />                   
-                                </p:password> <br/>
-                                <p:message for="sjekkpassord" />
+                                </p:password>
+                               
                                 <h:outputLabel for="confirmPassword" value="Confirm password: *" />
 
                                 <p:password label="Confrim Password" id="confirmPassword" required="#{not empty passwordComponent.value}">
                                     <f:validator validatorId="validatorTekst" />
                                     <f:attribute name="passwordComponent" value="#{passwordComponent}" />
                                 </p:password>
-                                <p:message for="confirmPassword" />
+                                
 
 
                             </h:panelGrid>  
