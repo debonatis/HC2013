@@ -26,14 +26,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
 import org.primefaces.event.FlowEvent;
 
 /**
  *
  * @author deb
  */
-@Named(value = "registrering")
+@ManagedBean(name = "registrering")
 @SessionScoped
 public class Registrering implements Serializable {
 
