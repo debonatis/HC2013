@@ -260,7 +260,7 @@ public class RetterController implements Serializable {
         }
     }
 
-    @FacesConverter(forClass = Retter.class)
+    @FacesConverter(forClass = Retter.class, value="retterControllerConverter")
     public static class RetterControllerConverter implements Converter {
 
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {

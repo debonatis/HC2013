@@ -12,31 +12,8 @@
 
         </ui:define>
         <ui:define name="sideBar">
-            <h:form>
-                <p:growl id="messages"/> 
-
-
-                <h3>Healthy Catering</h3>  
-                <p:slideMenu style="width:180px">  
-                    <p:submenu label="Ajax Menuitems" icon="ui-icon-refresh">  
-                        <p:menuitem value="Save" actionListener="#{menuBean.save}" update="messages" icon="ui-icon-disk" />  
-                        <p:menuitem value="Update" actionListener="#{menuBean.update}" update="messages" icon="ui-icon-arrowrefresh-1-w" />  
-                    </p:submenu>  
-                    <p:submenu label="Non-Ajax Menuitem" icon="ui-icon-newwin">  
-                        <p:menuitem value="Delete" actionListener="#{menuBean.delete}"  ajax="false" icon="ui-icon-close"/>  
-                    </p:submenu>  
-                    <p:separator />  
-                    <p:submenu label="Navigations" icon="ui-icon-extlink">  
-                        <p:submenu label="Prime Links">  
-                            <p:menuitem value="Prime" url="http://www.prime.com.tr" />  
-                            <p:menuitem value="PrimeFaces" url="http://www.primefaces.org" />  
-                        </p:submenu>  
-                        <p:menuitem value="Mobile" outcome="/mobile/index" />  
-                    </p:submenu>  
-                </p:slideMenu>  
-
-            </h:form>
-
+            
+               
         </ui:define>
         <ui:define name="body">
             <h:form>  
@@ -54,7 +31,7 @@
 
 
                             <p:pickList id="pojoPickList" value="#{bestilling.retterPick}" var="rett" effect="bounce"  
-                                        itemValue="#{rett}" itemLabel="#{rett.navn}" converter="rett"  
+                                        itemValue="#{rett}" itemLabel="#{rett.navn}" converter="#{retterControllerConverter}"  
                                         showSourceControls="true" showTargetControls="true" showCheckbox="true"  
                                         showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" >                                  
 
@@ -74,13 +51,14 @@
                                 </p:column>  
 
                             </p:pickList>  
+                            </p:panel> 
 
-                            <p:commandButton id="pojoSubmit" value="Submit" update="displayPlayers" oncomplete="rettDialog.show()" style="margin-top:5px"/>  
+                            <p:commandButton id="pojoSubmit" value="Submit" update="displayRetter" oncomplete="rettDialog.show()" style="margin-top:5px"/>  
 
 
 
                             <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="rettDialog">  
-                                <h:panelGrid id="displayPlayers" columns="2">  
+                                <h:panelGrid id="displayRetter" columns="2">  
                                     <h:outputText value="Source: " style="font-weight:bold"/>  
                                     <ui:repeat value="#{bestilling.retterPick.source}" var="rett">  
                                         <h:outputText value="#{rett.navn}" style="margin-right:5px" />  
@@ -92,7 +70,7 @@
                                     </ui:repeat>  
                                 </h:panelGrid>  
                             </p:dialog>  
-                        </p:panel>  
+                         
                     </p:tab>  
                     <p:tab id="futherInf" title="Futher Information">  
                         <p:panel header="Order Details">  
