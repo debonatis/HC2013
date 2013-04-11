@@ -62,8 +62,8 @@
                             </h:form> </p:panel> 
                         <p:panel>
                             <br />
-                            <h:outputLabel value="#{bundle.CreateRetterLable_beskrivelse}" for="ingredienser" />
-                            <p:inputText id="ingredienser" value="#{retterController.selected.ingredienser}" title="#{bundle.CreateRetterTitle_beskrivelse}" />
+                            <h:outputLabel value="#{bundle.CreateRetterLabel_beskrivelse}" for="beskrivelse" />
+                            <p:inputText id="beskrivelse" value="#{retterController.selected.beskrivelse}" title="#{bundle.CreateRetterTitle_beskrivelse}" />
                             <br />
                             <p:commandButton action="#{retterController.create}" value="#{bundle.CreateRetterSaveLink}" update="growl"/>
                             <br />
