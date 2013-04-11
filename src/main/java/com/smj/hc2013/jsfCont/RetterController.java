@@ -5,11 +5,12 @@ import com.smj.hc2013.model.Retter;
 import com.smj.hc2013.jsfContl.util.JsfUtil;
 import com.smj.hc2013.jsfContl.util.PaginationHelper;
 import com.smj.hc2013.session.RetterFacade;
-import java.io.IOException;
+import java.awt.event.ActionEvent;
 import java.io.InputStream;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -21,8 +22,8 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-import javax.servlet.ServletException;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.FlowEvent;
 
 @ManagedBean(name = "retterController")
 @SessionScoped
@@ -35,8 +36,18 @@ public class RetterController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
     private FileOpplasting opp;
+    private static final Logger logger = Logger.getLogger(RetterController.class.getName());
+    private boolean skip;
 
     public RetterController() {
+    }
+
+    public boolean isSkip() {
+        return skip;
+    }
+
+    public void setSkip(boolean skip) {
+        this.skip = skip;
     }
 
     public Retter getSelected() {
@@ -49,6 +60,12 @@ public class RetterController implements Serializable {
 
     private RetterFacade getFacade() {
         return ejbFacade;
+    }
+    public boolean isBeskrivelse(){
+        if(getSelected().getBeskrivelse().isEmpty()){
+            return false;
+        }
+        return true;
     }
 
     public PaginationHelper getPagination() {
@@ -85,7 +102,7 @@ public class RetterController implements Serializable {
         return "Create";
     }
 
-    public String create() {
+    public String create(ActionEvent actionEvent) {
         try {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RetterCreated"));
@@ -193,12 +210,26 @@ public class RetterController implements Serializable {
     public SelectItem[] getItemsAvailableSelectOne() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
+    
+     public String onFlowProcess(FlowEvent event) {  
+        logger.info("Current wizard step:" + event.getOldStep());  
+        logger.info("Next step:" + event.getNewStep());  
+          
+        if(skip) {  
+            skip = false;    
+            return "confirm";  
+        }  
+        else {  
+            return event.getNewStep();  
+        }  
+    }  
 
     public void handleFileUpload(FileUploadEvent event) {
         boolean skrivFil = true;
         try {
             InputStream is = event.getFile().getInputstream();
             String filename = event.getFile().getFileName();
+            getSelected().setBeskrivelse(filename);
             opp.setIs(is);
             opp.setFilename(filename);
             skrivFil = opp.skrivFil();

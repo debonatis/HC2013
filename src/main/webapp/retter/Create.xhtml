@@ -14,50 +14,71 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <p:panel>
+
             <h:form >
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateRetterLabel_rettnummer}" for="rettnummer" />
-                    <h:inputText id="rettnummer" value="#{retterController.selected.rettnummer}" title="#{bundle.CreateRetterTitle_rettnummer}" required="true" requiredMessage="#{bundle.CreateRetterRequiredMessage_rettnummer}"/>
-                    <h:outputLabel value="#{bundle.CreateRetterLabel_navn}" for="navn" />
-                    <h:inputText id="navn" value="#{retterController.selected.navn}" title="#{bundle.CreateRetterTitle_navn}" required="true" requiredMessage="#{bundle.CreateRetterRequiredMessage_navn}"/>                   
+                <p:growl id="growl" sticky="true" showDetail="true"/>  
 
-                    <h:outputLabel value="#{bundle.CreateRetterLabel_ingredienser}" for="ingredienser" />
-                    <h:inputText id="ingredienser" value="#{retterController.selected.ingredienser}" title="#{bundle.CreateRetterTitle_ingredienser}" />
-                    <h:outputLabel value="#{bundle.CreateRetterLabel_kalorier}" for="kalorier" />
-                    <h:inputText id="kalorier" value="#{retterController.selected.kalorier}" title="#{bundle.CreateRetterTitle_kalorier}" />
-                    <h:outputLabel value="#{bundle.CreateRetterLabel_vekt}" for="vekt" />
-                    <h:inputText id="vekt" value="#{retterController.selected.vekt}" title="#{bundle.CreateRetterTitle_vekt}" />
-                    <h:outputLabel value="#{bundle.CreateRetterLabel_pris}" for="pris" />
-                    <h:inputText id="pris" value="#{retterController.selected.pris}" title="#{bundle.CreateRetterTitle_pris}" />
-                </h:panelGrid>
-                
-                <br />
-                <h:commandLink action="#{retterController.create}" value="#{bundle.CreateRetterSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{retterController.prepareList}" value="#{bundle.CreateRetterShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateRetterIndexLink}"/>
-                <br />
-                <br />
-                <br />
-                <br />
+                <p:wizard widgetVar="wiz"  
+                          flowListener="#{userWizard.onFlowProcess}">  
+
+                    <p:tab id="personal" title="Personal">  
+
+                        <p:panel header="Personal Details">  
+
+                            <h:messages errorClass="error"/>  
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="#{bundle.CreateRetterLabel_rettnummer}" for="rettnummer" />
+                                <h:inputText id="rettnummer" value="#{retterController.selected.rettnummer}" title="#{bundle.CreateRetterTitle_rettnummer}" required="true" requiredMessage="#{bundle.CreateRetterRequiredMessage_rettnummer}"/>
+                                <h:outputLabel value="#{bundle.CreateRetterLabel_navn}" for="navn" />
+                                <h:inputText id="navn" value="#{retterController.selected.navn}" title="#{bundle.CreateRetterTitle_navn}" required="true" requiredMessage="#{bundle.CreateRetterRequiredMessage_navn}"/>                   
+
+                                <h:outputLabel value="#{bundle.CreateRetterLabel_ingredienser}" for="ingredienser" />
+                                <h:inputText id="ingredienser" value="#{retterController.selected.ingredienser}" title="#{bundle.CreateRetterTitle_ingredienser}" />
+                                <h:outputLabel value="#{bundle.CreateRetterLabel_kalorier}" for="kalorier" />
+                                <h:inputText id="kalorier" value="#{retterController.selected.kalorier}" title="#{bundle.CreateRetterTitle_kalorier}" />
+                                <h:outputLabel value="#{bundle.CreateRetterLabel_vekt}" for="vekt" />
+                                <h:inputText id="vekt" value="#{retterController.selected.vekt}" title="#{bundle.CreateRetterTitle_vekt}" />
+                                <h:outputLabel value="#{bundle.CreateRetterLabel_pris}" for="pris" />
+                                <h:inputText id="pris" value="#{retterController.selected.pris}" title="#{bundle.CreateRetterTitle_pris}" />
+                            </h:panelGrid>
+                           
+                        </p:panel>  
+                    </p:tab>  
+                    <p:tab id="personal" title="Personal">  
+
+                        <p:panel header="Personal Details">  
+
+                            <h:form enctype="multipart/form-data">  
+                                <p:panel>
+                                    <p:fileUpload fileUploadListener="#{fileUploadController.handleFileUpload}"  
+                                                  mode="advanced"  
+                                                  update="messages"  
+                                                  auto="true"  
+                                                  sizeLimit="1000000000"   
+                                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>  
+
+                                    <p:growl id="messages" showDetail="true"/>  
+                                </p:panel>
+                            </h:form>  
+                            <br />
+                            <p:commandButton action="#{retterController.create}" value="#{bundle.CreateRetterSaveLink}" update="growl" rendered="#{retterController.beskrivelse}"/>
+                            <br />
+                            <br />
+                            <h:commandLink action="#{retterController.prepareList}" value="#{bundle.CreateRetterShowAllLink}" immediate="true"/>
+                            <br />
+                            <br />
+                            <h:link outcome="/index" value="#{bundle.CreateRetterIndexLink}"/>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </p:panel>  
+                    </p:tab>
+
+                </p:wizard> 
             </h:form>
-                </p:panel>
-            <h:form enctype="multipart/form-data">  
-                <p:panel>
-                    <p:fileUpload fileUploadListener="#{fileUploadController.handleFileUpload}"  
-                                  mode="advanced"  
-                                  update="messages"  
-                                  auto="true"  
-                                  sizeLimit="100000"   
-                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>  
 
-                    <p:growl id="messages" showDetail="true"/>  
-                </p:panel>
-            </h:form>  
+
         </ui:define>
     </ui:composition>
 
