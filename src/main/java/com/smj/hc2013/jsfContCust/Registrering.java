@@ -143,14 +143,14 @@ public class Registrering implements Serializable {
 
     public void save() {
         
-         boolean bostedFins = false;
+         boolean bostedFinsikke = true;
          
          for(Bosted b : bostedFacade.findAll()){
              if(b.getPostnummer() == bosted.getPostnummer()){
-                 bostedFins = true;
+                 bostedFinsikke = false;
              }
          }
-        if(!bostedFins){
+        if(bostedFinsikke){
             bostedFacade.create(bosted);
         }
         
