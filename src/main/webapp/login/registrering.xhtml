@@ -11,12 +11,10 @@
         <ui:define name="title">
 
         </ui:define>
-        
+
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
+            <h:form>  
+
                 <p:growl id="growl" sticky="true" showDetail="true"/>  
 
                 <p:wizard widgetVar="wiz"  
@@ -26,7 +24,7 @@
 
                         <p:panel header="Personal Details">  
 
-                            <h:messages errorClass="info"/>  
+                            <h:messages errorClass="error"/>  
 
                             <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">  
                                 <h:outputText value="Firstname: *" />  
@@ -35,22 +33,27 @@
 
                                 <h:outputText value="Lastname: *" />  
                                 <p:inputText required="true" label="Lastname"  
-                                             value="#{registrering.bruker.etternavn}" />  
+                                             value="#{registrering.bruker.etternavn}" /> 
 
-                                <h:outputText value="Username: " />  
-                                <p:inputText id="brukernavn" value="#{registrering.bruker.brukernavn}" /> 
-                                
+                                <h:outputText value="Username: *" />  
+                                <p:inputText required="true" label="Username"  
+                                             value="#{registrering.bruker.brukernavn}" />                                  
 
-                                
-                                <h:outputText value="Password:"/>
-                                <p:password id="sjekkpassord" binding="#{passwordComponent}" value="#{registrering.bruker.passord}" >
-                                    <f:validator validatorId="validatorTekst2" />
-                                </p:password>
-                                <h:outputText value="Confirm Password: " />
-                                <p:password id="confirmPassword" required="#{not empty passwordComponent.value}">
+                                <h:outputLabel for="sjekkpassord" value="Password: *" />
+
+                                <p:password label="Password" id="sjekkpassord" binding="#{passwordComponent}" value="#{registrering.bruker.passord}" >
+                                    <f:validator validatorId="validatorTekst2" />                   
+                                </p:password> <br/>
+                                <p:message for="sjekkpassord" />
+                                <h:outputLabel for="confirmPassword" value="Confirm password: *" />
+
+                                <p:password label="Confrim Password" id="confirmPassword" required="#{not empty passwordComponent.value}">
                                     <f:validator validatorId="validatorTekst" />
                                     <f:attribute name="passwordComponent" value="#{passwordComponent}" />
-                                </p:password>                                                          
+                                </p:password>
+                                <p:message for="confirmPassword" />
+
+
                             </h:panelGrid>  
                         </p:panel>  
                     </p:tab>  
@@ -61,16 +64,15 @@
                             <h:messages errorClass="error"/>  
 
                             <h:panelGrid columns="2" columnClasses="label, value">  
-                                <h:outputText value="Street address: " />  
-                                <p:inputText value="#{registrering.bruker.adresse}" />
+                                <h:outputText value="Street: " />  
+                                <p:inputText value="#{registrering.bruker.adresse}" />  
 
-                                <h:outputText value="City " />  
-                                <p:inputText value="#{registrering.bosted.poststed}" />
+                                <h:outputText value="Postal Code: " />  
+                                <p:inputText value="#{registrering.bosted.postnummer}" />  
 
-                                <h:outputText value="ZIP-code: " />  
-                                <p:inputText value="#{registrering.bosted.postnummer}" /> 
+                                <h:outputText value="City: " />  
+                                <p:inputText value="#{registrering.bosted.poststed}" />  
 
-                                
                             </h:panelGrid>  
                         </p:panel>  
                     </p:tab>  
@@ -86,8 +88,26 @@
                                              value="#{registrering.bruker.email}" />  
 
                                 <h:outputText value="Phone: " />  
-                                <p:inputText value="#{registrering.bruker.telefon}"/>  
+                                <p:inputText value="#{registrering.bruker.telefon}"/> 
 
+                            </h:panelGrid>  
+                        </p:panel>  
+                    </p:tab>  
+
+                    <p:tab id="contact2" title="Firm Information">  
+                        <p:panel header="Contact Information Firm ">  
+
+                            <h:messages errorClass="error"/>  
+
+                            <h:panelGrid columns="2" columnClasses="label, value">  
+                                <h:outputText value="Firm Id number (Brønnøysund Id): " />  
+                                <p:inputText label="Id"  
+                                             value="#{registrering.selskaper.selskapnr}" />  
+
+
+
+                                <h:outputText value="Skip to last: " />  
+                                <h:selectBooleanCheckbox value="#{registrering.skip}" />
 
                             </h:panelGrid>  
                         </p:panel>  
@@ -103,9 +123,7 @@
 
                                 <h:outputText value="Lastname: " />  
                                 <h:outputText  styleClass="outputLabel"  
-                                               value="#{registrering.bruker.etternavn}"/>  
-
-
+                                               value="#{registrering.bruker.etternavn}"/>                                  
 
                                 <h:outputText value="Street: " />  
                                 <h:outputText styleClass="outputLabel"  
@@ -127,22 +145,24 @@
                                 <h:outputText styleClass="outputLabel"  
                                               value="#{registrering.bruker.telefon}"/>  
 
-                                <h:outputText value="Username: " />  
+                                <h:outputText value="Optional Firm ID: " />  
                                 <h:outputText styleClass="outputLabel"  
-                                              value="#{registrering.bruker.brukernavn}" />  
+                                              value="#{registrering.selskaper.selskapnr}" />  
 
                                 <h:outputText />  
                                 <h:outputText />  
                             </h:panelGrid>  
 
                             <p:commandButton value="Submit" update="growl"   
-                                             actionListener="#{registrering.save}"/>  
+                                             actionListener="#{registrering.save()}"/>  
 
                         </p:panel>  
                     </p:tab>  
 
                 </p:wizard>  
-            </h:form>
+
+            </h:form>  
+
         </ui:define>
     </ui:composition>
 
