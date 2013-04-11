@@ -89,6 +89,7 @@ body {
 #close{
     float:right;
     display:block;
-    margin-right:1px;
+    margin-right:0px;
+    margin-left:1300px;
     clear:left;
 }
