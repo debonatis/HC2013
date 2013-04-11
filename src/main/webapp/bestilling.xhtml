@@ -66,7 +66,7 @@
 
 
                                 <p:column style="width:25%">  
-                                    <p:graphicImage value="C:/HC2013/bilder#{rett.fil}" width="30" height="40" />  
+                                    <p:graphicImage value="C:/HC2013/bilder/#{rett.fil}" width="30" height="40" />  
                                 </p:column>  
 
                                 <p:column style="width:75%;">  
@@ -83,12 +83,12 @@
                                 <h:panelGrid id="displayPlayers" columns="2">  
                                     <h:outputText value="Source: " style="font-weight:bold"/>  
                                     <ui:repeat value="#{bestilling.retterPick.source}" var="rett">  
-                                        <h:outputText value="#{rett.nanv}" style="margin-right:5px" />  
+                                        <h:outputText value="#{rett.navn}" style="margin-right:5px" />  
                                     </ui:repeat>  
 
                                     <h:outputText value="Target: " style="font-weight:bold"/>  
-                                    <ui:repeat value="#{bestilling.retterPick.target}" var="player">  
-                                        <h:outputText value="#{player.navn}" style="margin-right:5px" />  
+                                    <ui:repeat value="#{bestilling.retterPick.target}" var="rett.navn">  
+                                        <h:outputText value="#{rett.navn}" style="margin-right:5px" />  
                                     </ui:repeat>  
                                 </h:panelGrid>  
                             </p:dialog>  
@@ -101,87 +101,18 @@
 
                             <p:dataTable var="items" value="#{bestilling.settAntallList}">
 
-                                <p:column headerText="Dish" sortBy="#{car.model}" filterBy="#{car.model}">  
+                                <p:column headerText="Dish" sortBy="#{items.rett.navn}" filterBy="#{items.rett.navn}">  
                                     <h:outputText value="#{items.rett.navn}" />  
                                 </p:column>  
 
-                                <p:column headerText="Quantity" sortBy="#{car.year}" filterBy="#{car.year}">  
+                                <p:column headerText="Quantity" sortBy="#{items.antall}" filterBy="#{items.antall}">  
                                     <p:inputText value="#{items.antall}" />  
                                 </p:column>  
 
 
                             </p:dataTable>  
                         </p:panel>  
-                    </p:tab>  
-
-                    <p:tab id="contact" title="Contact">  
-                        <p:panel header="Contact Information">  
-
-                            <h:messages errorClass="error"/>  
-
-                            <h:panelGrid columns="2" columnClasses="label, value">  
-                                <h:outputText value="Email: *" />  
-                                <p:inputText required="true" label="Email"  
-                                             value="#{userWizard.user.email}" />  
-
-                                <h:outputText value="Phone: " />  
-                                <p:inputText value="#{userWizard.user.phone}"/>  
-
-                                <h:outputText value="Additional Info: " />  
-                                <p:inputText value="#{userWizard.user.info}"/>  
-                            </h:panelGrid>  
-                        </p:panel>  
-                    </p:tab>  
-
-                    <p:tab id="confirm" title="Confirmation">  
-                        <p:panel header="Confirmation">  
-
-                            <h:panelGrid id="confirmation" columns="6">  
-                                <h:outputText value="Firstname: " />  
-                                <h:outputText styleClass="outputLabel"  
-                                              value="#{userWizard.user.firstname}" />  
-
-                                <h:outputText value="Lastname: " />  
-                                <h:outputText  styleClass="outputLabel"  
-                                               value="#{userWizard.user.lastname}"/>  
-
-                                <h:outputText value="Age: " />  
-                                <h:outputText styleClass="outputLabel"  
-                                              value="#{userWizard.user.age}" />>  
-
-                                <h:outputText value="Street: " />  
-                                <h:outputText styleClass="outputLabel"  
-                                              value="#{userWizard.user.street}" />  
-
-                                <h:outputText value="Postal Code: " />  
-                                <h:outputText styleClass="outputLabel"  
-                                              value="#{userWizard.user.postalCode}" />  
-
-                                <h:outputText value="City: " />  
-                                <h:outputText styleClass="outputLabel"  
-                                              value="#{userWizard.user.city}" />  
-
-                                <h:outputText value="Email: " />  
-                                <h:outputText styleClass="outputLabel"  
-                                              value="#{userWizard.user.email}" />  
-
-                                <h:outputText value="Phone " />  
-                                <h:outputText styleClass="outputLabel"  
-                                              value="#{userWizard.user.phone}"/>  
-
-                                <h:outputText value="Info: " />  
-                                <h:outputText styleClass="outputLabel"  
-                                              value="#{userWizard.user.info}" />  
-
-                                <h:outputText />  
-                                <h:outputText />  
-                            </h:panelGrid>  
-
-                            <p:commandButton value="Submit" update="growl"   
-                                             actionListener="#{userWizard.save}"/>  
-
-                        </p:panel>  
-                    </p:tab>  
+                    </p:tab>                     
 
                 </p:wizard>  
 
