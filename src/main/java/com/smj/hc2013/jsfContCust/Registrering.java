@@ -77,6 +77,17 @@ public class Registrering implements Serializable {
 
     }
 
+    public Registrering() {
+        bruker = new Bruker();
+        rolle = new Rolle();
+        bosted = new Bosted();
+        kunde = new Kunde();
+        selskaper = new Selskaper();
+        selskapKunde = new SelskapKunde();
+        salg = new Salg();
+        selgere = new Selgere();
+    }
+
     public Kunde getKunde() {
         return kunde;
     }
@@ -116,7 +127,6 @@ public class Registrering implements Serializable {
     public void setSelgere(Selgere selgere) {
         this.selgere = selgere;
     }
-    
 
     public Bruker getBruker() {
         return bruker;
