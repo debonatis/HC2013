@@ -28,18 +28,18 @@
                             <h:messages errorClass="error"/>  
                             <h:panelGrid columns="2">
                                 <h:outputLabel value="#{bundle.CreateRetterLabel_rettnummer}" for="rettnummer" />
-                                <h:inputText id="rettnummer" value="#{retterController.selected.rettnummer}" title="#{bundle.CreateRetterTitle_rettnummer}" required="true" requiredMessage="#{bundle.CreateRetterRequiredMessage_rettnummer}"/>
+                                <p:inputText id="rettnummer" value="#{retterController.selected.rettnummer}" title="#{bundle.CreateRetterTitle_rettnummer}" required="true" requiredMessage="#{bundle.CreateRetterRequiredMessage_rettnummer}"/>
                                 <h:outputLabel value="#{bundle.CreateRetterLabel_navn}" for="navn" />
-                                <h:inputText id="navn" value="#{retterController.selected.navn}" title="#{bundle.CreateRetterTitle_navn}" required="true" requiredMessage="#{bundle.CreateRetterRequiredMessage_navn}"/>                   
+                                <p:inputText id="navn" value="#{retterController.selected.navn}" title="#{bundle.CreateRetterTitle_navn}" required="true" requiredMessage="#{bundle.CreateRetterRequiredMessage_navn}"/>                  
 
                                 <h:outputLabel value="#{bundle.CreateRetterLabel_ingredienser}" for="ingredienser" />
-                                <h:inputText id="ingredienser" value="#{retterController.selected.ingredienser}" title="#{bundle.CreateRetterTitle_ingredienser}" />
+                                <p:inputText id="ingredienser" value="#{retterController.selected.ingredienser}" title="#{bundle.CreateRetterTitle_ingredienser}" />
                                 <h:outputLabel value="#{bundle.CreateRetterLabel_kalorier}" for="kalorier" />
-                                <h:inputText id="kalorier" value="#{retterController.selected.kalorier}" title="#{bundle.CreateRetterTitle_kalorier}" />
+                                <p:inputText id="kalorier" value="#{retterController.selected.kalorier}" title="#{bundle.CreateRetterTitle_kalorier}" />
                                 <h:outputLabel value="#{bundle.CreateRetterLabel_vekt}" for="vekt" />
-                                <h:inputText id="vekt" value="#{retterController.selected.vekt}" title="#{bundle.CreateRetterTitle_vekt}" />
+                                <p:inputText id="vekt" value="#{retterController.selected.vekt}" title="#{bundle.CreateRetterTitle_vekt}" />
                                 <h:outputLabel value="#{bundle.CreateRetterLabel_pris}" for="pris" />
-                                <h:inputText id="pris" value="#{retterController.selected.pris}" title="#{bundle.CreateRetterTitle_pris}" />
+                                <p:inputText id="pris" value="#{retterController.selected.pris}" title="#{bundle.CreateRetterTitle_pris}" />
                             </h:panelGrid>
 
                         </p:panel>  
@@ -61,6 +61,9 @@
 
                             </h:form> </p:panel> 
                         <p:panel>
+                            <br />
+                            <h:outputLabel value="#{bundle.CreateRetterLable_beskrivelse}" for="ingredienser" />
+                            <p:inputText id="ingredienser" value="#{retterController.selected.ingredienser}" title="#{bundle.CreateRetterTitle_beskrivelse}" />
                             <br />
                             <p:commandButton action="#{retterController.create}" value="#{bundle.CreateRetterSaveLink}" update="growl"/>
                             <br />

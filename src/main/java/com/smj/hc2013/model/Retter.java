@@ -31,8 +31,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Retter.findByIngredienser", query = "SELECT r FROM Retter r WHERE r.ingredienser = :ingredienser"),
     @NamedQuery(name = "Retter.findByKalorier", query = "SELECT r FROM Retter r WHERE r.kalorier = :kalorier"),
     @NamedQuery(name = "Retter.findByVekt", query = "SELECT r FROM Retter r WHERE r.vekt = :vekt"),
-    @NamedQuery(name = "Retter.findByPris", query = "SELECT r FROM Retter r WHERE r.pris = :pris")})
+    @NamedQuery(name = "Retter.findByPris", query = "SELECT r FROM Retter r WHERE r.pris = :pris"),
+    @NamedQuery(name = "Retter.findByFil", query = "SELECT r FROM Retter r WHERE r.fil = :fil")})
 public class Retter implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -57,6 +59,9 @@ public class Retter implements Serializable {
     private Integer vekt;
     @Column(name = "pris")
     private Integer pris;
+    @Size(max = 30)
+    @Column(name = "fil")
+    private String fil;
 
     public Retter() {
     }
@@ -68,6 +73,14 @@ public class Retter implements Serializable {
     public Retter(String rettnummer, String navn) {
         this.rettnummer = rettnummer;
         this.navn = navn;
+    }
+
+    public String getFil() {
+        return fil;
+    }
+
+    public void setFil(String fil) {
+        this.fil = fil;
     }
 
     public String getRettnummer() {
@@ -150,5 +163,4 @@ public class Retter implements Serializable {
     public String toString() {
         return "com.smj.hc2013.model.Retter[ rettnummer=" + rettnummer + " ]";
     }
-    
 }

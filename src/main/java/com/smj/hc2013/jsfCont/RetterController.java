@@ -15,7 +15,6 @@ import java.io.Serializable;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
@@ -25,7 +24,6 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-import javax.servlet.http.HttpServlet;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.FlowEvent;
 
@@ -230,75 +228,75 @@ public class RetterController implements Serializable {
     }
 
     public void handleFileUpload(FileUploadEvent event) {
-        
-        try {
-            InputStream is = event.getFile().getInputstream();
-            String filename = event.getFile().getFileName();
-            getSelected().setBeskrivelse(filename);
-            skrivFil = copyFile(filename, is);
-        } catch (Exception ex) {
-            skrivFil = false;
-        }
-        if (skrivFil) {
-            FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-        }
-    }
 
-    public boolean copyFile(String fileName, InputStream in) {
-HttpServlet mick = new HttpServlet() {};
         try {
-            OutputStream out = new FileOutputStream(new File(mick.getServletContext().getRealPath("upload/" + fileName)));
+
+            File targetFolder = new File("/upload/images");
+
+            InputStream inputStream = event.getFile().getInputstream();
+
+            OutputStream out = new FileOutputStream(new File(targetFolder,
+                    event.getFile().getFileName()));
+            current.setFil(event.getFile().getFileName());
+
             int read = 0;
+
             byte[] bytes = new byte[1024];
-            while ((read = in.read(bytes)) != -1) {
+
+
+
+            while ((read = inputStream.read(bytes)) != -1) {
                 out.write(bytes, 0, read);
+
             }
-            in.close();
+
+            inputStream.close();
+
             out.flush();
-            out.close();          
+
+            out.close();
 
         } catch (IOException e) {
-            return false;
-        }
-        return true;
-    }
 
+            e.printStackTrace();
 
-@FacesConverter(forClass = Retter.class)
-public static class RetterControllerConverter implements Converter {
-
-    public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
-        if (value == null || value.length() == 0) {
-            return null;
-        }
-        RetterController controller = (RetterController) facesContext.getApplication().getELResolver().
-                getValue(facesContext.getELContext(), null, "retterController");
-        return controller.ejbFacade.find(getKey(value));
-    }
-
-    java.lang.String getKey(String value) {
-        java.lang.String key;
-        key = value;
-        return key;
-    }
-
-    String getStringKey(java.lang.String value) {
-        StringBuffer sb = new StringBuffer();
-        sb.append(value);
-        return sb.toString();
-    }
-
-    public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
-        if (object == null) {
-            return null;
-        }
-        if (object instanceof Retter) {
-            Retter o = (Retter) object;
-            return getStringKey(o.getRettnummer());
-        } else {
-            throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Retter.class.getName());
         }
     }
-}
+
+    @FacesConverter(forClass = Retter.class)
+    public static class RetterControllerConverter implements Converter {
+
+        public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
+            if (value == null || value.length() == 0) {
+                return null;
+            }
+            RetterController controller = (RetterController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "retterController");
+            return controller.ejbFacade.find(getKey(value));
+        }
+
+        java.lang.String getKey(String value) {
+            java.lang.String key;
+            key = value;
+            return key;
+        }
+
+        String getStringKey(java.lang.String value) {
+            StringBuffer sb = new StringBuffer();
+            sb.append(value);
+            return sb.toString();
+        }
+
+        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
+            if (object == null) {
+                return null;
+            }
+            if (object instanceof Retter) {
+                Retter o = (Retter) object;
+                return getStringKey(o.getRettnummer());
+            } else {
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Retter.class.getName());
+            }
+        }
+    }
 }
