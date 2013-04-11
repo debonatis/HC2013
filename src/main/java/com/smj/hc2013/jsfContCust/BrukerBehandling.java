@@ -8,10 +8,10 @@ import com.smj.hc2013.jsfContl.util.JsfUtil;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 import javax.persistence.Cacheable;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author deb
  */
-@Named("bruker")
+@ManagedBean(name ="bruker")
 @SessionScoped
 @Cacheable(false)
 public class BrukerBehandling implements Serializable {

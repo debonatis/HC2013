@@ -25,8 +25,8 @@ import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import org.primefaces.event.FlowEvent;
 
 /**
@@ -76,8 +76,6 @@ public class Registrering implements Serializable {
         selgere = new Selgere();
 
     }
-
-   
 
     public Kunde getKunde() {
         return kunde;
