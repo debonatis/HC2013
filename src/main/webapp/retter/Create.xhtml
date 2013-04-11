@@ -19,11 +19,11 @@
                 <p:growl id="growl" sticky="true" showDetail="true"/>  
 
                 <p:wizard widgetVar="wiz"  
-                          flowListener="#{userWizard.onFlowProcess}">  
+                          flowListener="#{retterController.onFlowProcess}">  
 
-                    <p:tab id="personal" title="Personal">  
+                    <p:tab id="rett" title="Dish Information">  
 
-                        <p:panel header="Personal Details">  
+                        <p:panel header="Dish Information">  
 
                             <h:messages errorClass="error"/>  
                             <h:panelGrid columns="2">
@@ -41,27 +41,28 @@
                                 <h:outputLabel value="#{bundle.CreateRetterLabel_pris}" for="pris" />
                                 <h:inputText id="pris" value="#{retterController.selected.pris}" title="#{bundle.CreateRetterTitle_pris}" />
                             </h:panelGrid>
-                           
+
                         </p:panel>  
                     </p:tab>  
-                    <p:tab id="personal" title="Personal">  
+                    <p:tab id="picture" title="Picture">  
 
-                        <p:panel header="Personal Details">  
+                        <p:panel header="Upload picture">  
 
                             <h:form enctype="multipart/form-data">  
-                                <p:panel>
-                                    <p:fileUpload fileUploadListener="#{fileUploadController.handleFileUpload}"  
-                                                  mode="advanced"  
-                                                  update="messages"  
-                                                  auto="true"  
-                                                  sizeLimit="1000000000"   
-                                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>  
 
-                                    <p:growl id="messages" showDetail="true"/>  
-                                </p:panel>
-                            </h:form>  
+                                <p:fileUpload fileUploadListener="#{fileUploadController.handleFileUpload}"  
+                                              mode="advanced"  
+                                              update="messages"  
+                                              auto="true"  
+                                              sizeLimit="1000000000"   
+                                              allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>  
+
+                                <p:growl id="messages" showDetail="true"/>  
+
+                            </h:form> </p:panel> 
+                        <p:panel>
                             <br />
-                            <p:commandButton action="#{retterController.create}" value="#{bundle.CreateRetterSaveLink}" update="growl" rendered="#{retterController.beskrivelse}"/>
+                            <p:commandButton action="#{retterController.create}" value="#{bundle.CreateRetterSaveLink}" update="growl"/>
                             <br />
                             <br />
                             <h:commandLink action="#{retterController.prepareList}" value="#{bundle.CreateRetterShowAllLink}" immediate="true"/>
