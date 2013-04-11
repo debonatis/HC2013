@@ -6,7 +6,6 @@ package com.smj.hc2013.jsfContCust;
 
 import com.smj.hc2013.model.Ordre;
 import com.smj.hc2013.model.OrdreBestilling;
-import com.smj.hc2013.model.OrdrePK;
 import com.smj.hc2013.model.Ordretabell;
 import com.smj.hc2013.model.OrdretabellPK;
 import com.smj.hc2013.model.Retter;
@@ -62,11 +61,9 @@ public class Bestilling implements Serializable {
     private SjoforerFacade sjoforerFacade;
     @EJB
     private UtkjoringFacade utkjoringFacade;
-    private Ordre ordre;
-    private OrdrePK OrdrePK;
-    private Ordretabell ordreT;
-    private OrdretabellPK ordreTId;
-    private Retter selected;
+    private Ordre ordre = new Ordre();
+    private Ordretabell ordreT = new Ordretabell();    
+    private Retter selected = new Retter();
     private boolean skip;
     private static Logger logger = Logger.getLogger(Bestilling.class.getName());
     private DualListModel<Retter> retterPick;
@@ -79,14 +76,7 @@ public class Bestilling implements Serializable {
         this.ordre = ordre;
     }
 
-    public OrdrePK getOrdrePK() {
-        return OrdrePK;
-    }
-
-    public void setOrdrePK(OrdrePK OrdrePK) {
-        this.OrdrePK = OrdrePK;
-    }
-
+    
     public List<OrdreBestilling> getSettAntallList() {
         settAntallList.clear();
         for (Retter r : maal) {
@@ -102,14 +92,7 @@ public class Bestilling implements Serializable {
     private void oppdaterRetterList() {
         retter = retterFacade.findAll();
     }
-
-    public Bestilling() {
-        ordreT = new Ordretabell();
-        ordreTId = new OrdretabellPK();
-        selected = new Retter();
-        ordre = new Ordre();
-
-    }
+   
 
     public DualListModel<Retter> getRetterPick() {
         oppdaterRetterList();

@@ -143,15 +143,18 @@ public class Registrering implements Serializable {
 
     public void save() {
 
-//        bruker.setPostnummer(bosted.getPostnummer());
-//        bostedFacade.create(bosted);
-//        brukerFacade.create(bruker);
-//        rolle.setBrukernavn(bruker.getBrukernavn());
-//        rolle.setRollen("customer");
-//        rolleFacade.create(rolle);
-//        kunde.setBrukernavn(bruker.getBrukernavn());
-//        kunde.setAvslag(0);
-//        kundeFacade.create(kunde);
+        bruker.setPostnummer(bosted.getPostnummer());
+        bostedFacade.create(bosted);
+        brukerFacade.create(bruker);
+        rolle.setBrukernavn(bruker.getBrukernavn());
+        rolle.setRollen("customer");
+        rolleFacade.create(rolle);
+        kunde.setBrukernavn(bruker.getBrukernavn());
+        kunde.setAvslag(0);
+        kundeFacade.create(kunde);
+        selskaperFacade.create(selskaper);
+        selskapKunde = new SelskapKunde(bruker.getBrukernavn(), selskaper.getSelskapnr());        
+        selskapKundeFacade.create(selskapKunde);
 
 
 
