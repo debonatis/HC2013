@@ -41,21 +41,21 @@ public class BrukerBehandling implements Serializable {
     private String password;
     private String originalURL;
 
-    @PostConstruct
-    public void init() {
-        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        originalURL = (String) externalContext.getRequestMap().get(RequestDispatcher.FORWARD_REQUEST_URI);
-
-        if (originalURL == null) {
-            originalURL = externalContext.getRequestContextPath() + "/index.xhtml";
-        } else {
-            String originalQuery = (String) externalContext.getRequestMap().get(RequestDispatcher.FORWARD_QUERY_STRING);
-
-            if (originalQuery != null) {
-                originalURL += "?" + originalQuery;
-            }
-        }
-    }
+    
+//public void init() {
+//        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+//        originalURL = (String) externalContext.getRequestMap().get(RequestDispatcher.FORWARD_REQUEST_URI);
+//
+//        if (originalURL == null) {
+//            originalURL = externalContext.getRequestContextPath() + "/index.xhtml";
+//        } else {
+//            String originalQuery = (String) externalContext.getRequestMap().get(RequestDispatcher.FORWARD_QUERY_STRING);
+//
+//            if (originalQuery != null) {
+//                originalURL += "?" + originalQuery;
+//            }
+//        }
+//    }
     @EJB
     private BrukerFacade userService;
 
