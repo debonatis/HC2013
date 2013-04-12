@@ -57,18 +57,15 @@
                                 <p:dialog modal="false"  header="Choices" widgetVar="rettDialog">  
                                     <p:panel id="displayRetter">  
                                         <h:outputText value="Source: " style="font-weight:bold"/><br/>  
-                                        <p:dataTable value="#{bestilling.retterPick.source}" var="sr">  
+                                        <p:dataTable value="#{bestilling.settAntallList}" var="sr">  
                                             <p:column>  
-                                                #{sr.navn}  
+                                                #{sr.rett.navn}  
+                                            </p:column> 
+                                            <p:column>  
+                                                #{sr.rett.beskrivelse}  
                                             </p:column> 
                                         </p:dataTable> 
-
-                                        <h:outputText value="Target: " style="font-weight:bold"/><br/>  
-                                        <p:dataTable value="#{bestilling.retterPick.target}" var="ta">  
-                                            <p:column>  
-                                                #{ta.navn}  
-                                            </p:column>   
-                                        </p:dataTable>
+                                        
                                     </p:panel>  
                                 </p:dialog> 
                             </p:panel>
