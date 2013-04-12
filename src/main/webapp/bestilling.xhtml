@@ -109,7 +109,7 @@
 
                             <h:messages errorClass="error"/>  
 
-                            <p:dataTable var="items" value="#{bestilling.settAntallList}">
+                            <p:dataTable id="conTable" var="items" value="#{bestilling.settAntallList}">
 
                                 <p:column headerText="Dish" sortBy="#{items.rett.navn}" filterBy="#{items.rett.navn}">  
                                     <h:outputText value="#{items.rett.navn}" />  
@@ -125,11 +125,21 @@
 
                                 <p:column headerText="Firm Opptional" sortBy="#{items.selskap}" filterBy="#{items.selskap}">  
                                     <h:outputText value="#{items.selskap}" />                                      
-                                </p:column>  
+                                </p:column> 
+                                  <p:column headerText="Delete" > 
+                                      <p:commandButton icon="ui-icon-close" title="remove"
+                                                       actionListener="#{bestilling.removeFromsetAntalle(items)}" update="conTable" />
+                                                                        
+                                </p:column> 
 
 
                             </p:dataTable>  
-                            <p:commandButton value="Submit" action="#{bestilling.savePick()}"/>                        </p:panel>  
+                            <p:commandButton value="Submit" action="#{bestilling.savePick()}"/>   
+                        </p:panel> 
+                        <p:commandButton id="downloadLink" value="Download a overview in PDF format" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop)"   
+                                         icon="ui-icon-arrowthichk-s">  
+                            <p:fileDownload value="#{bestilling.file}" />  
+                        </p:commandButton>  
 
                     </p:tab>  
 
@@ -141,14 +151,11 @@
             </p:dialog> 
 
 
-            <h:form id="form">  
 
-                <p:commandButton id="downloadLink" value="Download a overview in PDF format" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop)"   
-                                 icon="ui-icon-arrowthichk-s">  
-                    <p:fileDownload value="#{bestilling.file}" />  
-                </p:commandButton>  
 
-            </h:form> 
+
+
+
         </ui:define>
     </ui:composition> 
     <script type="text/javascript">  

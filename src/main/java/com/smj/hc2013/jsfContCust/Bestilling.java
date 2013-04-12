@@ -4,6 +4,7 @@
  */
 package com.smj.hc2013.jsfContCust;
 
+import com.smj.hc2013.jsfContl.util.JsfUtil;
 import com.smj.hc2013.model.Ordre;
 import com.smj.hc2013.model.OrdreBestilling;
 import com.smj.hc2013.model.Ordretabell;
@@ -44,6 +45,7 @@ import org.primefaces.event.TransferEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.DualListModel;
 import org.primefaces.model.StreamedContent;
+import sun.org.mozilla.javascript.internal.annotations.JSFunction;
 
 /**
  *
@@ -192,13 +194,13 @@ public class Bestilling implements Serializable {
             ordreT.setStatus("Pending");
             ordreT.setRettnummer(ob.getRett().getRettnummer());
             ordreT.setAntall(ob.getAntall());
+            ordretabellFacade.create(ordreT);
                     
         }
 
 
 
-        FacesMessage msg = new FacesMessage("Successful", "Order is complete , " + BrukerBehandling.getUserData());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        JsfUtil.addSuccessMessage("You have succsessfully placed your order//s");
     }
 
     public boolean isSkip() {
