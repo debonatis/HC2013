@@ -99,6 +99,17 @@ public class Bestilling implements Serializable {
         ordreT = new Ordretabell();
 
     }
+    
+    public void prepareCreate(){
+        selskaper = new Selskaper();
+        selskapKunde = new SelskapKunde();
+        salg = new Salg();
+        selgere = new Selgere();
+        utkjoring = new Utkjoring();
+        ordre = new Ordre();
+        ordreT = new Ordretabell();
+
+    }
 
     public Ordre getOrdre() {
         return ordre;
@@ -169,7 +180,7 @@ public class Bestilling implements Serializable {
     }
 
     public void savePick() throws Exception {
-        
+        int i = 0;
         try{
         
         if ((selgereFacade.count() == 0) && (kundeFacade.count() == 0)) {
@@ -190,21 +201,22 @@ public class Bestilling implements Serializable {
                     ordre.setSelskapnr(s.getSelskapnr());
                 }
             }
-            ordreFacade.create(ordre);
-            
-            BrukerBehandling brukerInfo = new BrukerBehandling();
-          
+            ordreFacade.create(ordre);            
+            BrukerBehandling brukerInfo = new BrukerBehandling();          
             ordreT = new Ordretabell("simonD", salg.getSalgsnummer(),brukerInfo.getUserData());
             ordreT.setStatus("Pending");
             ordreT.setRettnummer(ob.getRett().getRettnummer());
             ordreT.setAntall(ob.getAntall());
             ordretabellFacade.create(ordreT);
+            i++;
+            prepareCreate();
 
         }
         } catch (Exception e){
             JsfUtil.addSuccessMessage("Something is not right!");
         }
-
+         
+        
 
 
         JsfUtil.addSuccessMessage("You have succsessfully placed your order//s");
