@@ -50,9 +50,9 @@ public class PdfMaker {
             for(OrdreBestilling k : d){
 
             PdfPCell cell1 = new PdfPCell(new Paragraph(k.getRett().getNavn()));
-            PdfPCell cell2 = new PdfPCell(new Paragraph(k.getRett().getPris()));
+            PdfPCell cell2 = new PdfPCell(new Paragraph(k.getRett().getPris().toString()));
             PdfPCell cell3 = new PdfPCell(new Paragraph(k.getRett().getRettnummer()));
-            PdfPCell cell4 = new PdfPCell(new Paragraph(k.getAntall()));
+            PdfPCell cell4 = new PdfPCell(new Paragraph(((Integer)k.getAntall()).toString()));
             PdfPCell cell5 = new PdfPCell(new Paragraph(k.getLeveringsAdresse()));
            PdfPCell cell6 = new PdfPCell(new Paragraph("BRID: "+k.getSelskap()));
             
