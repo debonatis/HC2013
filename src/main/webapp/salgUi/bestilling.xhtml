@@ -105,6 +105,8 @@
 
                     </p:tab>  
                     <p:tab id="confirmaton" title="Confirmation">  
+                        
+                        <p:growl showDetail="true" escape="false" /> 
                         <p:panel header="Order Details">  
 
                             <h:messages errorClass="error"/>  
@@ -126,10 +128,10 @@
                                 <p:column headerText="Firm Opptional" sortBy="#{items.selskap}" filterBy="#{items.selskap}">  
                                     <h:outputText value="#{items.selskap}" />                                      
                                 </p:column> 
-                                  <p:column headerText="Delete" > 
-                                      <p:commandButton icon="ui-icon-close" title="remove"
-                                                       actionListener="#{bestilling.removeFromsetAntalle(items)}" update="conTable" />
-                                                                        
+                                <p:column headerText="Delete" > 
+                                    <p:commandButton icon="ui-icon-close" title="remove"
+                                                     actionListener="#{bestilling.removeFromsetAntalle(items)}" update="conTable" />
+
                                 </p:column> 
 
 
@@ -144,11 +146,12 @@
                     </p:tab>  
 
 
-                </p:wizard>  
+                </p:wizard>
+                <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">  
+                    <p:graphicImage value="/design/ajaxloadingbar.gif" />  
+                </p:dialog>  
             </h:form>  
-            <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">  
-                <p:graphicImage value="/design/ajaxloadingbar.gif" />  
-            </p:dialog> 
+
 
 
 
