@@ -5,21 +5,15 @@ package com.smj.hc2013.jsfContCust;
  * and open the template in the editor.
  */
 import com.smj.hc2013.jsfContl.util.JsfUtil;
-import com.smj.hc2013.model.Bruker;
-import com.smj.hc2013.session.BrukerFacade;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.Cacheable;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
@@ -37,43 +31,11 @@ public class BrukerBehandling implements Serializable {
     private boolean adminOK;
     private String rolle = "";
     private String userData = "";
-    private String username;
-    private String password;
-    private String originalURL;
+    
 
     
-//public void init() {
-//        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-//        originalURL = (String) externalContext.getRequestMap().get(RequestDispatcher.FORWARD_REQUEST_URI);
-//
-//        if (originalURL == null) {
-//            originalURL = externalContext.getRequestContextPath() + "/index.xhtml";
-//        } else {
-//            String originalQuery = (String) externalContext.getRequestMap().get(RequestDispatcher.FORWARD_QUERY_STRING);
-//
-//            if (originalQuery != null) {
-//                originalURL += "?" + originalQuery;
-//            }
-//        }
-//    }
-    @EJB
-    private BrukerFacade userService;
 
-    public void login() throws IOException {
-        FacesContext context = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = context.getExternalContext();
-        HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
-
-        try {
-            request.login(username, password);
-            Bruker user = userService.find(username);
-            externalContext.getSessionMap().put("user", user);
-            externalContext.redirect(originalURL);
-        } catch (ServletException e) {
-            context.addMessage(null, new FacesMessage("Unknown login"));
-        }
-    }
-
+    
     public void logout() throws IOException {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         externalContext.invalidateSession();
@@ -153,19 +115,5 @@ public class BrukerBehandling implements Serializable {
         return foresporrsel.isUserInRole(k);
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    
 }

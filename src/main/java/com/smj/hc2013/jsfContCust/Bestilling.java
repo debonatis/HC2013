@@ -5,7 +5,6 @@
 package com.smj.hc2013.jsfContCust;
 
 import com.smj.hc2013.jsfContl.util.JsfUtil;
-import com.smj.hc2013.model.Bruker;
 import com.smj.hc2013.model.Ordre;
 import com.smj.hc2013.model.OrdreBestilling;
 import com.smj.hc2013.model.Ordretabell;
@@ -39,7 +38,6 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import org.primefaces.event.FlowEvent;
@@ -173,8 +171,7 @@ public class Bestilling implements Serializable {
     public void savePick() throws Exception {
         
         try{
-        FacesContext context = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = context.getExternalContext();
+        
         if ((selgereFacade.count() == 0) && (kundeFacade.count() == 0)) {
             return;
         }
@@ -194,8 +191,10 @@ public class Bestilling implements Serializable {
                 }
             }
             ordreFacade.create(ordre);
-           Bruker bruker = (Bruker) externalContext.getSessionMap().get("user");
-            ordreT = new Ordretabell("simonD", salg.getSalgsnummer(),bruker.getBrukernavn());
+            
+            BrukerBehandling brukerInfo = new BrukerBehandling();
+          
+            ordreT = new Ordretabell("simonD", salg.getSalgsnummer(),brukerInfo.getUserData());
             ordreT.setStatus("Pending");
             ordreT.setRettnummer(ob.getRett().getRettnummer());
             ordreT.setAntall(ob.getAntall());
