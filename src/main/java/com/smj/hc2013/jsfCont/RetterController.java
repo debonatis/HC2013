@@ -231,7 +231,7 @@ public class RetterController implements Serializable {
 
         try {
             
-           String mick = FacesContext.getCurrentInstance().getExternalContext().getRealPath("//upload");
+           String mick = FacesContext.getCurrentInstance().getExternalContext().getRealPath("//retter");
              File file = new File(mick, event.getFile().getFileName());
               
 
