@@ -16,13 +16,13 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-import javax.servlet.http.HttpServlet;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.FlowEvent;
 
@@ -225,15 +225,17 @@ public class RetterController implements Serializable {
     }
 
     public void handleFileUpload(FileUploadEvent event) {
+        
+       
+
 
         try {
-              HttpServlet servlet = new HttpServlet() {};
-            File maalMappe = new File("C:\\HC2013\\bilder");
+             File file = new File("/var/webapp/upload", event.getFile().getFileName());
+              
 
             InputStream inputStream = event.getFile().getInputstream();
             current.setFil(event.getFile().getFileName());
-            OutputStream out = new FileOutputStream(new File(maalMappe,
-                    event.getFile().getFileName()));
+            OutputStream out = new FileOutputStream(file);
 
 
             int read = 0;

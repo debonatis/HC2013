@@ -88,6 +88,23 @@ public class Bestilling implements Serializable {
         this.settAntallList = settAntallList;
     }
 
+    public List<Retter> getRetter() {
+        return retter;
+    }
+
+    public void setRetter(List<Retter> retter) {
+        this.retter = retter;
+    }
+
+    public List<Retter> getMaal() {
+        return maal;
+    }
+
+    public void setMaal(List<Retter> maal) {
+        this.maal = maal;
+    }
+    
+
     private void oppdaterRetterList() {
         retter = retterFacade.findAll();
     }
@@ -100,7 +117,6 @@ public class Bestilling implements Serializable {
     }
 
     public DualListModel<Retter> getRetterPick() {
-
         return retterPick;
     }
 
