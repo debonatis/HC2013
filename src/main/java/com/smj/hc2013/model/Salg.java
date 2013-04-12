@@ -32,7 +32,7 @@ public class Salg implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 1, max = 50)
     @Column(name = "salgsnummer")
     private String salgsnummer;
     @Size(max = 10)

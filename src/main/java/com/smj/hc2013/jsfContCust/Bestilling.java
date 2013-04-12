@@ -8,17 +8,24 @@ import com.smj.hc2013.model.Ordre;
 import com.smj.hc2013.model.OrdreBestilling;
 import com.smj.hc2013.model.Ordretabell;
 import com.smj.hc2013.model.Retter;
+import com.smj.hc2013.model.Salg;
+import com.smj.hc2013.model.Selgere;
+import com.smj.hc2013.model.SelskapKunde;
 import com.smj.hc2013.model.Selskaper;
+import com.smj.hc2013.model.Utkjoring;
+import com.smj.hc2013.session.KundeFacade;
+import com.smj.hc2013.session.OrdreFacade;
 import com.smj.hc2013.session.OrdretabellFacade;
 import com.smj.hc2013.session.RetterFacade;
 import com.smj.hc2013.session.SalgFacade;
 import com.smj.hc2013.session.SelgereFacade;
 import com.smj.hc2013.session.SelskapKundeFacade;
 import com.smj.hc2013.session.SelskaperFacade;
-import com.smj.hc2013.session.SjoforerFacade;
 import com.smj.hc2013.session.UtkjoringFacade;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -31,9 +38,12 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 import org.primefaces.event.FlowEvent;
 import org.primefaces.event.TransferEvent;
+import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.DualListModel;
+import org.primefaces.model.StreamedContent;
 
 /**
  *
@@ -51,7 +61,7 @@ public class Bestilling implements Serializable {
     @EJB
     private OrdretabellFacade ordretabellFacade;
     @EJB
-    private OrdretabellFacade ordreFacade;
+    private OrdreFacade ordreFacade;
     @EJB
     private SalgFacade salgFacade;
     @EJB
@@ -61,15 +71,31 @@ public class Bestilling implements Serializable {
     @EJB
     private SelskapKundeFacade selskapKuneFacade;
     @EJB
-    private SjoforerFacade sjoforerFacade;
-    @EJB
     private UtkjoringFacade utkjoringFacade;
+    @EJB
+    private KundeFacade kundeFacade;
     private Ordre ordre = new Ordre();
     private Ordretabell ordreT = new Ordretabell();
-    private Retter selected = new Retter();
+    private Salg salg;
+    private Selgere selgere;
+    private Selskaper selskaper;
+    private SelskapKunde selskapKunde;
+    private Utkjoring utkjoring;
     private boolean skip;
     private static Logger logger = Logger.getLogger(Bestilling.class.getName());
     private DualListModel<Retter> retterPick;
+    private StreamedContent file; 
+
+    public Bestilling() {
+        selskaper = new Selskaper();
+        selskapKunde = new SelskapKunde();
+        salg = new Salg();
+        selgere = new Selgere();
+        utkjoring = new Utkjoring();
+        ordre = new Ordre();
+        ordreT = new Ordretabell();
+
+    }
 
     public Ordre getOrdre() {
         return ordre;
@@ -79,18 +105,18 @@ public class Bestilling implements Serializable {
         this.ordre = ordre;
     }
 
-    public List<OrdreBestilling> getSettAntallList() {       
+    public List<OrdreBestilling> getSettAntallList() {
         return settAntallList;
     }
-    
-    public String[] getBridList(){
-        
+
+    public String[] getBridList() {
+
         List<Selskaper> hjelp = selskaperFacade.findAll();
-        
-        String hjelp2[] = new String[hjelp.size()+1];
+
+        String hjelp2[] = new String[hjelp.size() + 1];
         int i = 0;
-        for (Selskaper e: hjelp){
-            hjelp2[i]=e.getBrId();
+        for (Selskaper e : hjelp) {
+            hjelp2[i] = e.getBrId();
         }
         return hjelp2;
     }
@@ -135,10 +161,42 @@ public class Bestilling implements Serializable {
         this.retterPick = retterPick;
     }
 
-    public void savePick() {
+    private String getAvslagUni() {
+        return "0";
+    }
+
+    public void savePick() throws Exception{ 
+        
+        
+        if ((selgereFacade.count() == 0) && (kundeFacade.count() == 0)) {
+            return;
+        }
+        List<Selskaper> Lselskaper = selskaperFacade.findAll();
+
+        for (OrdreBestilling ob : settAntallList) {
+            salg.setSalgsnummer(getUUID().toString());
+            salg.setSumSalg(getAvslagUni());
+            salgFacade.create(salg);
+            ordre = new Ordre("simonD", salg.getSalgsnummer());
+            ordre.setLevAdresse(ob.getLeveringsAdresse());
+            ordre.setDatoEndret(new Date(System.currentTimeMillis()));
+            ordre.setBetaltstatus("Pending");
+            for (Selskaper s : Lselskaper) {
+                if (ob.getSelskap().equalsIgnoreCase(s.getBrId())) {
+                    ordre.setSelskapnr(s.getSelskapnr());
+                }
+            }
+            ordreFacade.create(ordre);
+            ordreT = new Ordretabell("simonD", salg.getSalgsnummer(), "simonD");
+            ordreT.setStatus("Pending");
+            ordreT.setRettnummer(ob.getRett().getRettnummer());
+            ordreT.setAntall(ob.getAntall());
+                    
+        }
 
 
-        FacesMessage msg = new FacesMessage("Successful", "Welcome :" + BrukerBehandling.getUserData());
+
+        FacesMessage msg = new FacesMessage("Successful", "Order is complete , " + BrukerBehandling.getUserData());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
@@ -153,7 +211,7 @@ public class Bestilling implements Serializable {
     public String onFlowProcess(FlowEvent event) {
         logger.info("Current wizard step:" + event.getOldStep());
         logger.info("Next step:" + event.getNewStep());
-        
+
 
         if (skip) {
             skip = false;   //reset in case user goes back  
@@ -207,4 +265,12 @@ public class Bestilling implements Serializable {
         UUID idOne = UUID.randomUUID();
         return idOne;
     }
+    
+      
+  
+    public StreamedContent getFile() { 
+        InputStream stream = ((ServletContext)FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream("/images/Oversikt" +BrukerBehandling.getUserData()+ ".pdf");  
+        file = new DefaultStreamedContent(stream, "image/jpg", "downloaded_optimus.jpg");   
+        return file;  
+    }    
 }

@@ -132,13 +132,34 @@
                             <p:commandButton value="Submit" action="#{bestilling.savePick()}"/>                        </p:panel>  
 
                     </p:tab>  
-                    
+
 
                 </p:wizard>  
-
             </h:form>  
+            <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">  
+                <p:graphicImage value="/design/ajaxloadingbar.gif" />  
+            </p:dialog> 
 
+
+            <h:form id="form">  
+
+                <p:commandButton id="downloadLink" value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop)"   
+                                 icon="ui-icon-arrowthichk-s">  
+                    <p:fileDownload value="#{fileDownloadController.file}" />  
+                </p:commandButton>  
+
+            </h:form> 
         </ui:define>
-    </ui:composition>
+    </ui:composition> 
+    <script type="text/javascript">  
+        function start() {  
+            statusDialog.show();  
+        }  
+  
+        function stop() {  
+            statusDialog.hide();  
+        }  
+    </script> 
+
 
 </html>
