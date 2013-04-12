@@ -32,6 +32,15 @@ public class BrukerBehandling implements Serializable {
     private String rolle = "";
     private String userData = "";
 
+    public void setRolle(String rolle) {
+        this.rolle = rolle;
+    }
+
+    public void setUserData(String userData) {
+        this.userData = userData;
+    }
+    
+
     public boolean isAdminOK() {
         this.adminOK = (getRolle().equals("admin")) ? true : false;
         return adminOK;
@@ -42,7 +51,7 @@ public class BrukerBehandling implements Serializable {
     }
     
 
-    public static String getRolle() {
+    public String getRolle() {
         for (String r : roller) {
             if (isInRole(r)) {
                 return r;
@@ -52,7 +61,7 @@ public class BrukerBehandling implements Serializable {
         return "NO ROLE, logging you out!";
     }
     
-    public static String getUserData() {
+    public String getUserData() {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         Object forsporrselobject = context.getRequest();
         if (!(forsporrselobject instanceof HttpServletRequest)) {
@@ -63,7 +72,7 @@ public class BrukerBehandling implements Serializable {
         return (foresporrsel.getRemoteUser());
     }
 
-    public static String logout() {
+    public String logout() {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         HttpSession session = request.getSession(true);
@@ -94,7 +103,7 @@ public class BrukerBehandling implements Serializable {
     return result;
   }
 
-    public static boolean isInRole(String k) {
+    public boolean isInRole(String k) {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         Object forsporrselobject = context.getRequest();
         if (!(forsporrselobject instanceof HttpServletRequest)) {
