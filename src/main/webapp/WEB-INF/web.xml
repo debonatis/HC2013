@@ -45,8 +45,16 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Protected Pages user</web-resource-name>
-            <url-pattern>/faces/user/*</url-pattern>
-            <url-pattern>/user/*</url-pattern>
+            <url-pattern>/faces/annet/*</url-pattern>
+            <url-pattern>/annet/*</url-pattern>
+            <url-pattern>/faces/bruker/*</url-pattern>
+            <url-pattern>/bruker/*</url-pattern>
+            <url-pattern>/faces/kunde/*</url-pattern>
+            <url-pattern>/kunde/*</url-pattern>
+            <url-pattern>/faces/retter/*</url-pattern>
+            <url-pattern>/retter/*</url-pattern>
+            <url-pattern>/faces/salg/*</url-pattern>
+            <url-pattern>/salg/*</url-pattern>            
             <http-method>GET</http-method>
             <http-method>POST</http-method>           
         </web-resource-collection>
@@ -58,8 +66,38 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Protected Pages admin</web-resource-name>
-            <url-pattern>/faces/admin/*</url-pattern>
-            <url-pattern>/admin/*</url-pattern>
+            <url-pattern>/faces/administrator/*</url-pattern>
+            <url-pattern>/administrator/*</url-pattern>
+            <url-pattern>/faces/annet/*</url-pattern>
+            <url-pattern>/annet/*</url-pattern>
+            <url-pattern>/faces/bosted/*</url-pattern>
+            <url-pattern>/bosted/*</url-pattern>
+            <url-pattern>/faces/bruker/*</url-pattern>
+            <url-pattern>/bruker/*</url-pattern>
+            <url-pattern>/faces/kunde/*</url-pattern>
+            <url-pattern>/kunde/*</url-pattern>
+            <url-pattern>/faces/ordre/*</url-pattern>
+            <url-pattern>/ordre/*</url-pattern>
+            <url-pattern>/faces/ordretabell/*</url-pattern>
+            <url-pattern>/ordretabell/*</url-pattern>
+            <url-pattern>/faces/retter/*</url-pattern>
+            <url-pattern>/retter/*</url-pattern>
+            <url-pattern>/faces/rolle/*</url-pattern>
+            <url-pattern>/rolle/*</url-pattern>
+            <url-pattern>/faces/salg/*</url-pattern>
+            <url-pattern>/salg/*</url-pattern>
+            <url-pattern>/faces/selgere/*</url-pattern>
+            <url-pattern>/selgere/*</url-pattern>
+            <url-pattern>/faces/selskapKunde/*</url-pattern>
+            <url-pattern>/selskapKunde/*</url-pattern>
+            <url-pattern>/faces/selskaper/*</url-pattern>
+            <url-pattern>/selskaper/*</url-pattern>
+            <url-pattern>/faces/sjoforer/*</url-pattern>
+            <url-pattern>/sjoforer/*</url-pattern>
+            <url-pattern>/faces/utkjoring/*</url-pattern>
+            <url-pattern>/utkjoring/*</url-pattern>
+            <url-pattern>/faces/utkjoringsBil/*</url-pattern>
+            <url-pattern>/utkjoringsBil/*</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>            
         </web-resource-collection>
@@ -89,6 +127,9 @@
     </security-role>
     <security-role>
         <role-name>customer</role-name>
+    </security-role>
+    <security-role>
+        <role-name>kokk</role-name>
     </security-role>
     <error-page>
         <error-code>403</error-code>
