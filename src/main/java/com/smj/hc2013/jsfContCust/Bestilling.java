@@ -4,7 +4,6 @@
  */
 package com.smj.hc2013.jsfContCust;
 
-import com.smj.hc2013.jsfCont.RetterController;
 import com.smj.hc2013.jsfCont.RetterController.RetterControllerConverter;
 import com.smj.hc2013.model.Ordre;
 import com.smj.hc2013.model.OrdreBestilling;
@@ -23,6 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -104,7 +105,6 @@ public class Bestilling implements Serializable {
     public void setMaal(List<Retter> maal) {
         this.maal = maal;
     }
-    
 
     private void oppdaterRetterList() {
         retter = retterFacade.findAll();
@@ -126,8 +126,8 @@ public class Bestilling implements Serializable {
     }
 
     public void savePick() {
-        
-        
+
+
         FacesMessage msg = new FacesMessage("Successful", "Welcome :" + BrukerBehandling.getUserData());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
@@ -154,15 +154,21 @@ public class Bestilling implements Serializable {
 
     public void onTransfer(TransferEvent event) {
         StringBuilder builder = new StringBuilder();
-        
         RetterControllerConverter mick = new RetterControllerConverter();
-        
+        Integer nPK = 0;
         for (Object item : event.getItems()) {
-            Retter rett = retterFacade.find(mick.getKey(((String)item)));
+            String PK = (String) item;
+            Pattern p = Pattern.compile("-?\\d+");
+            Matcher m = p.matcher(PK);
+             for(Integer n;m.find();) {
+               n = Integer.parseInt(m.group());
+               nPK = n;
+            }
+            Retter rett = retterFacade.find(nPK);
             builder.append(rett.getNavn()).append("<br />");
-                     settAntallList.add(new OrdreBestilling(rett, 0) );
+            settAntallList.add(new OrdreBestilling(rett, 0));
         }
-        
+
 
         FacesMessage msg = new FacesMessage();
         msg.setSeverity(FacesMessage.SEVERITY_INFO);
@@ -171,8 +177,6 @@ public class Bestilling implements Serializable {
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-    
-    
 
     public UUID getUUID() {
         UUID idOne = UUID.randomUUID();
