@@ -153,8 +153,7 @@ public class Bestilling implements Serializable {
     }
 
     public void onTransfer(TransferEvent event) {
-        StringBuilder builder = new StringBuilder();
-        RetterControllerConverter mick = new RetterControllerConverter();
+        StringBuilder builder = new StringBuilder();        
         Integer nPK = 0;
         for (Object item : event.getItems()) {
             String PK = (String) item;
@@ -164,7 +163,7 @@ public class Bestilling implements Serializable {
                n = Integer.parseInt(m.group());
                nPK = n;
             }
-            Retter rett = retterFacade.find(nPK);
+            Retter rett = retterFacade.find(new Retter(Integer.toString(nPK)));
             builder.append(rett.getNavn()).append("<br />");
             settAntallList.add(new OrdreBestilling(rett, 0));
         }
