@@ -29,6 +29,8 @@ public class BrukerBehandling implements Serializable {
     private static final Logger logger = Logger.getLogger("com.corejsf");
     private static final String[] roller = {"admin", "bruker", "kokk", "customer", "salg"};
     private boolean adminOK;
+    private String rolle = "";
+    private String userData = "";
 
     public boolean isAdminOK() {
         this.adminOK = (getRolle().equals("admin")) ? true : false;
