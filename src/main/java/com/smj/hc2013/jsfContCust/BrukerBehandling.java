@@ -39,7 +39,7 @@ public class BrukerBehandling implements Serializable {
     public void logout() throws IOException {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         externalContext.invalidateSession();
-        externalContext.redirect(externalContext.getRequestContextPath() + "/index.xhtml");
+        externalContext.redirect(externalContext.getRequestContextPath() + "/faces/login/login.xhtml");
     }
 
     public void setRolle(String rolle) {
