@@ -19,6 +19,7 @@ import com.smj.hc2013.session.SjoforerFacade;
 import com.smj.hc2013.session.UtkjoringFacade;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
@@ -44,7 +45,7 @@ public class Bestilling implements Serializable {
 
     private List<Retter> retter;
     private List<Retter> maal;
-    private List<OrdreBestilling> settAntallList;
+    private List<OrdreBestilling> settAntallList = new LinkedList<OrdreBestilling>();
     @EJB
     private RetterFacade retterFacade;
     @EJB
@@ -79,10 +80,7 @@ public class Bestilling implements Serializable {
     }
 
     public List<OrdreBestilling> getSettAntallList() {
-        settAntallList.clear();
-        for (Retter r : maal) {
-            settAntallList.add(new OrdreBestilling(r, 0));
-        }
+        settAntallList.clear();        
         return settAntallList;
     }
 
