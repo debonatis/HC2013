@@ -37,9 +37,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import org.primefaces.event.FlowEvent;
@@ -177,8 +175,11 @@ public class Bestilling implements Serializable {
         this.retterPick = retterPick;
     }
 
-    private String getAvslagUni() {
-        return "0";
+    private String getSumPris(int v, int b) {
+        String hjelp = "";
+        int x = v*b;
+        hjelp = ((Integer)x).toString();
+        return hjelp;
     }
 
     public void savePick() throws Exception {
@@ -192,7 +193,7 @@ public class Bestilling implements Serializable {
 
         for (OrdreBestilling ob : settAntallList) {
             salg.setSalgsnummer(getUUID().toString());
-            salg.setSumSalg(getAvslagUni());
+            salg.setSumSalg(getSumPris(ob.getAntall(), ob.getRett().getPris()));
             salgFacade.create(salg);
             ordre = new Ordre("simonD", salg.getSalgsnummer());
             ordre.setLevAdresse(ob.getLeveringsAdresse());
