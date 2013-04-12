@@ -76,16 +76,17 @@ public class BrukerBehandling implements Serializable {
     }
     
      public String logout2() {
-    String result="/login/index?faces-redirect=true";
+    String result="/faces/login/index?faces-redirect=true";
      
     FacesContext context = FacesContext.getCurrentInstance();
     HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest();
      
     try {
       request.logout();
+      request.logout();
     } catch (ServletException e) {
       JsfUtil.addErrorMessage("Failes to log you our!");       
-      result = "/login/ikkelogin?faces-redirect=true";
+      result = "/faces/login/ikkelogin?faces-redirect=true";
     }
      
     return result;
