@@ -79,7 +79,7 @@ public class Bestilling implements Serializable {
     }
 
     public List<OrdreBestilling> getSettAntallList() {
-        settAntallList.clear();        
+        settAntallList.clear();
         return settAntallList;
     }
 
@@ -151,42 +151,37 @@ public class Bestilling implements Serializable {
     }
 
     public void onTransfer(TransferEvent event) {
-        StringBuilder builder = new StringBuilder();        
+        StringBuilder builder = new StringBuilder();
         Integer nPK = 0;
-        if(event.isAdd()){
-        for (Object item : event.getItems()) {
-            String PK = (String) item;
-            Pattern p = Pattern.compile("-?\\d+");
-            Matcher m = p.matcher(PK);
-             for(Integer n;m.find();) {
-               n = Integer.parseInt(m.group());
-               nPK = n;
-            }
-            Retter rett = retterFacade.find(Integer.toString(nPK));
-            builder.append("You picked: " + rett.getNavn()).append("<br />");
-            settAntallList.add(new OrdreBestilling(rett, 0));
-            
-        }
-        } else if (event.isRemove()){
-            
+        if (event.isAdd()) {
             for (Object item : event.getItems()) {
-            String PK = (String) item;
-            Pattern p = Pattern.compile("-?\\d+");
-            Matcher m = p.matcher(PK);
-             for(Integer n;m.find();) {
-               n = Integer.parseInt(m.group());
-               nPK = n;
+                String PK = (String) item;
+                Pattern p = Pattern.compile("-?\\d+");
+                Matcher m = p.matcher(PK);
+                for (Integer n; m.find();) {
+                    n = Integer.parseInt(m.group());
+                    nPK = n;
+                }
+                Retter rett = retterFacade.find(Integer.toString(nPK));
+                builder.append("You picked: " + rett.getNavn()).append("<br />");
+                settAntallList.add(new OrdreBestilling(rett, 0));
+
             }
-            Retter rett = retterFacade.find(Integer.toString(nPK));
-            builder.append("You removed: " + rett.getNavn()).append("<br />");
-            settAntallList.remove(new OrdreBestilling(rett, 0));
-            
-        }
-            
-        }
-        
+        } else if (event.isRemove()) {
 
-
+            for (Object item : event.getItems()) {
+                String PK = (String) item;
+                Pattern p = Pattern.compile("-?\\d+");
+                Matcher m = p.matcher(PK);
+                for (Integer n; m.find();) {
+                    n = Integer.parseInt(m.group());
+                    nPK = n;
+                }
+                Retter rett = retterFacade.find(Integer.toString(nPK));
+                builder.append("You removed: " + rett.getNavn()).append("<br />");
+                settAntallList.remove(new OrdreBestilling(rett, 0));
+            }
+        }
         FacesMessage msg = new FacesMessage();
         msg.setSeverity(FacesMessage.SEVERITY_INFO);
         msg.setSummary("Items Transferred");
