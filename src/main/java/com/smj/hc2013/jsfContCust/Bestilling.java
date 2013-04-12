@@ -38,6 +38,8 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import org.primefaces.event.FlowEvent;
@@ -51,7 +53,7 @@ import org.primefaces.model.StreamedContent;
  * @author deb
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class Bestilling implements Serializable {
 
     private List<Retter> retter;
