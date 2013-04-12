@@ -85,6 +85,7 @@ public class Bestilling implements Serializable {
     private static Logger logger = Logger.getLogger(Bestilling.class.getName());
     private DualListModel<Retter> retterPick;
     private StreamedContent file; 
+    private final static String FILNAVN = "Oversikt.pdf";
 
     public Bestilling() {
         selskaper = new Selskaper();
@@ -268,8 +269,12 @@ public class Bestilling implements Serializable {
     
       
   
-    public StreamedContent getFile() { 
-        InputStream stream = ((ServletContext)FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream("/images/Oversikt" +BrukerBehandling.getUserData()+ ".pdf");  
+    public StreamedContent getFile() {       
+        
+          
+          PdfMaker.makePdf(getSettAntallList(), FILNAVN, FacesContext.getCurrentInstance().getExternalContext().getRealPath("//bruker"));
+        
+        InputStream stream = ((ServletContext)FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream("/bruker/"+FILNAVN);  
         file = new DefaultStreamedContent(stream, "image/jpg", "downloaded_optimus.jpg");   
         return file;  
     }    

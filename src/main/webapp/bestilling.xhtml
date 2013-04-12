@@ -143,9 +143,9 @@
 
             <h:form id="form">  
 
-                <p:commandButton id="downloadLink" value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop)"   
+                <p:commandButton id="downloadLink" value="Download a overview in PDF format" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop)"   
                                  icon="ui-icon-arrowthichk-s">  
-                    <p:fileDownload value="#{fileDownloadController.file}" />  
+                    <p:fileDownload value="#{bestilling.file}" />  
                 </p:commandButton>  
 
             </h:form> 
