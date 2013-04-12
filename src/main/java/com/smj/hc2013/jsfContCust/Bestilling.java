@@ -45,7 +45,7 @@ public class Bestilling implements Serializable {
 
     private List<Retter> retter;
     private List<Retter> maal;
-    private List<OrdreBestilling> settAntallList = new LinkedList<OrdreBestilling>();
+    private List<OrdreBestilling> settAntallList;
     @EJB
     private RetterFacade retterFacade;
     @EJB
@@ -113,6 +113,7 @@ public class Bestilling implements Serializable {
         oppdaterRetterList();
         maal = new ArrayList<Retter>();
         retterPick = new DualListModel<Retter>(retter, maal);
+        settAntallList = new LinkedList<OrdreBestilling>();
     }
 
     public DualListModel<Retter> getRetterPick() {
