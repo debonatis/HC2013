@@ -258,9 +258,6 @@ public class RetterController implements Serializable {
             out.close();
 
         } catch (IOException e) {
-
-            e.printStackTrace();
-
         }
     }
 

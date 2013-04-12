@@ -163,7 +163,7 @@ public class Bestilling implements Serializable {
                n = Integer.parseInt(m.group());
                nPK = n;
             }
-            Retter rett = retterFacade.find(new Retter(Integer.toString(nPK)));
+            Retter rett = retterFacade.find(Integer.toString(nPK));
             builder.append(rett.getNavn()).append("<br />");
             settAntallList.add(new OrdreBestilling(rett, 0));
         }
