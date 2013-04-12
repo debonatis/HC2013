@@ -88,6 +88,7 @@ public class Bestilling implements Serializable {
     private DualListModel<Retter> retterPick;
     private StreamedContent file; 
     private final static String FILNAVN = "Oversikt.pdf";
+    private boolean MailVe = false;
 
     public Bestilling() {
         selskaper = new Selskaper();
@@ -210,6 +211,16 @@ public class Bestilling implements Serializable {
     public void setSkip(boolean skip) {
         this.skip = skip;
     }
+
+    public boolean isMailVe() {
+        return MailVe;
+    }
+
+    public void setMailVe(boolean MailVe) {
+        this.MailVe = MailVe;
+    }
+    
+    
     
     public void removeFromsetAntalle(OrdreBestilling item){
         settAntallList.remove(item);        
@@ -275,13 +286,19 @@ public class Bestilling implements Serializable {
     
       
   
-    public StreamedContent getFile() {       
+    public StreamedContent getFile() { 
+        
+        
         
           
           PdfMaker.makePdf(getSettAntallList(), FILNAVN, FacesContext.getCurrentInstance().getExternalContext().getRealPath("//bruker"));
         
         InputStream stream = ((ServletContext)FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream("/bruker/"+FILNAVN);  
-        file = new DefaultStreamedContent(stream, "image/jpg", "downloaded_optimus.jpg");   
+        file = new DefaultStreamedContent(stream, "image/jpg", "Oversikt.pdf"); 
+        if(MailVe){
+            JavaMail mick = new JavaMail();          
+            
+        }
         return file;  
     }    
 }

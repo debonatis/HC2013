@@ -36,7 +36,7 @@
     
     <login-config>
         <auth-method>FORM</auth-method>
-        <realm-name>waplj-realm</realm-name>
+        <realm-name>jdbcRealm</realm-name>
         <form-login-config>
             <form-login-page>/faces/login/login.xhtml</form-login-page>
             <form-error-page>/faces/login/ikkelogin.xhtml</form-error-page>
