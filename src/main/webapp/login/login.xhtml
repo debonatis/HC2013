@@ -13,12 +13,13 @@
     </h:head>
     <h:body>
         <ui:composition template="/login/loginTemplate.xhtml">
-            <ui:define name="windowTitle">
-                Welcome
-            </ui:define>
+
 
             <ui:define name="body">
-                <p:panel>
+                <p:panel header="Welcome">
+                    <br/>
+                    <br/>
+                    <br/>
                     <h:form>
                         <p:outputLabel for="username" value="Username" />
                         <p:inputText id="username" value="#{bruker.username}" required="true" />
