@@ -54,7 +54,9 @@
             <url-pattern>/faces/retter/*</url-pattern>
             <url-pattern>/retter/*</url-pattern>
             <url-pattern>/faces/salg/*</url-pattern>
-            <url-pattern>/salg/*</url-pattern>            
+            <url-pattern>/salg/*</url-pattern>
+            <url-pattern>/faces/salgUi/*</url-pattern>
+            <url-pattern>/salgUi/*</url-pattern>              
             <http-method>GET</http-method>
             <http-method>POST</http-method>           
         </web-resource-collection>
@@ -99,6 +101,8 @@
             <url-pattern>/utkjoring/*</url-pattern>
             <url-pattern>/faces/utkjoringsBil/*</url-pattern>
             <url-pattern>/utkjoringsBil/*</url-pattern>
+            <url-pattern>/faces/salgUi/*</url-pattern>
+            <url-pattern>/salgUi/*</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>            
         </web-resource-collection>
