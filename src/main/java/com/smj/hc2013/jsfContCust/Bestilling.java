@@ -153,6 +153,7 @@ public class Bestilling implements Serializable {
     public String onFlowProcess(FlowEvent event) {
         logger.info("Current wizard step:" + event.getOldStep());
         logger.info("Next step:" + event.getNewStep());
+        
 
         if (skip) {
             skip = false;   //reset in case user goes back  
