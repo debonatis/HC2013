@@ -208,6 +208,10 @@ public class Bestilling implements Serializable {
     public void setSkip(boolean skip) {
         this.skip = skip;
     }
+    
+    public void removeFromsetAntalle(OrdreBestilling item){
+        settAntallList.remove(item);        
+    }
 
     public String onFlowProcess(FlowEvent event) {
         logger.info("Current wizard step:" + event.getOldStep());
