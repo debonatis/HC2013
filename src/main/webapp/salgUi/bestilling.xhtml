@@ -106,7 +106,7 @@
                     </p:tab>  
                     <p:tab id="confirmaton" title="Confirmation">  
                         
-                        <p:growl showDetail="true" escape="false" /> 
+                        <p:growl id="confir" showDetail="true" escape="false" /> 
                         <p:panel header="Order Details">  
 
                             <h:messages errorClass="error"/>  
@@ -136,7 +136,7 @@
 
 
                             </p:dataTable>  
-                            <p:commandButton value="Submit" action="#{bestilling.savePick()}"/>   
+                            <p:commandButton value="Submit" action="#{bestilling.savePick()}" update="confir"/>   
                         </p:panel> 
                         <p:commandButton id="downloadLink" value="Download a overview in PDF format" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop)"   
                                          icon="ui-icon-arrowthichk-s">  
