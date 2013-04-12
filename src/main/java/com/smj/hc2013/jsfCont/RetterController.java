@@ -230,7 +230,7 @@ public class RetterController implements Serializable {
 
 
         try {
-             File file = new File("/var/webapp/upload", event.getFile().getFileName());
+             File file = new File("/upload", event.getFile().getFileName());
               
 
             InputStream inputStream = event.getFile().getInputstream();
