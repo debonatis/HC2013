@@ -16,24 +16,23 @@
 
 
             <ui:define name="body">
-                <p:panel header="Welcome">
-                    <br/>
-                    <br/>
-                    <br/>
-                    <h:form>
-                        <p:outputLabel for="username" value="Username" />
-                        <p:inputText id="username" value="#{bruker.username}" required="true" />
-                        <p:message for="username" />
-                        <br />
-                        <p:outputLabel for="password" value="Password" />
-                        <p:password id="password" value="#{bruker.password}" required="true" />
-                        <p:message for="password" />
-                        <br />
-                        <p:commandButton value="Login" action="#{bruker.login()}" />
-                        <p:messages globalOnly="true" />
-                        <br/>
-                        <p:commandLink value="Not registered?" action="#{bruker.reg()}"/>
-                    </h:form>
+                <p:panel header="Welcome, login to access secure pages:">
+                    
+                    <form method="post" action="j_security_check">
+                        <h:panelGrid columns="2">
+                            <h:outputLabel for="j_username" value="Username" />
+                            <input type="text" name="j_username" />
+
+                            <h:outputLabel for="j_password" value="Password" />
+                            <input type="password" name="j_password" />
+
+                            <h:outputText value="" />
+                            <h:panelGrid columns="2">
+                                <input type="submit" name="submit" value="Login" />
+                                <h:button outcome="index" value="Cancel" />
+                            </h:panelGrid>
+                        </h:panelGrid>
+                    </form>
                 </p:panel>
 
             </ui:define>
