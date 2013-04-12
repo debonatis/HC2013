@@ -8,6 +8,7 @@ import com.smj.hc2013.model.Ordre;
 import com.smj.hc2013.model.OrdreBestilling;
 import com.smj.hc2013.model.Ordretabell;
 import com.smj.hc2013.model.Retter;
+import com.smj.hc2013.model.Selskaper;
 import com.smj.hc2013.session.OrdretabellFacade;
 import com.smj.hc2013.session.RetterFacade;
 import com.smj.hc2013.session.SalgFacade;
@@ -80,6 +81,18 @@ public class Bestilling implements Serializable {
 
     public List<OrdreBestilling> getSettAntallList() {       
         return settAntallList;
+    }
+    
+    public String[] getBridList(){
+        
+        List<Selskaper> hjelp = selskaperFacade.findAll();
+        
+        String hjelp2[] = new String[hjelp.size()+1];
+        int i = 0;
+        for (Selskaper e: hjelp){
+            hjelp2[i]=e.getBrId();
+        }
+        return hjelp2;
     }
 
     public void setSettAntallList(List<OrdreBestilling> settAntallList) {
