@@ -4,6 +4,7 @@
  */
 package com.smj.hc2013.jsfContCust;
 
+import com.smj.hc2013.jsfCont.RetterController;
 import com.smj.hc2013.jsfCont.RetterController.RetterControllerConverter;
 import com.smj.hc2013.model.Ordre;
 import com.smj.hc2013.model.OrdreBestilling;
@@ -157,8 +158,8 @@ public class Bestilling implements Serializable {
         RetterControllerConverter mick = new RetterControllerConverter();
         
         for (Object item : event.getItems()) {
-            Retter rett = retterFacade.find(mick.getKey(item.toString()));
-            builder.append(((Retter) item).getNavn()).append("<br />");
+            Retter rett = retterFacade.find(mick.getKey(((String)item)));
+            builder.append(rett.getNavn()).append("<br />");
                      settAntallList.add(new OrdreBestilling(rett, 0) );
         }
         
