@@ -5,6 +5,7 @@
 package com.smj.hc2013.jsfContCust;
 
 import com.smj.hc2013.jsfContl.util.JsfUtil;
+import com.smj.hc2013.model.Bruker;
 import com.smj.hc2013.model.Ordre;
 import com.smj.hc2013.model.OrdreBestilling;
 import com.smj.hc2013.model.Ordretabell;
@@ -38,6 +39,7 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import org.primefaces.event.FlowEvent;
@@ -45,7 +47,6 @@ import org.primefaces.event.TransferEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.DualListModel;
 import org.primefaces.model.StreamedContent;
-import sun.org.mozilla.javascript.internal.annotations.JSFunction;
 
 /**
  *
@@ -86,7 +87,7 @@ public class Bestilling implements Serializable {
     private boolean skip;
     private static Logger logger = Logger.getLogger(Bestilling.class.getName());
     private DualListModel<Retter> retterPick;
-    private StreamedContent file; 
+    private StreamedContent file;
     private final static String FILNAVN = "Oversikt.pdf";
     private boolean MailVe = false;
 
@@ -169,9 +170,11 @@ public class Bestilling implements Serializable {
         return "0";
     }
 
-    public void savePick() throws Exception{ 
+    public void savePick() throws Exception {
         
-        
+        try{
+        FacesContext context = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = context.getExternalContext();
         if ((selgereFacade.count() == 0) && (kundeFacade.count() == 0)) {
             return;
         }
@@ -191,12 +194,16 @@ public class Bestilling implements Serializable {
                 }
             }
             ordreFacade.create(ordre);
-            ordreT = new Ordretabell("simonD", salg.getSalgsnummer(), "simonD");
+           Bruker bruker = (Bruker) externalContext.getSessionMap().get("user");
+            ordreT = new Ordretabell("simonD", salg.getSalgsnummer(),bruker.getBrukernavn());
             ordreT.setStatus("Pending");
             ordreT.setRettnummer(ob.getRett().getRettnummer());
             ordreT.setAntall(ob.getAntall());
             ordretabellFacade.create(ordreT);
-                    
+
+        }
+        } catch (Exception e){
+            JsfUtil.addSuccessMessage("Something is not right!");
         }
 
 
@@ -219,11 +226,9 @@ public class Bestilling implements Serializable {
     public void setMailVe(boolean MailVe) {
         this.MailVe = MailVe;
     }
-    
-    
-    
-    public void removeFromsetAntalle(OrdreBestilling item){
-        settAntallList.remove(item);        
+
+    public void removeFromsetAntalle(OrdreBestilling item) {
+        settAntallList.remove(item);
     }
 
     public String onFlowProcess(FlowEvent event) {
@@ -283,22 +288,20 @@ public class Bestilling implements Serializable {
         UUID idOne = UUID.randomUUID();
         return idOne;
     }
-    
-      
-  
-    public StreamedContent getFile() { 
-        
-        
-        
-          
-          PdfMaker.makePdf(getSettAntallList(), FILNAVN, FacesContext.getCurrentInstance().getExternalContext().getRealPath("//bruker"));
-        
-        InputStream stream = ((ServletContext)FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream("/bruker/"+FILNAVN);  
-        file = new DefaultStreamedContent(stream, "image/jpg", "Oversikt.pdf"); 
-        if(MailVe){
-            JavaMail mick = new JavaMail();          
-            
+
+    public StreamedContent getFile() {
+
+
+
+
+        PdfMaker.makePdf(getSettAntallList(), FILNAVN, FacesContext.getCurrentInstance().getExternalContext().getRealPath("//bruker"));
+
+        InputStream stream = ((ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream("/bruker/" + FILNAVN);
+        file = new DefaultStreamedContent(stream, "image/jpg", "Oversikt.pdf");
+        if (MailVe) {
+            JavaMail mick = new JavaMail();
+
         }
-        return file;  
-    }    
+        return file;
+    }
 }
