@@ -276,7 +276,7 @@ public class RetterController implements Serializable {
             return controller.ejbFacade.find(getKey(value));
         }
 
-        java.lang.String getKey(String value) {
+       public  java.lang.String getKey(String value) {
             java.lang.String key;
             key = value;
             return key;
