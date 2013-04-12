@@ -58,7 +58,12 @@
             <url-pattern>/faces/salgUi/*</url-pattern>
             <url-pattern>/salgUi/*</url-pattern>              
             <http-method>GET</http-method>
-            <http-method>POST</http-method>           
+            <http-method>POST</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>PUT</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+            <http-method>DELETE</http-method>          
         </web-resource-collection>
         <auth-constraint>
             <role-name>bruker</role-name>
@@ -104,7 +109,12 @@
             <url-pattern>/faces/salgUi/*</url-pattern>
             <url-pattern>/salgUi/*</url-pattern>
             <http-method>GET</http-method>
-            <http-method>POST</http-method>            
+            <http-method>POST</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>PUT</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+            <http-method>DELETE</http-method>          
         </web-resource-collection>
         <auth-constraint>            
             <role-name>admin</role-name>
@@ -116,13 +126,18 @@
             <url-pattern>/faces/salgUi/*</url-pattern>
             <url-pattern>/salgUi/*</url-pattern>
             <http-method>GET</http-method>
-            <http-method>POST</http-method>           
+            <http-method>POST</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>PUT</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+            <http-method>DELETE</http-method>           
         </web-resource-collection>
         <auth-constraint>
             <role-name>customer</role-name>
             <role-name>bruker</role-name>
             <role-name>admin</role-name>
-             <role-name>kokk</role-name>
+            <role-name>kokk</role-name>
         </auth-constraint>        
     </security-constraint>   
     <security-role>
@@ -141,4 +156,7 @@
         <error-code>403</error-code>
         <location>/faces/login/ikkelogin.xhtml</location>
     </error-page>
+    <user-data-constraint>
+        <transport-guarantee>NONE</transport-guarantee>
+    </user-data-constraint>
 </web-app>
