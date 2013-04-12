@@ -4,7 +4,6 @@
  */
 package com.smj.hc2013.jsfContCust;
 
-import com.smj.hc2013.jsfCont.RetterController.RetterControllerConverter;
 import com.smj.hc2013.model.Ordre;
 import com.smj.hc2013.model.OrdreBestilling;
 import com.smj.hc2013.model.Ordretabell;
@@ -29,7 +28,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.FlowEvent;
 import org.primefaces.event.TransferEvent;
@@ -40,7 +39,7 @@ import org.primefaces.model.DualListModel;
  * @author deb
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class Bestilling implements Serializable {
 
     private List<Retter> retter;
@@ -154,6 +153,7 @@ public class Bestilling implements Serializable {
     public void onTransfer(TransferEvent event) {
         StringBuilder builder = new StringBuilder();        
         Integer nPK = 0;
+        if(event.isAdd()){
         for (Object item : event.getItems()) {
             String PK = (String) item;
             Pattern p = Pattern.compile("-?\\d+");
@@ -163,9 +163,28 @@ public class Bestilling implements Serializable {
                nPK = n;
             }
             Retter rett = retterFacade.find(Integer.toString(nPK));
-            builder.append(rett.getNavn()).append("<br />");
+            builder.append("You picked: " + rett.getNavn()).append("<br />");
             settAntallList.add(new OrdreBestilling(rett, 0));
+            
         }
+        } else if (event.isRemove()){
+            
+            for (Object item : event.getItems()) {
+            String PK = (String) item;
+            Pattern p = Pattern.compile("-?\\d+");
+            Matcher m = p.matcher(PK);
+             for(Integer n;m.find();) {
+               n = Integer.parseInt(m.group());
+               nPK = n;
+            }
+            Retter rett = retterFacade.find(Integer.toString(nPK));
+            builder.append("You removed: " + rett.getNavn()).append("<br />");
+            settAntallList.remove(new OrdreBestilling(rett, 0));
+            
+        }
+            
+        }
+        
 
 
         FacesMessage msg = new FacesMessage();
