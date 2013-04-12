@@ -78,8 +78,7 @@ public class Bestilling implements Serializable {
         this.ordre = ordre;
     }
 
-    public List<OrdreBestilling> getSettAntallList() {
-        settAntallList.clear();
+    public List<OrdreBestilling> getSettAntallList() {       
         return settAntallList;
     }
 
