@@ -86,6 +86,10 @@ public class BrukerBehandling implements Serializable {
         return "ok";
     }
     
+    public String reg(){
+        return "/faces/login/registrering?faces-redirect=true";
+    }
+    
      public String logout2() {
     String result="/faces/login/index?faces-redirect=true";
      
