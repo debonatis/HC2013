@@ -16,7 +16,6 @@ import com.smj.hc2013.session.SelskapKundeFacade;
 import com.smj.hc2013.session.SelskaperFacade;
 import com.smj.hc2013.session.SjoforerFacade;
 import com.smj.hc2013.session.UtkjoringFacade;
-import java.awt.event.ActionEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -124,9 +123,9 @@ public class Bestilling implements Serializable {
         this.retterPick = retterPick;
     }
 
-    public void save(ActionEvent actionEvent) {
-
-
+    public void savePick() {
+        
+        
         FacesMessage msg = new FacesMessage("Successful", "Welcome :" + BrukerBehandling.getUserData());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
@@ -155,7 +154,9 @@ public class Bestilling implements Serializable {
         StringBuilder builder = new StringBuilder();
         for (Object item : event.getItems()) {
             builder.append(((Retter) item).getNavn()).append("<br />");
+                     settAntallList.add(new OrdreBestilling(((Retter) item), 0) );
         }
+        
 
         FacesMessage msg = new FacesMessage();
         msg.setSeverity(FacesMessage.SEVERITY_INFO);
