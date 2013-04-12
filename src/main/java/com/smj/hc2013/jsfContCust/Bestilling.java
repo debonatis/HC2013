@@ -216,13 +216,26 @@ public class Bestilling implements Serializable {
 
         }
         } catch (Exception e){
-            JsfUtil.addSuccessMessage("Something is not right!");
+            
+              FacesMessage msg = new FacesMessage();
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+        msg.setSummary("Items Not Transferred");
+        msg.setDetail("Maybe som faulty inputs?");
+
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+            
         }
          
+        FacesMessage msg = new FacesMessage();
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+        msg.setSummary("Items Transferred");
+        msg.setDetail("You have ordered " + settAntallList.size() + "items ");
+
+        FacesContext.getCurrentInstance().addMessage(null, msg);
         
 
 
-        JsfUtil.addSuccessMessage("You have succsessfully placed your order//s");
+        
     }
 
     public boolean isSkip() {
