@@ -4,7 +4,6 @@
  */
 package com.smj.hc2013.jsfContCust;
 
-import com.smj.hc2013.jsfContl.util.JsfUtil;
 import com.smj.hc2013.model.Ordre;
 import com.smj.hc2013.model.OrdreBestilling;
 import com.smj.hc2013.model.Ordretabell;
@@ -37,7 +36,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import org.primefaces.event.FlowEvent;
@@ -51,7 +50,8 @@ import org.primefaces.model.StreamedContent;
  * @author deb
  */
 @ManagedBean
-@SessionScoped
+@ViewScoped
+
 public class Bestilling implements Serializable {
 
     private List<Retter> retter;
