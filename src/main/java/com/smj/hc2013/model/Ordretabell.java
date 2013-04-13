@@ -4,6 +4,7 @@
  */
 package com.smj.hc2013.model;
 
+import java.awt.font.NumericShaper.Range;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -29,8 +30,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Ordretabell.findBySalgsnummer", query = "SELECT o FROM Ordretabell o WHERE o.ordretabellPK.salgsnummer = :salgsnummer"),
     @NamedQuery(name = "Ordretabell.findByKundebrukernavn", query = "SELECT o FROM Ordretabell o WHERE o.ordretabellPK.kundebrukernavn = :kundebrukernavn"),
     @NamedQuery(name = "Ordretabell.findByRettnummer", query = "SELECT o FROM Ordretabell o WHERE o.rettnummer = :rettnummer"),
-    @NamedQuery(name = "Ordretabell.findByStatus", query = "SELECT o FROM Ordretabell o WHERE o.status = :status")})
+    @NamedQuery(name = "Ordretabell.findByStatus", query = "SELECT o FROM Ordretabell o WHERE o.status = :status"),
+    @NamedQuery(name = "Ordretabell.findByAntall", query = "SELECT o FROM Ordretabell o WHERE o.antall = :antall")
+})
 public class Ordretabell implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected OrdretabellPK ordretabellPK;
@@ -44,6 +48,8 @@ public class Ordretabell implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "status")
     private String status;
+    @Column(name = "antall")
+    private Integer antall;
 
     public Ordretabell() {
     }
@@ -68,6 +74,14 @@ public class Ordretabell implements Serializable {
 
     public void setOrdretabellPK(OrdretabellPK ordretabellPK) {
         this.ordretabellPK = ordretabellPK;
+    }
+
+    public Integer getAntall() {
+        return antall;
+    }
+
+    public void setAntall(Integer antall) {
+        this.antall = antall;
     }
 
     public String getRettnummer() {
@@ -110,5 +124,4 @@ public class Ordretabell implements Serializable {
     public String toString() {
         return "com.smj.hc2013.model.Ordretabell[ ordretabellPK=" + ordretabellPK + " ]";
     }
-    
 }

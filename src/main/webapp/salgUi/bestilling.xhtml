@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+    <ui:composition template="/template/loginOkTemplate.xhtml">
+        <ui:define name="title">
+
+        </ui:define>
+        <ui:define name="sideBar">
+
+
+        </ui:define>
+        <ui:define name="body">
+            <h:form>  
+
+                <p:growl id="growl" sticky="true" showDetail="true"/> 
+                <p:wizard widgetVar="wiz"  
+                          flowListener="#{bestilling.onFlowProcess}">
+                    <p:tab id="personal" title="Pick dish/es">  
+
+                        <p:panel header="PickList">                         
+
+                            <p:growl id="msg" showDetail="true" escape="false" /> 
+
+                            <p:pickList id="pojoPickList" value="#{bestilling.retterPick}" var="rett" effect="bounce"  
+                                        itemValue="#{rett}" itemLabel="#{rett.navn}" converter="#{retterControllerConverter}"  
+                                        showSourceControls="true" showTargetControls="true" showCheckbox="true"  
+                                        showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains">                                 
+
+                                <f:facet name="sourceCaption">Available</f:facet>  
+                                <f:facet name="targetCaption">Picked</f:facet>  
+
+                                <p:ajax event="transfer" listener="#{bestilling.onTransfer}" update="msg" />
+
+                                <p:column style="width:25%">  
+                                    <p:graphicImage value="/retter/#{rett.fil}" width="30" height="40" />  
+                                </p:column>  
+
+                                <p:column style="width:75%;">  
+                                    #{rett.navn}  
+                                </p:column>  
+
+                            </p:pickList>  
+
+
+
+                            <p:commandButton id="pojoSubmit" value="Show status"  update="displayRetter" oncomplete="rettDialog.show()" style="margin-top:5px"/>  
+
+
+
+                            <p:dialog modal="false"  header="Choices" widgetVar="rettDialog">  
+                                <p:panel id="displayRetter">  
+                                    <h:outputText value="Items picked: " style="font-weight:bold"/><br/>  
+                                    <p:dataTable value="#{bestilling.settAntallList}" var="sr">  
+                                        <p:column>  
+                                            #{sr.rett.navn}  
+                                        </p:column> 
+                                        <p:column>  
+                                            #{sr.rett.beskrivelse}  
+                                        </p:column> 
+                                    </p:dataTable> 
+
+                                </p:panel>  
+                            </p:dialog> 
+                        </p:panel>
+
+
+                    </p:tab>  
+                    <p:tab id="futherInf" title="Futher Information">  
+                        <p:panel header="Order Details">  
+
+                            <h:messages errorClass="error"/>  
+
+                            <p:dataTable var="items" value="#{bestilling.settAntallList}">
+
+                                <p:column headerText="Dish" sortBy="#{items.rett.navn}" filterBy="#{items.rett.navn}">  
+                                    <h:outputText value="#{items.rett.navn}" />  
+                                </p:column>  
+
+                                <p:column headerText="Quantity" sortBy="#{items.antall}" filterBy="#{items.antall}">  
+                                    <p:inputText value="#{items.antall}" />  
+                                </p:column>  
+
+                                <p:column headerText="Delivery Address" sortBy="#{items.leveringsAdresse}" filterBy="#{items.leveringsAdresse}">  
+                                    <p:inputText value="#{items.leveringsAdresse}" />  
+                                </p:column>  
+
+                                <p:column headerText="Firm Opptional" sortBy="#{items.selskap}" filterBy="#{items.selskap}">  
+                                    <h:outputText value="Editable: " />  
+                                    <p:selectOneMenu value="#{items.selskap}" effect="fold" editable="true">  
+                                        <f:selectItem itemLabel="Select One" itemValue="" />  
+                                        <f:selectItems value="#{bestilling.bridList}" />  
+                                    </p:selectOneMenu> 
+                                </p:column>  
+
+
+                            </p:dataTable>  
+                        </p:panel>  
+
+                    </p:tab>  
+                    <p:tab id="confirmaton" title="Confirmation">  
+                        
+                        <p:growl id="confir" showDetail="true" escape="false" /> 
+                        <p:panel header="Order Details">  
+
+                            <h:messages errorClass="error"/>  
+
+                            <p:dataTable id="conTable" var="items" value="#{bestilling.settAntallList}">
+
+                                <p:column headerText="Dish" sortBy="#{items.rett.navn}" filterBy="#{items.rett.navn}">  
+                                    <h:outputText value="#{items.rett.navn}" />  
+                                </p:column>  
+
+                                <p:column headerText="Quantity" sortBy="#{items.antall}" filterBy="#{items.antall}">  
+                                    <h:outputText value="#{items.antall}" />  
+                                </p:column>  
+
+                                <p:column headerText="Delivery Address" sortBy="#{items.leveringsAdresse}" filterBy="#{items.leveringsAdresse}">  
+                                    <h:outputText value="#{items.leveringsAdresse}" />  
+                                </p:column>  
+
+                                <p:column headerText="Firm Opptional" sortBy="#{items.selskap}" filterBy="#{items.selskap}">  
+                                    <h:outputText value="#{items.selskap}" />                                      
+                                </p:column> 
+                                <p:column headerText="Delete" > 
+                                    <p:commandButton icon="ui-icon-close" title="remove"
+                                                     actionListener="#{bestilling.removeFromsetAntalle(items)}" update="conTable" />
+
+                                </p:column> 
+
+
+                            </p:dataTable>  
+                            <p:commandButton value="Submit" action="#{bestilling.savePick()}" update="confir"/>   
+                        </p:panel> 
+                        <p:commandButton id="downloadLink" value="Download a overview in PDF format" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop)"   
+                                         icon="ui-icon-arrowthichk-s">  
+                            <p:fileDownload value="#{bestilling.file}" />  
+                        </p:commandButton>  
+
+                    </p:tab>  
+
+
+                </p:wizard>
+                <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">  
+                    <p:graphicImage value="/design/ajaxloadingbar.gif" />  
+                </p:dialog>  
+            </h:form>  
+
+
+
+
+
+
+
+
+        </ui:define>
+    </ui:composition> 
+    <script type="text/javascript">  
+        function start() {  
+            statusDialog.show();  
+        }  
+  
+        function stop() {  
+            statusDialog.hide();  
+        }  
+    </script> 
+
+
+</html>

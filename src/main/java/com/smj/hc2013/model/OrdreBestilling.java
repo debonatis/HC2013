@@ -12,6 +12,9 @@ public class OrdreBestilling {
 
     private Retter rett;
     private int antall;
+    private String leveringsAdresse;
+    private String selskap;
+    
 
     public OrdreBestilling() {
     }
@@ -36,6 +39,23 @@ public class OrdreBestilling {
     public void setAntall(int antall) {
         this.antall = antall;
     }
+
+    public String getLeveringsAdresse() {
+        return leveringsAdresse;
+    }
+
+    public void setLeveringsAdresse(String leveringsAdresse) {
+        this.leveringsAdresse = leveringsAdresse;
+    }
+
+    public String getSelskap() {
+        return selskap;
+    }
+
+    public void setSelskap(String selskap) {
+        this.selskap = selskap;
+    }
+    
 
     @Override
     public int hashCode() {

@@ -22,11 +22,13 @@ import com.smj.hc2013.session.SelgereFacade;
 import com.smj.hc2013.session.SelskapKundeFacade;
 import com.smj.hc2013.session.SelskaperFacade;
 import java.io.Serializable;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import org.primefaces.event.FlowEvent;
 
 /**
@@ -34,7 +36,7 @@ import org.primefaces.event.FlowEvent;
  * @author deb
  */
 @ManagedBean(name = "registrering")
-@SessionScoped
+@RequestScoped
 public class Registrering implements Serializable {
 
     @EJB
@@ -76,8 +78,6 @@ public class Registrering implements Serializable {
         selgere = new Selgere();
 
     }
-
-   
 
     public Kunde getKunde() {
         return kunde;
@@ -143,28 +143,53 @@ public class Registrering implements Serializable {
         this.bosted = bosted;
     }
 
+    private boolean getBostedFinsIkke() {
+        for (Bosted b : bostedFacade.findAll()) {
+            if (b.getPostnummer().intValue() == bosted.getPostnummer().intValue()) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
     public void save() {
 
-//        bruker.setPostnummer(bosted.getPostnummer());
-//        bostedFacade.create(bosted);
-//        brukerFacade.create(bruker);
-//        rolle.setBrukernavn(bruker.getBrukernavn());
-//        rolle.setRollen("customer");
-//        rolleFacade.create(rolle);
-//        kunde.setBrukernavn(bruker.getBrukernavn());
-//        kunde.setAvslag(0);
-//        kundeFacade.create(kunde);
-
-
-
+        try {
+        
+        if (getBostedFinsIkke()) {
+            bostedFacade.create(bosted);
+        }
+        bruker.setPostnummer(bosted.getPostnummer());
+        brukerFacade.create(bruker);
+        rolle.setBrukernavn(bruker.getBrukernavn());
+        rolle.setRollen("customer");
+        rolleFacade.create(rolle);
+        kunde.setBrukernavn(bruker.getBrukernavn());
+        kunde.setAvslag(0);
+        kundeFacade.create(kunde);
+        selskaperFacade.create(selskaper);
+        for (Selskaper s : selskaperFacade.findAll()) {
+            if (s.getBrId().equalsIgnoreCase(selskaper.getBrId())) {
+                selskaper = s;
+                selskapKunde = new SelskapKunde(bruker.getBrukernavn(), selskaper.getSelskapnr());
+                selskapKundeFacade.create(selskapKunde);
+            }
+        }
 
 
         JsfUtil.addMessage("Welcome :" + bruker.getFornavn());
-
         prepareCreate();
     }
+    catch (Exception e
 
-    public boolean isSkip() {
+    
+        ) {
+            JsfUtil.addMessage(ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured") + "This could be double registration or faulty registration inputs! Check your inputs");
+
+    }
+}
+public boolean isSkip() {
         return skip;
     }
 

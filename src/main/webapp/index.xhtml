@@ -4,18 +4,17 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <ui:composition template="/indexTemplate.xhtml">
-        <h:head>
-            <title>Facelet Title</title>
-            <h:outputStylesheet name="css/jsfcrud.css"/>
-        </h:head>
+    <ui:composition template="/template/indexTemplate.xhtml">
+        <ui:define name="title">
+           
+        </ui:define>
         <h:body>
             <ui:define name="body">
                 
-                <h3>Welcome</h3>
+                
                 
             </ui:define>
-            Hello from Facelets        
+                
         </h:body>
     </ui:composition>
 </html>

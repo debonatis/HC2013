@@ -27,8 +27,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Selskaper.findAll", query = "SELECT s FROM Selskaper s"),
     @NamedQuery(name = "Selskaper.findBySelskapnr", query = "SELECT s FROM Selskaper s WHERE s.selskapnr = :selskapnr"),
     @NamedQuery(name = "Selskaper.findByAvslag", query = "SELECT s FROM Selskaper s WHERE s.avslag = :avslag"),
-    @NamedQuery(name = "Selskaper.findByAkkumulertSalg", query = "SELECT s FROM Selskaper s WHERE s.akkumulertSalg = :akkumulertSalg")})
+    @NamedQuery(name = "Selskaper.findByAkkumulertSalg", query = "SELECT s FROM Selskaper s WHERE s.akkumulertSalg = :akkumulertSalg"),
+    @NamedQuery(name = "Selskaper.findByBrId", query = "SELECT s FROM Selskaper s WHERE s.BrId = :BrId"),
+    @NamedQuery(name = "Selskaper.findBySAdresse", query = "SELECT s FROM Selskaper s WHERE s.adresse = :adresse")})
 public class Selskaper implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,8 +42,28 @@ public class Selskaper implements Serializable {
     private Integer avslag;
     @Column(name = "akkumulertSalg")
     private Integer akkumulertSalg;
+    @Column(name = "BrId")
+    private String BrId;
+    @Column(name = "adresse")
+    private String adresse;
 
     public Selskaper() {
+    }
+
+    public String getBrId() {
+        return BrId;
+    }
+
+    public void setBrId(String BrId) {
+        this.BrId = BrId;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
     public Selskaper(Integer selskapnr) {
@@ -95,5 +118,4 @@ public class Selskaper implements Serializable {
     public String toString() {
         return "com.smj.hc2013.model.Selskaper[ selskapnr=" + selskapnr + " ]";
     }
-    
 }

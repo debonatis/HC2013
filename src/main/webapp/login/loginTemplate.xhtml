@@ -14,7 +14,7 @@
 
         <div id="header">
             <ui:insert name="header">
-                <ui:include src="/sections/header.xhtml"/>
+                <ui:include src="/sections/indexHeader.xhtml"/>
             </ui:insert>
         </div>
     </h:head>
@@ -25,15 +25,7 @@
         </div>  
 
             <div id="sideBar">
-                <h:form>
-                    <p:growl id="messages"/>
-                    <p:menu>          
-                        <p:submenu label="Navigations">  
-                            <p:menuitem value="Login" outcome="/login/login" />  
-                            <p:menuitem value="Register new user" outcome="/login/registrering" />
-                        </p:submenu>  
-                    </p:menu> 
-                </h:form>           
+                   
             </div>
             <ui:debug/>
 

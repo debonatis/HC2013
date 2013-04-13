@@ -4,34 +4,47 @@
  */
 package com.smj.hc2013.jsfContCust;
 
+import com.smj.hc2013.jsfContl.util.JsfUtil;
 import com.smj.hc2013.model.Ordre;
 import com.smj.hc2013.model.OrdreBestilling;
-import com.smj.hc2013.model.OrdrePK;
 import com.smj.hc2013.model.Ordretabell;
-import com.smj.hc2013.model.OrdretabellPK;
 import com.smj.hc2013.model.Retter;
+import com.smj.hc2013.model.Salg;
+import com.smj.hc2013.model.Selgere;
+import com.smj.hc2013.model.SelskapKunde;
+import com.smj.hc2013.model.Selskaper;
+import com.smj.hc2013.model.Utkjoring;
+import com.smj.hc2013.session.KundeFacade;
+import com.smj.hc2013.session.OrdreFacade;
 import com.smj.hc2013.session.OrdretabellFacade;
 import com.smj.hc2013.session.RetterFacade;
 import com.smj.hc2013.session.SalgFacade;
 import com.smj.hc2013.session.SelgereFacade;
 import com.smj.hc2013.session.SelskapKundeFacade;
 import com.smj.hc2013.session.SelskaperFacade;
-import com.smj.hc2013.session.SjoforerFacade;
 import com.smj.hc2013.session.UtkjoringFacade;
-import java.awt.event.ActionEvent;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 import org.primefaces.event.FlowEvent;
 import org.primefaces.event.TransferEvent;
+import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.DualListModel;
+import org.primefaces.model.StreamedContent;
 
 /**
  *
@@ -49,7 +62,7 @@ public class Bestilling implements Serializable {
     @EJB
     private OrdretabellFacade ordretabellFacade;
     @EJB
-    private OrdretabellFacade ordreFacade;
+    private OrdreFacade ordreFacade;
     @EJB
     private SalgFacade salgFacade;
     @EJB
@@ -59,17 +72,44 @@ public class Bestilling implements Serializable {
     @EJB
     private SelskapKundeFacade selskapKuneFacade;
     @EJB
-    private SjoforerFacade sjoforerFacade;
-    @EJB
     private UtkjoringFacade utkjoringFacade;
-    private Ordre ordre;
-    private OrdrePK OrdrePK;
-    private Ordretabell ordreT;
-    private OrdretabellPK ordreTId;
-    private Retter selected;
+    @EJB
+    private KundeFacade kundeFacade;
+    private Ordre ordre = new Ordre();
+    private Ordretabell ordreT = new Ordretabell();
+    private Salg salg;
+    private Selgere selgere;
+    private Selskaper selskaper;
+    private SelskapKunde selskapKunde;
+    private Utkjoring utkjoring;
     private boolean skip;
     private static Logger logger = Logger.getLogger(Bestilling.class.getName());
     private DualListModel<Retter> retterPick;
+    private StreamedContent file;
+    private final static String FILNAVN = "Oversikt.pdf";
+    private boolean MailVe = false;
+
+    public Bestilling() {
+        selskaper = new Selskaper();
+        selskapKunde = new SelskapKunde();
+        salg = new Salg();
+        selgere = new Selgere();
+        utkjoring = new Utkjoring();
+        ordre = new Ordre();
+        ordreT = new Ordretabell();
+
+    }
+    
+    public void prepareCreate(){
+        selskaper = new Selskaper();
+        selskapKunde = new SelskapKunde();
+        salg = new Salg();
+        selgere = new Selgere();
+        utkjoring = new Utkjoring();
+        ordre = new Ordre();
+        ordreT = new Ordretabell();
+
+    }
 
     public Ordre getOrdre() {
         return ordre;
@@ -79,42 +119,55 @@ public class Bestilling implements Serializable {
         this.ordre = ordre;
     }
 
-    public OrdrePK getOrdrePK() {
-        return OrdrePK;
-    }
-
-    public void setOrdrePK(OrdrePK OrdrePK) {
-        this.OrdrePK = OrdrePK;
-    }
-
     public List<OrdreBestilling> getSettAntallList() {
-        settAntallList.clear();
-        for (Retter r : maal) {
-            settAntallList.add(new OrdreBestilling(r, 0));
-        }
         return settAntallList;
+    }
+
+    public String[] getBridList() {
+
+        List<Selskaper> hjelp = selskaperFacade.findAll();
+
+        String hjelp2[] = new String[hjelp.size() + 1];
+        int i = 0;
+        for (Selskaper e : hjelp) {
+            hjelp2[i] = e.getBrId();
+        }
+        return hjelp2;
     }
 
     public void setSettAntallList(List<OrdreBestilling> settAntallList) {
         this.settAntallList = settAntallList;
     }
 
+    public List<Retter> getRetter() {
+        return retter;
+    }
+
+    public void setRetter(List<Retter> retter) {
+        this.retter = retter;
+    }
+
+    public List<Retter> getMaal() {
+        return maal;
+    }
+
+    public void setMaal(List<Retter> maal) {
+        this.maal = maal;
+    }
+
     private void oppdaterRetterList() {
         retter = retterFacade.findAll();
     }
 
-    public Bestilling() {
-        ordreT = new Ordretabell();
-        ordreTId = new OrdretabellPK();
-        selected = new Retter();
-        ordre = new Ordre();
-
-    }
-
-    public DualListModel<Retter> getRetterPick() {
+    @PostConstruct
+    public void init() {
         oppdaterRetterList();
         maal = new ArrayList<Retter>();
         retterPick = new DualListModel<Retter>(retter, maal);
+        settAntallList = new LinkedList<OrdreBestilling>();
+    }
+
+    public DualListModel<Retter> getRetterPick() {
         return retterPick;
     }
 
@@ -122,11 +175,67 @@ public class Bestilling implements Serializable {
         this.retterPick = retterPick;
     }
 
-    public void save(ActionEvent actionEvent) {
+    private String getSumPris(int v, int b) {
+        String hjelp = "";
+        int x = v*b;
+        hjelp = ((Integer)x).toString();
+        return hjelp;
+    }
 
+    public void savePick() throws Exception {
+        int i = 0;
+        try{
+        
+        if ((selgereFacade.count() == 0) && (kundeFacade.count() == 0)) {
+            return;
+        }
+        List<Selskaper> Lselskaper = selskaperFacade.findAll();
 
-        FacesMessage msg = new FacesMessage("Successful", "Welcome :" + BrukerBehandling.getUserData());
+        for (OrdreBestilling ob : settAntallList) {
+            salg.setSalgsnummer(getUUID().toString());
+            salg.setSumSalg(getSumPris(ob.getAntall(), ob.getRett().getPris()));
+            salgFacade.create(salg);
+            ordre = new Ordre("simonD", salg.getSalgsnummer());
+            ordre.setLevAdresse(ob.getLeveringsAdresse());
+            ordre.setDatoEndret(new Date(System.currentTimeMillis()));
+            ordre.setBetaltstatus("Pending");
+            for (Selskaper s : Lselskaper) {
+                if (ob.getSelskap().equalsIgnoreCase(s.getBrId())) {
+                    ordre.setSelskapnr(s.getSelskapnr());
+                }
+            }
+            ordreFacade.create(ordre);            
+            BrukerBehandling brukerInfo = new BrukerBehandling();          
+            ordreT = new Ordretabell("simonD", salg.getSalgsnummer(),brukerInfo.getUserData());
+            ordreT.setStatus("Pending");
+            ordreT.setRettnummer(ob.getRett().getRettnummer());
+            ordreT.setAntall(ob.getAntall());
+            ordretabellFacade.create(ordreT);
+            i++;
+            prepareCreate();
+
+        }
+        } catch (Exception e){
+            
+              FacesMessage msg = new FacesMessage();
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+        msg.setSummary("Items Not Transferred");
+        msg.setDetail("Maybe som faulty inputs?");
+
         FacesContext.getCurrentInstance().addMessage(null, msg);
+            
+        }
+         
+        FacesMessage msg = new FacesMessage();
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+        msg.setSummary("Items Transferred");
+        msg.setDetail("You have ordered " + settAntallList.size() + "items ");
+
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        
+
+
+        
     }
 
     public boolean isSkip() {
@@ -137,9 +246,22 @@ public class Bestilling implements Serializable {
         this.skip = skip;
     }
 
+    public boolean isMailVe() {
+        return MailVe;
+    }
+
+    public void setMailVe(boolean MailVe) {
+        this.MailVe = MailVe;
+    }
+
+    public void removeFromsetAntalle(OrdreBestilling item) {
+        settAntallList.remove(item);
+    }
+
     public String onFlowProcess(FlowEvent event) {
         logger.info("Current wizard step:" + event.getOldStep());
         logger.info("Next step:" + event.getNewStep());
+
 
         if (skip) {
             skip = false;   //reset in case user goes back  
@@ -151,10 +273,36 @@ public class Bestilling implements Serializable {
 
     public void onTransfer(TransferEvent event) {
         StringBuilder builder = new StringBuilder();
-        for (Object item : event.getItems()) {
-            builder.append(((Retter) item).getNavn()).append("<br />");
-        }
+        Integer nPK = 0;
+        if (event.isAdd()) {
+            for (Object item : event.getItems()) {
+                String PK = (String) item;
+                Pattern p = Pattern.compile("-?\\d+");
+                Matcher m = p.matcher(PK);
+                for (Integer n; m.find();) {
+                    n = Integer.parseInt(m.group());
+                    nPK = n;
+                }
+                Retter rett = retterFacade.find(Integer.toString(nPK));
+                builder.append("You picked: " + rett.getNavn()).append("<br />");
+                settAntallList.add(new OrdreBestilling(rett, 0));
 
+            }
+        } else if (event.isRemove()) {
+
+            for (Object item : event.getItems()) {
+                String PK = (String) item;
+                Pattern p = Pattern.compile("-?\\d+");
+                Matcher m = p.matcher(PK);
+                for (Integer n; m.find();) {
+                    n = Integer.parseInt(m.group());
+                    nPK = n;
+                }
+                Retter rett = retterFacade.find(Integer.toString(nPK));
+                builder.append("You removed: " + rett.getNavn()).append("<br />");
+                settAntallList.remove(new OrdreBestilling(rett, 0));
+            }
+        }
         FacesMessage msg = new FacesMessage();
         msg.setSeverity(FacesMessage.SEVERITY_INFO);
         msg.setSummary("Items Transferred");
@@ -162,9 +310,25 @@ public class Bestilling implements Serializable {
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-    
+
     public UUID getUUID() {
         UUID idOne = UUID.randomUUID();
         return idOne;
+    }
+
+    public StreamedContent getFile() {
+
+
+
+
+        PdfMaker.makePdf(getSettAntallList(), FILNAVN, FacesContext.getCurrentInstance().getExternalContext().getRealPath("//bruker"));
+
+        InputStream stream = ((ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream("/bruker/" + FILNAVN);
+        file = new DefaultStreamedContent(stream, "image/jpg", "Oversikt.pdf");
+        if (MailVe) {
+            JavaMail mick = new JavaMail();
+
+        }
+        return file;
     }
 }

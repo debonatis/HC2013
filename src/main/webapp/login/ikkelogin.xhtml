@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>IGNORED</title>
     </h:head>
@@ -20,11 +21,11 @@
 
                 <h:form>
 
-                    <h:outputLabel value="Inncorrect username or password"/><br/>
+                    <h:outputLabel value="Inncorrect username or password"/> <br/>
                     <br/>
 
 
-                    <h:commandButton action="index?faces-redirect=true" value="Try again" />
+                    <p:commandButton action="/faces/index?faces-redirect=true" value="Try again" />
 
 
                 </h:form>

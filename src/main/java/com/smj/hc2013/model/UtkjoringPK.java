@@ -24,7 +24,7 @@ public class UtkjoringPK implements Serializable {
     private String brukernavn;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 1, max = 50)
     @Column(name = "salgsnummer")
     private String salgsnummer;
     @Basic(optional = false)

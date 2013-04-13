@@ -13,38 +13,28 @@
     </h:head>
     <h:body>
         <ui:composition template="/login/loginTemplate.xhtml">
-            <ui:define name="windowTitle">
-                Welcome
-            </ui:define>
+
 
             <ui:define name="body">
-                <form method="post" action="j_security_check">
-                    <h:panelGroup id="messagePanel" layout="block">
-                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                    </h:panelGroup>
-                    <p:growl id="growl" sticky="true" showDetail="true"/> 
-                    <p:tab >  
-                        <p:panel header="Login Details">  
-                            <br/>
-                            <h:messages errorClass="error"/>  
-                            <table>
-                                <tr>
-                                    <td><h:outputText value="Username: "/></td>
-                                    <td><p:inputText  id="j_username"/></td>
-                                </tr>
-                                <tr>
-                                    <td><h:outputText value="Password: "/></td>
-                                    <td><p:inputText id="j_password" type="password"/></td>
-                                </tr>
-                            </table>
-                            <p><input type="submit" name="submit" value="Log in" />  </p>
-                        </p:panel>  
-                        ¨<f:facet name="footer">  
-                            <p:commandButton type="button" value="Log In" icon="ui-icon-check" 
-                                             actionListener="Fuck off" style="margin:0"/>  
-                        </f:facet>
-                    </p:tab> 
-                </form>     
+                <p:panel header="Welcome, login to access secure pages:">
+                    
+                    <form method="post" action="j_security_check">
+                        <h:panelGrid columns="2">
+                            <h:outputLabel for="j_username" value="Username" />
+                            <input type="text" name="j_username" />
+
+                            <h:outputLabel for="j_password" value="Password" />
+                            <input type="password" name="j_password" />
+
+                            <h:outputText value="" />
+                            <h:panelGrid columns="2">
+                                <input type="submit" name="submit" value="Login" />
+                                <h:button outcome="/faces/index.xhtml" value="Cancel" />
+                            </h:panelGrid>
+                        </h:panelGrid>
+                    </form>
+                </p:panel>
+
             </ui:define>
         </ui:composition>
     </h:body>
