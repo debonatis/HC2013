@@ -9,23 +9,31 @@ import com.smj.hc2013.model.Bosted;
 import com.smj.hc2013.model.Bruker;
 import com.smj.hc2013.model.Kunde;
 import com.smj.hc2013.model.Rolle;
+import com.smj.hc2013.model.Salg;
+import com.smj.hc2013.model.Selgere;
+import com.smj.hc2013.model.SelskapKunde;
+import com.smj.hc2013.model.Selskaper;
 import com.smj.hc2013.session.BostedFacade;
 import com.smj.hc2013.session.BrukerFacade;
 import com.smj.hc2013.session.KundeFacade;
 import com.smj.hc2013.session.RolleFacade;
+import com.smj.hc2013.session.SalgFacade;
+import com.smj.hc2013.session.SelgereFacade;
+import com.smj.hc2013.session.SelskapKundeFacade;
+import com.smj.hc2013.session.SelskaperFacade;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
 import org.primefaces.event.FlowEvent;
 
 /**
  *
  * @author deb
  */
-@Named(value = "registrering")
+@ManagedBean(name = "registrering")
 @SessionScoped
 public class Registrering implements Serializable {
 
@@ -37,10 +45,22 @@ public class Registrering implements Serializable {
     private BrukerFacade brukerFacade;
     @EJB
     private KundeFacade kundeFacade;
-    private Bruker bruker;
-    private Rolle rolle;
-    private Bosted bosted;
-    private Kunde kunde;
+    @EJB
+    private SelskapKundeFacade selskapKundeFacade;
+    @EJB
+    private SelskaperFacade selskaperFacade;
+    @EJB
+    private SelgereFacade SelgereFacade;
+    @EJB
+    private SalgFacade SalgFacade;
+    private Bruker bruker = new Bruker();
+    private Rolle rolle = new Rolle();
+    private Bosted bosted = new Bosted();
+    private Kunde kunde = new Kunde();
+    private Selskaper selskaper = new Selskaper();
+    private SelskapKunde selskapKunde = new SelskapKunde();
+    private Salg salg = new Salg();
+    private Selgere selgere = new Selgere();
     private boolean skip;
     private static final Logger logger = Logger.getLogger(Registrering.class.getName());
 
@@ -50,6 +70,53 @@ public class Registrering implements Serializable {
         rolle = new Rolle();
         bosted = new Bosted();
         kunde = new Kunde();
+        selskaper = new Selskaper();
+        selskapKunde = new SelskapKunde();
+        salg = new Salg();
+        selgere = new Selgere();
+
+    }
+
+   
+
+    public Kunde getKunde() {
+        return kunde;
+    }
+
+    public void setKunde(Kunde kunde) {
+        this.kunde = kunde;
+    }
+
+    public Selskaper getSelskaper() {
+        return selskaper;
+    }
+
+    public void setSelskaper(Selskaper selskaper) {
+        this.selskaper = selskaper;
+    }
+
+    public SelskapKunde getSelskapKunde() {
+        return selskapKunde;
+    }
+
+    public void setSelskapKunde(SelskapKunde selskapKunde) {
+        this.selskapKunde = selskapKunde;
+    }
+
+    public Salg getSalg() {
+        return salg;
+    }
+
+    public void setSalg(Salg salg) {
+        this.salg = salg;
+    }
+
+    public Selgere getSelgere() {
+        return selgere;
+    }
+
+    public void setSelgere(Selgere selgere) {
+        this.selgere = selgere;
     }
 
     public Bruker getBruker() {
@@ -78,15 +145,15 @@ public class Registrering implements Serializable {
 
     public void save() {
 
-        bruker.setPostnummer(bosted.getPostnummer());
-        bostedFacade.create(bosted);
-        brukerFacade.create(bruker);
-        rolle.setBrukernavn(bruker.getBrukernavn());
-        rolle.setRollen("customer");
-        rolleFacade.create(rolle);
-        kunde.setBrukernavn(bruker.getBrukernavn());
-        kunde.setAvslag(0);
-        kundeFacade.create(kunde);
+//        bruker.setPostnummer(bosted.getPostnummer());
+//        bostedFacade.create(bosted);
+//        brukerFacade.create(bruker);
+//        rolle.setBrukernavn(bruker.getBrukernavn());
+//        rolle.setRollen("customer");
+//        rolleFacade.create(rolle);
+//        kunde.setBrukernavn(bruker.getBrukernavn());
+//        kunde.setAvslag(0);
+//        kundeFacade.create(kunde);
 
 
 
