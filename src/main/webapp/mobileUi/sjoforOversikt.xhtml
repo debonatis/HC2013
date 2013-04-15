@@ -19,7 +19,7 @@
                 </pm:header>
 
                 <pm:content>
-                    <p:dataList id="ordreList" value="#{sjoforUtkjoring.utListe}" var="item" rendered="#{bruker.sjoforOK}">
+                    <p:dataList id="ordreList" value="#{sjoforUtkjoring.utListe}" var="item" >
                         <p:column>                            
                             <h3>
                                 <p:commandLink value="#{item.ordreTabell.ordretabellPK.salgsnummer} #{item.ordre.levAdresse}" action="pm:new" update=":seeOrdreForm">
@@ -79,7 +79,7 @@
                     <h:outputText />  
                     <h:outputText />  
 
-                    <p:commandButton value="Save" action="#{sjoforUtkjoring.save()}" update=":listContactsForm:contactsList" icon="check" />
+                    <p:commandButton value="Save" action="#{sjoforUtkjoring.save()}" update=":listOrdersForm:ordreList" icon="check" />
                 </h:form>
             </pm:content>
 
