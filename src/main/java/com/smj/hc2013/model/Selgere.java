@@ -122,5 +122,9 @@ public class Selgere implements Serializable {
     public String toString() {
         return "com.smj.hc2013.model.Selgere[ brukernavn=" + brukernavn + " ]";
     }
+
+    public void setAntSalgInt(int i) {
+        this.antSalg = ((Integer) i).toString(); 
+    }
     
 }
