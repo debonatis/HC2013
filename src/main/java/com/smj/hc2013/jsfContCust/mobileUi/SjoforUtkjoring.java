@@ -54,9 +54,8 @@ public class SjoforUtkjoring {
         this.setter = setter;
     }
 
-    @PostConstruct
+    
     public void init() {
-
         brukerL = brukerFacade.findAll();
         ordreL = ordreFacade.findAll();
         ordreTabellL = ordretabellFacade.findAll();
@@ -90,6 +89,7 @@ public class SjoforUtkjoring {
     }
 
     public List<OrdreUtkjoring> getUtListe() {
+        init();
         return utListe;
     }
 
