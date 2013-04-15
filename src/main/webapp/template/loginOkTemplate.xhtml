@@ -25,10 +25,14 @@
             <h:form>
                 <p:growl id="messages"/>
                 <p:menu>          
-                    <p:submenu label="Navigations">  
-                        
+                    <p:submenu label="Navigations"> 
+
                         <p:menuitem value="Dish registration" outcome="/retter/Create" /> 
-                        <p:menuitem value="Orders" outcome="/salgUi/bestilling" />                         
+                        <p:menuitem value="Orders" outcome="/salgUi/bestilling" />                
+
+
+                    </p:submenu>  
+                    <p:submenu label="Admin navigation" rendered="#{bruker.adminOK}"> 
                         <p:menuitem outcome="/administrator/List" value="Show All Administrator Items"/>                   
                         <p:menuitem outcome="/annet/List" value="Show All Annet Items"/>
                         <p:menuitem outcome="/bosted/List" value="Show All Bosted Items"/>
@@ -45,8 +49,10 @@
                         <p:menuitem outcome="/sjoforer/List" value="Show All Sjoforer Items"/>
                         <p:menuitem outcome="/utkjoring/List" value="Show All Utkjoring Items"/>
                         <p:menuitem outcome="/utkjoringsBil/List" value="Show All UtkjoringsBil Items"/>
-                        
-                    </p:submenu>  
+                    </p:submenu>
+                    <p:submenu label="User navigation" rendered="#{bruker.brukerOK}"></p:submenu>
+                    <p:submenu label="Chef navigation" rendered="#{bruker.kokkOK}"></p:submenu>                    
+                    <p:submenu label="Sales navigation" rendered="#{bruker.salgOK}"></p:submenu>
                 </p:menu> 
             </h:form>                    
         </div>

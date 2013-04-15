@@ -34,6 +34,26 @@ public class BrukerBehandling implements Serializable {
     private boolean brukerOK;
     private boolean kokkOK;
     private boolean customerOK;
+
+    public void setBrukerOK(boolean brukerOK) {
+        this.brukerOK = brukerOK;
+    }
+
+    public void setKokkOK(boolean kokkOK) {
+        this.kokkOK = kokkOK;
+    }
+
+    public void setCustomerOK(boolean customerOK) {
+        this.customerOK = customerOK;
+    }
+
+    public void setSalgOK(boolean salgOK) {
+        this.salgOK = salgOK;
+    }
+
+    public void setSjoforOK(boolean sjoforOK) {
+        this.sjoforOK = sjoforOK;
+    }
     private boolean salgOK;
     private boolean sjoforOK;
 
