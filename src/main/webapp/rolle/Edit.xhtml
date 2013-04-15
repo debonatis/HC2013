@@ -11,26 +11,27 @@
             <h:outputText value="#{bundle.EditRolleTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditRolleLabel_brukernavn}" for="brukernavn" />
-                    <h:inputText id="brukernavn" value="#{rolleController.selected.brukernavn}" title="#{bundle.EditRolleTitle_brukernavn}" required="true" requiredMessage="#{bundle.EditRolleRequiredMessage_brukernavn}"/>
-                    <h:outputLabel value="#{bundle.EditRolleLabel_rollen}" for="rollen" />
-                    <h:inputText id="rollen" value="#{rolleController.selected.rollen}" title="#{bundle.EditRolleTitle_rollen}" required="true" requiredMessage="#{bundle.EditRolleRequiredMessage_rollen}"/>
-                </h:panelGrid>
-                <h:commandLink action="#{rolleController.update}" value="#{bundle.EditRolleSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditRolleViewLink}"/>
-                <br />
-                <h:commandLink action="#{rolleController.prepareList}" value="#{bundle.EditRolleShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditRolleIndexLink}" />
-            </h:form>
+            <p:panel id="panel" header="Edit">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.EditRolleLabel_brukernavn}" for="brukernavn" />
+                        <h:inputText id="brukernavn" value="#{rolleController.selected.brukernavn}" title="#{bundle.EditRolleTitle_brukernavn}" required="true" requiredMessage="#{bundle.EditRolleRequiredMessage_brukernavn}"/>
+                        <h:outputLabel value="#{bundle.EditRolleLabel_rollen}" for="rollen" />
+                        <h:inputText id="rollen" value="#{rolleController.selected.rollen}" title="#{bundle.EditRolleTitle_rollen}" required="true" requiredMessage="#{bundle.EditRolleRequiredMessage_rollen}"/>
+                    </h:panelGrid>
+                    <br/><br/><br/><br/><br/>
+                    <p:menubar>
+                        <p:menuitem action="#{rolleController.update}" value="#{bundle.EditRolleSaveLink}"/>  
+                        <p:menuitem outcome="View" value="#{bundle.EditRolleViewLink}"/> 
+                        <p:menuitem action="#{rolleController.prepareList}" value="#{bundle.EditRolleShowAllLink}" immediate="true"/>  
+                        <p:menuitem outcome="/index" value="#{bundle.EditRolleIndexLink}" style="margin-left:550px"/> 
+                    </p:menubar>
+                    <h:commandLink />
+                </h:form>
+            </p:panel>
         </ui:define>
     </ui:composition>
 

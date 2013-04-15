@@ -11,30 +11,27 @@
             <h:outputText value="#{bundle.ViewRolleTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewRolleLabel_brukernavn}"/>
-                    <h:outputText value="#{rolleController.selected.brukernavn}" title="#{bundle.ViewRolleTitle_brukernavn}"/>
-                    <h:outputText value="#{bundle.ViewRolleLabel_rollen}"/>
-                    <h:outputText value="#{rolleController.selected.rollen}" title="#{bundle.ViewRolleTitle_rollen}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{rolleController.destroyAndView}" value="#{bundle.ViewRolleDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewRolleEditLink}"/>
-                <br />
-                <h:commandLink action="#{rolleController.prepareCreate}" value="#{bundle.ViewRolleCreateLink}" />
-                <br />
-                <h:commandLink action="#{rolleController.prepareList}" value="#{bundle.ViewRolleShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewRolleIndexLink}"/>
-
-            </h:form>
+            <p:panel id="panel" header="View">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.ViewRolleLabel_brukernavn}"/>
+                        <h:outputText value="#{rolleController.selected.brukernavn}" title="#{bundle.ViewRolleTitle_brukernavn}"/>
+                        <h:outputText value="#{bundle.ViewRolleLabel_rollen}"/>
+                        <h:outputText value="#{rolleController.selected.rollen}" title="#{bundle.ViewRolleTitle_rollen}"/>
+                    </h:panelGrid>
+                    <br/><br/><br/><br/><br/>
+                    <p:menubar>
+                        <p:menuitem action="#{rolleController.destroyAndView}" value="#{bundle.ViewRolleDestroyLink}"/>  
+                        <p:menuitem outcome="Edit" value="#{bundle.ViewRolleEditLink}"/> 
+                        <p:menuitem action="#{rolleController.prepareCreate}" value="#{bundle.ViewRolleCreateLink}"/>  
+                        <p:menuitem action="#{rolleController.prepareList}" value="#{bundle.ViewRolleShowAllLink}"/>   
+                        <p:menuitem outcome="/index" value="#{bundle.ViewRolleIndexLink}" style="margin-left:380px"/> 
+                    </p:menubar>
+                </h:form>
+            </p:panel>
         </ui:define>
     </ui:composition>
 

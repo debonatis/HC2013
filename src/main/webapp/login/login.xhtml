@@ -13,11 +13,8 @@
     </h:head>
     <h:body>
         <ui:composition template="/login/loginTemplate.xhtml">
-
-
             <ui:define name="body">
                 <p:panel header="Welcome, login to access secure pages:">
-                    
                     <form method="post" action="j_security_check">
                         <h:panelGrid columns="2">
                             <h:outputLabel for="j_username" value="Username" />
@@ -29,12 +26,12 @@
                             <h:outputText value="" />
                             <h:panelGrid columns="2">
                                 <input type="submit" name="submit" value="Login" />
-                                <h:button outcome="/faces/index.xhtml" value="Cancel" />
+                                <h:button outcome="/faces/index.xhtml" value="Cancel" /><br/>
+                                <h:button outcome="/faces/login/forgotPassword.xhtml" value="Forgot password?"/>
                             </h:panelGrid>
                         </h:panelGrid>
                     </form>
                 </p:panel>
-
             </ui:define>
         </ui:composition>
     </h:body>

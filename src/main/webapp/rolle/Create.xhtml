@@ -11,25 +11,25 @@
             <h:outputText value="#{bundle.CreateRolleTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateRolleLabel_brukernavn}" for="brukernavn" />
-                    <h:inputText id="brukernavn" value="#{rolleController.selected.brukernavn}" title="#{bundle.CreateRolleTitle_brukernavn}" required="true" requiredMessage="#{bundle.CreateRolleRequiredMessage_brukernavn}"/>
-                    <h:outputLabel value="#{bundle.CreateRolleLabel_rollen}" for="rollen" />
-                    <h:inputText id="rollen" value="#{rolleController.selected.rollen}" title="#{bundle.CreateRolleTitle_rollen}" required="true" requiredMessage="#{bundle.CreateRolleRequiredMessage_rollen}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{rolleController.create}" value="#{bundle.CreateRolleSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{rolleController.prepareList}" value="#{bundle.CreateRolleShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateRolleIndexLink}"/>
-            </h:form>
+            <p:panel id="panel" header="Create new">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.CreateRolleLabel_brukernavn}" for="brukernavn" />
+                        <h:inputText id="brukernavn" value="#{rolleController.selected.brukernavn}" title="#{bundle.CreateRolleTitle_brukernavn}" required="true" requiredMessage="#{bundle.CreateRolleRequiredMessage_brukernavn}"/>
+                        <h:outputLabel value="#{bundle.CreateRolleLabel_rollen}" for="rollen" />
+                        <h:inputText id="rollen" value="#{rolleController.selected.rollen}" title="#{bundle.CreateRolleTitle_rollen}" required="true" requiredMessage="#{bundle.CreateRolleRequiredMessage_rollen}"/>
+                    </h:panelGrid>
+                    <br/><br/><br/><br/><br/>
+                    <p:menubar>
+                        <p:menuitem action="#{rolleController.create}" value="#{bundle.CreateRolleSaveLink}"/>  
+                        <p:menuitem action="#{rolleController.prepareList}" value="#{bundle.CreateRolleShowAllLink}" immediate="true"/>   
+                        <p:menuitem outcome="/index" value="#{bundle.CreateRolleIndexLink}" style="margin-left:500px"/> 
+                    </p:menubar>
+                </h:form>
+            </p:panel>
         </ui:define>
     </ui:composition>
 
