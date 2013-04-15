@@ -36,7 +36,7 @@ public class Bosted implements Serializable {
     private Integer postnummer;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 1, max = 30)
     @Column(name = "poststed")
     private String poststed;
 

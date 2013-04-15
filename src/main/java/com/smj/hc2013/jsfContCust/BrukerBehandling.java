@@ -27,15 +27,16 @@ import javax.servlet.http.HttpServletRequest;
 public class BrukerBehandling implements Serializable {
 
     private static final Logger logger = Logger.getLogger("com.corejsf");
-    private static final String[] roller = {"admin", "bruker", "kokk", "customer", "salg"};
+    private static final String[] roller = {"admin", "bruker", "kokk", "customer", "salg", "sjofor"};
     private boolean adminOK;
     private String rolle = "";
     private String userData = "";
-    
+    private boolean brukerOK;
+    private boolean kokkOK;
+    private boolean customerOK;
+    private boolean salgOK;
+    private boolean sjoforOK;
 
-    
-
-    
     public void logout() throws IOException {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         externalContext.invalidateSession();
@@ -53,6 +54,26 @@ public class BrukerBehandling implements Serializable {
     public boolean isAdminOK() {
         this.adminOK = (getRolle().equals("admin")) ? true : false;
         return adminOK;
+    }
+
+    public boolean isBrukerOK() {
+        return (getRolle().equals("bruker")) ? true : false;
+    }
+
+    public boolean isKokkOK() {
+        return (getRolle().equals("kokk")) ? true : false;
+    }
+
+    public boolean isSalgOK() {
+        return (getRolle().equals("salg")) ? true : false;
+    }
+
+    public boolean isCustomerOK() {
+        return (getRolle().equals("customer")) ? true : false;
+    }
+
+    public boolean isSjoforOK() {
+        return (getRolle().equals("sjofor")) ? true : false;
     }
 
     public void setAdminOK(boolean adminOK) {
@@ -97,7 +118,7 @@ public class BrukerBehandling implements Serializable {
             request.logout();
             request.logout();
         } catch (ServletException e) {
-            JsfUtil.addErrorMessage("Failes to log you our!");
+            JsfUtil.addErrorMessage("Failes to log you out!");
             result = "/faces/login/ikkelogin?faces-redirect=true";
         }
 
@@ -114,6 +135,4 @@ public class BrukerBehandling implements Serializable {
         HttpServletRequest foresporrsel = (HttpServletRequest) forsporrselobject;
         return foresporrsel.isUserInRole(k);
     }
-
-    
 }
