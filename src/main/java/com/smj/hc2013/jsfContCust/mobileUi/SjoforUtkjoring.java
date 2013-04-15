@@ -66,18 +66,18 @@ public class SjoforUtkjoring {
                 if (ot.getOrdretabellPK().getSalgsnummer().equalsIgnoreCase(o.getOrdrePK().getSalgsnummer())) {
                     ordre = o;
                 }
+            }
                 for (Bruker b : brukerL) {
                     if (ot.getOrdretabellPK().getKundebrukernavn().equalsIgnoreCase(b.getBrukernavn())) {
                         bruker = b;
                     }
+                }
                     for (Retter r : retterL) {
                         if (ot.getRettnummer().equalsIgnoreCase(r.getRettnummer())) {
                             rett = r;
                         }
                     }
-
-                }
-            }
+                  
             getSetter().setBruker(bruker);
             getSetter().setOrdre(ordre);
             getSetter().setOrdreTabell(ordreT);
