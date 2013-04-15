@@ -20,6 +20,9 @@ public class OrdreUtkjoring {
     private Ordre ordre = new Ordre();
     private Bruker bruker = new Bruker();
     private Retter rett = new Retter();
+   
+
+   
 
     @Override
     public String toString() {

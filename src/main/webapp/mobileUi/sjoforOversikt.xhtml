@@ -11,50 +11,75 @@
 
         <!-- Main View -->
         <pm:view id="main">
-            <h:form id="listContactsForm">
-                <pm:header title="Contacts">
-                    <f:facet name="right">
-                        <p:commandButton value="login" icon="plus" action="#{contactsView.prepareNewContact}" update=":newContactForm"/>
-                         <p:commandButton value="login" icon="plus" action="#{contactsView.prepareNewContact}" update=":newContactForm"/>
+            <h:form id="listOrdersForm">
+                <pm:header title="Orders">
+                    <f:facet name="right">                       
+                        <p:commandButton value="Refresh" icon="refresh" action="#{sjoforUtkjoring.init()}" update=":listOrdersForm"/>
                     </f:facet>
                 </pm:header>
 
                 <pm:content>
-                    <p:dataList id="contactsList" value="#{ordreController.items}" var="item" rendered="#{bruker.sjoforOK}">
+                    <p:dataList id="ordreList" value="#{sjoforUtkjoring.utListe}" var="item" rendered="#{bruker.sjoforOK}">
                         <p:column>                            
                             <h3>
-                                <p:commandLink value="#{item.ordrePK.brukernavn} #{contact.surname}" action="pm:new" update=":newContactForm">
-                                    <f:setPropertyActionListener value="#{contact}" target="#{contactsView.contact}" />
+                                <p:commandLink value="#{item.ordreTabell.ordretabellPK.salgsnummer} #{item.ordre.levAdresse}" action="pm:new" update=":seeOrdreForm">
+                                    <f:setPropertyActionListener value="#{item}" target="#{sjoforUtkjoring.selected}" />
                                 </p:commandLink>
                             </h3>
-                            <p><a href="tel:#{contact.phone}">Call</a></p>
+                            <p><a href="tel:#{item.bruker.telefon}">Call</a></p>
                         </p:column>
                     </p:dataList>
                 </pm:content>
             </h:form>
         </pm:view>
 
-        <!-- New Contact -->
+        
         <pm:view id="new">
-            <pm:header title="New Contact">
+            <pm:header title="Orders">
                 <f:facet name="left"><p:button value="Back" icon="back" href="#main?reverse=true"/></f:facet>
             </pm:header>
 
             <pm:content>
-                <h:form id="newContactForm">
-                    <p:inputText id="name" value="#{contactsView.contact.firstname}" label="Name:"/>
+                <h:form id="seeOrdreForm">
+                    <h:outputText value="SalesNr: " />  
+                    <h:outputText styleClass="outputLabel"  
+                                  value="#{sjoforUtkjoring.selected.ordreTabell.ordretabellPK.salgsnummer}" />  
 
-                    <p:inputText id="surname" value="#{contactsView.contact.surname}" label="Surname:"/>
+                    <h:outputText value="levAddress: " />  
+                    <h:outputText  styleClass="outputLabel"  
+                                   value="#{sjoforUtkjoring.selected.ordre.levAdresse}"/>                                  
 
-                    <p:inputText id="age" value="#{contactsView.contact.age}" type="number" label="Age:"/>
+                    <h:outputText value="PayStatus: " />  
+                    <p:inputText styleClass="outputLabel"  
+                                 value="#{sjoforUtkjoring.selected.ordre.betaltstatus}" />  
 
-                    <p:inputText id="phone" value="#{contactsView.contact.phone}" label="Phone:"/>
+                    <h:outputText value="Dishname: " />  
+                    <h:outputText styleClass="outputLabel"  
+                                  value="#{sjoforUtkjoring.selected.rett.navn}" />  
 
-                    <p:inputText id="mail" value="#{contactsView.contact.mail}" label="Email:"/>
+                    <h:outputText value="OrderStatus: " />                      
+                    <p:selectOneButton value="#{sjoforUtkjoring.selected.ordreTabell.status}">  
+                        <f:selectItem itemLabel="Pending" itemValue="Pending" />  
+                        <f:selectItem itemLabel="OK" itemValue=OK" />  
+                        <f:selectItem itemLabel="OK call me!" itemValue="Faulty" />  
+                    </p:selectOneButton>   
 
-                    <p:inputTextarea id="address" value="#{contactsView.contact.address}" label="Address:"/>
+                    <h:outputText value="Customer: " />  
+                    <h:outputText styleClass="outputLabel"  
+                                  value="#{sjoforUtkjoring.selected.bruker.brukernavn}" />  
 
-                    <p:commandButton value="Save" action="#{contactsView.saveContact}" update=":listContactsForm:contactsList" icon="check" />
+                    <h:outputText value="Firstname " />  
+                    <h:outputText styleClass="outputLabel"  
+                                  value="#{sjoforUtkjoring.selected.bruker.fornavn}"/>  
+
+                    <h:outputText value="Lastname: " />  
+                    <h:outputText styleClass="outputLabel"  
+                                  value="#{sjoforUtkjoring.selected.bruker.etternavn}" />  
+
+                    <h:outputText />  
+                    <h:outputText />  
+
+                    <p:commandButton value="Save" action="#{sjoforUtkjoring.save()}" update=":listContactsForm:contactsList" icon="check" />
                 </h:form>
             </pm:content>
 

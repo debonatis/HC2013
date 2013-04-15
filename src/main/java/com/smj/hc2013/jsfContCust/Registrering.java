@@ -66,6 +66,7 @@ public class Registrering implements RegMethod {
     private Selgere selgere = new Selgere();
     private boolean skip;
     private static final Logger logger = Logger.getLogger(Registrering.class.getName());
+    
 
     private void prepareCreate() {
 
