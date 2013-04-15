@@ -4,6 +4,7 @@
  */
 package com.smj.hc2013.jsfContCust;
 
+import com.smj.hc2013.jsfContCust.Interface.RegMethod;
 import com.smj.hc2013.jsfContl.util.JsfUtil;
 import com.smj.hc2013.model.Bosted;
 import com.smj.hc2013.model.Bruker;
@@ -37,7 +38,7 @@ import org.primefaces.event.FlowEvent;
  */
 @ManagedBean(name = "registrering")
 @RequestScoped
-public class Registrering implements Serializable {
+public class Registrering implements RegMethod {
 
     @EJB
     private BostedFacade bostedFacade;
@@ -79,66 +80,82 @@ public class Registrering implements Serializable {
 
     }
 
+    @Override
     public Kunde getKunde() {
         return kunde;
     }
 
+    @Override
     public void setKunde(Kunde kunde) {
         this.kunde = kunde;
     }
 
+    @Override
     public Selskaper getSelskaper() {
         return selskaper;
     }
 
+    @Override
     public void setSelskaper(Selskaper selskaper) {
         this.selskaper = selskaper;
     }
 
+    @Override
     public SelskapKunde getSelskapKunde() {
         return selskapKunde;
     }
 
+    @Override
     public void setSelskapKunde(SelskapKunde selskapKunde) {
         this.selskapKunde = selskapKunde;
     }
 
+    @Override
     public Salg getSalg() {
         return salg;
     }
 
+    @Override
     public void setSalg(Salg salg) {
         this.salg = salg;
     }
 
+    @Override
     public Selgere getSelgere() {
         return selgere;
     }
 
+    @Override
     public void setSelgere(Selgere selgere) {
         this.selgere = selgere;
     }
 
+    @Override
     public Bruker getBruker() {
         return bruker;
     }
 
+    @Override
     public void setBruker(Bruker bruker) {
         this.bruker = bruker;
     }
 
+    @Override
     public Rolle getRolle() {
         return rolle;
     }
 
+    @Override
     public void setRolle(Rolle rolle) {
         this.rolle = rolle;
     }
 
+    @Override
     public Bosted getBosted() {
         return bosted;
     }
 
+    @Override
     public void setBosted(Bosted bosted) {
         this.bosted = bosted;
     }
@@ -153,6 +170,7 @@ public class Registrering implements Serializable {
 
     }
 
+    @Override
     public void save() {
 
         try {
@@ -189,14 +207,17 @@ public class Registrering implements Serializable {
 
     }
 }
-public boolean isSkip() {
+    @Override
+    public boolean isSkip() {
         return skip;
     }
 
+    @Override
     public void setSkip(boolean skip) {
         this.skip = skip;
     }
 
+    @Override
     public String onFlowProcess(FlowEvent event) {
         logger.log(Level.INFO, "Current wizard step:{0}", event.getOldStep());
         logger.log(Level.INFO, "Next step:{0}", event.getNewStep());
