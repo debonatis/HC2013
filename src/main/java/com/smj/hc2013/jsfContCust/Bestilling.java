@@ -4,7 +4,6 @@
  */
 package com.smj.hc2013.jsfContCust;
 
-import com.smj.hc2013.jsfContCust.Interface.BestillingMeth;
 import com.smj.hc2013.model.Ordre;
 import com.smj.hc2013.model.OrdreBestilling;
 import com.smj.hc2013.model.Ordretabell;
@@ -52,7 +51,8 @@ import org.primefaces.model.StreamedContent;
  */
 @ManagedBean
 @ViewScoped
-public class Bestilling implements BestillingMeth {
+
+public class Bestilling implements Serializable {
 
     private List<Retter> retter;
     private List<Retter> maal;
@@ -99,9 +99,8 @@ public class Bestilling implements BestillingMeth {
         ordreT = new Ordretabell();
 
     }
-
-    @Override
-    public void prepareCreate() {
+    
+    public void prepareCreate(){
         selskaper = new Selskaper();
         selskapKunde = new SelskapKunde();
         salg = new Salg();
@@ -112,22 +111,18 @@ public class Bestilling implements BestillingMeth {
 
     }
 
-    @Override
     public Ordre getOrdre() {
         return ordre;
     }
 
-    @Override
     public void setOrdre(Ordre ordre) {
         this.ordre = ordre;
     }
 
-    @Override
     public List<OrdreBestilling> getSettAntallList() {
         return settAntallList;
     }
 
-    @Override
     public String[] getBridList() {
 
         List<Selskaper> hjelp = selskaperFacade.findAll();
@@ -140,27 +135,22 @@ public class Bestilling implements BestillingMeth {
         return hjelp2;
     }
 
-    @Override
     public void setSettAntallList(List<OrdreBestilling> settAntallList) {
         this.settAntallList = settAntallList;
     }
 
-    @Override
     public List<Retter> getRetter() {
         return retter;
     }
 
-    @Override
     public void setRetter(List<Retter> retter) {
         this.retter = retter;
     }
 
-    @Override
     public List<Retter> getMaal() {
         return maal;
     }
 
-    @Override
     public void setMaal(List<Retter> maal) {
         this.maal = maal;
     }
@@ -170,7 +160,6 @@ public class Bestilling implements BestillingMeth {
     }
 
     @PostConstruct
-    @Override
     public void init() {
         oppdaterRetterList();
         maal = new ArrayList<Retter>();
@@ -178,68 +167,65 @@ public class Bestilling implements BestillingMeth {
         settAntallList = new LinkedList<OrdreBestilling>();
     }
 
-    @Override
     public DualListModel<Retter> getRetterPick() {
         return retterPick;
     }
 
-    @Override
     public void setRetterPick(DualListModel<Retter> retterPick) {
         this.retterPick = retterPick;
     }
 
     private String getSumPris(int v, int b) {
         String hjelp = "";
-        int x = v * b;
-        hjelp = ((Integer) x).toString();
+        int x = v*b;
+        hjelp = ((Integer)x).toString();
         return hjelp;
     }
 
-    @Override
     public void savePick() throws Exception {
         int i = 0;
-        try {
+        try{
+        
+        if ((selgereFacade.count() == 0) && (kundeFacade.count() == 0)) {
+            return;
+        }
+        List<Selskaper> Lselskaper = selskaperFacade.findAll();
 
-            if ((selgereFacade.count() == 0) && (kundeFacade.count() == 0)) {
-                return;
-            }
-            List<Selskaper> Lselskaper = selskaperFacade.findAll();
-
-            for (OrdreBestilling ob : settAntallList) {
-                salg.setSalgsnummer(getUUID().toString());
-                salg.setSumSalg(getSumPris(ob.getAntall(), ob.getRett().getPris()));
-                salgFacade.create(salg);
-                ordre = new Ordre("simonD", salg.getSalgsnummer());
-                ordre.setLevAdresse(ob.getLeveringsAdresse());
-                ordre.setDatoEndret(new Date(System.currentTimeMillis()));
-                ordre.setBetaltstatus("Pending");
-                for (Selskaper s : Lselskaper) {
-                    if (ob.getSelskap().equalsIgnoreCase(s.getBrId())) {
-                        ordre.setSelskapnr(s.getSelskapnr());
-                    }
+        for (OrdreBestilling ob : settAntallList) {
+            salg.setSalgsnummer(getUUID().toString());
+            salg.setSumSalg(getSumPris(ob.getAntall(), ob.getRett().getPris()));
+            salgFacade.create(salg);
+            ordre = new Ordre("simonD", salg.getSalgsnummer());
+            ordre.setLevAdresse(ob.getLeveringsAdresse());
+            ordre.setDatoEndret(new Date(System.currentTimeMillis()));
+            ordre.setBetaltstatus("Pending");
+            for (Selskaper s : Lselskaper) {
+                if (ob.getSelskap().equalsIgnoreCase(s.getBrId())) {
+                    ordre.setSelskapnr(s.getSelskapnr());
                 }
-                ordreFacade.create(ordre);
-                BrukerBehandling brukerInfo = new BrukerBehandling();
-                ordreT = new Ordretabell("simonD", salg.getSalgsnummer(), brukerInfo.getUserData());
-                ordreT.setStatus("Pending");
-                ordreT.setRettnummer(ob.getRett().getRettnummer());
-                ordreT.setAntall(ob.getAntall());
-                ordretabellFacade.create(ordreT);
-                i++;
-                prepareCreate();
-
             }
-        } catch (Exception e) {
-
-            FacesMessage msg = new FacesMessage();
-            msg.setSeverity(FacesMessage.SEVERITY_INFO);
-            msg.setSummary("Items Not Transferred");
-            msg.setDetail("Maybe som faulty inputs?");
-
-            FacesContext.getCurrentInstance().addMessage(null, msg);
+            ordreFacade.create(ordre);            
+            BrukerBehandling brukerInfo = new BrukerBehandling();          
+            ordreT = new Ordretabell("simonD", salg.getSalgsnummer(),brukerInfo.getUserData());
+            ordreT.setStatus("Pending");
+            ordreT.setRettnummer(ob.getRett().getRettnummer());
+            ordreT.setAntall(ob.getAntall());
+            ordretabellFacade.create(ordreT);
+            i++;
+            prepareCreate();
 
         }
+        } catch (Exception e){
+            
+              FacesMessage msg = new FacesMessage();
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+        msg.setSummary("Items Not Transferred");
+        msg.setDetail("Maybe som faulty inputs?");
 
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+            
+        }
+         
         selgere = selgereFacade.find("simonD");
         String antall = selgere.getAntSalg();
         int y = Integer.parseInt(antall);
@@ -249,35 +235,34 @@ public class Bestilling implements BestillingMeth {
         msg.setSeverity(FacesMessage.SEVERITY_INFO);
         msg.setSummary("Items Transferred");
         msg.setDetail("You have ordered " + settAntallList.size() + "items ");
+
         FacesContext.getCurrentInstance().addMessage(null, msg);
+        
+
+
+        
     }
 
-    @Override
     public boolean isSkip() {
         return skip;
     }
 
-    @Override
     public void setSkip(boolean skip) {
         this.skip = skip;
     }
 
-    @Override
     public boolean isMailVe() {
         return MailVe;
     }
 
-    @Override
     public void setMailVe(boolean MailVe) {
         this.MailVe = MailVe;
     }
 
-    @Override
     public void removeFromsetAntalle(OrdreBestilling item) {
         settAntallList.remove(item);
     }
 
-    @Override
     public String onFlowProcess(FlowEvent event) {
         logger.info("Current wizard step:" + event.getOldStep());
         logger.info("Next step:" + event.getNewStep());
@@ -291,7 +276,6 @@ public class Bestilling implements BestillingMeth {
         }
     }
 
-    @Override
     public void onTransfer(TransferEvent event) {
         StringBuilder builder = new StringBuilder();
         Integer nPK = 0;
@@ -332,13 +316,11 @@ public class Bestilling implements BestillingMeth {
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
-    @Override
     public UUID getUUID() {
         UUID idOne = UUID.randomUUID();
         return idOne;
     }
 
-    @Override
     public StreamedContent getFile() {
 
 

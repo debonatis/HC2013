@@ -86,8 +86,8 @@ public class Registrering implements RegMethod {
     }
 
     @Override
-    public void setKunde(Kunde kunde) {
-        this.kunde = kunde;
+    public void setKunde(Object kunde) {
+        this.kunde = (Kunde) kunde;
     }
 
     @Override
@@ -96,8 +96,8 @@ public class Registrering implements RegMethod {
     }
 
     @Override
-    public void setSelskaper(Selskaper selskaper) {
-        this.selskaper = selskaper;
+    public void setSelskaper(Object selskaper) {
+        this.selskaper = (Selskaper) selskaper;
     }
 
     @Override
@@ -106,8 +106,8 @@ public class Registrering implements RegMethod {
     }
 
     @Override
-    public void setSelskapKunde(SelskapKunde selskapKunde) {
-        this.selskapKunde = selskapKunde;
+    public void setSelskapKunde(Object selskapKunde) {
+        this.selskapKunde = (SelskapKunde) selskapKunde;
     }
 
     @Override
@@ -116,8 +116,8 @@ public class Registrering implements RegMethod {
     }
 
     @Override
-    public void setSalg(Salg salg) {
-        this.salg = salg;
+    public void setSalg(Object salg) {
+        this.salg = (Salg) salg;
     }
 
     @Override
@@ -126,8 +126,8 @@ public class Registrering implements RegMethod {
     }
 
     @Override
-    public void setSelgere(Selgere selgere) {
-        this.selgere = selgere;
+    public void setSelgere(Object selgere) {
+        this.selgere = (Selgere) selgere;
     }
 
     @Override
@@ -136,8 +136,8 @@ public class Registrering implements RegMethod {
     }
 
     @Override
-    public void setBruker(Bruker bruker) {
-        this.bruker = bruker;
+    public void setBruker(Object bruker) {
+        this.bruker = (Bruker) bruker;
     }
 
     @Override
@@ -146,8 +146,8 @@ public class Registrering implements RegMethod {
     }
 
     @Override
-    public void setRolle(Rolle rolle) {
-        this.rolle = rolle;
+    public void setRolle(Object rolle) {
+        this.rolle = (Rolle) rolle;
     }
 
     @Override
@@ -156,8 +156,8 @@ public class Registrering implements RegMethod {
     }
 
     @Override
-    public void setBosted(Bosted bosted) {
-        this.bosted = bosted;
+    public void setBosted(Object bosted) {
+        this.bosted = (Bosted) bosted;
     }
 
     private boolean getBostedFinsIkke() {

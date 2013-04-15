@@ -19,23 +19,23 @@ import org.primefaces.event.FlowEvent;
  *
  * @author deb
  */
-public interface RegMethod extends Serializable {
+public interface RegMethod<T> extends Serializable {
 
-    Bosted getBosted();
+    T getBosted();
 
-    Bruker getBruker();
+    T getBruker();
 
-    Kunde getKunde();
+    T getKunde();
 
-    Rolle getRolle();
+    T getRolle();
 
-    Salg getSalg();
+    T getSalg();
 
-    Selgere getSelgere();
+    T getSelgere();
 
-    SelskapKunde getSelskapKunde();
+    T getSelskapKunde();
 
-    Selskaper getSelskaper();
+    T getSelskaper();
 
     boolean isSkip();
 
@@ -43,21 +43,21 @@ public interface RegMethod extends Serializable {
 
     void save();
 
-    void setBosted(Bosted bosted);
+    void setBosted(T bosted);
 
-    void setBruker(Bruker bruker);
+    void setBruker(T bruker);
 
-    void setKunde(Kunde kunde);
+    void setKunde(T kunde);
 
-    void setRolle(Rolle rolle);
+    void setRolle(T rolle);
 
-    void setSalg(Salg salg);
+    void setSalg(T salg);
 
-    void setSelgere(Selgere selgere);
+    void setSelgere(T selgere);
 
-    void setSelskapKunde(SelskapKunde selskapKunde);
+    void setSelskapKunde(T selskapKunde);
 
-    void setSelskaper(Selskaper selskaper);
+    void setSelskaper(T selskaper);
 
     void setSkip(boolean skip);
     
