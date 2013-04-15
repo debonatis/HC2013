@@ -55,9 +55,8 @@ public class SjoforUtkjoring {
         this.setter = setter;
     }
 
-    
     public void init() {
-        ArrayList<OrdreUtkjoring> utListe2 = new ArrayList<>();
+        utListe = new ArrayList<>();
         brukerL = brukerFacade.findAll();
         ordreL = ordreFacade.findAll();
         ordreTabellL = ordretabellFacade.findAll();
@@ -69,24 +68,24 @@ public class SjoforUtkjoring {
                     ordre = o;
                 }
             }
-                for (Bruker b : brukerL) {
-                    if (ot.getOrdretabellPK().getKundebrukernavn().equalsIgnoreCase(b.getBrukernavn())) {
-                        bruker = b;
-                    }
+            for (Bruker b : brukerL) {
+                if (ot.getOrdretabellPK().getKundebrukernavn().equalsIgnoreCase(b.getBrukernavn())) {
+                    bruker = b;
                 }
-                    for (Retter r : retterL) {
-                        if (ot.getRettnummer().equalsIgnoreCase(r.getRettnummer())) {
-                            rett = r;
-                        }
-                    }
-                  
-            getSetter().setBruker(bruker);
-            getSetter().setOrdre(ordre);
-            getSetter().setOrdreTabell(ordreT);
-            getSetter().setRett(rett);
+            }
+            for (Retter r : retterL) {
+                if (ot.getRettnummer().equalsIgnoreCase(r.getRettnummer())) {
+                    rett = r;
+                }
+            }
 
-            utListe2.add(getSetter());
-            utListe=utListe2;
+            setter.setBruker(bruker);
+            setter.setOrdre(ordre);
+            setter.setOrdreTabell(ordreT);
+            setter.setRett(rett);
+
+
+            utListe.add(setter);
         }
 
     }
@@ -107,16 +106,16 @@ public class SjoforUtkjoring {
     public void setSelected(OrdreUtkjoring selected) {
         this.selected = selected;
     }
-    
-    public void save(){
-        
+
+    public void save() {
+
         brukerFacade.edit(selected.getBruker());
         ordreFacade.edit(selected.getOrdre());
         ordretabellFacade.edit(selected.getOrdreTabell());
         retterFacade.edit(selected.getRett());
         init();
-        
-        
-      
-}
+
+
+
+    }
 }
