@@ -22,7 +22,7 @@
                     <p:dataList id="ordreList" value="#{sjoforUtkjoring.utListe}" var="item" >
                         <p:column>                            
                             <h3>
-                                <p:commandLink value="#{item.ordreTabell.ordretabellPK.salgsnummer} #{item.ordre.levAdresse}" action="pm:new" update=":seeOrdreForm">
+                                <p:commandLink value="SALENR: #{item.ordreTabell.ordretabellPK.salgsnummer} ADDRESS: #{item.ordre.levAdresse}" action="pm:new" update=":seeOrdreForm">
                                     <f:setPropertyActionListener value="#{item}" target="#{sjoforUtkjoring.selected}" />
                                 </p:commandLink>
                             </h3>

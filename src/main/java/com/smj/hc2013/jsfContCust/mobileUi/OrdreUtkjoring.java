@@ -8,28 +8,32 @@ import com.smj.hc2013.model.Bruker;
 import com.smj.hc2013.model.Ordre;
 import com.smj.hc2013.model.Ordretabell;
 import com.smj.hc2013.model.Retter;
+import com.smj.hc2013.session.SelgereFacade;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.persistence.EntityManager;
+import javax.transaction.UserTransaction;
 
 /**
  *
  * @author deb
  */
 public class OrdreUtkjoring {
+
     
-    private Ordretabell ordreTabell  =  new Ordretabell();
+    private Ordretabell ordreTabell = new Ordretabell();
     private Ordre ordre = new Ordre();
     private Bruker bruker = new Bruker();
     private Retter rett = new Retter();
-   
-
-   
 
     @Override
     public String toString() {
         return "OrdreUtkjoring{" + "ordreTabell=" + ordreTabell + ", ordre=" + ordre + ", bruker=" + bruker + ", rett=" + rett + '}';
     }
-
-    
 
     @Override
     public int hashCode() {
@@ -64,7 +68,6 @@ public class OrdreUtkjoring {
         }
         return true;
     }
-    
 
     public Ordretabell getOrdreTabell() {
         return ordreTabell;
@@ -97,6 +100,4 @@ public class OrdreUtkjoring {
     public void setRett(Retter rett) {
         this.rett = rett;
     }
-    
-    
 }
