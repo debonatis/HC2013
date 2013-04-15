@@ -52,7 +52,7 @@
                                     <p:inputText value="#{profilBehandler.bruker.adresse}" />  
 
                                     <h:outputText value="Postal Code: " />  
-                                    <p:inputText value="#{profilBehandler.bosted.postnummer}" />  
+                                    <p:inputText value="#{profilBehandler.bruker.postnummer}" />  
 
                                     <h:outputText value="City: " />  
                                     <p:inputText value="#{profilBehandler.bosted.poststed}" /> 
@@ -66,7 +66,7 @@
 
                                 <h:messages errorClass="error"/>  
 
-                                <h:panelGrid columns="3" columnClasses="label, value">  
+                                <h:panelGrid columns="4" columnClasses="label, value">  
                                     <h:outputText value="Email: *" />  
                                     <p:inputText id="email" required="true" label="email" size="40"
                                                  requiredMessage="Please enter your email address."
@@ -87,8 +87,8 @@
                             </p:panel>  
                         </p:tab>  
 
-                        <p:tab id="contact" title="Contact">  
-                            <p:panel header="Contact Information">  
+                        <p:tab id="Firm" title="FirmInf">  
+                            <p:panel header="Firm Information">  
 
                                 <h:messages errorClass="error"/>  
 
