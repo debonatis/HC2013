@@ -12,42 +12,43 @@
             <h:outputText value="#{bundle.CreateOrdreTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateOrdreLabel_ordrePK_salgsnummer}" for="ordrePK_salgsnummer" />
-                    <h:inputText id="ordrePK_salgsnummer" value="#{ordreController.selected.ordrePK.salgsnummer}" title="#{bundle.CreateOrdreTitle_ordrePK_salgsnummer}" required="true" requiredMessage="#{bundle.CreateOrdreRequiredMessage_ordrePK_salgsnummer}"/>
-                    <h:outputLabel value="#{bundle.CreateOrdreLabel_ordrePK_brukernavn}" for="ordrePK_brukernavn" />
-                    <h:inputText id="ordrePK_brukernavn" value="#{ordreController.selected.ordrePK.brukernavn}" title="#{bundle.CreateOrdreTitle_ordrePK_brukernavn}" required="true" requiredMessage="#{bundle.CreateOrdreRequiredMessage_ordrePK_brukernavn}"/>
-                    <h:outputLabel value="#{bundle.CreateOrdreLabel_datoEndret}" for="datoEndret" />
-                    <h:inputText id="datoEndret" value="#{ordreController.selected.datoEndret}" title="#{bundle.CreateOrdreTitle_datoEndret}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateOrdreLabel_datoLevert}" for="datoLevert" />
-                    <h:inputText id="datoLevert" value="#{ordreController.selected.datoLevert}" title="#{bundle.CreateOrdreTitle_datoLevert}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateOrdreLabel_bekreftet}" for="bekreftet" />
-                    <h:inputText id="bekreftet" value="#{ordreController.selected.bekreftet}" title="#{bundle.CreateOrdreTitle_bekreftet}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateOrdreLabel_betaltstatus}" for="betaltstatus" />
-                    <h:inputText id="betaltstatus" value="#{ordreController.selected.betaltstatus}" title="#{bundle.CreateOrdreTitle_betaltstatus}" />
-                    <h:outputLabel value="#{bundle.CreateOrdreLabel_selskapnr}" for="selskapnr" />
-                    <h:inputText id="selskapnr" value="#{ordreController.selected.selskapnr}" title="#{bundle.CreateOrdreTitle_selskapnr}" />
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{ordreController.create}" value="#{bundle.CreateOrdreSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{ordreController.prepareList}" value="#{bundle.CreateOrdreShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateOrdreIndexLink}"/>
-            </h:form>
+            <p:panel id="panel" header="Create new">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.CreateOrdreLabel_ordrePK_salgsnummer}" for="ordrePK_salgsnummer" />
+                        <h:inputText id="ordrePK_salgsnummer" value="#{ordreController.selected.ordrePK.salgsnummer}" title="#{bundle.CreateOrdreTitle_ordrePK_salgsnummer}" required="true" requiredMessage="#{bundle.CreateOrdreRequiredMessage_ordrePK_salgsnummer}"/>
+                        <h:outputLabel value="#{bundle.CreateOrdreLabel_ordrePK_brukernavn}" for="ordrePK_brukernavn" />
+                        <h:inputText id="ordrePK_brukernavn" value="#{ordreController.selected.ordrePK.brukernavn}" title="#{bundle.CreateOrdreTitle_ordrePK_brukernavn}" required="true" requiredMessage="#{bundle.CreateOrdreRequiredMessage_ordrePK_brukernavn}"/>
+                        <h:outputLabel value="#{bundle.CreateOrdreLabel_datoEndret}" for="datoEndret" />
+                        <h:inputText id="datoEndret" value="#{ordreController.selected.datoEndret}" title="#{bundle.CreateOrdreTitle_datoEndret}" >
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                        <h:outputLabel value="#{bundle.CreateOrdreLabel_datoLevert}" for="datoLevert" />
+                        <h:inputText id="datoLevert" value="#{ordreController.selected.datoLevert}" title="#{bundle.CreateOrdreTitle_datoLevert}" >
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                        <h:outputLabel value="#{bundle.CreateOrdreLabel_bekreftet}" for="bekreftet" />
+                        <h:inputText id="bekreftet" value="#{ordreController.selected.bekreftet}" title="#{bundle.CreateOrdreTitle_bekreftet}" >
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                        <h:outputLabel value="#{bundle.CreateOrdreLabel_betaltstatus}" for="betaltstatus" />
+                        <h:inputText id="betaltstatus" value="#{ordreController.selected.betaltstatus}" title="#{bundle.CreateOrdreTitle_betaltstatus}" />
+                        <h:outputLabel value="#{bundle.CreateOrdreLabel_selskapnr}" for="selskapnr" />
+                        <h:inputText id="selskapnr" value="#{ordreController.selected.selskapnr}" title="#{bundle.CreateOrdreTitle_selskapnr}" />
+                    </h:panelGrid>
+                    <br/><br/><br/><br/><br/>
+                    <p:menubar>
+                        <p:menuitem action="#{ordreController.create}" value="#{bundle.CreateOrdreSaveLink}"/> 
+                        <p:menuitem action="#{ordreController.prepareList}" value="#{bundle.CreateOrdreShowAllLink}" immediate="true"/>
+                        <p:menuitem action="#{bostedController.prepareCreate}" value="#{bundle.ViewBostedCreateLink}"/>
+                        <p:menuitem action="#{bostedController.prepareList}" value="#{bundle.ViewBostedShowAllLink}"/>
+                        <p:menuitem outcome="/index" value="#{bundle.CreateOrdreIndexLink}" style="margin-left:600px"/> 
+                    </p:menubar> 
+                </h:form>
+            </p:panel>
         </ui:define>
     </ui:composition>
-
 </html>

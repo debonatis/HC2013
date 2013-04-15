@@ -11,38 +11,38 @@
             <h:outputText value="#{bundle.EditRetterTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <p:panel>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditRetterLabel_rettnummer}" for="rettnummer" />
-                    <h:inputText id="rettnummer" value="#{retterController.selected.rettnummer}" title="#{bundle.EditRetterTitle_rettnummer}" required="true" requiredMessage="#{bundle.EditRetterRequiredMessage_rettnummer}"/>
-                    <h:outputLabel value="#{bundle.EditRetterLabel_navn}" for="navn" />
-                    <h:inputText id="navn" value="#{retterController.selected.navn}" title="#{bundle.EditRetterTitle_navn}" required="true" requiredMessage="#{bundle.EditRetterRequiredMessage_navn}"/>
-                    <h:outputLabel value="#{bundle.EditRetterLabel_beskrivelse}" for="beskrivelse" />
-                    <h:inputText id="beskrivelse" value="#{retterController.selected.beskrivelse}" title="#{bundle.EditRetterTitle_beskrivelse}" />
-                    <h:outputLabel value="#{bundle.EditRetterLabel_ingredienser}" for="ingredienser" />
-                    <h:inputText id="ingredienser" value="#{retterController.selected.ingredienser}" title="#{bundle.EditRetterTitle_ingredienser}" />
-                    <h:outputLabel value="#{bundle.EditRetterLabel_kalorier}" for="kalorier" />
-                    <h:inputText id="kalorier" value="#{retterController.selected.kalorier}" title="#{bundle.EditRetterTitle_kalorier}" />
-                    <h:outputLabel value="#{bundle.EditRetterLabel_vekt}" for="vekt" />
-                    <h:inputText id="vekt" value="#{retterController.selected.vekt}" title="#{bundle.EditRetterTitle_vekt}" />
-                    <h:outputLabel value="#{bundle.EditRetterLabel_pris}" for="pris" />
-                    <h:inputText id="pris" value="#{retterController.selected.pris}" title="#{bundle.EditRetterTitle_pris}" />
-                </h:panelGrid>
-                <h:commandLink action="#{retterController.update}" value="#{bundle.EditRetterSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditRetterViewLink}"/>
-                <br />
-                <h:commandLink action="#{retterController.prepareList}" value="#{bundle.EditRetterShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditRetterIndexLink}" />
-            </h:form>
+            <p:panel id="panel" header="Edit">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <p:panel>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="#{bundle.EditRetterLabel_rettnummer}" for="rettnummer" />
+                            <h:inputText id="rettnummer" value="#{retterController.selected.rettnummer}" title="#{bundle.EditRetterTitle_rettnummer}" required="true" requiredMessage="#{bundle.EditRetterRequiredMessage_rettnummer}"/>
+                            <h:outputLabel value="#{bundle.EditRetterLabel_navn}" for="navn" />
+                            <h:inputText id="navn" value="#{retterController.selected.navn}" title="#{bundle.EditRetterTitle_navn}" required="true" requiredMessage="#{bundle.EditRetterRequiredMessage_navn}"/>
+                            <h:outputLabel value="#{bundle.EditRetterLabel_beskrivelse}" for="beskrivelse" />
+                            <h:inputText id="beskrivelse" value="#{retterController.selected.beskrivelse}" title="#{bundle.EditRetterTitle_beskrivelse}" />
+                            <h:outputLabel value="#{bundle.EditRetterLabel_ingredienser}" for="ingredienser" />
+                            <h:inputText id="ingredienser" value="#{retterController.selected.ingredienser}" title="#{bundle.EditRetterTitle_ingredienser}" />
+                            <h:outputLabel value="#{bundle.EditRetterLabel_kalorier}" for="kalorier" />
+                            <h:inputText id="kalorier" value="#{retterController.selected.kalorier}" title="#{bundle.EditRetterTitle_kalorier}" />
+                            <h:outputLabel value="#{bundle.EditRetterLabel_vekt}" for="vekt" />
+                            <h:inputText id="vekt" value="#{retterController.selected.vekt}" title="#{bundle.EditRetterTitle_vekt}" />
+                            <h:outputLabel value="#{bundle.EditRetterLabel_pris}" for="pris" />
+                            <h:inputText id="pris" value="#{retterController.selected.pris}" title="#{bundle.EditRetterTitle_pris}" />
+                        </h:panelGrid>
+                        <br/><br/><br/><br/><br/>
+                        <p:menubar>
+                            <p:menuitem action="#{retterController.update}" value="#{bundle.EditRetterSaveLink}"/>  
+                            <p:menuitem outcome="View" value="#{bundle.EditRetterViewLink}"/> 
+                            <p:menuitem action="#{retterController.prepareList}" value="#{bundle.EditRetterShowAllLink}" immediate="true"/>
+                            <p:menuitem outcome="/index" value="#{bundle.EditRetterIndexLink}" style="margin-left:380px"/>
+                        </p:menubar>
+                    </h:form>
                 </p:panel>
+            </p:panel>
         </ui:define>
     </ui:composition>
 

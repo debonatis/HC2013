@@ -11,82 +11,84 @@
             <h:outputText value="#{bundle.ListOrdreTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListOrdreEmpty}" rendered="#{ordreController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{ordreController.items.rowCount > 0}">
-                    <h:outputText value="#{ordreController.pagination.pageFirstItem + 1}..#{ordreController.pagination.pageLastItem + 1}/#{ordreController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{ordreController.previous}" value="#{bundle.Previous} #{ordreController.pagination.pageSize}" rendered="#{ordreController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{ordreController.next}" value="#{bundle.Next} #{ordreController.pagination.pageSize}" rendered="#{ordreController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{ordreController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdreTitle_ordrePK_brukernavn}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.ordrePK.brukernavn}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdreTitle_ordrePK_salgsnummer}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.ordrePK.salgsnummer}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdreTitle_datoEndret}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.datoEndret}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdreTitle_datoLevert}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.datoLevert}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdreTitle_bekreftet}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.bekreftet}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdreTitle_betaltstatus}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.betaltstatus}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdreTitle_selskapnr}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.selskapnr}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{ordreController.prepareView}" value="#{bundle.ListOrdreViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{ordreController.prepareEdit}" value="#{bundle.ListOrdreEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{ordreController.destroy}" value="#{bundle.ListOrdreDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{ordreController.prepareCreate}" value="#{bundle.ListOrdreCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListOrdreIndexLink}"/>
-            </h:form>
+            <p:panel id="panel" header="Overview">
+                <h:form styleClass="jsfcrud_list_form">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                    <h:outputText escape="false" value="#{bundle.ListOrdreEmpty}" rendered="#{ordreController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{ordreController.items.rowCount > 0}">
+                        <h:outputText value="#{ordreController.pagination.pageFirstItem + 1}..#{ordreController.pagination.pageLastItem + 1}/#{ordreController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{ordreController.previous}" value="#{bundle.Previous} #{ordreController.pagination.pageSize}" rendered="#{ordreController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{ordreController.next}" value="#{bundle.Next} #{ordreController.pagination.pageSize}" rendered="#{ordreController.pagination.hasNextPage}"/>&nbsp;
+                        <h:dataTable value="#{ordreController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListOrdreTitle_ordrePK_brukernavn}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.ordrePK.brukernavn}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListOrdreTitle_ordrePK_salgsnummer}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.ordrePK.salgsnummer}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListOrdreTitle_datoEndret}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.datoEndret}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListOrdreTitle_datoLevert}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.datoLevert}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListOrdreTitle_bekreftet}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.bekreftet}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListOrdreTitle_betaltstatus}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.betaltstatus}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListOrdreTitle_selskapnr}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.selskapnr}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;"/>
+                                </f:facet>
+                                <h:commandLink action="#{ordreController.prepareView}" value="#{bundle.ListOrdreViewLink}"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{ordreController.prepareEdit}" value="#{bundle.ListOrdreEditLink}"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{ordreController.destroy}" value="#{bundle.ListOrdreDestroyLink}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                    <br/><br/><br/><br/><br/>
+                    <p:menubar>
+                        <p:menuitem action="#{ordreController.prepareCreate}" value="#{bundle.ListOrdreCreateLink}"/>  
+                        <p:menuitem outcome="/index" value="#{bundle.ListOrdreIndexLink}" style="margin-left:650px"/> 
+                    </p:menubar>
+                </h:form>
+            </p:panel>
         </ui:define>
     </ui:composition>
 

@@ -11,24 +11,25 @@
             <h:outputText value="#{bundle.EditAdministratorTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditAdministratorLabel_brukernavn}" for="brukernavn" />
-                    <h:inputText id="brukernavn" value="#{administratorController.selected.brukernavn}" title="#{bundle.EditAdministratorTitle_brukernavn}" required="true" requiredMessage="#{bundle.EditAdministratorRequiredMessage_brukernavn}"/>
-                </h:panelGrid>
-                <h:commandLink action="#{administratorController.update}" value="#{bundle.EditAdministratorSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditAdministratorViewLink}"/>
-                <br />
-                <h:commandLink action="#{administratorController.prepareList}" value="#{bundle.EditAdministratorShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditAdministratorIndexLink}" />
-            </h:form>
+            <p:panel id="panel" header="Edit information">
+                <br/>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.EditAdministratorLabel_brukernavn}" for="brukernavn" />
+                        <h:inputText id="brukernavn" value="#{administratorController.selected.brukernavn}" title="#{bundle.EditAdministratorTitle_brukernavn}" required="true" requiredMessage="#{bundle.EditAdministratorRequiredMessage_brukernavn}"/>
+                    </h:panelGrid>
+                    <br/><br/><br/><br/><br/>
+                    <p:menubar>
+                        <p:menuitem action="#{administratorController.update}" value="#{bundle.EditAdministratorSaveLink}"/>
+                        <p:menuitem outcome="View" value="#{bundle.EditAdministratorViewLink}"/>
+                        <p:menuitem action="#{administratorController.prepareList}" value="#{bundle.EditAdministratorShowAllLink}" immediate="true"/>
+                        <p:menuitem outcome="/index" value="#{bundle.EditAdministratorIndexLink}" style="margin-left:550px"/>
+                    </p:menubar>
+                </h:form>
+            </p:panel>
         </ui:define>
     </ui:composition>
 

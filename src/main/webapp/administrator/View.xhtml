@@ -6,33 +6,31 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/teplate/loginOkTemplate.xhtml">
+    <ui:composition template="/template/loginOkTemplate.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.ViewAdministratorTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewAdministratorLabel_brukernavn}"/>
-                    <h:outputText value="#{administratorController.selected.brukernavn}" title="#{bundle.ViewAdministratorTitle_brukernavn}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{administratorController.destroyAndView}" value="#{bundle.ViewAdministratorDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewAdministratorEditLink}"/>
-                <br />
-                <h:commandLink action="#{administratorController.prepareCreate}" value="#{bundle.ViewAdministratorCreateLink}" />
-                <br />
-                <h:commandLink action="#{administratorController.prepareList}" value="#{bundle.ViewAdministratorShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewAdministratorIndexLink}"/>
-
-            </h:form>
+            <p:panel id="panel" header="Admin view">
+                <br/>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.ViewAdministratorLabel_brukernavn}"/>
+                        <h:outputText value="#{administratorController.selected.brukernavn}" title="#{bundle.ViewAdministratorTitle_brukernavn}"/>
+                    </h:panelGrid>
+                    <br/><br/><br/><br/><br/>
+                    <p:menubar>
+                        <p:menuitem action="#{administratorController.destroyAndView}" value="#{bundle.ViewAdministratorDestroyLink}"/>
+                        <p:menuitem outcome="Edit" value="#{bundle.ViewAdministratorEditLink}"/>
+                        <p:menuitem action="#{administratorController.prepareCreate}" value="#{bundle.ViewAdministratorCreateLink}"/>
+                        <p:menuitem action="#{administratorController.prepareList}" value="#{bundle.ViewAdministratorShowAllLink}"/>
+                        <p:menuitem outcome="/index" value="#{bundle.ViewAdministratorIndexLink}" style="margin-left:380px"/>
+                    </p:menubar>
+                </h:form>
+            </p:panel>
         </ui:define>
     </ui:composition>
 

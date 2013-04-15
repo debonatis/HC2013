@@ -11,77 +11,79 @@
             <h:outputText value="#{bundle.ListRetterTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <p:panel>
-                <h:form styleClass="jsfcrud_list_form">
-                    <h:panelGroup id="messagePanel" layout="block">
-                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                    </h:panelGroup>
-                    <h:outputText escape="false" value="#{bundle.ListRetterEmpty}" rendered="#{retterController.items.rowCount == 0}"/>
-                    <h:panelGroup rendered="#{retterController.items.rowCount > 0}">
-                        <h:outputText value="#{retterController.pagination.pageFirstItem + 1}..#{retterController.pagination.pageLastItem + 1}/#{retterController.pagination.itemsCount}"/>&nbsp;
-                        <h:commandLink action="#{retterController.previous}" value="#{bundle.Previous} #{retterController.pagination.pageSize}" rendered="#{retterController.pagination.hasPreviousPage}"/>&nbsp;
-                        <h:commandLink action="#{retterController.next}" value="#{bundle.Next} #{retterController.pagination.pageSize}" rendered="#{retterController.pagination.hasNextPage}"/>&nbsp;
-                        <h:dataTable value="#{retterController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListRetterTitle_rettnummer}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.rettnummer}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListRetterTitle_navn}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.navn}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListRetterTitle_beskrivelse}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.beskrivelse}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListRetterTitle_ingredienser}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.ingredienser}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListRetterTitle_kalorier}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.kalorier}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListRetterTitle_vekt}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.vekt}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListRetterTitle_pris}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.pris}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="&nbsp;"/>
-                                </f:facet>
-                                <h:commandLink action="#{retterController.prepareView}" value="#{bundle.ListRetterViewLink}"/>
-                                <h:outputText value=" "/>
-                                <h:commandLink action="#{retterController.prepareEdit}" value="#{bundle.ListRetterEditLink}"/>
-                                <h:outputText value=" "/>
-                                <h:commandLink action="#{retterController.destroy}" value="#{bundle.ListRetterDestroyLink}"/>
-                            </h:column>
-                        </h:dataTable>
-                    </h:panelGroup>
-                    <br />
-                    <h:commandLink action="#{retterController.prepareCreate}" value="#{bundle.ListRetterCreateLink}"/>
-                    <br />
-                    <br />
-                    <h:link outcome="/index" value="#{bundle.ListRetterIndexLink}"/>
-                </h:form>
+            <p:panel id="panel" header="Overview">
+                <p:panel>
+                    <h:form styleClass="jsfcrud_list_form">
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+                        <h:outputText escape="false" value="#{bundle.ListRetterEmpty}" rendered="#{retterController.items.rowCount == 0}"/>
+                        <h:panelGroup rendered="#{retterController.items.rowCount > 0}">
+                            <h:outputText value="#{retterController.pagination.pageFirstItem + 1}..#{retterController.pagination.pageLastItem + 1}/#{retterController.pagination.itemsCount}"/>&nbsp;
+                            <h:commandLink action="#{retterController.previous}" value="#{bundle.Previous} #{retterController.pagination.pageSize}" rendered="#{retterController.pagination.hasPreviousPage}"/>&nbsp;
+                            <h:commandLink action="#{retterController.next}" value="#{bundle.Next} #{retterController.pagination.pageSize}" rendered="#{retterController.pagination.hasNextPage}"/>&nbsp;
+                            <h:dataTable value="#{retterController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListRetterTitle_rettnummer}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.rettnummer}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListRetterTitle_navn}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.navn}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListRetterTitle_beskrivelse}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.beskrivelse}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListRetterTitle_ingredienser}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.ingredienser}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListRetterTitle_kalorier}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.kalorier}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListRetterTitle_vekt}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.vekt}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListRetterTitle_pris}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.pris}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="&nbsp;"/>
+                                    </f:facet>
+                                    <h:commandLink action="#{retterController.prepareView}" value="#{bundle.ListRetterViewLink}"/>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{retterController.prepareEdit}" value="#{bundle.ListRetterEditLink}"/>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{retterController.destroy}" value="#{bundle.ListRetterDestroyLink}"/>
+                                </h:column>
+                            </h:dataTable>
+                        </h:panelGroup>
+                        <br/><br/><br/><br/><br/>
+                        <p:menubar>
+                            <p:menuitem action="#{retterController.prepareCreate}" value="#{bundle.ListRetterCreateLink}"/>  
+                            <p:menuitem outcome="/index" value="#{bundle.ListRetterIndexLink}" style="margin-left:650px"/>
+                        </p:menubar>
+                    </h:form>
+                </p:panel>
             </p:panel>
         </ui:define>
     </ui:composition>

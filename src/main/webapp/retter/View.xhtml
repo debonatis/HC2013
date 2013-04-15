@@ -11,42 +11,39 @@
             <h:outputText value="#{bundle.ViewRetterTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <p:panel>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewRetterLabel_rettnummer}"/>
-                    <h:outputText value="#{retterController.selected.rettnummer}" title="#{bundle.ViewRetterTitle_rettnummer}"/>
-                    <h:outputText value="#{bundle.ViewRetterLabel_navn}"/>
-                    <h:outputText value="#{retterController.selected.navn}" title="#{bundle.ViewRetterTitle_navn}"/>
-                    <h:outputText value="#{bundle.ViewRetterLabel_beskrivelse}"/>
-                    <h:outputText value="#{retterController.selected.beskrivelse}" title="#{bundle.ViewRetterTitle_beskrivelse}"/>
-                    <h:outputText value="#{bundle.ViewRetterLabel_ingredienser}"/>
-                    <h:outputText value="#{retterController.selected.ingredienser}" title="#{bundle.ViewRetterTitle_ingredienser}"/>
-                    <h:outputText value="#{bundle.ViewRetterLabel_kalorier}"/>
-                    <h:outputText value="#{retterController.selected.kalorier}" title="#{bundle.ViewRetterTitle_kalorier}"/>
-                    <h:outputText value="#{bundle.ViewRetterLabel_vekt}"/>
-                    <h:outputText value="#{retterController.selected.vekt}" title="#{bundle.ViewRetterTitle_vekt}"/>
-                    <h:outputText value="#{bundle.ViewRetterLabel_pris}"/>
-                    <h:outputText value="#{retterController.selected.pris}" title="#{bundle.ViewRetterTitle_pris}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{retterController.destroyAndView}" value="#{bundle.ViewRetterDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewRetterEditLink}"/>
-                <br />
-                <h:commandLink action="#{retterController.prepareCreate}" value="#{bundle.ViewRetterCreateLink}" />
-                <br />
-                <h:commandLink action="#{retterController.prepareList}" value="#{bundle.ViewRetterShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewRetterIndexLink}"/>
-
-            </h:form>
+            <p:panel id="panel" header="View">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <p:panel>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputText value="#{bundle.ViewRetterLabel_rettnummer}"/>
+                            <h:outputText value="#{retterController.selected.rettnummer}" title="#{bundle.ViewRetterTitle_rettnummer}"/>
+                            <h:outputText value="#{bundle.ViewRetterLabel_navn}"/>
+                            <h:outputText value="#{retterController.selected.navn}" title="#{bundle.ViewRetterTitle_navn}"/>
+                            <h:outputText value="#{bundle.ViewRetterLabel_beskrivelse}"/>
+                            <h:outputText value="#{retterController.selected.beskrivelse}" title="#{bundle.ViewRetterTitle_beskrivelse}"/>
+                            <h:outputText value="#{bundle.ViewRetterLabel_ingredienser}"/>
+                            <h:outputText value="#{retterController.selected.ingredienser}" title="#{bundle.ViewRetterTitle_ingredienser}"/>
+                            <h:outputText value="#{bundle.ViewRetterLabel_kalorier}"/>
+                            <h:outputText value="#{retterController.selected.kalorier}" title="#{bundle.ViewRetterTitle_kalorier}"/>
+                            <h:outputText value="#{bundle.ViewRetterLabel_vekt}"/>
+                            <h:outputText value="#{retterController.selected.vekt}" title="#{bundle.ViewRetterTitle_vekt}"/>
+                            <h:outputText value="#{bundle.ViewRetterLabel_pris}"/>
+                            <h:outputText value="#{retterController.selected.pris}" title="#{bundle.ViewRetterTitle_pris}"/>
+                        </h:panelGrid>
+                        <br/><br/><br/><br/><br/>
+                        <p:menubar>
+                            <p:menuitem action="#{retterController.destroyAndView}" value="#{bundle.ViewRetterDestroyLink}"/>  
+                            <p:menuitem outcome="Edit" value="#{bundle.ViewRetterEditLink}"/> 
+                            <p:menuitem action="#{retterController.prepareCreate}" value="#{bundle.ViewRetterCreateLink}"/>
+                            <p:menuitem action="#{retterController.prepareList}" value="#{bundle.ViewRetterShowAllLink}"/>
+                            <p:menuitem outcome="/index" value="#{bundle.ViewRetterIndexLink}" style="margin-left:380px"/>
+                        </p:menubar>
+                    </h:form>
                 </p:panel>
+            </p:panel>
         </ui:define>
     </ui:composition>
 

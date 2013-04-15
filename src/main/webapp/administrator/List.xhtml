@@ -11,40 +11,43 @@
             <h:outputText value="#{bundle.ListAdministratorTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListAdministratorEmpty}" rendered="#{administratorController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{administratorController.items.rowCount > 0}">
-                    <h:outputText value="#{administratorController.pagination.pageFirstItem + 1}..#{administratorController.pagination.pageLastItem + 1}/#{administratorController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{administratorController.previous}" value="#{bundle.Previous} #{administratorController.pagination.pageSize}" rendered="#{administratorController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{administratorController.next}" value="#{bundle.Next} #{administratorController.pagination.pageSize}" rendered="#{administratorController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{administratorController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAdministratorTitle_brukernavn}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.brukernavn}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{administratorController.prepareView}" value="#{bundle.ListAdministratorViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{administratorController.prepareEdit}" value="#{bundle.ListAdministratorEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{administratorController.destroy}" value="#{bundle.ListAdministratorDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{administratorController.prepareCreate}" value="#{bundle.ListAdministratorCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListAdministratorIndexLink}"/>
-            </h:form>
+            <p:panel id="panel" header="Admin overview">
+                <br/>
+                <h:form styleClass="jsfcrud_list_form">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                    <h:outputText escape="false" value="#{bundle.ListAdministratorEmpty}" rendered="#{administratorController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{administratorController.items.rowCount > 0}">
+                        <h:outputText value="#{administratorController.pagination.pageFirstItem + 1}..#{administratorController.pagination.pageLastItem + 1}/#{administratorController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{administratorController.previous}" value="#{bundle.Previous} #{administratorController.pagination.pageSize}" rendered="#{administratorController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{administratorController.next}" value="#{bundle.Next} #{administratorController.pagination.pageSize}" rendered="#{administratorController.pagination.hasNextPage}"/>&nbsp;
+                        <h:dataTable value="#{administratorController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListAdministratorTitle_brukernavn}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.brukernavn}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;"/>
+                                </f:facet>
+                                <h:commandLink action="#{administratorController.prepareView}" value="#{bundle.ListAdministratorViewLink}"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{administratorController.prepareEdit}" value="#{bundle.ListAdministratorEditLink}"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{administratorController.destroy}" value="#{bundle.ListAdministratorDestroyLink}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                    <br/><br/><br/><br/><br/>
+                    <p:menubar>
+                        <p:menuitem action="#{administratorController.prepareCreate}" value="#{bundle.ListAdministratorCreateLink}"/>
+                        <p:menuitem outcome="/index" value="#{bundle.ListAdministratorIndexLink}" style="margin-left:650px"/>
+                    </p:menubar>
+                </h:form>
+            </p:panel>
         </ui:define>
     </ui:composition>
 

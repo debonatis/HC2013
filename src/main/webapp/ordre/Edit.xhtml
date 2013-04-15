@@ -11,42 +11,42 @@
             <h:outputText value="#{bundle.EditOrdreTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditOrdreLabel_ordrePK_salgsnummer}" for="ordrePK_salgsnummer" />
-                    <h:inputText id="ordrePK_salgsnummer" value="#{ordreController.selected.ordrePK.salgsnummer}" title="#{bundle.EditOrdreTitle_ordrePK_salgsnummer}" required="true" requiredMessage="#{bundle.EditOrdreRequiredMessage_ordrePK_salgsnummer}"/>
-                    <h:outputLabel value="#{bundle.EditOrdreLabel_ordrePK_brukernavn}" for="ordrePK_brukernavn" />
-                    <h:inputText id="ordrePK_brukernavn" value="#{ordreController.selected.ordrePK.brukernavn}" title="#{bundle.EditOrdreTitle_ordrePK_brukernavn}" required="true" requiredMessage="#{bundle.EditOrdreRequiredMessage_ordrePK_brukernavn}"/>
-                    <h:outputLabel value="#{bundle.EditOrdreLabel_datoEndret}" for="datoEndret" />
-                    <h:inputText id="datoEndret" value="#{ordreController.selected.datoEndret}" title="#{bundle.EditOrdreTitle_datoEndret}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditOrdreLabel_datoLevert}" for="datoLevert" />
-                    <h:inputText id="datoLevert" value="#{ordreController.selected.datoLevert}" title="#{bundle.EditOrdreTitle_datoLevert}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditOrdreLabel_bekreftet}" for="bekreftet" />
-                    <h:inputText id="bekreftet" value="#{ordreController.selected.bekreftet}" title="#{bundle.EditOrdreTitle_bekreftet}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditOrdreLabel_betaltstatus}" for="betaltstatus" />
-                    <h:inputText id="betaltstatus" value="#{ordreController.selected.betaltstatus}" title="#{bundle.EditOrdreTitle_betaltstatus}" />
-                    <h:outputLabel value="#{bundle.EditOrdreLabel_selskapnr}" for="selskapnr" />
-                    <h:inputText id="selskapnr" value="#{ordreController.selected.selskapnr}" title="#{bundle.EditOrdreTitle_selskapnr}" />
-                </h:panelGrid>
-                <h:commandLink action="#{ordreController.update}" value="#{bundle.EditOrdreSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditOrdreViewLink}"/>
-                <br />
-                <h:commandLink action="#{ordreController.prepareList}" value="#{bundle.EditOrdreShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditOrdreIndexLink}" />
-            </h:form>
+            <p:panel id="panel" header="Edit">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.EditOrdreLabel_ordrePK_salgsnummer}" for="ordrePK_salgsnummer" />
+                        <h:inputText id="ordrePK_salgsnummer" value="#{ordreController.selected.ordrePK.salgsnummer}" title="#{bundle.EditOrdreTitle_ordrePK_salgsnummer}" required="true" requiredMessage="#{bundle.EditOrdreRequiredMessage_ordrePK_salgsnummer}"/>
+                        <h:outputLabel value="#{bundle.EditOrdreLabel_ordrePK_brukernavn}" for="ordrePK_brukernavn" />
+                        <h:inputText id="ordrePK_brukernavn" value="#{ordreController.selected.ordrePK.brukernavn}" title="#{bundle.EditOrdreTitle_ordrePK_brukernavn}" required="true" requiredMessage="#{bundle.EditOrdreRequiredMessage_ordrePK_brukernavn}"/>
+                        <h:outputLabel value="#{bundle.EditOrdreLabel_datoEndret}" for="datoEndret" />
+                        <h:inputText id="datoEndret" value="#{ordreController.selected.datoEndret}" title="#{bundle.EditOrdreTitle_datoEndret}" >
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                        <h:outputLabel value="#{bundle.EditOrdreLabel_datoLevert}" for="datoLevert" />
+                        <h:inputText id="datoLevert" value="#{ordreController.selected.datoLevert}" title="#{bundle.EditOrdreTitle_datoLevert}" >
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                        <h:outputLabel value="#{bundle.EditOrdreLabel_bekreftet}" for="bekreftet" />
+                        <h:inputText id="bekreftet" value="#{ordreController.selected.bekreftet}" title="#{bundle.EditOrdreTitle_bekreftet}" >
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                        <h:outputLabel value="#{bundle.EditOrdreLabel_betaltstatus}" for="betaltstatus" />
+                        <h:inputText id="betaltstatus" value="#{ordreController.selected.betaltstatus}" title="#{bundle.EditOrdreTitle_betaltstatus}" />
+                        <h:outputLabel value="#{bundle.EditOrdreLabel_selskapnr}" for="selskapnr" />
+                        <h:inputText id="selskapnr" value="#{ordreController.selected.selskapnr}" title="#{bundle.EditOrdreTitle_selskapnr}" />
+                    </h:panelGrid>
+                    <br/><br/><br/><br/><br/>
+                    <p:menubar>
+                        <p:menuitem action="#{ordreController.update}" value="#{bundle.EditOrdreSaveLink}"/> 
+                        <p:menuitem outcome="View" value="#{bundle.EditOrdreViewLink}"/>
+                        <p:menuitem action="#{ordreController.prepareList}" value="#{bundle.EditOrdreShowAllLink}" immediate="true"/>
+                        <p:menuitem outcome="/index" value="#{bundle.EditOrdreIndexLink}" style="margin-left:550px"/>
+                    </p:menubar> 
+                </h:form>
+            </p:panel>
         </ui:define>
     </ui:composition>
 

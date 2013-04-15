@@ -11,30 +11,27 @@
             <h:outputText value="#{bundle.ViewBostedTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewBostedLabel_postnummer}"/>
-                    <h:outputText value="#{bostedController.selected.postnummer}" title="#{bundle.ViewBostedTitle_postnummer}"/>
-                    <h:outputText value="#{bundle.ViewBostedLabel_poststed}"/>
-                    <h:outputText value="#{bostedController.selected.poststed}" title="#{bundle.ViewBostedTitle_poststed}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{bostedController.destroyAndView}" value="#{bundle.ViewBostedDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewBostedEditLink}"/>
-                <br />
-                <h:commandLink action="#{bostedController.prepareCreate}" value="#{bundle.ViewBostedCreateLink}" />
-                <br />
-                <h:commandLink action="#{bostedController.prepareList}" value="#{bundle.ViewBostedShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewBostedIndexLink}"/>
-
-            </h:form>
+            <p:panel id="panel" header="View">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.ViewBostedLabel_postnummer}"/>
+                        <h:outputText value="#{bostedController.selected.postnummer}" title="#{bundle.ViewBostedTitle_postnummer}"/>
+                        <h:outputText value="#{bundle.ViewBostedLabel_poststed}"/>
+                        <h:outputText value="#{bostedController.selected.poststed}" title="#{bundle.ViewBostedTitle_poststed}"/>
+                    </h:panelGrid>
+                    <br/><br/><br/><br/><br/>
+                    <p:menubar>
+                        <p:menuitem action="#{bostedController.destroyAndView}" value="#{bundle.ViewBostedDestroyLink}"/> 
+                        <p:menuitem outcome="Edit" value="#{bundle.ViewBostedEditLink}"/>
+                        <p:menuitem action="#{bostedController.prepareCreate}" value="#{bundle.ViewBostedCreateLink}"/>
+                        <p:menuitem action="#{bostedController.prepareList}" value="#{bundle.ViewBostedShowAllLink}"/>
+                        <p:menuitem outcome="/index" value="#{bundle.ViewBostedIndexLink}" style="margin-left:380px"/> 
+                    </p:menubar> 
+                </h:form>
+            </p:panel>
         </ui:define>
     </ui:composition>
 

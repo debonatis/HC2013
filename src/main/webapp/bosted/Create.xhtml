@@ -11,25 +11,25 @@
             <h:outputText value="#{bundle.CreateBostedTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateBostedLabel_postnummer}" for="postnummer" />
-                    <h:inputText id="postnummer" value="#{bostedController.selected.postnummer}" title="#{bundle.CreateBostedTitle_postnummer}" required="true" requiredMessage="#{bundle.CreateBostedRequiredMessage_postnummer}"/>
-                    <h:outputLabel value="#{bundle.CreateBostedLabel_poststed}" for="poststed" />
-                    <h:inputText id="poststed" value="#{bostedController.selected.poststed}" title="#{bundle.CreateBostedTitle_poststed}" required="true" requiredMessage="#{bundle.CreateBostedRequiredMessage_poststed}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{bostedController.create}" value="#{bundle.CreateBostedSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{bostedController.prepareList}" value="#{bundle.CreateBostedShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateBostedIndexLink}"/>
-            </h:form>
+            <p:panel id="panel" header="Create new">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.CreateBostedLabel_postnummer}" for="postnummer" />
+                        <h:inputText id="postnummer" value="#{bostedController.selected.postnummer}" title="#{bundle.CreateBostedTitle_postnummer}" required="true" requiredMessage="#{bundle.CreateBostedRequiredMessage_postnummer}"/>
+                        <h:outputLabel value="#{bundle.CreateBostedLabel_poststed}" for="poststed" />
+                        <h:inputText id="poststed" value="#{bostedController.selected.poststed}" title="#{bundle.CreateBostedTitle_poststed}" required="true" requiredMessage="#{bundle.CreateBostedRequiredMessage_poststed}"/>
+                    </h:panelGrid>
+                    <br/><br/><br/><br/><br/>
+                    <p:menubar>
+                        <p:menuitem action="#{bostedController.create}" value="#{bundle.CreateBostedSaveLink}"/> 
+                        <p:menuitem action="#{bostedController.prepareList}" value="#{bundle.CreateBostedShowAllLink}" immediate="true"/>
+                        <p:menuitem outcome="/index" value="#{bundle.CreateBostedIndexLink}" style="margin-left:600px"/> 
+                    </p:menubar>               
+                </h:form>
+            </p:panel>
         </ui:define>
     </ui:composition>
 
