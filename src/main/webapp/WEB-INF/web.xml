@@ -154,10 +154,5 @@
     <error-page>
         <error-code>403</error-code>
         <location>/faces/login/ikkelogin.xhtml</location>
-    </error-page>
-    <ejb-local-ref>
-        <ejb-ref-name>SelgereFacade</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <ejb-link>HC2013-1.0-SNAPSHOT#SelgereFacade</ejb-link>
-    </ejb-local-ref>
+    </error-page>   
 </web-app>

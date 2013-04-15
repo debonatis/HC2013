@@ -56,6 +56,8 @@
                     <h:outputText value="Dishname: " />  
                     <h:outputText styleClass="outputLabel"  
                                   value="#{sjoforUtkjoring.selected.rett.navn}" />  
+                    
+                    <pm:field>
 
                     <h:outputText value="OrderStatus: " />                      
                     <p:selectOneButton value="#{sjoforUtkjoring.selected.ordreTabell.status}">  
@@ -63,6 +65,7 @@
                         <f:selectItem itemLabel="OK" itemValue="OK" />  
                         <f:selectItem itemLabel="OK call me!" itemValue="Faulty" />  
                     </p:selectOneButton>   
+                    </pm:field>
 
                     <h:outputText value="Customer: " />  
                     <h:outputText styleClass="outputLabel"  

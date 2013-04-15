@@ -14,6 +14,7 @@ import com.smj.hc2013.session.OrdretabellFacade;
 import com.smj.hc2013.session.RetterFacade;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -26,7 +27,7 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class SjoforUtkjoring {
 
-    private List<OrdreUtkjoring> utListe;
+    private List<OrdreUtkjoring> utListe = new ArrayList<>();
     private List<Retter> retterL;
     private List<Ordre> ordreL;
     private List<Ordretabell> ordreTabellL;
@@ -45,8 +46,16 @@ public class SjoforUtkjoring {
     private Ordretabell ordreT = new Ordretabell();
     private Bruker bruker = new Bruker();
     private Retter rett = new Retter();
-    
 
+    public OrdreUtkjoring getSetter() {
+        return setter;
+    }
+
+    public void setSetter(OrdreUtkjoring setter) {
+        this.setter = setter;
+    }
+
+    @PostConstruct
     public void init() {
         utListe = new ArrayList<>();
         brukerL = brukerFacade.findAll();
@@ -70,12 +79,12 @@ public class SjoforUtkjoring {
                     rett = r;
                 }
             }
-              
-          setter = new OrdreUtkjoring();
-          setter.setBruker(bruker);
-          setter.setOrdre(ordre);
-          setter.setOrdreTabell(ordreT);
-          setter.setRett(rett);
+
+            setter = new OrdreUtkjoring();
+            setter.setBruker(bruker);
+            setter.setOrdre(ordre);
+            setter.setOrdreTabell(ordreT);
+            setter.setRett(rett);
 
 
             utListe.add(setter);
@@ -83,8 +92,7 @@ public class SjoforUtkjoring {
 
     }
 
-    public List<OrdreUtkjoring> getUtListe() {
-        init();
+    public List<OrdreUtkjoring> getUtListe() {        
         return utListe;
     }
 
