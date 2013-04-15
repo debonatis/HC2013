@@ -226,6 +226,11 @@ public class Bestilling implements Serializable {
             
         }
          
+        selgere = selgereFacade.find("simonD");
+        String antall = selgere.getAntSalg();
+        int y = Integer.parseInt(antall);
+        selgere.setAntSalgInt(y + i);
+        selgereFacade.edit(selgere);
         FacesMessage msg = new FacesMessage();
         msg.setSeverity(FacesMessage.SEVERITY_INFO);
         msg.setSummary("Items Transferred");

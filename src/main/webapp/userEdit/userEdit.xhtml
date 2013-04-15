@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template/loginOkTemplate.xhtml">
+        <ui:define name="title">
+
+        </ui:define>
+
+        <ui:define name="body">
+            <p:panel>
+                <h:form> 
+                    <p:growl id="growl" sticky="true" showDetail="true"/>  
+
+                    <p:wizard widgetVar="wiz"  
+                              flowListener="#{profilBehandler.onFlowProcess}">  
+
+                        <p:tab id="personal" title="Personal">  
+
+                            <p:panel header="Personal Details">  
+
+                                <h:messages errorClass="error"/>  
+
+                                <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">  
+                                    <h:outputText value="Firstname: *" />  
+                                    <p:inputText required="true" label="Firstname"  
+                                                 value="#{profilBehandler.bruker.fornavn}" />  
+
+                                    <h:outputText value="Lastname: *" />  
+                                    <p:inputText required="true" label="Lastname"  
+                                                 value="#{profilBehandler.bruker.etternavn}" />  
+
+                                    <h:outputText value="Username: " />  
+                                    <h:outputText value="#{profilBehandler.bruker.brukernavn}" />  
+
+
+                                </h:panelGrid>  
+                            </p:panel>  
+                        </p:tab>  
+
+                        <p:tab id="address" title="Address">  
+                            <p:panel header="Adress Details">  
+
+                                <h:messages errorClass="error"/>  
+
+                                <h:panelGrid columns="2" columnClasses="label, value">  
+                                    <h:outputText value="Street: " />  
+                                    <p:inputText value="#{profilBehandler.bruker.adresse}" />  
+
+                                    <h:outputText value="Postal Code: " />  
+                                    <p:inputText value="#{profilBehandler.bruker.postnummer}" />  
+
+                                    <h:outputText value="City: " />  
+                                    <p:inputText value="#{profilBehandler.bosted.poststed}" /> 
+
+                                </h:panelGrid>  
+                            </p:panel>  
+                        </p:tab>  
+
+                        <p:tab id="contact" title="Contact">  
+                            <p:panel header="Contact Information">  
+
+                                <h:messages errorClass="error"/>  
+
+                                <h:panelGrid columns="4" columnClasses="label, value">  
+                                    <h:outputText value="Email: *" />  
+                                    <p:inputText id="email" required="true" label="email" size="40"
+                                                 requiredMessage="Please enter your email address."
+                                                 validatorMessage="Invalid email format"
+                                                 value="#{profilBehandler.bruker.email}">
+
+                                        <f:validateRegex
+                                            pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+
+                                    </p:inputText>
+                                    <p:watermark for="email" value="Email Address *" />
+                                    <p:message for="email" />
+
+                                    <h:outputText value="Phone: " />  
+                                    <p:inputText value="#{profilBehandler.bruker.telefon}"/>  
+
+                                </h:panelGrid>  
+                            </p:panel>  
+                        </p:tab>  
+
+                        <p:tab id="Firm" title="FirmInf">  
+                            <p:panel header="Firm Information">  
+
+                                <h:messages errorClass="error"/>  
+
+                                <h:panelGrid columns="3" columnClasses="label, value">  
+                                    <h:outputText value="Firm Id number (Brønnøysund Id): " />  
+                                    <p:inputText label="Id"  
+                                                 value="#{registrering.selskaper.brId}" /> 
+
+                                    <h:outputText value="Firm Address: " />  
+                                    <p:inputText label="Address"  
+                                                 value="#{registrering.selskaper.adresse}" />  
+
+
+
+                                    <h:outputText value="Skip to last: " />  
+                                    <h:selectBooleanCheckbox value="#{registrering.skip}" />
+
+                                </h:panelGrid>  
+                            </p:panel>  
+                        </p:tab>  
+
+
+                        <p:tab id="confirm" title="Confirmation">  
+                            <p:panel header="Confirmation">  
+
+                                <h:panelGrid id="confirmation" columns="6">  
+                                    <h:outputText value="Firstname: " />  
+                                    <h:outputText styleClass="outputLabel"  
+                                                  value="#{profilBehandler.bruker.fornavn}" />  
+
+                                    <h:outputText value="Lastname: " />  
+                                    <h:outputText  styleClass="outputLabel"  
+                                                   value="#{profilBehandler.bruker.etternavn}"/>  
+
+                                    <h:outputText value="Username: " />  
+                                    <h:outputText styleClass="outputLabel"  
+                                                  value="#{profilBehandler.bruker.brukernavn}" />>  
+
+                                    <h:outputText value="Street: " />  
+                                    <h:outputText styleClass="outputLabel"  
+                                                  value="#{profilBehandler.bruker.adresse}" />  
+
+                                    <h:outputText value="Postal Code: " />  
+                                    <h:outputText styleClass="outputLabel"  
+                                                  value="#{profilBehandler.bruker.postnummer}" />  
+
+                                    <h:outputText value="City: " />  
+                                    <h:outputText styleClass="outputLabel"  
+                                                  value="#{profilBehandler.bosted.poststed}" />  
+
+                                    <h:outputText value="Email: " />  
+                                    <h:outputText styleClass="outputLabel"  
+                                                  value="#{profilBehandler.bruker.email}" />  
+
+                                    <h:outputText value="Phone " />  
+                                    <h:outputText styleClass="outputLabel"  
+                                                  value="#{profilBehandler.bruker.telefon}"/>                                   
+
+                                    <h:outputText />  
+                                    <h:outputText />  
+                                </h:panelGrid>  
+
+                                <p:commandButton value="Submit" update="growl"   
+                                                 actionListener="#{profilBehandler.save}"/>  
+
+                            </p:panel>  
+                        </p:tab>  
+
+                    </p:wizard>  
+
+                </h:form>  
+
+
+
+            </p:panel>
+
+
+        </ui:define>
+
+
+    </ui:composition>
+</html>
+
+
+

@@ -84,8 +84,15 @@
 
                             <h:panelGrid columns="2" columnClasses="label, value">  
                                 <h:outputText value="Email: *" />  
-                                <p:inputText required="true" label="Email"  
-                                             value="#{registrering.bruker.email}" />  
+                                <p:inputText id="email" required="true" label="email" size="40"
+                                                 requiredMessage="Please enter your email address."
+                                                 validatorMessage="Invalid email format"
+                                                 value="#{registrering.bruker.email}">
+
+                                        <f:validateRegex
+                                            pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+
+                                    </p:inputText> 
 
                                 <h:outputText value="Phone: " />  
                                 <p:inputText value="#{registrering.bruker.telefon}"/> 

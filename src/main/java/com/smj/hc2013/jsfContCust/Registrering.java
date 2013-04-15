@@ -4,6 +4,7 @@
  */
 package com.smj.hc2013.jsfContCust;
 
+import com.smj.hc2013.jsfContCust.Interface.RegMethod;
 import com.smj.hc2013.jsfContl.util.JsfUtil;
 import com.smj.hc2013.model.Bosted;
 import com.smj.hc2013.model.Bruker;
@@ -37,7 +38,7 @@ import org.primefaces.event.FlowEvent;
  */
 @ManagedBean(name = "registrering")
 @RequestScoped
-public class Registrering implements Serializable {
+public class Registrering implements RegMethod {
 
     @EJB
     private BostedFacade bostedFacade;
@@ -65,6 +66,7 @@ public class Registrering implements Serializable {
     private Selgere selgere = new Selgere();
     private boolean skip;
     private static final Logger logger = Logger.getLogger(Registrering.class.getName());
+    
 
     private void prepareCreate() {
 
@@ -79,68 +81,84 @@ public class Registrering implements Serializable {
 
     }
 
+    @Override
     public Kunde getKunde() {
         return kunde;
     }
 
-    public void setKunde(Kunde kunde) {
-        this.kunde = kunde;
+    @Override
+    public void setKunde(Object kunde) {
+        this.kunde = (Kunde) kunde;
     }
 
+    @Override
     public Selskaper getSelskaper() {
         return selskaper;
     }
 
-    public void setSelskaper(Selskaper selskaper) {
-        this.selskaper = selskaper;
+    @Override
+    public void setSelskaper(Object selskaper) {
+        this.selskaper = (Selskaper) selskaper;
     }
 
+    @Override
     public SelskapKunde getSelskapKunde() {
         return selskapKunde;
     }
 
-    public void setSelskapKunde(SelskapKunde selskapKunde) {
-        this.selskapKunde = selskapKunde;
+    @Override
+    public void setSelskapKunde(Object selskapKunde) {
+        this.selskapKunde = (SelskapKunde) selskapKunde;
     }
 
+    @Override
     public Salg getSalg() {
         return salg;
     }
 
-    public void setSalg(Salg salg) {
-        this.salg = salg;
+    @Override
+    public void setSalg(Object salg) {
+        this.salg = (Salg) salg;
     }
 
+    @Override
     public Selgere getSelgere() {
         return selgere;
     }
 
-    public void setSelgere(Selgere selgere) {
-        this.selgere = selgere;
+    @Override
+    public void setSelgere(Object selgere) {
+        this.selgere = (Selgere) selgere;
     }
 
+    @Override
     public Bruker getBruker() {
         return bruker;
     }
 
-    public void setBruker(Bruker bruker) {
-        this.bruker = bruker;
+    @Override
+    public void setBruker(Object bruker) {
+        this.bruker = (Bruker) bruker;
     }
 
+    @Override
     public Rolle getRolle() {
         return rolle;
     }
 
-    public void setRolle(Rolle rolle) {
-        this.rolle = rolle;
+    @Override
+    public void setRolle(Object rolle) {
+        this.rolle = (Rolle) rolle;
     }
 
+    @Override
     public Bosted getBosted() {
         return bosted;
     }
 
-    public void setBosted(Bosted bosted) {
-        this.bosted = bosted;
+    @Override
+    public void setBosted(Object bosted) {
+        this.bosted = (Bosted) bosted;
     }
 
     private boolean getBostedFinsIkke() {
@@ -153,6 +171,7 @@ public class Registrering implements Serializable {
 
     }
 
+    @Override
     public void save() {
 
         try {
@@ -189,14 +208,17 @@ public class Registrering implements Serializable {
 
     }
 }
-public boolean isSkip() {
+    @Override
+    public boolean isSkip() {
         return skip;
     }
 
+    @Override
     public void setSkip(boolean skip) {
         this.skip = skip;
     }
 
+    @Override
     public String onFlowProcess(FlowEvent event) {
         logger.log(Level.INFO, "Current wizard step:{0}", event.getOldStep());
         logger.log(Level.INFO, "Next step:{0}", event.getNewStep());
