@@ -33,26 +33,35 @@
 
                     </p:submenu>  
                     <p:submenu label="Admin navigation" rendered="#{bruker.adminOK}"> 
+                        <p:menuitem outcome="/kokk/kokk" value="Live Order List"/>
                         <p:menuitem outcome="/administrator/List" value="Show All Administrator Items"/>                   
-                        <p:menuitem outcome="/annet/List" value="Show All Annet Items"/>
-                        <p:menuitem outcome="/bosted/List" value="Show All Bosted Items"/>
-                        <p:menuitem outcome="/bruker/List" value="Show All Bruker Items"/>
-                        <p:menuitem outcome="/kunde/List" value="Show All Kunde Items"/>
-                        <p:menuitem outcome="/ordre/List" value="Show All Ordre Items"/>
-                        <p:menuitem outcome="/ordretabell/List" value="Show All Ordretabell Items"/>
-                        <p:menuitem outcome="/retter/List" value="Show All Retter Items"/>
-                        <p:menuitem outcome="/rolle/List" value="Show All Rolle Items"/>
-                        <p:menuitem outcome="/salg/List" value="Show All Salg Items"/>
-                        <p:menuitem outcome="/selgere/List" value="Show All Selgere Items"/>
-                        <p:menuitem outcome="/selskapKunde/List" value="Show All SelskapKunde Items"/>
-                        <p:menuitem outcome="/selskaper/List" value="Show All Selskaper Items"/>
-                        <p:menuitem outcome="/sjoforer/List" value="Show All Sjoforer Items"/>
-                        <p:menuitem outcome="/utkjoring/List" value="Show All Utkjoring Items"/>
-                        <p:menuitem outcome="/utkjoringsBil/List" value="Show All UtkjoringsBil Items"/>
+                        <p:menuitem outcome="/annet/List" value="Show All Other Items"/>
+                        <p:menuitem outcome="/bosted/List" value="Show All Address Items"/>
+                        <p:menuitem outcome="/bruker/List" value="Show All User Items"/>
+                        <p:menuitem outcome="/kunde/List" value="Show All Customer Items"/>
+                        <p:menuitem outcome="/ordre/List" value="Show All Order Items"/>
+                        <p:menuitem outcome="/ordretabell/List" value="Show All Ordertabel Items"/>
+                        <p:menuitem outcome="/retter/List" value="Show All Dish Items"/>
+                        <p:menuitem outcome="/rolle/List" value="Show All Role Items"/>
+                        <p:menuitem outcome="/salg/List" value="Show All Sale Items"/>
+                        <p:menuitem outcome="/selgere/List" value="Show All Salemen Items"/>
+                        <p:menuitem outcome="/selskapKunde/List" value="Show All FirmPerson Items"/>
+                        <p:menuitem outcome="/selskaper/List" value="Show All Frim Items"/>
+                        <p:menuitem outcome="/sjoforer/List" value="Show All Drivers Items"/>
+                        <p:menuitem outcome="/utkjoring/List" value="Show All Delivery Items"/>
+                        <p:menuitem outcome="/utkjoringsBil/List" value="Show All DeliveryCar Items"/>
+
                     </p:submenu>
-                    <p:submenu label="User navigation" rendered="#{bruker.brukerOK}"></p:submenu>
-                    <p:submenu label="Chef navigation" rendered="#{bruker.kokkOK}"></p:submenu>                    
-                    <p:submenu label="Sales navigation" rendered="#{bruker.salgOK}"></p:submenu>
+                    <p:submenu label="User navigation" rendered="#{bruker.brukerOK}">
+                        <p:menuitem outcome="/kokk/kokk" value="Live Order List"/>
+                    </p:submenu>
+                    <p:submenu label="Chef navigation" rendered="#{bruker.kokkOK}">
+                        <p:menuitem outcome="/kokk/kokk" value="Live Order List"/>
+                    </p:submenu>                    
+                    <p:submenu label="Sales navigation" rendered="#{bruker.salgOK}">
+                        <p:menuitem outcome="/kokk/kokk" value="Live Order List"/>
+                        <p:menuitem outcome="/kunde/List" value="Show All Customer Items"/>
+                    </p:submenu>
                 </p:menu> 
             </h:form>                    
         </div>

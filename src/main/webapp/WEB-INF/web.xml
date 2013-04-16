@@ -56,6 +56,8 @@
             <url-pattern>/salg/*</url-pattern>
             <url-pattern>/faces/salgUi/*</url-pattern>
             <url-pattern>/salgUi/*</url-pattern>
+             <url-pattern>/faces/kokk/*</url-pattern>
+            <url-pattern>/kokk/*</url-pattern>
             <url-pattern>/faces/mobileUi/*</url-pattern>
             <url-pattern>/mobileUi/*</url-pattern>
             <http-method>GET</http-method>
@@ -109,6 +111,10 @@
             <url-pattern>/utkjoringsBil/*</url-pattern>
             <url-pattern>/faces/salgUi/*</url-pattern>
             <url-pattern>/salgUi/*</url-pattern>
+            <url-pattern>/faces/kokk/*</url-pattern>
+            <url-pattern>/kokk/*</url-pattern>
+            <url-pattern>/faces/mobileUi/*</url-pattern>
+            <url-pattern>/mobileUi/*</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
             <http-method>HEAD</http-method>
