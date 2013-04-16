@@ -97,7 +97,7 @@ public class SjoforUtkjoring {
             setter.setRett(rett);
 
            for(Utkjoring ut: utkjoringL){
-               if((ot.getOrdretabellPK().getSalgsnummer().equalsIgnoreCase(ut.getUtkjoringPK().getSalgsnummer())) && ut.getUtkorinKogstatus().equalsIgnoreCase("Pending")){
+               if((ot.getOrdretabellPK().getSalgsnummer().equalsIgnoreCase(ut.getUtkjoringPK().getSalgsnummer())) && (ut.getUtkorinKogstatus().equalsIgnoreCase("Pending"))){
                    utkjoring = ut;
                    setter.setUtkojring(utkjoring);
                    utListe.add(setter);
