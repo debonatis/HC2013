@@ -133,7 +133,9 @@ public class OversiktKokk implements DataTableInt {
         ordreFacade.edit(selected.getOrdre());
         ordretabellFacade.edit(selected.getOrdreTabell());
         retterFacade.edit(selected.getRett());
-        utkjoringFacade.edit(new Utkjoring(selected.getBruker().getBrukernavn(), selected.getOrdre().getOrdrePK().getSalgsnummer(), 1, "simonD"));
+        utkjoring = new Utkjoring(selected.getBruker().getBrukernavn(), selected.getOrdre().getOrdrePK().getSalgsnummer(), 1, "simonD");
+        utkjoring.setUtkorinKogstatus("Pending");
+        utkjoringFacade.edit(utkjoring);
         
         
         init();
