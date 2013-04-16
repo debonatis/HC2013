@@ -22,13 +22,11 @@ import com.smj.hc2013.session.SalgFacade;
 import com.smj.hc2013.session.SelgereFacade;
 import com.smj.hc2013.session.SelskapKundeFacade;
 import com.smj.hc2013.session.SelskaperFacade;
-import java.io.Serializable;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import org.primefaces.event.FlowEvent;
 
@@ -37,7 +35,7 @@ import org.primefaces.event.FlowEvent;
  * @author deb
  */
 @ManagedBean(name = "registrering")
-@RequestScoped
+@SessionScoped
 public class Registrering implements RegMethod {
 
     @EJB
