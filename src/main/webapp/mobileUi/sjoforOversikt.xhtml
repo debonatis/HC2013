@@ -37,7 +37,7 @@
                             </pm:field>
                             <pm:field>
                                 <h3>
-                                    <p:commandLink value="ADDRESS: #{item.ordre.levAdresse}" action="pm:map" >
+                                    <p:commandLink value="ADDRESS: #{item.ordre.levAdresse}" action="pm:map" update=":formMap" >
                                         <f:setPropertyActionListener value="#{item}" target="#{sjoforUtkjoring.selected}" />
                                     </p:commandLink>
                                 </h3>
@@ -108,27 +108,19 @@
 
         </pm:view>
 
-        <pm:view id="map" >           
+        <pm:view id="map" >         
 
             <pm:header title="Maps">
                 <f:facet name="left"><p:button value="Back" icon="back" href="#main?reverse=true"/>
-                 
                 </f:facet>
-                
-
             </pm:header>
-
-
-
-
             <pm:content id="mapper">
-                <script type="text/javascript">      
-                    var map;
-            
-                    function calcRoute() { 
-                
+                <script type="text/javascript"> 
+                    var map;            
+                    function calcRoute() {                
                         var directionsService = new google.maps.DirectionsService();
-                        var directionsDisplay = new google.maps.DirectionsRenderer();
+                        var directionsDisplay = new google.maps.DirectionsRenderer(); 
+                        var dest = document.getElementById("formMap:dest");
                         var mapOptions = {
                             center: new google.maps.LatLng(-34.397, 150.644),
                             zoom: 14,
@@ -142,7 +134,7 @@
 
                         var request = {
                             origin: 'Trondheim',
-                            destination: document.getElementById('formMap:hidden').value,
+                            destination: dest.innerText.toString(),
                             travelMode: google.maps.TravelMode.DRIVING
                         };
                     
@@ -169,17 +161,17 @@
                 </script>    
 
                 <h:form id="formMap">
-                        <p:outputLabel styleClass="outputLabel"  id="hidden" value="#{sjoforUtkjoring.selected.ordre.levAdresse}" />
+
 
                     <p:gmap id="myMap3" center="63.428729, 10.391006" zoom="14" type="HYBRID" style="width:100%;height:15em" widgetVar="cliMap"/>
 
                     <p:separator />                   
 
-                    <p:commandButton value="How to arrive?  #{sjoforUtkjoring.selected.ordre.levAdresse}" 
+                    <p:commandButton value="How to arrive?" 
                                      type="button"                                                       
                                      onclick="calcRoute()" /> 
 
-                   
+                    <h:outputText styleClass="outputLabel"  id="dest" value="#{sjoforUtkjoring.selected.ordre.levAdresse}" />
 
 
                 </h:form>
