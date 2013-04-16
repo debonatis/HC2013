@@ -26,7 +26,7 @@ import javax.mail.internet.MimeMultipart;
  */
 public class JavaMail {
 
-    @Resource(name = "mail/peering")
+    @Resource(name = "mail/Peering")
     private Session session;
 
     public boolean sendMail(Bruker to, String subject, Object e) {
