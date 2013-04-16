@@ -17,6 +17,7 @@ import com.smj.hc2013.session.OrdretabellFacade;
 import com.smj.hc2013.session.RetterFacade;
 import com.smj.hc2013.session.UtkjoringFacade;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -130,6 +131,7 @@ public class OversiktKokk implements DataTableInt {
     @Override
     public void save() {
          brukerFacade.edit(selected.getBruker());
+         selected.getOrdre().setBekreftet(new Date(System.currentTimeMillis()));
         ordreFacade.edit(selected.getOrdre());
         ordretabellFacade.edit(selected.getOrdreTabell());
         retterFacade.edit(selected.getRett());
