@@ -28,7 +28,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class SjoforUtkjoring {
+public class SjoforUtkjoring implements DataTableInt {
 
     private List<OrdreUtkjoring> utListe = new ArrayList<>();
     private List<Retter> retterL;
@@ -54,15 +54,18 @@ public class SjoforUtkjoring {
     private Retter rett = new Retter();
     private Utkjoring utkjoring = new Utkjoring();
 
+    @Override
     public OrdreUtkjoring getSetter() {
         return setter;
     }
 
+    @Override
     public void setSetter(OrdreUtkjoring setter) {
         this.setter = setter;
     }
 
     @PostConstruct
+    @Override
     public void init() {
         utListe = new ArrayList<>();
         brukerL = brukerFacade.findAll();
@@ -109,22 +112,27 @@ public class SjoforUtkjoring {
 
     }
 
+    @Override
     public List<OrdreUtkjoring> getUtListe() {        
         return utListe;
     }
 
+    @Override
     public void setUtListe(List<OrdreUtkjoring> utListe) {
         this.utListe = utListe;
     }
 
+    @Override
     public OrdreUtkjoring getSelected() {
         return selected;
     }
 
+    @Override
     public void setSelected(OrdreUtkjoring selected) {
         this.selected = selected;
     }
 
+    @Override
     public void save() {
 
         brukerFacade.edit(selected.getBruker());
