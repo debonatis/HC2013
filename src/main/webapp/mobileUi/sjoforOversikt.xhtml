@@ -30,7 +30,7 @@
 
                 var request = {
                     origin: 'Trondheim',
-                    destination: dest.value,
+                    destination: dest.valueOf(),
                     travelMode: google.maps.TravelMode.DRIVING
                 };
                     
@@ -169,9 +169,9 @@
 
                     <p:separator />                   
 
-                    <p:commandButton value="#{sjoforUtkjoring.selected.ordre.levAdresse}" 
+                    <p:commandButton value="How to arrive?" 
                                      type="button"                                                       
-                                     onclick="calcRoute(this)" /> 
+                                     onclick="calcRoute('#{sjoforUtkjoring.selected.ordre.levAdresse}')" /> 
                     
                      
 
