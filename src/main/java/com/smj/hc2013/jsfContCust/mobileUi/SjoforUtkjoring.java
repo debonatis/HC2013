@@ -76,7 +76,7 @@ public class SjoforUtkjoring implements DataTableInt {
         utkjoringL = utkjoringFacade.findAll();       
                 
         for (Ordretabell ot : ordreTabellL) {
-            if(ot.getStatus().equalsIgnoreCase("pending")){
+            if(ot.getStatus().equalsIgnoreCase("OK")){
             ordreT = ot;
             for (Ordre o : ordreL) {
                 if (ot.getOrdretabellPK().getSalgsnummer().equalsIgnoreCase(o.getOrdrePK().getSalgsnummer())) {

@@ -80,7 +80,7 @@
                     </pm:field>
                     <pm:field>
                         <h:outputLabel for="selectoneb" value="OrderStatus: " />                      
-                        <h:selectOneMenu id="selectoneb" value="#{sjoforUtkjoring.selected.ordreTabell.status}">  
+                        <h:selectOneMenu id="selectoneb" value="#{sjoforUtkjoring.selected.utkojring.utkorinKogstatus}">  
                             <f:selectItem itemLabel="Pending" itemValue="Pending" />  
                             <f:selectItem itemLabel="OK" itemValue="OK" />  
                             <f:selectItem itemLabel="OK call me!" itemValue="Faulty" />  
@@ -172,6 +172,8 @@
                     <p:commandButton value="How to arrive?" 
                                      type="button"                                                       
                                      onclick="calcRoute()" /> 
+                    
+                     <h:outputText value="Order Address: " />
 
                     <h:outputText styleClass="outputLabel"  id="dest" value="#{sjoforUtkjoring.selected.ordre.levAdresse}" />
 
