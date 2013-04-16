@@ -52,8 +52,6 @@
                                     <f:attribute name="passwordComponent" value="#{passwordComponent}" />
                                 </p:password>
                                 
-
-
                             </h:panelGrid>  
                         </p:panel>  
                     </p:tab>  
@@ -91,19 +89,15 @@
 
                                         <f:validateRegex
                                             pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-
                                     </p:inputText> 
-
                                 <h:outputText value="Phone: " />  
                                 <p:inputText value="#{registrering.bruker.telefon}"/> 
-
                             </h:panelGrid>  
                         </p:panel>  
                     </p:tab>  
 
                     <p:tab id="contact2" title="Firm Information">  
                         <p:panel header="Contact Information Firm ">  
-
                             <h:messages errorClass="error"/>  
 
                             <h:panelGrid columns="2" columnClasses="label, value">  
@@ -114,8 +108,6 @@
                                 <h:outputText value="Firm Address: " />  
                                 <p:inputText label="Address"  
                                              value="#{registrering.selskaper.adresse}" />  
-
-
 
                                 <h:outputText value="Skip to last: " />  
                                 <h:selectBooleanCheckbox value="#{registrering.skip}" />
@@ -159,22 +151,13 @@
                                 <h:outputText value="Optional Firm ID: " />  
                                 <h:outputText styleClass="outputLabel"  
                                               value="#{registrering.selskaper.selskapnr}" />  
-
-                                <h:outputText />  
-                                <h:outputText />  
                             </h:panelGrid>  
-
                             <p:commandButton value="Submit" update="growl"   
                                              actionListener="#{registrering.save()}"/>  
-
                         </p:panel>  
                     </p:tab>  
-
                 </p:wizard>  
-
             </h:form>  
-
         </ui:define>
     </ui:composition>
-
 </html>
