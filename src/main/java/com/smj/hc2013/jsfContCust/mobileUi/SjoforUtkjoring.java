@@ -18,7 +18,6 @@ import com.smj.hc2013.session.RetterFacade;
 import com.smj.hc2013.session.UtkjoringFacade;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -65,7 +64,7 @@ public class SjoforUtkjoring implements DataTableInt {
         this.setter = setter;
     }
 
-    @PostConstruct
+    
     @Override
     public void init() {
         utListe = new ArrayList<>();
