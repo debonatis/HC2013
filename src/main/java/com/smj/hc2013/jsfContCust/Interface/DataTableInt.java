@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.smj.hc2013.jsfContCust.mobileUi;
+package com.smj.hc2013.jsfContCust.Interface;
 
 import com.smj.hc2013.model.OrdreUtkjoring;
 import java.util.List;

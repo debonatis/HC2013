@@ -4,6 +4,7 @@
  */
 package com.smj.hc2013.jsfContCust.mobileUi;
 
+import com.smj.hc2013.jsfContCust.Interface.DataTableInt;
 import com.smj.hc2013.model.Bruker;
 import com.smj.hc2013.model.Ordre;
 import com.smj.hc2013.model.OrdreUtkjoring;
