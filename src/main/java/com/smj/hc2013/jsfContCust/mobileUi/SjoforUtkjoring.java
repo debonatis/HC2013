@@ -9,10 +9,12 @@ import com.smj.hc2013.model.Ordre;
 import com.smj.hc2013.model.OrdreUtkjoring;
 import com.smj.hc2013.model.Ordretabell;
 import com.smj.hc2013.model.Retter;
+import com.smj.hc2013.model.Utkjoring;
 import com.smj.hc2013.session.BrukerFacade;
 import com.smj.hc2013.session.OrdreFacade;
 import com.smj.hc2013.session.OrdretabellFacade;
 import com.smj.hc2013.session.RetterFacade;
+import com.smj.hc2013.session.UtkjoringFacade;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -33,6 +35,7 @@ public class SjoforUtkjoring {
     private List<Ordre> ordreL;
     private List<Ordretabell> ordreTabellL;
     private List<Bruker> brukerL;
+    private List<Utkjoring> utkjoringL;
     private OrdreUtkjoring selected = new OrdreUtkjoring();
     private OrdreUtkjoring setter = new OrdreUtkjoring();
     @EJB
@@ -43,10 +46,13 @@ public class SjoforUtkjoring {
     private OrdreFacade ordreFacade;
     @EJB
     private BrukerFacade brukerFacade;
+     @EJB
+    private UtkjoringFacade utkjoringFacade;
     private Ordre ordre = new Ordre();
     private Ordretabell ordreT = new Ordretabell();
     private Bruker bruker = new Bruker();
     private Retter rett = new Retter();
+    private Utkjoring utkjoring = new Utkjoring();
 
     public OrdreUtkjoring getSetter() {
         return setter;
@@ -63,6 +69,8 @@ public class SjoforUtkjoring {
         ordreL = ordreFacade.findAll();
         ordreTabellL = ordretabellFacade.findAll();
         retterL = retterFacade.findAll();
+        utkjoringL = utkjoringFacade.findAll();       
+                
         for (Ordretabell ot : ordreTabellL) {
             if(ot.getStatus().equalsIgnoreCase("pending")){
             ordreT = ot;
@@ -88,8 +96,14 @@ public class SjoforUtkjoring {
             setter.setOrdreTabell(ordreT);
             setter.setRett(rett);
 
-
-            utListe.add(setter);
+           for(Utkjoring ut: utkjoringL){
+               if((ot.getOrdretabellPK().getSalgsnummer().equalsIgnoreCase(ut.getUtkjoringPK().getSalgsnummer())) && ut.getUtkorinKogstatus().equalsIgnoreCase("Pending")){
+                   utkjoring = ut;
+                   setter.setUtkojring(utkjoring);
+                   utListe.add(setter);
+               }
+           }
+            
             }
         }
 

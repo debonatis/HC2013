@@ -12,11 +12,19 @@ import java.util.Objects;
  */
 public class OrdreUtkjoring {
 
-    
     private Ordretabell ordreTabell = new Ordretabell();
     private Ordre ordre = new Ordre();
     private Bruker bruker = new Bruker();
     private Retter rett = new Retter();
+    private Utkjoring utkojring = new Utkjoring();
+
+    public Utkjoring getUtkojring() {
+        return utkojring;
+    }
+
+    public void setUtkojring(Utkjoring utkojring) {
+        this.utkojring = utkojring;
+    }
 
     @Override
     public String toString() {
