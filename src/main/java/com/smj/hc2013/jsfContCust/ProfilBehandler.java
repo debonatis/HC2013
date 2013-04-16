@@ -12,7 +12,6 @@ import com.smj.hc2013.model.Bosted;
 import com.smj.hc2013.model.Bruker;
 import com.smj.hc2013.model.Kunde;
 import com.smj.hc2013.model.Rolle;
-import com.smj.hc2013.model.Salg;
 import com.smj.hc2013.model.Selgere;
 import com.smj.hc2013.model.SelskapKunde;
 import com.smj.hc2013.model.Selskaper;
@@ -30,6 +29,7 @@ import com.smj.hc2013.session.SjoforerFacade;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -46,7 +46,7 @@ import org.primefaces.event.FlowEvent;
 public class ProfilBehandler extends BrukerBehandling implements wisard {
 
     private boolean skip;
-    private static Logger logger = Logger.getLogger(ProfilBehandler.class.getName());
+    private static final Logger logger = Logger.getLogger(ProfilBehandler.class.getName());
     @EJB
     private BostedFacade bostedFacade;
     @EJB
@@ -155,8 +155,8 @@ public class ProfilBehandler extends BrukerBehandling implements wisard {
 
     @Override
     public String onFlowProcess(FlowEvent event) {
-        logger.info("Current wizard step:" + event.getOldStep());
-        logger.info("Next step:" + event.getNewStep());
+        logger.log(Level.INFO, "Current wizard step:{0}", event.getOldStep());
+        logger.log(Level.INFO, "Next step:{0}", event.getNewStep());
 
         if (skip) {
             skip = false;   //reset in case user goes back  
@@ -223,7 +223,7 @@ public class ProfilBehandler extends BrukerBehandling implements wisard {
             }
             bruker.setPostnummer(bosted.getPostnummer());
             brukerFacade.edit(bruker);            
-            selskaperFacade.create(selskaper);
+            selskaperFacade.edit(selskaper);
             for (Selskaper s : selskaperFacade.findAll()) {
                 if (s.getBrId().equalsIgnoreCase(selskaper.getBrId())) {
                     selskaper = s;

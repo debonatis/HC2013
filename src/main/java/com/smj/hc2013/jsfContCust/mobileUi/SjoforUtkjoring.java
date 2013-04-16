@@ -63,6 +63,7 @@ public class SjoforUtkjoring {
         ordreTabellL = ordretabellFacade.findAll();
         retterL = retterFacade.findAll();
         for (Ordretabell ot : ordreTabellL) {
+            if(ot.getStatus().equalsIgnoreCase("pending")){
             ordreT = ot;
             for (Ordre o : ordreL) {
                 if (ot.getOrdretabellPK().getSalgsnummer().equalsIgnoreCase(o.getOrdrePK().getSalgsnummer())) {
@@ -88,6 +89,7 @@ public class SjoforUtkjoring {
 
 
             utListe.add(setter);
+            }
         }
 
     }
@@ -114,6 +116,7 @@ public class SjoforUtkjoring {
         ordreFacade.edit(selected.getOrdre());
         ordretabellFacade.edit(selected.getOrdreTabell());
         retterFacade.edit(selected.getRett());
+        
         init();
 
 
