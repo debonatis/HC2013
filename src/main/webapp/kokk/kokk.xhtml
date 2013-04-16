@@ -1,91 +1,109 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/mobile"
+        contentType="text/html"
+        renderKitId="PRIMEFACES_MOBILE">
 
-    <ui:composition template="/template/loginOkTemplate.xhtml">
-        <ui:define name="title">
+    <head>
+        <h:outputScript library="primefaces" name="gmap/gmap.js" />
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 
-        </ui:define>
+    </head>
 
-        <ui:define name="body">
-            <h1 class="title ui-widget-header ui-corner-all">DataTable -
-                Instant Row Selection</h1>
-            <div class="entry">
-                <p>Instant row selection, dblclick selection and unselection is
-                    implemented using ajax behaviors.</p>
+    <pm:page id="All" title="Orders">
 
-                <p:panel id="panel">
-                    <p:accordionPanel id="acPanel">
-                        <p:tab title="Orders to prepare">
-                            <h:form id="form">  
+        <pm:view id="main">
+            <h:form id="listOrdersForm">
+                <pm:header title="Orders">
+                    <f:facet name="right">                       
+                        <p:commandButton value="Refresh" icon="refresh" action="#{sjoforUtkjoring.init()}" update=":listOrdersForm"/>
+                        <p:button value="Home" icon="home" outcome="/salgUi/home" styleClass="ui-btn-active"/>
+                    </f:facet>
+                </pm:header>
 
-                                <p:dataTable var="item" value="#{tableBean.cars}" rowKey="#{car.model}" paginator="true" rows="10"  
-                                             selection="#{tableBean.selectedCar}" selectionMode="single" filteredValue="#{tableBean.filteredCars}" id="carsTable">  
+                <pm:content>
+                    <p:dataList id="ordreList" value="#{sjoforUtkjoring.utListe}" var="item" >
+                        <p:column> 
+                            <pm:field>
+                                <h3>
+                                    <p:commandLink value="SALENR: #{item.ordreTabell.ordretabellPK.salgsnummer}  DISH: #{item.rett.navn}  Quantity: #{item.ordreTabell.antall}" action="pm:new" update=":seeOrdreForm">
+                                        <f:setPropertyActionListener value="#{item}" target="#{sjoforUtkjoring.selected}" />
+                                    </p:commandLink>
+                                </h3>
+                                <p><a href="tel:#{item.bruker.telefon}">Call</a></p>
+                            </pm:field>                            
+                        </p:column>
+                    </p:dataList>
+                </pm:content>
+            </h:form>
+        </pm:view>
 
-                                    <p:ajax event="rowSelect" update=":form:display" oncomplete="carDialog.show()" />  
+        <pm:view id="new">
+            <pm:header title="Orders">
+                <f:facet name="left"><p:button value="Back" icon="back" href="#main?reverse=true"/></f:facet>
+            </pm:header>
 
-                                    <f:facet name="header">  
-                                        List of Orders 
-                                    </f:facet>  
+            <pm:content>
+                <h:form id="seeOrdreForm">
+                    <pm:field>
+                        <p:outputLabel value="SalesNr: " /> <br/>  
+                        <p:outputLabel styleClass="outputLabel"  
+                                       value="#{sjoforUtkjoring.selected.ordreTabell.ordretabellPK.salgsnummer}" />  
+                    </pm:field>
+                    <pm:field>
+                        <p:outputLabel value="levAddress: " /><br/>   
+                        <p:outputLabel  styleClass="outputLabel"  
+                                        value="#{sjoforUtkjoring.selected.ordre.levAdresse}"/>        
+                    </pm:field>
+                    <pm:field>
+                        <h:outputLabel for="selectoneb2" value="PayStatus: " />                      
+                        <h:selectOneMenu id="selectoneb2" value="#{sjoforUtkjoring.selected.ordre.betaltstatus}">  
+                            <f:selectItem itemLabel="Pending" itemValue="Pending" />  
+                            <f:selectItem itemLabel="OK" itemValue="OK" />  
+                            <f:selectItem itemLabel="OK call me!" itemValue="Faulty" />  
+                        </h:selectOneMenu> 
+                    </pm:field>
+                    <pm:field>
+                        <p:outputLabel value="Dishname: " /><br/>   
+                        <p:outputLabel styleClass="outputLabel"  
+                                       value="#{sjoforUtkjoring.selected.rett.navn}" />  
+                    </pm:field>
+                    <pm:field>
+                        <h:outputLabel for="selectoneb" value="OrderStatus: " />                      
+                        <h:selectOneMenu id="selectoneb" value="#{sjoforUtkjoring.selected.ordreTabell.status}">  
+                            <f:selectItem itemLabel="Pending" itemValue="Pending" />  
+                            <f:selectItem itemLabel="OK" itemValue="OK" />  
+                            <f:selectItem itemLabel="OK call me!" itemValue="Faulty" />  
+                        </h:selectOneMenu>   
+                    </pm:field>
+                    <pm:field>
+                        <p:outputLabel value="Customer: " /> <br/>  
+                        <p:outputLabel styleClass="outputLabel"  
+                                       value="#{sjoforUtkjoring.selected.bruker.brukernavn}" />  
+                    </pm:field>
+                    <pm:field>
+                        <p:outputLabel value="Firstname: " /><br/>   
+                        <p:outputLabel styleClass="outputLabel"  
+                                       value="#{sjoforUtkjoring.selected.bruker.fornavn}"/> 
+                    </pm:field>
+                    <pm:field>
+                        <p:outputLabel value="Lastname: " /><br/>  
+                        <p:outputLabel styleClass="outputLabel"  
+                                       value="#{sjoforUtkjoring.selected.bruker.etternavn}" />  
+                    </pm:field>
 
-                                    <p:column headerText="Model" sortBy="#{car.model}" filterBy="#{car.model}" id="model">  
-                                        #{car.model}  
-                                    </p:column>  
+                    <p:commandButton value="Save" action="#{sjoforUtkjoring.save()}" update=":listOrdersForm:ordreList" icon="check" />
+                </h:form>
+            </pm:content>
 
-                                    <p:column headerText="Year" sortBy="#{car.year}" filterBy="#{car.year}" id="year">  
-                                        #{car.year}  
-                                    </p:column>  
-
-                                    <p:column headerText="Manufacturer" sortBy="#{car.manufacturer}" filterBy="#{car.manufacturer}" id="manufacturer">  
-                                        #{car.manufacturer}  
-                                    </p:column>  
-
-                                    <p:column headerText="Color" sortBy="#{car.color}" filterBy="#{car.color}" id="color">  
-                                        #{car.color}"  
-                                    </p:column>  
-
-                                </p:dataTable>  
-
-                                <p:dialog header="Car Detail" widgetVar="carDialog" resizable="false"  
-                                          width="200" showEffect="explode" hideEffect="explode">  
-
-                                    <h:panelGrid id="display" columns="2" cellpadding="4">  
-
-                                        <f:facet name="header">  
-                                            <p:graphicImage value="/images/cars/#{tableBean.selectedCar.manufacturer}.jpg"/>  
-                                        </f:facet>  
-
-                                        <h:outputText value="Model:" />  
-                                        <h:outputText value="#{tableBean.selectedCar.model}" id="model"/>  
-
-                                        <h:outputText value="Year:" />  
-                                        <h:outputText value="#{tableBean.selectedCar.year}" id="year"/>  
-
-                                        <h:outputText value="Manufacturer:" />  
-                                        <h:outputText value="#{tableBean.selectedCar.manufacturer}" id="manufacturer"/>  
-
-                                        <h:outputText value="Color:" />  
-                                        <h:outputText value="#{tableBean.selectedCar.color}" id="color"/>  
-                                    </h:panelGrid>  
-                                </p:dialog>  
-
-                            </h:form>  
-                        </p:tab>
-                    </p:accordionPanel>
-                </p:panel>
-            </div>
-
-
-        </ui:define>
-
-
-    </ui:composition>
-</html>
-
-
+        </pm:view>
 
 
+
+
+    </pm:page>
+
+</f:view>
