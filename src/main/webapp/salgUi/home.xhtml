@@ -1,29 +1,33 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template/loginOkTemplate.xhtml">
-         <ui:define name="title">
-            
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListBrukerTitle}"/>
         </ui:define>
-        
-            <ui:define name="body">
-                <p:panel>
-                    
-                    <p:outputLabel value="Hannnnnnnnnn Hellvetttttt 3 om dan te 7 på kveld'n neste dag med JSF!! lol" id="lol"/><br/><br/><br/>
-                    <p:outputLabel value="Hannnnnnnnnn Dæææææven d må gåan! Maskin!!!!!!!!!!!!" />
-                    <p:outputLabel value="Nei det e reine galskapen!" />
-                    
-                </p:panel>
-                
-                
-            </ui:define>
-                
-        
+        <ui:define name="body">
+            <p:panel >  
+                <h:form>
+                    <h:panelGrid>
+                        <td align="top">
+                            <h1><img src="../faces/resources/images/simon.jpg" width="260" height="255" border="1" align="left"/>
+                            </h1>
+                        </td>
+                        <td valign="top" width="10">&nbsp;</td>
+                        <td valign="top">
+                            <h1>HealtyCatering</h1>
+                            <font size="5">Bæst matn i by'n!</font>
+                            <p><h4>HealtyCatering er et cateringselskap som leverer mat i Trondheom og omegn.<br/>
+                                    Hos oss kan du velge blandt fastfood, norske tradisjonelle retter, m.m. <br/><br/>
+                                    Du ringer - vi bringer.</h4></p></td>
+                    </h:panelGrid>  
+                </h:form>
+            </p:panel>
+        </ui:define>
     </ui:composition>
 </html>
-
-
