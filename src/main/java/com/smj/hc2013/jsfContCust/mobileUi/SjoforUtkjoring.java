@@ -48,7 +48,7 @@ public class SjoforUtkjoring implements DataTableInt {
     private OrdreFacade ordreFacade;
     @EJB
     private BrukerFacade brukerFacade;
-     @EJB
+    @EJB
     private UtkjoringFacade utkjoringFacade;
     private Ordre ordre = new Ordre();
     private Ordretabell ordreT = new Ordretabell();
@@ -74,48 +74,48 @@ public class SjoforUtkjoring implements DataTableInt {
         ordreL = ordreFacade.findAll();
         ordreTabellL = ordretabellFacade.findAll();
         retterL = retterFacade.findAll();
-        utkjoringL = utkjoringFacade.findAll();       
-                
+        utkjoringL = utkjoringFacade.findAll();
+
         for (Ordretabell ot : ordreTabellL) {
-            if(ot.getStatus().equalsIgnoreCase("OK")){
-            ordreT = ot;
-            for (Ordre o : ordreL) {
-                if (ot.getOrdretabellPK().getSalgsnummer().equalsIgnoreCase(o.getOrdrePK().getSalgsnummer())) {
-                    ordre = o;
+            if (ot.getStatus().equalsIgnoreCase("OK")) {
+                ordreT = ot;
+                for (Ordre o : ordreL) {
+                    if (ot.getOrdretabellPK().getSalgsnummer().equalsIgnoreCase(o.getOrdrePK().getSalgsnummer())) {
+                        ordre = o;
+                    }
                 }
-            }
-            for (Bruker b : brukerL) {
-                if (ot.getOrdretabellPK().getKundebrukernavn().equalsIgnoreCase(b.getBrukernavn())) {
-                    bruker = b;
+                for (Bruker b : brukerL) {
+                    if (ot.getOrdretabellPK().getKundebrukernavn().equalsIgnoreCase(b.getBrukernavn())) {
+                        bruker = b;
+                    }
                 }
-            }
-            for (Retter r : retterL) {
-                if (ot.getRettnummer().equalsIgnoreCase(r.getRettnummer())) {
-                    rett = r;
+                for (Retter r : retterL) {
+                    if (ot.getRettnummer().equalsIgnoreCase(r.getRettnummer())) {
+                        rett = r;
+                    }
                 }
-            }
 
-            setter = new OrdreUtkjoring();
-            setter.setBruker(bruker);
-            setter.setOrdre(ordre);
-            setter.setOrdreTabell(ordreT);
-            setter.setRett(rett);
+                setter = new OrdreUtkjoring();
+                setter.setBruker(bruker);
+                setter.setOrdre(ordre);
+                setter.setOrdreTabell(ordreT);
+                setter.setRett(rett);
 
-           for(Utkjoring ut: utkjoringL){
-               if((ot.getOrdretabellPK().getSalgsnummer().equalsIgnoreCase(ut.getUtkjoringPK().getSalgsnummer())) && (ut.getUtkorinKogstatus().equalsIgnoreCase("Pending"))){
-                   utkjoring = ut;
-                   setter.setUtkojring(utkjoring);
-                   utListe.add(setter);
-               }
-           }
-            
+                for (Utkjoring ut : utkjoringL) {
+                    if ((ot.getOrdretabellPK().getSalgsnummer().equalsIgnoreCase(ut.getUtkjoringPK().getSalgsnummer())) && (ut.getUtkorinKogstatus().equalsIgnoreCase("Pending"))) {
+                        utkjoring = ut;
+                        setter.setUtkojring(utkjoring);
+                        utListe.add(setter);
+                    }
+                }
+
             }
         }
 
     }
 
     @Override
-    public List<OrdreUtkjoring> getUtListe() {        
+    public List<OrdreUtkjoring> getUtListe() {
         return utListe;
     }
 
@@ -142,7 +142,7 @@ public class SjoforUtkjoring implements DataTableInt {
         ordreFacade.edit(selected.getOrdre());
         ordretabellFacade.edit(selected.getOrdreTabell());
         retterFacade.edit(selected.getRett());
-        
+
         init();
 
 

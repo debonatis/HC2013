@@ -15,7 +15,7 @@
             <h:form id="listOrdersForm">
                 <pm:header title="Orders">
                     <f:facet name="right">
-                        <p:commandButton value="Home" icon="home" outcome="/salgUi/home" styleClass="ui-btn-active"/>                     
+                        <p:commandButton value="Home" action="/faces/salgUi/home?faces-redirect=true" icon="ui-icon-home" />                       
                         <p:commandButton value="Refresh" icon="refresh" action="#{oversiktKokk.init()}" update=":listOrdersForm"/>
                     </f:facet>
                 </pm:header>
