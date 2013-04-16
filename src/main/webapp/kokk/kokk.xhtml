@@ -45,20 +45,23 @@
             <pm:content>
                 <h:form id="seeOrdreForm">
                     <pm:field>
+                        <h:graphicImage value="/resources/images/#{oversiktKokk.selected.rett.fil}" width="30" height="40" />
+                    </pm:field>
+                    <pm:field>
                         <p:outputLabel value="SalesNr: " /> <br/>  
                         <p:outputLabel styleClass="outputLabel"  
-                                       value="#{OversiktKokk.selected.ordreTabell.ordretabellPK.salgsnummer}" />  
+                                       value="#{oversiktKokk.selected.ordreTabell.ordretabellPK.salgsnummer}" />  
                     </pm:field>
                     <pm:field>
                         <p:outputLabel value="levAddress: " /><br/>   
                         <p:outputLabel  styleClass="outputLabel"  
-                                        value="#{OversiktKokk.selected.ordre.levAdresse}"/>        
+                                        value="#{oversiktKokk.selected.ordre.levAdresse}"/>        
                     </pm:field>
 
                     <pm:field>
                         <p:outputLabel value="Dishname: " /><br/>   
                         <p:outputLabel styleClass="outputLabel"  
-                                       value="#{OversiktKokk.selected.rett.navn}" />  
+                                       value="#{oversiktKokk.selected.rett.navn}" />  
                     </pm:field>
                     <pm:field>
                         <h:outputLabel for="selectoneb" value="OrderStatus: " />                      
@@ -70,20 +73,20 @@
                     <pm:field>
                         <p:outputLabel value="Customer: " /> <br/>  
                         <p:outputLabel styleClass="outputLabel"  
-                                       value="#{OversiktKokk.selected.bruker.brukernavn}" />  
+                                       value="#{oversiktKokk.selected.bruker.brukernavn}" />  
                     </pm:field>
                     <pm:field>
                         <p:outputLabel value="Firstname: " /><br/>   
                         <p:outputLabel styleClass="outputLabel"  
-                                       value="#{OversiktKokk.selected.bruker.fornavn}"/> 
+                                       value="#{oversiktKokk.selected.bruker.fornavn}"/> 
                     </pm:field>
                     <pm:field>
                         <p:outputLabel value="Lastname: " /><br/>  
                         <p:outputLabel styleClass="outputLabel"  
-                                       value="#{OversiktKokk.selected.bruker.etternavn}" />  
+                                       value="#{oversiktKokk.selected.bruker.etternavn}" />  
                     </pm:field>
 
-                    <p:commandButton value="Save" action="#{OversiktKokk.save()}" update=":listOrdersForm:ordreList" icon="check" />
+                    <p:commandButton value="Save" action="#{oversiktKokk.save()}" update=":listOrdersForm:ordreList" icon="check" />
                 </h:form>
             </pm:content>
 
