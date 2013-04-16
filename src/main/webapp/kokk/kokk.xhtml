@@ -14,9 +14,9 @@
         <pm:view id="main">
             <h:form id="listOrdersForm">
                 <pm:header title="Orders">
-                    <f:facet name="right">                       
+                    <f:facet name="right">
+                        <p:commandButton value="Home" icon="home" outcome="/salgUi/home" styleClass="ui-btn-active"/>                     
                         <p:commandButton value="Refresh" icon="refresh" action="#{oversiktKokk.init()}" update=":listOrdersForm"/>
-                        <p:commandButton value="Home" icon="home" outcome="/salgUi/home" styleClass="ui-btn-active"/>
                     </f:facet>
                 </pm:header>
 
@@ -45,7 +45,7 @@
             <pm:content>
                 <h:form id="seeOrdreForm">
                     <pm:field>
-                        <h:graphicImage value="/resources/images/#{oversiktKokk.selected.rett.fil}" width="30" height="40" />
+                        <h:graphicImage value="/resources/images/#{oversiktKokk.selected.rett.fil}" width="300" height="275" />
                     </pm:field>
                     <pm:field>
                         <p:outputLabel value="SalesNr: " /> <br/>  
