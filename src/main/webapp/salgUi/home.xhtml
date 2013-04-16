@@ -14,6 +14,18 @@
             <p:panel >  
                 <h:form>
                     <h:panelGrid>
+                        <h:body>
+                            <div id="fb-root"></div>
+                            <script>(function(d, s, id) {
+                                    var js, fjs = d.getElementsByTagName(s)[0];
+                                    if (d.getElementById(id))
+                                        return;
+                                    js = d.createElement(s);
+                                    js.id = id;
+                                    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                                    fjs.parentNode.insertBefore(js, fjs);
+                                }(document, 'script', 'facebook-jssdk'));</script>
+                        </h:body>
                         <td align="top">
                             <h1><img src="../faces/resources/images/simon.jpg" width="260" height="255" border="1" align="left"/>
                             </h1>
@@ -27,7 +39,7 @@
                                     Du ringer - vi bringer.</h4></p></td>
                         <table width="485" border="0" align="center" cellpadding="0" cellspacing="0" id="main_menu">
                             <br/><br/><br/>
-                            <tbody>
+                            <tbody>                             
                                 <tr>
                                     <td width="140" align="center">
                                         <a href="../salgUi/bestilling.xhtml">
@@ -48,9 +60,13 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </h:panelGrid>  
+                    </h:panelGrid>         
                 </h:form>
             </p:panel>
+            <br/>
+            <div class="fb-like" data-href="http://www.facebook.com/HealtycateringAs"
+                 data-send="true" data-layout="button_count" data-width="700" data-show-faces="true" data-font="arial">
+            </div>
         </ui:define>
     </ui:composition>
 </html>
