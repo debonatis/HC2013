@@ -11,30 +11,26 @@
             <h:outputText value="#{bundle.ViewSalgTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewSalgLabel_salgsnummer}"/>
-                    <h:outputText value="#{salgController.selected.salgsnummer}" title="#{bundle.ViewSalgTitle_salgsnummer}"/>
-                    <h:outputText value="#{bundle.ViewSalgLabel_sumSalg}"/>
-                    <h:outputText value="#{salgController.selected.sumSalg}" title="#{bundle.ViewSalgTitle_sumSalg}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{salgController.destroyAndView}" value="#{bundle.ViewSalgDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewSalgEditLink}"/>
-                <br />
-                <h:commandLink action="#{salgController.prepareCreate}" value="#{bundle.ViewSalgCreateLink}" />
-                <br />
-                <h:commandLink action="#{salgController.prepareList}" value="#{bundle.ViewSalgShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewSalgIndexLink}"/>
-
-            </h:form>
+            <p:panel id="panel" header="Information">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.ViewSalgLabel_salgsnummer}"/>
+                        <h:outputText value="#{salgController.selected.salgsnummer}" title="#{bundle.ViewSalgTitle_salgsnummer}"/>
+                        <h:outputText value="#{bundle.ViewSalgLabel_sumSalg}"/>
+                        <h:outputText value="#{salgController.selected.sumSalg}" title="#{bundle.ViewSalgTitle_sumSalg}"/>
+                    </h:panelGrid>
+                    <br/>
+                    <p:menubar>
+                        <p:menuitem action="#{salgController.destroyAndView}" value="#{bundle.ViewSalgDestroyLink}"/> 
+                        <p:menuitem value="#{bundle.ViewSalgEditLink}" outcome="/salg/Edit"/>  
+                        <p:menuitem action="#{salgController.prepareList}" value="#{bundle.ViewalgShowAllLink}" /> 
+                        <p:menuitem value="#{bundle.ViewSalgIndexLink}" outcome="/index" style="margin-left:550px"/>
+                    </p:menubar>
+                </h:form>
+            </p:panel>
         </ui:define>
     </ui:composition>
 

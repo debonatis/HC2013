@@ -11,26 +11,27 @@
             <h:outputText value="#{bundle.EditSalgTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditSalgLabel_salgsnummer}" for="salgsnummer" />
-                    <h:inputText id="salgsnummer" value="#{salgController.selected.salgsnummer}" title="#{bundle.EditSalgTitle_salgsnummer}" required="true" requiredMessage="#{bundle.EditSalgRequiredMessage_salgsnummer}"/>
-                    <h:outputLabel value="#{bundle.EditSalgLabel_sumSalg}" for="sumSalg" />
-                    <h:inputText id="sumSalg" value="#{salgController.selected.sumSalg}" title="#{bundle.EditSalgTitle_sumSalg}" />
-                </h:panelGrid>
-                <h:commandLink action="#{salgController.update}" value="#{bundle.EditSalgSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditSalgViewLink}"/>
-                <br />
-                <h:commandLink action="#{salgController.prepareList}" value="#{bundle.EditSalgShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditSalgIndexLink}" />
-            </h:form>
+            <p:panel id="panel" header="Edit order">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.EditSalgLabel_salgsnummer}" for="salgsnummer" />
+                        <h:inputText id="salgsnummer" value="#{salgController.selected.salgsnummer}" title="#{bundle.EditSalgTitle_salgsnummer}" required="true" requiredMessage="#{bundle.EditSalgRequiredMessage_salgsnummer}"/>
+                        <h:outputLabel value="#{bundle.EditSalgLabel_sumSalg}" for="sumSalg" />
+                        <h:inputText id="sumSalg" value="#{salgController.selected.sumSalg}" title="#{bundle.EditSalgTitle_sumSalg}" />
+                    </h:panelGrid>
+
+                    <br/><br/><br/><br/><br/>
+                    <p:menubar>
+                        <p:menuitem action="#{salgController.update}" value="#{bundle.EditSalgSaveLink}"/>  
+                        <p:menuitem outcome="View" value="#{bundle.EditSalgViewLink}" /> 
+                        <p:menuitem action="#{salgController.prepareList}" value="#{bundle.EditSalgShowAllLink}" immediate="true"/>
+                        <p:menuitem outcome="/index" value="#{bundle.EditSalgIndexLink}" style="margin-left:550px"/>
+                    </p:menubar>
+                </h:form>
+            </p:panel>
         </ui:define>
     </ui:composition>
 
