@@ -32,9 +32,6 @@ public class ForgotPassword implements Serializable {
     
     @EJB
     private BrukerFacade brukerFacade;
-    
-    String url = "jdbc:mysql://bamvpn.net:3306/waplj_prosjekt";
-    String driver = "com.mysql.jdbc.Driver";
 
     public String getEmail() {
         return email;
