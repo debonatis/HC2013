@@ -27,12 +27,13 @@
                 <p:menu>          
                     <p:submenu label="Navigations"> 
 
-                        <p:menuitem value="Dish registration" outcome="/retter/Create" /> 
+                        
                         <p:menuitem value="Orders" outcome="/salgUi/bestilling" />                
 
 
                     </p:submenu>  
-                    <p:submenu label="Admin navigation" rendered="#{bruker.adminOK}"> 
+                    <p:submenu label="Admin navigation" rendered="#{bruker.adminOK}">
+                        <p:menuitem value="Dish registration" outcome="/retter/Create" /> 
                         <p:menuitem outcome="/kokk/kokk" value="Live Order List"/>
                         <p:menuitem outcome="/administrator/List" value="Show All Administrator Items"/>                   
                         <p:menuitem outcome="/annet/List" value="Show All Other Items"/>
@@ -53,12 +54,15 @@
 
                     </p:submenu>
                     <p:submenu label="User navigation" rendered="#{bruker.brukerOK}">
+                        <p:menuitem value="Dish registration" outcome="/retter/Create" /> 
                         <p:menuitem outcome="/kokk/kokk" value="Live Order List"/>
                     </p:submenu>
                     <p:submenu label="Chef navigation" rendered="#{bruker.kokkOK}">
+                        <p:menuitem value="Dish registration" outcome="/retter/Create" /> 
                         <p:menuitem outcome="/kokk/kokk" value="Live Order List"/>
                     </p:submenu>                    
                     <p:submenu label="Sales navigation" rendered="#{bruker.salgOK}">
+                        <p:menuitem value="Dish registration" outcome="/retter/Create" /> 
                         <p:menuitem outcome="/kokk/kokk" value="Live Order List"/>
                         <p:menuitem outcome="/kunde/List" value="Show All Customer Items"/>
                     </p:submenu>
