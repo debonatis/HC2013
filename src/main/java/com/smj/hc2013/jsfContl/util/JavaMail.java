@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.smj.hc2013.jsfContCust;
+package com.smj.hc2013.jsfContl.util;
 
 import com.smj.hc2013.model.Bruker;
 import javax.activation.DataHandler;

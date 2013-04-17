@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.smj.hc2013.jsfContCust;
+package com.smj.hc2013.jsfContl.util;
 
 /**
  *
@@ -13,7 +13,6 @@ import java.util.List;
 import javax.annotation.PostConstruct; 
 import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
-import com.smj.hc2013.jsfContCust.GalleriaDish;
 
 @SessionScoped
 @Named("galleria")
@@ -24,14 +23,14 @@ public class Galleri {
         "Teriyakibiff", 
         "Klubb m/dopp", 
         "Finnbiff", 
-        "Red curry beef", "lol"};
+        "Red curry beef", "lol", "lol"};
     private String[] description = {null, "HealtyCatering er et cateringselskap som leverer mat i Trondheim og omegn.\n" +
 "Hos oss kan du velge blandt fastfood, norske tradisjonelle retter, m.m. \n" +"\n" +
 "Du ringer - vi bringer.",
         "Teriyakibiff med teriyakisaus som minner om en søt soyasaus", 
         "namnam", 
         "Dæsken så godt", 
-        "Fale godt ja", "lol"};
+        "Fale godt ja", "lol", "lol"};
 
     @PostConstruct
     public void init(){

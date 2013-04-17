@@ -4,6 +4,8 @@
  */
 package com.smj.hc2013.jsfContCust;
 
+import com.smj.hc2013.jsfContl.util.JavaMail;
+import com.smj.hc2013.jsfContl.util.PdfMaker;
 import com.smj.hc2013.model.Ordre;
 import com.smj.hc2013.model.OrdreBestilling;
 import com.smj.hc2013.model.Ordretabell;
