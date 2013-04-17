@@ -4,21 +4,15 @@
  */
 package com.smj.hc2013.jsfContCust;
 
-import java.io.Serializable;
-import java.util.Properties;
-import javax.mail.MessagingException;
 import com.smj.hc2013.model.Bruker;
 import com.smj.hc2013.session.BrukerFacade;
-import com.smj.hc2013.session.OrdreFacade;
+import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -26,47 +20,59 @@ import javax.mail.internet.MimeMessage;
  */
 @ManagedBean(name = "forgotPassword")
 @SessionScoped
-public class ForgotPassword implements Serializable {
+public class ForgotPassword extends JavaMail implements Serializable {
 
+    private String username;
     private String email;
-    
     @EJB
     private BrukerFacade brukerFacade;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String theEmail) {
-        email = theEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void apply() {
-        Bruker bruker = new Bruker();
-        if (bruker.getEmail() != null) {
-            Properties props = System.getProperties();
 
-            props.setProperty("mail.transport.protocol", "smtp");
-            props.setProperty("mail.host", "smtp.live.com");
-            props.put("mail.smtp.starttls.enable", "true");
-            props.put("mail.smtp.auth", "true");
-
-            Session session = Session.getDefaultInstance(props);
-            try {
-                MimeMessage message = new MimeMessage(session);
-                message.setFrom(new InternetAddress("fabregas4_91@hotmail.com"));
-                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-
-                message.setSubject("This is the Subject Line!");
-
-                FacesMessage fm = new FacesMessage("Email sent");
-                FacesContext.getCurrentInstance().addMessage(null, fm);
-            } catch (MessagingException mex) {
-                mex.printStackTrace();
+        try {
+            boolean sjekk = false;
+            List<Bruker> brukerL = brukerFacade.findAll();
+            Bruker br = new Bruker();
+            for (Bruker b : brukerL) {
+                if (b.getEmail().equalsIgnoreCase(getEmail())) {
+                    br = b;
+                    sjekk = true;
+                }
             }
-        } else {
-            FacesMessage fm = new FacesMessage("Email was not found");
-            FacesContext.getCurrentInstance().addMessage(null, fm);
+            if (sjekk) {
+                sendMail(br, "Here is your password, " + br.getFornavn() + "", br);
+                FacesMessage msg = new FacesMessage();
+                msg.setSeverity(FacesMessage.SEVERITY_INFO);
+                msg.setSummary("Success");
+                msg.setDetail("You will soon get your password");
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+            } else {
+                FacesMessage msg = new FacesMessage();
+                msg.setSeverity(FacesMessage.SEVERITY_INFO);
+                msg.setSummary("We did'nt find your mail address");
+                msg.setDetail("Try to make a new user instead");
+
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+            }
+
+
+        } catch (Exception e) {
         }
     }
 }

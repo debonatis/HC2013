@@ -4,7 +4,7 @@
  */
 package TEST;
 
-import com.smj.hc2013.jsfContCust.mobileUi.OrdreUtkjoring;
+import com.smj.hc2013.model.OrdreUtkjoring;
 import com.smj.hc2013.model.Bruker;
 import com.smj.hc2013.model.Ordre;
 import com.smj.hc2013.model.Ordretabell;

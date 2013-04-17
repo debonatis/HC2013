@@ -213,6 +213,7 @@ public class Bestilling implements Serializable {
             ordreT.setRettnummer(ob.getRett().getRettnummer());
             ordreT.setAntall(ob.getAntall());
             ordretabellFacade.create(ordreT);
+            
             i++;
             prepareCreate();
 

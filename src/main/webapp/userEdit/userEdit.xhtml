@@ -36,6 +36,19 @@
 
                                     <h:outputText value="Username: " />  
                                     <h:outputText value="#{profilBehandler.bruker.brukernavn}" />  
+                                    
+                                    <h:outputLabel for="sjekkpassord" value="Password: *" />
+
+                                    <p:password label="Password" id="sjekkpassord" binding="#{passwordComponent}" value="#{profilBehandler.bruker.passord}" >
+                                    <f:validator validatorId="validatorTekst2" />                   
+                                </p:password>
+                               
+                                <h:outputLabel for="confirmPassword" value="Confirm password: *" />
+
+                                <p:password label="Confrim Password" id="confirmPassword" required="#{not empty passwordComponent.value}">
+                                    <f:validator validatorId="validatorTekst" />
+                                    <f:attribute name="passwordComponent" value="#{passwordComponent}" />
+                                </p:password>
 
 
                                 </h:panelGrid>  

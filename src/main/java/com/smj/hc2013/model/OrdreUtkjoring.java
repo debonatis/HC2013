@@ -2,21 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.smj.hc2013.jsfContCust.mobileUi;
+package com.smj.hc2013.model;
 
-import com.smj.hc2013.model.Bruker;
-import com.smj.hc2013.model.Ordre;
-import com.smj.hc2013.model.Ordretabell;
-import com.smj.hc2013.model.Retter;
-import com.smj.hc2013.session.SelgereFacade;
 import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.persistence.EntityManager;
-import javax.transaction.UserTransaction;
 
 /**
  *
@@ -24,11 +12,19 @@ import javax.transaction.UserTransaction;
  */
 public class OrdreUtkjoring {
 
-    
     private Ordretabell ordreTabell = new Ordretabell();
     private Ordre ordre = new Ordre();
     private Bruker bruker = new Bruker();
     private Retter rett = new Retter();
+    private Utkjoring utkojring = new Utkjoring();
+
+    public Utkjoring getUtkojring() {
+        return utkojring;
+    }
+
+    public void setUtkojring(Utkjoring utkojring) {
+        this.utkojring = utkojring;
+    }
 
     @Override
     public String toString() {

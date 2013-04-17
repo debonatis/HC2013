@@ -186,13 +186,14 @@ public class Registrering implements RegMethod {
             kundeFacade.create(kunde);
             if (!selskaper.getBrId().isEmpty()) {
                 selskaperFacade.edit(selskaper);
-            }
+            
             for (Selskaper s : selskaperFacade.findAll()) {
                 if (s.getBrId().equalsIgnoreCase(selskaper.getBrId())) {
                     selskaper = s;
                     selskapKunde = new SelskapKunde(bruker.getBrukernavn(), selskaper.getSelskapnr());
                     selskapKundeFacade.create(selskapKunde);
                 }
+            }
             }
 
 

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.smj.hc2013.jsfContCust.mobileUi;
+package com.smj.hc2013.jsfContCust;
 
 import com.smj.hc2013.jsfContCust.Interface.DataTableInt;
 import com.smj.hc2013.model.Bruker;
@@ -22,15 +22,15 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author deb
  */
 @ManagedBean
-@ViewScoped
-public class SjoforUtkjoring implements DataTableInt {
+@SessionScoped
+public class OversiktKokk implements DataTableInt {
 
     private List<OrdreUtkjoring> utListe = new ArrayList<>();
     private List<Retter> retterL;
@@ -39,7 +39,7 @@ public class SjoforUtkjoring implements DataTableInt {
     private List<Bruker> brukerL;
     private List<Utkjoring> utkjoringL;
     private OrdreUtkjoring selected = new OrdreUtkjoring();
-    private OrdreUtkjoring setter = new OrdreUtkjoring();
+    private OrdreUtkjoring setter = new OrdreUtkjoring();    
     @EJB
     private RetterFacade retterFacade;
     @EJB
@@ -55,6 +55,23 @@ public class SjoforUtkjoring implements DataTableInt {
     private Bruker bruker = new Bruker();
     private Retter rett = new Retter();
     private Utkjoring utkjoring = new Utkjoring();
+    private int bilnr = 0;
+   
+    
+    
+
+    public int getBilnr() {
+        return bilnr;
+    }
+
+    public void setBilnr(int bilnr) {
+        this.bilnr = bilnr;
+    }
+
+    @Override
+    public OrdreUtkjoring getSelected() {
+        return selected;
+    }
 
     @Override
     public OrdreUtkjoring getSetter() {
@@ -62,8 +79,8 @@ public class SjoforUtkjoring implements DataTableInt {
     }
 
     @Override
-    public void setSetter(OrdreUtkjoring setter) {
-        this.setter = setter;
+    public List<OrdreUtkjoring> getUtListe() {
+        return utListe;
     }
 
     @PostConstruct
@@ -77,7 +94,7 @@ public class SjoforUtkjoring implements DataTableInt {
         utkjoringL = utkjoringFacade.findAll();
 
         for (Ordretabell ot : ordreTabellL) {
-            if (ot.getStatus().equalsIgnoreCase("OK")) {
+            if (ot.getStatus().equalsIgnoreCase("pending")) {
                 ordreT = ot;
                 for (Ordre o : ordreL) {
                     if (ot.getOrdretabellPK().getSalgsnummer().equalsIgnoreCase(o.getOrdrePK().getSalgsnummer())) {
@@ -100,33 +117,30 @@ public class SjoforUtkjoring implements DataTableInt {
                 setter.setOrdre(ordre);
                 setter.setOrdreTabell(ordreT);
                 setter.setRett(rett);
+                setter.setUtkojring(utkjoring);
+                utListe.add(setter);
 
-                for (Utkjoring ut : utkjoringL) {
-                    if ((ot.getOrdretabellPK().getSalgsnummer().equalsIgnoreCase(ut.getUtkjoringPK().getSalgsnummer())) && (ut.getUtkorinKogstatus().equalsIgnoreCase("Pending"))) {
-                        utkjoring = ut;
-                        setter.setUtkojring(utkjoring);
-                        utListe.add(setter);
-                    }
-                }
+
 
             }
         }
 
+
     }
 
     @Override
-    public List<OrdreUtkjoring> getUtListe() {
-        return utListe;
-    }
-
-    @Override
-    public void setUtListe(List<OrdreUtkjoring> utListe) {
-        this.utListe = utListe;
-    }
-
-    @Override
-    public OrdreUtkjoring getSelected() {
-        return selected;
+    public void save() {
+         brukerFacade.edit(selected.getBruker());
+         selected.getOrdre().setBekreftet(new Date(System.currentTimeMillis()));
+        ordreFacade.edit(selected.getOrdre());
+        ordretabellFacade.edit(selected.getOrdreTabell());
+        retterFacade.edit(selected.getRett());
+        utkjoring = new Utkjoring(selected.getBruker().getBrukernavn(), selected.getOrdre().getOrdrePK().getSalgsnummer(), 1, "simonD");
+        utkjoring.setUtkorinKogstatus("Pending");
+        utkjoringFacade.edit(utkjoring);
+        
+        
+        init();
     }
 
     @Override
@@ -135,17 +149,12 @@ public class SjoforUtkjoring implements DataTableInt {
     }
 
     @Override
-    public void save() {
+    public void setSetter(OrdreUtkjoring setter) {
+        this.setter = setter;
+    }
 
-        brukerFacade.edit(selected.getBruker());
-        selected.getOrdre().setDatoLevert(new Date(System.currentTimeMillis()));
-        ordreFacade.edit(selected.getOrdre());
-        ordretabellFacade.edit(selected.getOrdreTabell());
-        retterFacade.edit(selected.getRett());
-
-        init();
-
-
-
+    @Override
+    public void setUtListe(List<OrdreUtkjoring> utListe) {
+        this.utListe = utListe;
     }
 }
