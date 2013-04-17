@@ -4,6 +4,7 @@
  */
 package com.smj.hc2013.jsfContCust;
 
+import com.smj.hc2013.jsfContl.util.JavaMail;
 import com.smj.hc2013.model.Bruker;
 import com.smj.hc2013.session.BrukerFacade;
 import java.io.Serializable;
