@@ -7,18 +7,16 @@ package com.smj.hc2013.jsfContCust;
 import com.smj.hc2013.model.Retter;
 import com.smj.hc2013.session.RetterFacade;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author Martin
  */
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class Dishes implements Serializable {
 
     private Retter selected = new Retter();
