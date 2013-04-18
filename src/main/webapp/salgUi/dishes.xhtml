@@ -22,7 +22,7 @@ and open the template in the editor.
 
                     <p:panel header="#{retter.navn}" style="text-align:center">  
                         <h:panelGrid columns="1" style="width:100%">  
-                            <p:graphicImage value="/resources/images/#{rett.fil}"/>   
+                            <p:graphicImage value="/resources/images/#{retter.fil}" width="30" height="40"/>   
 
                             <h:outputText value="Pris: #{retter.pris}kr" />  
 
@@ -35,10 +35,10 @@ and open the template in the editor.
                     </p:panel>  
 
                 </p:dataGrid>  
-                <p:dialog header="retterDetail" widgetVar="rettDialog" modal="true">  
+                <p:dialog header="retterDetail" widgetVar="rettDialog" modal="false">  
                     <p:outputPanel id="rettDetail" style="text-align:center;" layout="block">  
 
-                        <p:graphicImage value="/resources/images/#{dishes.selected.fil}"/>  
+                        <p:graphicImage value="/resources/images/#{dishes.selected.fil}" width="100" height="100"/>  
 
                         <h:panelGrid  columns="2" cellpadding="5">  
                             <h:outputLabel for="name2" value="Name: " />  
@@ -46,7 +46,7 @@ and open the template in the editor.
 
                             <h:outputLabel for="ingredients" value="Ingredinets: " />  
                             <h:outputText id="ingredients" value="#{dishes.selected.ingredienser}" />  
-                            <p:commandButton action="./salgUi/bestilling.xhtml" value="Start ordering"/>
+                            <p:commandButton action="/faces/salgUi/bestilling?faces-redirect=true" value="Start ordering"/>
 
                          </h:panelGrid>  
                     </p:outputPanel>  
