@@ -26,8 +26,10 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import org.primefaces.event.FlowEvent;
 
 /**
@@ -197,10 +199,20 @@ public class Registrering implements RegMethod {
             }
 
 
-            JsfUtil.addMessage("Welcome :" + bruker.getFornavn());
+           FacesMessage msg = new FacesMessage();
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+        msg.setSummary("You are registerd");
+        msg.setDetail("Welcome: " + bruker.getFornavn());
+
+        FacesContext.getCurrentInstance().addMessage(null, msg);
             prepareCreate();
         } catch (Exception e) {
-            JsfUtil.addMessage(ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured") + "This could be double registration or faulty registration inputs! Check your inputs");
+            FacesMessage msg = new FacesMessage();
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+        msg.setSummary("You are not registerd");
+        msg.setDetail("Maybe faulty inputs?");
+
+        FacesContext.getCurrentInstance().addMessage(null, msg);
 
         }
     }
