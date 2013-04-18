@@ -28,14 +28,23 @@ public class Dishes implements Serializable {
     public Retter getSelected() {
         return selected;
     }
+    @PostConstruct
+    public void init(){
+        oppdaterRetterList();
+        
+    }
+    
+    private void oppdaterRetterList() {
+        rettL = rettF.findAll();
+    }
 
     public void setSelected(Retter selected) {
         this.selected = selected;
     }
 
     public List<Retter> getRettL() {
-        rettL = new ArrayList<>();
-        rettL = rettF.findAll();
+        rettL=rettF.findAll();
+       
         return rettL;
     }
 
