@@ -8,6 +8,7 @@ import com.smj.hc2013.model.Retter;
 import com.smj.hc2013.session.RetterFacade;
 import java.io.Serializable;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -20,6 +21,7 @@ import javax.faces.bean.ViewScoped;
 public class Dishes implements Serializable {
 
     private Retter selected = new Retter();
+    @EJB
     private RetterFacade rettF;
     private List<Retter> rettL;
 
