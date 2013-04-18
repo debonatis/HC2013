@@ -28,11 +28,7 @@ public class Dishes implements Serializable {
     public Retter getSelected() {
         return selected;
     }
-    @PostConstruct
-    public void init(){
-        oppdaterRetterList();
-        
-    }
+    
     
     private void oppdaterRetterList() {
         rettL = rettF.findAll();
@@ -43,7 +39,7 @@ public class Dishes implements Serializable {
     }
 
     public List<Retter> getRettL() {
-        rettL=rettF.findAll();
+        oppdaterRetterList();
        
         return rettL;
     }
