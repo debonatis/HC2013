@@ -7,6 +7,7 @@ package com.smj.hc2013.jsfContCust;
 import com.smj.hc2013.model.Retter;
 import com.smj.hc2013.session.RetterFacade;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -16,7 +17,6 @@ import javax.faces.bean.RequestScoped;
  *
  * @author Martin
  */
-
 @ManagedBean
 @RequestScoped
 public class Dishes implements Serializable {
@@ -34,15 +34,12 @@ public class Dishes implements Serializable {
     }
 
     public List<Retter> getRettL() {
+        rettL = new ArrayList<>();
+        rettL = rettF.findAll();
         return rettL;
     }
 
     public void setRettL(List<Retter> rettL) {
         this.rettL = rettL;
-    }
-      
-    @PostConstruct
-    public void init() {
-       rettL = rettF.findAll();
     }
 }
