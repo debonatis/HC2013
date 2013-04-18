@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.smj.hc2013.jsfContCust;
+package com.smj.hc2013.jsfContl.util;
 
 import com.smj.hc2013.model.Bruker;
 import javax.activation.DataHandler;
@@ -26,7 +26,7 @@ import javax.mail.internet.MimeMultipart;
  */
 public class JavaMail {
 
-    @Resource(name = "mail/Peering")
+    @Resource(name = "mail/peering")
     private Session session;
 
     public boolean sendMail(Bruker to, String subject, Object e) {

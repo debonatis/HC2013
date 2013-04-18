@@ -11,7 +11,7 @@
             <h:outputText value="#{bundle.ListBrukerTitle}"/>
         </ui:define>
         <ui:define name="body">
-            <p:panel >  
+            <p:panel header="HealtyCatering AS">  
                 <h:form>
                     <h:panelGrid>
                         <h:body>
@@ -26,41 +26,13 @@
                                     fjs.parentNode.insertBefore(js, fjs);
                                 }(document, 'script', 'facebook-jssdk'));</script>
                         </h:body>
-                        <td align="top">
-                            <h1><img src="../faces/resources/images/simon.jpg" width="260" height="255" border="1" align="left"/>
-                            </h1>
-                        </td>
                         <td valign="top" width="10">&nbsp;</td>
-                        <td valign="top">
-                            <h1>HealtyCatering</h1>
-                            <font size="5">Bæst matn i by'n!</font>
-                            <p><h4>HealtyCatering er et cateringselskap som leverer mat i Trondheim og omegn.<br/>
-                                    Hos oss kan du velge blandt fastfood, norske tradisjonelle retter, m.m. <br/><br/>
-                                    Du ringer - vi bringer.</h4></p></td>
-                        <table width="485" border="0" align="center" cellpadding="0" cellspacing="0" id="main_menu">
-                            <br/><br/><br/>
-                            <tbody>                             
-                                <tr>
-                                    <td width="140" align="center">
-                                        <a href="../salgUi/bestilling.xhtml">
-                                            <h2>Fastfood</h2>
-                                            <img width="210" height="140" src="../faces/resources/images/BCBurger.jpg" 
-                                                 border="1"/>
-                                        </a>
-                                    </td>
-                                    <td>&nbsp;</td>
-                                    <td width="140" align="center">
-                                        <a href="../salgUi/bestilling.xhtml">
-                                            <h2>Norsk mat</h2>
-                                            <img width="210" height="140" src="../faces/resources/images/klubb.jpg" 
-                                                 border="1"/>
-                                        </a>
-                                    </td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                            </tbody>
+                        <table width="485" border="0" align="center" cellpadding="0" cellspacing="0" id="main_menu">               
+                            <p:galleria value="#{galleria.images}" var="image" panelWidth="800" panelHeight="600" showCaption="true" autoPlay="off">  
+                                <p:graphicImage value="/resources/images/galleria/#{image.path}" alt="#{image.description}" title="#{image.name}"/>  
+                            </p:galleria> 
                         </table>
-                    </h:panelGrid>         
+                   </h:panelGrid>         
                 </h:form>
             </p:panel>
             <br/>
