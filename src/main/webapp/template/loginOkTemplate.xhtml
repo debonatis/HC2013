@@ -26,16 +26,29 @@
                 <p:growl id="messages"/>
                 <p:menu>          
                     <p:submenu label="Navigations"> 
-
-                        
                         <p:menuitem value="Orders" outcome="/salgUi/bestilling" />
                         <p:menuitem value="Dishes" outcome="/salgUi/dishes" />
-
-
                     </p:submenu>  
                     <p:submenu label="Admin navigation" rendered="#{bruker.adminOK}">
                         <p:menuitem value="Dish registration" outcome="/retter/Create" /> 
                         <p:menuitem outcome="/kokk/kokk" value="Live Order List"/>
+                    </p:submenu>
+                    <p:submenu label="User navigation" rendered="#{bruker.brukerOK}">
+                        <p:menuitem value="Dish registration" outcome="/retter/Create" /> 
+                        <p:menuitem outcome="/kokk/kokk" value="Live Order List"/>
+                    </p:submenu>
+                    <p:submenu label="Chef navigation" rendered="#{bruker.kokkOK}">
+                        <p:menuitem value="Dish registration" outcome="/retter/Create" /> 
+                        <p:menuitem outcome="/kokk/kokk" value="Live Order List"/>
+                    </p:submenu>                    
+                    <p:submenu label="Sales navigation" rendered="#{bruker.salgOK}">
+                        <p:menuitem value="Dish registration" outcome="/retter/Create" /> 
+                        <p:menuitem outcome="/kokk/kokk" value="Live Order List"/>
+                        <p:menuitem outcome="/kunde/List" value="Show All Customer Items"/>
+                    </p:submenu>
+                </p:menu> 
+                <p:tieredMenu style="width:180px" rendered="#{bruker.adminOK}">
+                    <p:submenu label="Admin menuitems">
                         <p:menuitem outcome="/administrator/List" value="Show All Administrator Items"/>                   
                         <p:menuitem outcome="/annet/List" value="Show All Other Items"/>
                         <p:menuitem outcome="/bosted/List" value="Show All Address Items"/>
@@ -52,22 +65,8 @@
                         <p:menuitem outcome="/sjoforer/List" value="Show All Drivers Items"/>
                         <p:menuitem outcome="/utkjoring/List" value="Show All Delivery Items"/>
                         <p:menuitem outcome="/utkjoringsBil/List" value="Show All DeliveryCar Items"/>
-
                     </p:submenu>
-                    <p:submenu label="User navigation" rendered="#{bruker.brukerOK}">
-                        <p:menuitem value="Dish registration" outcome="/retter/Create" /> 
-                        <p:menuitem outcome="/kokk/kokk" value="Live Order List"/>
-                    </p:submenu>
-                    <p:submenu label="Chef navigation" rendered="#{bruker.kokkOK}">
-                        <p:menuitem value="Dish registration" outcome="/retter/Create" /> 
-                        <p:menuitem outcome="/kokk/kokk" value="Live Order List"/>
-                    </p:submenu>                    
-                    <p:submenu label="Sales navigation" rendered="#{bruker.salgOK}">
-                        <p:menuitem value="Dish registration" outcome="/retter/Create" /> 
-                        <p:menuitem outcome="/kokk/kokk" value="Live Order List"/>
-                        <p:menuitem outcome="/kunde/List" value="Show All Customer Items"/>
-                    </p:submenu>
-                </p:menu> 
+                </p:tieredMenu>
             </h:form>                    
         </div>
         <ui:debug/>
