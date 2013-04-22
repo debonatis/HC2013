@@ -93,3 +93,19 @@ body {
     margin-left:1300px;
     clear:left;
 }
+#right{
+    position: fixed;
+    right: 5%;
+    top: 5%;
+    margin-bottom: 0px;
+    margin-left: 70px;
+    margin-right: -50px;
+    margin-top: 5px;
+    padding-bottom: 18px;
+    padding-top: 27px;
+    right: 5%;
+    width: 15%;
+    color: white;
+    padding-left: 25px;
+    padding-right: 25px;
+}

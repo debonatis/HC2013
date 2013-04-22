@@ -35,7 +35,7 @@ public class Galleri {
     @PostConstruct
     public void init(){
         images = new ArrayList<GalleriaDish>();
-        for(int i = 1; i<= 7; i++){
+        for(int i = 2; i<= 7; i++){
             images.add(new GalleriaDish(names[i], description[i], "galleria" + i + ".jpg"));
             
         }
