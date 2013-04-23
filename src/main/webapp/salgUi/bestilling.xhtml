@@ -19,7 +19,7 @@
 
             <h:form> 
                 <p:tabView id="tabView" dynamic="true" cache="true">
-                    <p:tab id="tba1" title="Order"> <p:growl id="growl" sticky="true" showDetail="true"/> 
+                    <p:tab id="tba1" title="Order"> <p:growl id="growl2" sticky="true" showDetail="true"/> 
                         <p:wizard widgetVar="wiz"  
                                   flowListener="#{bestilling.onFlowProcess}" >
                             <p:tab id="personal" title="Pick dish/es">  
@@ -167,15 +167,15 @@
                     </p:tab>  
                     <p:tab id="tba2" title="Placed orders">
 
-                        <p:growl id="confir" showDetail="true" escape="false" /> 
+                        <p:growl id="growl6" showDetail="true" escape="false" /> 
 
 
                         <h:messages errorClass="error"/>  
 
-                        <p:dataTable id="conTable" var="item" value="#{orderOverview.utListe}">
+                        <p:dataTable id="lolTable" var="item" value="#{orderOverview.utListe}">
 
                             <p:column headerText="Dish" sortBy="#{item.rett.navn}" filterBy="#{items.rett.navn}">  
-                                <h:outputText value="#{items.rett.navn}" />  
+                                <h:outputText value="#{item.rett.navn}" />  
                             </p:column>  
 
                             <p:column headerText="Quantity" sortBy="#{item.ordreTabell.antall}" filterBy="#{item.ordreTabell.antall}">  
