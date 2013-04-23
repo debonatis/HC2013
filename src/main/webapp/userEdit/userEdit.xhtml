@@ -138,7 +138,7 @@
 
                                     <h:outputText value="Username: " />  
                                     <h:outputText styleClass="outputLabel"  
-                                                  value="#{profilBehandler.bruker.brukernavn}" />>  
+                                                  value="#{profilBehandler.bruker.brukernavn}" /> 
 
                                     <h:outputText value="Street: " />  
                                     <h:outputText styleClass="outputLabel"  
@@ -165,7 +165,7 @@
                                 </h:panelGrid>  
 
                                 <p:commandButton value="Submit" update="growl"   
-                                                 actionListener="#{profilBehandler.save}"/>  
+                                                 actionListener="#{profilBehandler.save(actionEvent)}"/>  
 
                             </p:panel>  
                         </p:tab>  
