@@ -188,10 +188,12 @@
 
                             <p:column headerText="Time of delivery" sortBy="#{item.ordreTabell.levDato}" filterBy="#{item.ordreTabell.levDato}">  
                                 <h:outputText value="#{item.ordreTabell.levDato}" />  
-                            </p:column>                               
+                            </p:column>   
+
 
 
                         </p:dataTable>
+                        <p:commandButton value="Refresh" icon="ui-icon-refresh" update="lolTable"/>
                     </p:tab>
                 </p:tabView>
             </h:form>  

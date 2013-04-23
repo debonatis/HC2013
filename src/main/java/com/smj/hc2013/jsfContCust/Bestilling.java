@@ -131,21 +131,18 @@ public class Bestilling implements Serializable {
         BrukerBehandling brukerInfo = new BrukerBehandling();
         List<String> hjelp2 = new ArrayList<>();
 
-        
-        
+
+
         for (Selskaper e : hjelp) {
             for (SelskapKunde se : hjelp3) {
-                if ((e.getSelskapnr().intValue() == se.getSelskapKundePK().getSelskapnr()) && (se.getSelskapKundePK().getBrukernavn().equalsIgnoreCase(brukerInfo.getUserData()))) {
-                    hjelp2.add(e.getBrId());
+                if ((se.getSelskapKundePK().getBrukernavn().equalsIgnoreCase(brukerInfo.getUserData()))) {
+                    e.setBrId(byttHvisNull(e.getBrId(), "?"));                    
+                        hjelp2.add(e.getBrId());
+                    
                 }
             }
         }
-
-            
-          String hjelp4[] = new String[hjelp2.size() + 1];
-          hjelp2.toArray(hjelp4);
-        
-        return hjelp4;
+        return hjelp2.toArray(new String[]{});
     }
 
     public void setSettAntallList(List<OrdreBestilling> settAntallList) {
@@ -188,6 +185,10 @@ public class Bestilling implements Serializable {
         this.retterPick = retterPick;
     }
 
+    public static <T> T byttHvisNull(T objectToCheck, T defaultValue) {
+        return objectToCheck == null ? defaultValue : objectToCheck;
+    }
+
     private String getSumPris(int v, int b) {
         String hjelp = "";
         int x = v * b;
@@ -212,7 +213,7 @@ public class Bestilling implements Serializable {
                 ordre.setLevAdresse(ob.getLeveringsAdresse());
                 ordre.setDatoEndret(new Date(System.currentTimeMillis()));
                 ordre.setBetaltstatus("Pending");
-                if (!ob.getSelskap().isEmpty()) {
+                if (!(ob.getSelskap() == null)) {
                     for (Selskaper s : Lselskaper) {
                         if (ob.getSelskap().equalsIgnoreCase(s.getBrId())) {
                             ordre.setSelskapnr(s.getSelskapnr());

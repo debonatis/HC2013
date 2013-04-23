@@ -1,6 +1,7 @@
 package com.smj.hc2013.jsfContl.util;
 
 import java.util.List;
+import java.util.ResourceBundle;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -21,7 +22,12 @@ public class JsfUtil {
             items[i++] = new SelectItem(x, x.toString());
         }
         return items;
-    }
+    }  
+    
+    
+
+
+
 
     public static void addErrorMessage(Exception ex, String defaultMsg) {
         String msg = ex.getLocalizedMessage();

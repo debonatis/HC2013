@@ -5,6 +5,7 @@
 package com.smj.hc2013.model;
 
 import java.util.Date;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -15,7 +16,8 @@ public class OrdreBestilling {
     private Retter rett;
     private int antall;
     private Date levDato;
-    private String leveringsAdresse;
+    @NotNull
+    private String leveringsAdresse;    
     private String selskap = "";
     
 
