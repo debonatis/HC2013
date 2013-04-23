@@ -48,25 +48,30 @@
                     </p:submenu>
                 </p:menu> 
                 <p:tieredMenu style="width:180px" rendered="#{bruker.adminOK}">
-                    <p:submenu label="Admin menuitems">
-                        <p:menuitem outcome="/administrator/List" value="Show All Administrator Items"/>                   
-                        <p:menuitem outcome="/annet/List" value="Show All Other Items"/>
-                        <p:menuitem outcome="/bosted/List" value="Show All Address Items"/>
-                        <p:menuitem outcome="/bruker/List" value="Show All User Items"/>
-                        <p:menuitem outcome="/kunde/List" value="Show All Customer Items"/>
-                        <p:menuitem outcome="/ordre/List" value="Show All Order Items"/>
-                        <p:menuitem outcome="/ordretabell/List" value="Show All Ordertabel Items"/>
-                        <p:menuitem outcome="/retter/List" value="Show All Dish Items"/>
-                        <p:menuitem outcome="/rolle/List" value="Show All Role Items"/>
-                        <p:menuitem outcome="/salg/List" value="Show All Sale Items"/>
-                        <p:menuitem outcome="/selgere/List" value="Show All Salemen Items"/>
-                        <p:menuitem outcome="/selskapKunde/List" value="Show All FirmPerson Items"/>
-                        <p:menuitem outcome="/selskaper/List" value="Show All Frim Items"/>
-                        <p:menuitem outcome="/sjoforer/List" value="Show All Drivers Items"/>
-                        <p:menuitem outcome="/utkjoring/List" value="Show All Delivery Items"/>
-                        <p:menuitem outcome="/utkjoringsBil/List" value="Show All DeliveryCar Items"/>
+                    <p:submenu label="Admin menuitems (Raw edit)">
+                        <p:menuitem outcome="/administrator/List" value="Administrator Items"/>                   
+                        <p:menuitem outcome="/annet/List" value="Other Items"/>
+                        <p:menuitem outcome="/bosted/List" value="Address Items"/>
+                        <p:menuitem outcome="/bruker/List" value="User Items"/>
+                        <p:menuitem outcome="/kunde/List" value="Customer Items"/>
+                        <p:menuitem outcome="/ordre/List" value="Order Items"/>
+                        <p:menuitem outcome="/ordretabell/List" value="Ordertabel Items"/>
+                        <p:menuitem outcome="/retter/List" value="Dish Items"/>
+                        <p:menuitem outcome="/rolle/List" value="Role Items"/>
+                        <p:menuitem outcome="/salg/List" value="Sale Items"/>
+                        <p:menuitem outcome="/selgere/List" value="Salemen Items"/>
+                        <p:menuitem outcome="/selskapKunde/List" value="FirmPerson Items"/>
+                        <p:menuitem outcome="/selskaper/List" value="Frim Items"/>
+                        <p:menuitem outcome="/sjoforer/List" value="Drivers Items"/>
+                        <p:menuitem outcome="/utkjoring/List" value="Delivery Items"/>
+                        <p:menuitem outcome="/utkjoringsBil/List" value="DeliveryCar Items"/>
                     </p:submenu>
                 </p:tieredMenu>
+                <p:submenu>
+                    <a class="twitter-timeline" href="https://twitter.com/twitterapi" data-widget-id="YOUR-WIDGET-ID-HERE">Tweets by @twitterapi</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+                    </script>
+                </p:submenu>
             </h:form>                    
         </div>
         <ui:debug/>
