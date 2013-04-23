@@ -17,12 +17,14 @@ and open the template in the editor.
             <div class="header">
                 <h:form>
                     <p:growl id="messages"/>
-                    <p:menubar>
+                          
+                    <p:menubar style="margin-left: 150px">
                         <p:menuitem value="Home" url="/faces/salgUi/home.xhtml" icon="ui-icon-home" />  
                         <p:menuitem value="Contact" url="/faces/kontaktInfo.xhtml" />  
                         <p:menuitem value="Username : #{bruker.userData}. Role: #{bruker.rolle} " url="/faces/userEdit/userEdit.xhtml" />      
                         <p:menuitem value="Logout" action="#{bruker.logout()}" icon="ui-icon-extlink" style="right: 100%" />
                     </p:menubar>
+                    <p:graphicImage value="/resources/images/hclogo.jpg" style="margin-top: -50px"/>
                 </h:form>
             </div>
         </ui:composition>
