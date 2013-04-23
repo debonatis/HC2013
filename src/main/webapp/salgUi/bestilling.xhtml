@@ -16,161 +16,185 @@
 
         </ui:define>
         <ui:define name="body">
-            <h:form>  
-                <p:growl id="growl" sticky="true" showDetail="true"/> 
-                <p:wizard widgetVar="wiz"  
-                          flowListener="#{bestilling.onFlowProcess}" >
-                    <p:tab id="personal" title="Pick dish/es">  
 
-                        <p:panel header="PickList" style="size: auto">                         
+            <h:form> 
+                <p:tabView id="tabView" dynamic="true" cache="true">
+                    <p:tab id="tba1" title="Order"> <p:growl id="growl" sticky="true" showDetail="true"/> 
+                        <p:wizard widgetVar="wiz"  
+                                  flowListener="#{bestilling.onFlowProcess}" >
+                            <p:tab id="personal" title="Pick dish/es">  
 
-                            <p:growl id="msg" showDetail="true" escape="false" /> 
+                                <p:panel header="PickList" style="size: auto">                         
 
-                            <p:pickList  id="pojoPickList" value="#{bestilling.retterPick}" var="rett" effect="bounce"  
-                                        itemValue="#{rett}" itemLabel="#{rett.navn}" converter="#{retterControllerConverter}"  
-                                        showSourceControls="true" showTargetControls="true" showCheckbox="true"  
-                                        showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" >                                 
+                                    <p:growl id="msg" showDetail="true" escape="false" /> 
 
-                                <f:facet name="sourceCaption">Available</f:facet>  
-                                <f:facet name="targetCaption">Picked</f:facet>  
+                                    <p:pickList  id="pojoPickList" value="#{bestilling.retterPick}" var="rett" effect="bounce"  
+                                                 itemValue="#{rett}" itemLabel="#{rett.navn}" converter="#{retterControllerConverter}"  
+                                                 showSourceControls="true" showTargetControls="true" showCheckbox="true"  
+                                                 showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" >                                 
 
-                                <p:ajax event="transfer" listener="#{bestilling.onTransfer}" update="msg" />
+                                        <f:facet name="sourceCaption">Available</f:facet>  
+                                        <f:facet name="targetCaption">Picked</f:facet>  
 
-                                <p:column style="width:25%">  
-                                    <p:graphicImage value="/resources/images/#{rett.fil}" width="50" height="60" />  
-                                </p:column>  
+                                        <p:ajax event="transfer" listener="#{bestilling.onTransfer}" update="msg" />
 
-                                <p:column style="width:50%;">  
-                                    #{rett.navn}  
-                                </p:column>  
-                                
-                                 <p:column style="width:25%;">  
-                                   #{rett.pris}kr 
-                                </p:column>  
+                                        <p:column style="width:25%">  
+                                            <p:graphicImage value="/resources/images/#{rett.fil}" width="50" height="60" />  
+                                        </p:column>  
 
-                            </p:pickList>  
+                                        <p:column style="width:50%;">  
+                                            #{rett.navn}  
+                                        </p:column>  
 
+                                        <p:column style="width:25%;">  
+                                            #{rett.pris}kr 
+                                        </p:column>  
 
-
-                            <p:commandButton id="pojoSubmit" value="Show status"  update="displayRetter" oncomplete="rettDialog.show()" style="margin-top:5px"/>  
+                                    </p:pickList>  
 
 
 
-                            <p:dialog modal="false"  header="Choices" widgetVar="rettDialog" >  
-                                <p:panel id="displayRetter" style="width: 500px; height: 500px">  
-                                    <h:outputText value="Items picked: " style="font-weight:bold"/><br/>  
-                                    <p:dataTable value="#{bestilling.settAntallList}" var="sr">  
-                                        <p:column>  
-                                            #{sr.rett.navn}  
-                                        </p:column> 
-                                        <p:column>  
-                                            #{sr.rett.beskrivelse}  
-                                        </p:column> 
-                                        <p:column>  
-                                            #{sr.rett.ingredienser}  
-                                        </p:column> 
-                                        <p:column>  
-                                            #{sr.rett.kalorier}  
-                                        </p:column> 
-                                    </p:dataTable> 
+                                    <p:commandButton id="pojoSubmit" value="Show status"  update="displayRetter" oncomplete="rettDialog.show()" style="margin-top:5px"/>  
 
+
+
+                                    <p:dialog modal="false"  header="Choices" widgetVar="rettDialog" >  
+                                        <p:panel id="displayRetter" style="width: 500px; height: 500px">  
+                                            <h:outputText value="Items picked: " style="font-weight:bold"/><br/>  
+                                            <p:dataTable value="#{bestilling.settAntallList}" var="sr">  
+                                                <p:column>  
+                                                    #{sr.rett.navn}  
+                                                </p:column> 
+                                                <p:column>  
+                                                    #{sr.rett.beskrivelse}  
+                                                </p:column> 
+                                                <p:column>  
+                                                    #{sr.rett.ingredienser}  
+                                                </p:column> 
+                                                <p:column>  
+                                                    #{sr.rett.kalorier}  
+                                                </p:column> 
+                                            </p:dataTable> 
+
+                                        </p:panel>  
+                                    </p:dialog> 
+                                </p:panel>
+
+
+                            </p:tab>  
+                            <p:tab id="futherInf" title="Futher Information">  
+                                <p:panel header="Order Details">  
+
+                                    <h:messages errorClass="error"/>  
+
+                                    <p:dataTable var="items" value="#{bestilling.settAntallList}">
+
+                                        <p:column headerText="Dish" sortBy="#{items.rett.navn}" filterBy="#{items.rett.navn}">  
+                                            <h:outputText value="#{items.rett.navn}" />  
+                                        </p:column>  
+
+                                        <p:column headerText="Quantity" sortBy="#{items.antall}" filterBy="#{items.antall}">  
+                                            <p:inputText value="#{items.antall}" />  
+                                        </p:column>  
+
+                                        <p:column headerText="Delivery Address" sortBy="#{items.leveringsAdresse}" filterBy="#{items.leveringsAdresse}">  
+                                            <p:inputText value="#{items.leveringsAdresse}" />  
+                                        </p:column>  
+                                        <p:column headerText="Time of delivery" sortBy="#{items.levDato}" filterBy="#{items.levDato}">
+                                            <p:calendar value="#{items.levDato}" pattern="MM/dd/yyyy HH:mm" />  
+                                        </p:column>
+
+
+                                        <p:column headerText="Firm Opptional" sortBy="#{items.selskap}" filterBy="#{items.selskap}">  
+                                            <h:outputText value="Editable: " />  
+                                            <p:selectOneMenu value="#{items.selskap}" effect="fold" editable="true">  
+                                                <f:selectItem itemLabel="Select One" itemValue="" />  
+                                                <f:selectItems value="#{bestilling.bridList}" />  
+                                            </p:selectOneMenu> 
+                                        </p:column>  
+
+
+                                    </p:dataTable>  
                                 </p:panel>  
-                            </p:dialog> 
-                        </p:panel>
+
+                            </p:tab>  
+                            <p:tab id="confirmaton" title="Confirmation">  
+
+                                <p:growl id="confir" showDetail="true" escape="false" /> 
+                                <p:panel header="Order Details">  
+
+                                    <h:messages errorClass="error"/>  
+
+                                    <p:dataTable id="conTable" var="items" value="#{bestilling.settAntallList}">
+
+                                        <p:column headerText="Dish" sortBy="#{items.rett.navn}" filterBy="#{items.rett.navn}">  
+                                            <h:outputText value="#{items.rett.navn}" />  
+                                        </p:column>  
+
+                                        <p:column headerText="Quantity" sortBy="#{items.antall}" filterBy="#{items.antall}">  
+                                            <h:outputText value="#{items.antall}" />  
+                                        </p:column>  
+
+                                        <p:column headerText="Delivery Address" sortBy="#{items.leveringsAdresse}" filterBy="#{items.leveringsAdresse}">  
+                                            <h:outputText value="#{items.leveringsAdresse}" />  
+                                        </p:column>  
+
+                                        <p:column headerText="Firm Opptional" sortBy="#{items.selskap}" filterBy="#{items.selskap}">  
+                                            <h:outputText value="#{items.selskap}" />                                      
+                                        </p:column> 
+                                        <p:column headerText="Delete" > 
+                                            <p:commandButton icon="ui-icon-close" title="remove"
+                                                             actionListener="#{bestilling.removeFromsetAntalle(items)}" update="conTable" />
+
+                                        </p:column> 
 
 
+                                    </p:dataTable>  
+                                    <p:commandButton value="Submit" action="#{bestilling.savePick()}" update="confir"/>   
+                                </p:panel> 
+                                <p:commandButton id="downloadLink" value="Download a overview in PDF format" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop)"   
+                                                 icon="ui-icon-arrowthichk-s">  
+                                    <p:fileDownload value="#{bestilling.file}" />  
+                                </p:commandButton>  
+
+                            </p:tab>  
+
+
+                        </p:wizard>
+                        <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">  
+                            <p:graphicImage value="/design/ajaxloadingbar.gif" />  
+                        </p:dialog>
                     </p:tab>  
-                    <p:tab id="futherInf" title="Futher Information">  
-                        <p:panel header="Order Details">  
-
-                            <h:messages errorClass="error"/>  
-
-                            <p:dataTable var="items" value="#{bestilling.settAntallList}">
-
-                                <p:column headerText="Dish" sortBy="#{items.rett.navn}" filterBy="#{items.rett.navn}">  
-                                    <h:outputText value="#{items.rett.navn}" />  
-                                </p:column>  
-
-                                <p:column headerText="Quantity" sortBy="#{items.antall}" filterBy="#{items.antall}">  
-                                    <p:inputText value="#{items.antall}" />  
-                                </p:column>  
-
-                                <p:column headerText="Delivery Address" sortBy="#{items.leveringsAdresse}" filterBy="#{items.leveringsAdresse}">  
-                                    <p:inputText value="#{items.leveringsAdresse}" />  
-                                </p:column>  
-                                <p:column headerText="Time of delivery" sortBy="#{items.levDato}" filterBy="#{items.levDato}">
-                                    <p:calendar value="#{items.levDato}" pattern="MM/dd/yyyy HH:mm" />  
-                                </p:column>
-                                    
-
-                                <p:column headerText="Firm Opptional" sortBy="#{items.selskap}" filterBy="#{items.selskap}">  
-                                    <h:outputText value="Editable: " />  
-                                    <p:selectOneMenu value="#{items.selskap}" effect="fold" editable="true">  
-                                        <f:selectItem itemLabel="Select One" itemValue="" />  
-                                        <f:selectItems value="#{bestilling.bridList}" />  
-                                    </p:selectOneMenu> 
-                                </p:column>  
-
-
-                            </p:dataTable>  
-                        </p:panel>  
-
-                    </p:tab>  
-                    <p:tab id="confirmaton" title="Confirmation">  
+                    <p:tab id="tba2" title="Placed orders">
 
                         <p:growl id="confir" showDetail="true" escape="false" /> 
-                        <p:panel header="Order Details">  
-
-                            <h:messages errorClass="error"/>  
-
-                            <p:dataTable id="conTable" var="items" value="#{bestilling.settAntallList}">
-
-                                <p:column headerText="Dish" sortBy="#{items.rett.navn}" filterBy="#{items.rett.navn}">  
-                                    <h:outputText value="#{items.rett.navn}" />  
-                                </p:column>  
-
-                                <p:column headerText="Quantity" sortBy="#{items.antall}" filterBy="#{items.antall}">  
-                                    <h:outputText value="#{items.antall}" />  
-                                </p:column>  
-
-                                <p:column headerText="Delivery Address" sortBy="#{items.leveringsAdresse}" filterBy="#{items.leveringsAdresse}">  
-                                    <h:outputText value="#{items.leveringsAdresse}" />  
-                                </p:column>  
-
-                                <p:column headerText="Firm Opptional" sortBy="#{items.selskap}" filterBy="#{items.selskap}">  
-                                    <h:outputText value="#{items.selskap}" />                                      
-                                </p:column> 
-                                <p:column headerText="Delete" > 
-                                    <p:commandButton icon="ui-icon-close" title="remove"
-                                                     actionListener="#{bestilling.removeFromsetAntalle(items)}" update="conTable" />
-
-                                </p:column> 
 
 
-                            </p:dataTable>  
-                            <p:commandButton value="Submit" action="#{bestilling.savePick()}" update="confir"/>   
-                        </p:panel> 
-                        <p:commandButton id="downloadLink" value="Download a overview in PDF format" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop)"   
-                                         icon="ui-icon-arrowthichk-s">  
-                            <p:fileDownload value="#{bestilling.file}" />  
-                        </p:commandButton>  
+                        <h:messages errorClass="error"/>  
 
-                    </p:tab>  
+                        <p:dataTable id="conTable" var="item" value="#{orderOverview.utListe}">
+
+                            <p:column headerText="Dish" sortBy="#{item.rett.navn}" filterBy="#{items.rett.navn}">  
+                                <h:outputText value="#{items.rett.navn}" />  
+                            </p:column>  
+
+                            <p:column headerText="Quantity" sortBy="#{item.ordreTabell.antall}" filterBy="#{item.ordreTabell.antall}">  
+                                <h:outputText value="#{item.ordreTabell.antall}" />  
+                            </p:column>  
+
+                            <p:column headerText="Delivery Address" sortBy="#{item.ordre.levAdresse}" filterBy="#{item.ordre.levAdresse}">  
+                                <h:outputText value="#{item.ordre.levAdresse}" />  
+                            </p:column>  
+
+                            <p:column headerText="Time of delivery" sortBy="#{item.ordreTabell.levDato}" filterBy="#{item.ordreTabell.levDato}">  
+                                <h:outputText value="#{item.ordreTabell.levDato}" />  
+                            </p:column>                               
 
 
-                </p:wizard>
-                <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">  
-                    <p:graphicImage value="/design/ajaxloadingbar.gif" />  
-                </p:dialog>  
+                        </p:dataTable>
+                    </p:tab>
+                </p:tabView>
             </h:form>  
-
-
-
-
-
-
-
-
         </ui:define>
     </ui:composition> 
     <script type="text/javascript">  
@@ -182,6 +206,4 @@
             statusDialog.hide();  
         }  
     </script> 
-
-
 </html>
