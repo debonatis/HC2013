@@ -21,11 +21,11 @@
                 </pm:header>
 
                 <pm:content>
-                    <p:dataList id="ordreList" value="#{oversiktKokk.utListe}" var="item" >
+                    <p:dataList id="ordreList" value="#{oversiktKokk.utListe}" var="item">
                         <p:column> 
                             <pm:field>
                                 <h3>
-                                    <p:commandLink value="DISH: #{item.rett.navn}  Quantity: #{item.ordreTabell.antall}" action="pm:new" update=":seeOrdreForm">
+                                    <p:commandLink value="DISH: #{item.rett.navn}  Quantity: #{item.ordreTabell.antall} Time of Delivery #{item.ordreTabell.levDato}" action="pm:new" update=":seeOrdreForm">
                                         <f:setPropertyActionListener value="#{item}" target="#{oversiktKokk.selected}" />
                                     </p:commandLink>
                                 </h3>
@@ -84,6 +84,11 @@
                         <p:outputLabel value="Lastname: " /><br/>  
                         <p:outputLabel styleClass="outputLabel"  
                                        value="#{oversiktKokk.selected.bruker.etternavn}" />  
+                    </pm:field>
+                    
+                    <pm:field>
+                        <p:outputLabel value="Time of customer delivery: " /><br/>  
+                        <input type="date" value="#{item.ordreTabell.levDato}" /> 
                     </pm:field>
 
                     <p:commandButton value="Save" action="#{oversiktKokk.save()}" update=":listOrdersForm:ordreList" icon="check" />

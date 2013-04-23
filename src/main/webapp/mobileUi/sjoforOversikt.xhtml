@@ -29,7 +29,7 @@
                         <p:column> 
                             <pm:field>
                                 <h3>
-                                    <p:commandLink value="SALENR: #{item.ordreTabell.ordretabellPK.salgsnummer}" action="pm:new" update=":seeOrdreForm">
+                                    <p:commandLink value="Delivery Address: #{item.ordre.levAdresse} Time of Delivery #{item.ordreTabell.levDato}" action="pm:new" update=":seeOrdreForm">
                                         <f:setPropertyActionListener value="#{item}" target="#{sjoforUtkjoring.selected}" />
                                     </p:commandLink>
                                 </h3>
