@@ -222,14 +222,13 @@ public class ProfilBehandler extends BrukerBehandling implements wisard {
                 bostedFacade.create(bosted);
             }
             bruker.setPostnummer(bosted.getPostnummer());
-            brukerFacade.edit(bruker);            
-            selskaperFacade.edit(selskaper);
-           
-                
-                    selskapKunde = new SelskapKunde(bruker.getBrukernavn(), selskaper.getSelskapnr());
-                    selskapKundeFacade.edit(selskapKunde);         
-           
+            brukerFacade.edit(bruker);
+            if (!selskaper.getBrId().equalsIgnoreCase("")) {
+                selskaperFacade.edit(selskaper);
+                selskapKunde = new SelskapKunde(bruker.getBrukernavn(), selskaper.getSelskapnr());
+                selskapKundeFacade.edit(selskapKunde);
 
+            }
 
             JsfUtil.addMessage("Welcome :" + bruker.getFornavn());
             prepareCreate();
@@ -248,12 +247,13 @@ public class ProfilBehandler extends BrukerBehandling implements wisard {
     public void setUser(Object user) {
         this.bruker = (Bruker) user;
     }
+
     private void prepareCreate() {
 
-        bruker = new Bruker();        
-        bosted = new Bosted();        
+        bruker = new Bruker();
+        bosted = new Bosted();
         selskaper = new Selskaper();
-        selskapKunde = new SelskapKunde();        
+        selskapKunde = new SelskapKunde();
         selgere = new Selgere();
 
     }

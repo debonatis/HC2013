@@ -53,7 +53,6 @@ import org.primefaces.model.StreamedContent;
  */
 @ManagedBean
 @ViewScoped
-
 public class Bestilling implements Serializable {
 
     private List<Retter> retter;
@@ -101,8 +100,8 @@ public class Bestilling implements Serializable {
         ordreT = new Ordretabell();
 
     }
-    
-    public void prepareCreate(){
+
+    public void prepareCreate() {
         selskaper = new Selskaper();
         selskapKunde = new SelskapKunde();
         salg = new Salg();
@@ -128,11 +127,18 @@ public class Bestilling implements Serializable {
     public String[] getBridList() {
 
         List<Selskaper> hjelp = selskaperFacade.findAll();
+        List<SelskapKunde> hjelp3 = selskapKuneFacade.findAll();
+        BrukerBehandling brukerInfo = new BrukerBehandling();
 
         String hjelp2[] = new String[hjelp.size() + 1];
         int i = 0;
         for (Selskaper e : hjelp) {
-            hjelp2[i] = e.getBrId();
+            for (SelskapKunde se : hjelp3) {
+                if ((e.getSelskapnr().intValue() == se.getSelskapKundePK().getSelskapnr()) && (se.getSelskapKundePK().getBrukernavn().equalsIgnoreCase(brukerInfo.getUserData()))) {
+                    hjelp2[i] = e.getBrId();
+                }
+            }
+
         }
         return hjelp2;
     }
@@ -179,57 +185,59 @@ public class Bestilling implements Serializable {
 
     private String getSumPris(int v, int b) {
         String hjelp = "";
-        int x = v*b;
-        hjelp = ((Integer)x).toString();
+        int x = v * b;
+        hjelp = ((Integer) x).toString();
         return hjelp;
     }
 
     public void savePick() throws Exception {
         int i = 0;
-        try{
-        
-        if ((selgereFacade.count() == 0) && (kundeFacade.count() == 0)) {
-            return;
-        }
-        List<Selskaper> Lselskaper = selskaperFacade.findAll();
+        try {
 
-        for (OrdreBestilling ob : settAntallList) {
-            salg.setSalgsnummer(getUUID().toString());
-            salg.setSumSalg(getSumPris(ob.getAntall(), ob.getRett().getPris()));
-            salgFacade.create(salg);
-            ordre = new Ordre("simonD", salg.getSalgsnummer());
-            ordre.setLevAdresse(ob.getLeveringsAdresse());
-            ordre.setDatoEndret(new Date(System.currentTimeMillis()));
-            ordre.setBetaltstatus("Pending");
-            for (Selskaper s : Lselskaper) {
-                if (ob.getSelskap().equalsIgnoreCase(s.getBrId())) {
-                    ordre.setSelskapnr(s.getSelskapnr());
-                }
+            if ((selgereFacade.count() == 0) && (kundeFacade.count() == 0)) {
+                return;
             }
-            ordreFacade.create(ordre);            
-            BrukerBehandling brukerInfo = new BrukerBehandling();          
-            ordreT = new Ordretabell("simonD", salg.getSalgsnummer(),brukerInfo.getUserData());
-            ordreT.setStatus("Pending");
-            ordreT.setRettnummer(ob.getRett().getRettnummer());
-            ordreT.setAntall(ob.getAntall());
-            ordreT.setLevDato(ob.getLevDato());
-            ordretabellFacade.create(ordreT);
-            
-            i++;
-            prepareCreate();
+            List<Selskaper> Lselskaper = selskaperFacade.findAll();
+
+            for (OrdreBestilling ob : settAntallList) {
+                salg.setSalgsnummer(getUUID().toString());
+                salg.setSumSalg(getSumPris(ob.getAntall(), ob.getRett().getPris()));
+                salgFacade.create(salg);
+                ordre = new Ordre("simonD", salg.getSalgsnummer());
+                ordre.setLevAdresse(ob.getLeveringsAdresse());
+                ordre.setDatoEndret(new Date(System.currentTimeMillis()));
+                ordre.setBetaltstatus("Pending");
+                if (!ob.getSelskap().equalsIgnoreCase("")) {
+                    for (Selskaper s : Lselskaper) {
+                        if (ob.getSelskap().equalsIgnoreCase(s.getBrId())) {
+                            ordre.setSelskapnr(s.getSelskapnr());
+                        }
+                    }
+                }
+                ordreFacade.create(ordre);
+                BrukerBehandling brukerInfo = new BrukerBehandling();
+                ordreT = new Ordretabell("simonD", salg.getSalgsnummer(), brukerInfo.getUserData());
+                ordreT.setStatus("Pending");
+                ordreT.setRettnummer(ob.getRett().getRettnummer());
+                ordreT.setAntall(ob.getAntall());
+                ordreT.setLevDato(ob.getLevDato());
+                ordretabellFacade.create(ordreT);
+
+                i++;
+                prepareCreate();
+
+            }
+        } catch (Exception e) {
+
+            FacesMessage msg = new FacesMessage();
+            msg.setSeverity(FacesMessage.SEVERITY_INFO);
+            msg.setSummary("Items Not Transferred");
+            msg.setDetail("Maybe som faulty inputs?");
+
+            FacesContext.getCurrentInstance().addMessage(null, msg);
 
         }
-        } catch (Exception e){
-            
-              FacesMessage msg = new FacesMessage();
-        msg.setSeverity(FacesMessage.SEVERITY_INFO);
-        msg.setSummary("Items Not Transferred");
-        msg.setDetail("Maybe som faulty inputs?");
 
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-            
-        }
-         
         selgere = selgereFacade.find("simonD");
         String antall = selgere.getAntSalg();
         int y = Integer.parseInt(antall);
@@ -241,10 +249,10 @@ public class Bestilling implements Serializable {
         msg.setDetail("You have ordered " + settAntallList.size() + "items ");
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
-        
 
 
-        
+
+
     }
 
     public boolean isSkip() {
