@@ -85,10 +85,23 @@
                         <p:outputLabel styleClass="outputLabel"  
                                        value="#{oversiktKokk.selected.bruker.etternavn}" />  
                     </pm:field>
-                    
+
                     <pm:field>
+                        <script>
+                            $(function(){
+                                $('#date').mobiscroll().date({
+                                    invalid: { daysOfWeek: [0, 6], daysOfMonth: ['5/1', '12/24', '12/25'] },
+                                    theme: 'android',
+                                    lang: 'no',
+                                    display: 'bottom',
+                                    mode: 'scroller',
+                                    dateOrder: 'mmD ddyy'
+                                });   
+                                
+                            });
+                        </script>
                         <p:outputLabel value="Time of customer delivery: " /><br/>  
-                        <input type="date" value="#{item.ordreTabell.levDato}" /> 
+                        <input value="#{item.ordreTabell.levDato}" id="date" /> 
                     </pm:field>
 
                     <p:commandButton value="Save" action="#{oversiktKokk.save()}" update=":listOrdersForm:ordreList" icon="check" />
