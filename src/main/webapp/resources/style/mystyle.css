@@ -109,3 +109,12 @@ body {
     padding-left: 25px;
     padding-right: 25px;
 }
+
+.ui-picklist .ui-picklist-list{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    overflow:auto;
+    height:400px;
+    width:400px;
+}

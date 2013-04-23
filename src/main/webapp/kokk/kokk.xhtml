@@ -25,7 +25,7 @@
                         <p:column> 
                             <pm:field>
                                 <h3>
-                                    <p:commandLink value="SALENR: #{item.ordreTabell.ordretabellPK.salgsnummer}  DISH: #{item.rett.navn}  Quantity: #{item.ordreTabell.antall}" action="pm:new" update=":seeOrdreForm">
+                                    <p:commandLink value="DISH: #{item.rett.navn}  Quantity: #{item.ordreTabell.antall}" action="pm:new" update=":seeOrdreForm">
                                         <f:setPropertyActionListener value="#{item}" target="#{oversiktKokk.selected}" />
                                     </p:commandLink>
                                 </h3>

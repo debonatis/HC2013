@@ -6,6 +6,7 @@ package com.smj.hc2013.model;
 
 import java.awt.font.NumericShaper.Range;
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -13,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -31,7 +34,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Ordretabell.findByKundebrukernavn", query = "SELECT o FROM Ordretabell o WHERE o.ordretabellPK.kundebrukernavn = :kundebrukernavn"),
     @NamedQuery(name = "Ordretabell.findByRettnummer", query = "SELECT o FROM Ordretabell o WHERE o.rettnummer = :rettnummer"),
     @NamedQuery(name = "Ordretabell.findByStatus", query = "SELECT o FROM Ordretabell o WHERE o.status = :status"),
-    @NamedQuery(name = "Ordretabell.findByAntall", query = "SELECT o FROM Ordretabell o WHERE o.antall = :antall")
+    @NamedQuery(name = "Ordretabell.findByAntall", query = "SELECT o FROM Ordretabell o WHERE o.antall = :antall"),
+    @NamedQuery(name = "Ordretabell.findLevDato", query = "SELECT o FROM Ordretabell o WHERE o.levDato = :levDato")
 })
 public class Ordretabell implements Serializable {
 
@@ -50,6 +54,9 @@ public class Ordretabell implements Serializable {
     private String status;
     @Column(name = "antall")
     private Integer antall;
+    @Column(name = "levDato")
+    @Temporal(TemporalType.DATE)
+    private Date levDato;
 
     public Ordretabell() {
     }
@@ -75,6 +82,16 @@ public class Ordretabell implements Serializable {
     public void setOrdretabellPK(OrdretabellPK ordretabellPK) {
         this.ordretabellPK = ordretabellPK;
     }
+
+    public Date getLevDato() {
+        return levDato;
+    }
+
+    public void setLevDato(Date levDato) {
+        this.levDato = levDato;
+    }
+    
+    
 
     public Integer getAntall() {
         return antall;

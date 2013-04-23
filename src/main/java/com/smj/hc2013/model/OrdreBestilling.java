@@ -4,6 +4,8 @@
  */
 package com.smj.hc2013.model;
 
+import java.util.Date;
+
 /**
  *
  * @author deb
@@ -12,6 +14,7 @@ public class OrdreBestilling {
 
     private Retter rett;
     private int antall;
+    private Date levDato;
     private String leveringsAdresse;
     private String selskap;
     
@@ -23,6 +26,16 @@ public class OrdreBestilling {
         this.rett = rett;
         this.antall = antall;
     }
+
+    public Date getLevDato() {
+        return levDato;
+    }
+
+    public void setLevDato(Date levDato) {
+        this.levDato = levDato;
+    }
+    
+    
 
     public Retter getRett() {
         return rett;
