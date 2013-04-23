@@ -15,30 +15,19 @@
                 <h:form>
                     <h:panelGrid>
                         <h:body>
-                            <div id="fb-root"></div>
-                            <script>(function(d, s, id) {
-                                    var js, fjs = d.getElementsByTagName(s)[0];
-                                    if (d.getElementById(id))
-                                        return;
-                                    js = d.createElement(s);
-                                    js.id = id;
-                                    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-                                    fjs.parentNode.insertBefore(js, fjs);
-                                }(document, 'script', 'facebook-jssdk'));</script>
+                            
                         </h:body>
                         <td valign="top" width="10">&nbsp;</td>
                         <table width="485" border="0" align="center" cellpadding="0" cellspacing="0" id="main_menu">               
-                            <p:galleria value="#{galleria.images}" var="image" panelWidth="500" panelHeight="500" showCaption="true" autoPlay="off">  
-                                <p:graphicImage value="/resources/images/galleria/#{image.path}" alt="#{image.description}" title="#{image.name}" width="800" height="600"/>  
+                            <p:galleria value="#{galleria.images}" var="image" panelWidth="700" panelHeight="500" showCaption="true" autoPlay="off">  
+                                <p:graphicImage value="/resources/images/galleria/#{image.path}" alt="#{image.description}" title="#{image.name}" width="700" height="500"/>  
                             </p:galleria> 
                         </table>
                     </h:panelGrid>         
                 </h:form>
             </p:panel>
             <br/>
-            <div class="fb-like" data-href="http://www.facebook.com/HealtycateringAs"
-                 data-send="true" data-layout="button_count" data-width="500" data-show-faces="true" data-font="arial">
-            </div>
+            
         </ui:define>
     </ui:composition>
 </html>

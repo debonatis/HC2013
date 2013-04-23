@@ -4,20 +4,22 @@
  */
 package TEST;
 
-import com.smj.hc2013.model.OrdreUtkjoring;
 import com.smj.hc2013.model.Bruker;
 import com.smj.hc2013.model.Ordre;
+import com.smj.hc2013.model.OrdreUtkjoring;
 import com.smj.hc2013.model.Ordretabell;
 import com.smj.hc2013.model.Retter;
 import com.smj.hc2013.session.BrukerFacade;
 import com.smj.hc2013.session.OrdreFacade;
 import com.smj.hc2013.session.OrdretabellFacade;
 import com.smj.hc2013.session.RetterFacade;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.ejb.EJB;
+import javax.sound.midi.Soundbank;
 
 /**
  *
@@ -51,27 +53,15 @@ public class TEST2 {
     private static Ordretabell ordreT = new Ordretabell();
     private static Bruker bruker = new Bruker();
     private static Retter rett = new Retter();
+    private static Date mick;
 
 
     public static void main(String[] args) {
-        String PK = "[13]jdsad.fr.fr.fr.2013";
-        Pattern p = Pattern.compile("-?\\d+");
-        Matcher m = p.matcher(PK);
-        for (int n; m.find();) {
-            n = Integer.parseInt(m.group());
-            System.out.println(n);
-
-
-        }
-        UUID lol = UUID.randomUUID();
-        System.out.println(lol.toString());
-        System.out.println(lol);
+       
+        mick = new Date(System.currentTimeMillis());
+        System.out.println(mick.getSeconds());
         
-        init2();
-        
-        for(OrdreUtkjoring Ou: utListeSt){
-            System.out.println(Ou.getBruker().getFornavn());
-        }
+       
             
        
     }
