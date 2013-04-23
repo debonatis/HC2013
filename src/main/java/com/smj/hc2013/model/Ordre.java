@@ -40,13 +40,13 @@ public class Ordre implements Serializable {
     @EmbeddedId
     protected OrdrePK ordrePK;
     @Column(name = "datoEndret")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date datoEndret;
     @Column(name = "datoLevert")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date datoLevert;
     @Column(name = "bekreftet")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date bekreftet;
     @Size(max = 10)
     @Column(name = "betaltstatus")

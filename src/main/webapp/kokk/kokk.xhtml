@@ -94,8 +94,9 @@
 
 
                         <p:outputLabel value="Time of customer delivery: " /><br/>  
-                       <p:outputLabel styleClass="outputLabel"  
-                                      value="#{oversiktKokk.selected.ordreTabell.levDato}" />
+                        <p:outputLabel styleClass="outputLabel"  
+                                       value="#{oversiktKokk.selected.ordreTabell.levDato}" > <f:convertDateTime pattern="MM/dd/yyyy hh:mm a" />
+                        </p:outputLabel>
                     </pm:field>
 
                     <p:commandButton value="Save" action="#{oversiktKokk.save()}" update=":listOrdersForm:ordreList" icon="check" />

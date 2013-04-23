@@ -55,7 +55,7 @@ public class Ordretabell implements Serializable {
     @Column(name = "antall")
     private Integer antall;
     @Column(name = "levDato")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date levDato;
 
     public Ordretabell() {
