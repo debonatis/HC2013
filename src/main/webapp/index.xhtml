@@ -8,7 +8,7 @@
 
     <ui:composition template="/template/indexTemplate.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListBrukerTitle}"/>
+           
         </ui:define>
         <ui:define name="body">
             <p:panel header="HealtyCatering AS">  
@@ -28,7 +28,7 @@
                         </h:body>
                         <td valign="top" width="10">&nbsp;</td>
                         <table width="485" border="0" align="center" cellpadding="0" cellspacing="0" id="main_menu">               
-                            <p:galleria value="#{galleria.images}" var="image" panelWidth="800" panelHeight="600" showCaption="true" autoPlay="off">  
+                            <p:galleria value="#{galleria.images}" var="image" panelWidth="500" panelHeight="500" showCaption="true" autoPlay="off">  
                                 <p:graphicImage value="/resources/images/galleria/#{image.path}" alt="#{image.description}" title="#{image.name}"  width="800" height="600"/>  
                             </p:galleria> 
                         </table>

@@ -1,91 +1,53 @@
 body {
-    background-color: #388A29;/*#d9e6ed; */
-    background-image: none;
-    background-position: 0% 0%;
-    background-repeat: repeat-x,repeat-y;
-    color: white;
+    background: url(images/back.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     font-family: "Helvetica", "Arial", "Tahoma", "sans-serif";
     font-size: small;
     line-height: 1.3em;
 }
 #sideBar{
-    background-color: transparent;
-    background-image: none;
+   
+   
     background-position: 0% 0%;
-    background-repeat: repeat;
-    margin-bottom: 0px;
-    margin-left: -50px;
-    margin-right: 70px;
-    margin-top: 10px;
-    padding-bottom: 18px;
-    padding-top: 27px;
+      
+
     position: fixed;
-    left: 5%;
+
     width: 15%;
     color: white;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-top: 5%;
+    padding-left: 2%;
 
 }
-#body{
-    background-color: transparent;
-    background-image: none;
-    background-position: 0% 0%;
-    background-repeat: repeat;
-    margin-bottom: 0px;
-    margin-left: 10px;
-    margin-right: 12px;
-    margin-top: 10px;
-    padding-bottom: 18px;
-    padding-left: 25px;
-    padding-top: 27px;
+#body{  
+       
     position: fixed;
     left: 25%;
-    width: 60%;
-    color: white;
-    padding-right: 25px
+    width: auto; 
+    
+
+}
+.ui-panel .ui-panel-content {
+border: 0;
+background: none;
+padding: 0.5em 1em;
+max-height: 500px;
 }
 
-#content{
-    background-color: transparent;
-    background-image: none;
-    background-position: 0% 0%;
-    background-repeat: repeat;
-    margin-bottom: 0px;
-    margin-left: 2px;
-    margin-right: 20px;
-    margin-top: 10px;
-    padding-bottom: 18px;
-    padding-left: 25px;
-    padding-top: 27px;
-    position: fixed;
-    left: 25%;
-    width: 60%;
-    color: white;
-    padding-right: 25px
-}
 
 #padding{
     padding-left: 25px;
 }
-.test{
-    position: fixed;
-    left: 70%; 
-}
+
 .msg{
     position: fixed;
     left: 60%;
     bottom: 25%; 
 }
-.test3{
-    position: fixed;
-    left: 63%;  
-}
-.test4{
-    position: fixed;
-    left: 52%;
-    padding-bottom: 15px;
-}
+
 #close{
     float:right;
     display:block;
@@ -115,6 +77,6 @@ body {
     margin:0;
     padding:0;
     overflow:auto;
-    height:400px;
-    width:400px;
+    height:300px;
+    width:300px;
 }

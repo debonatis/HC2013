@@ -8,6 +8,7 @@ package com.smj.hc2013.jsfContl.util;
  *
  * @author Martin
  */
+import com.smj.hc2013.model.GalleriaDish;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct; 
