@@ -7,6 +7,21 @@
         contentType="text/html"
         renderKitId="PRIMEFACES_MOBILE">
 
+    <head>
+
+
+
+
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+        <!--Includes-->
+        <link href="css/mobiscroll.custom-2.5.2.min.css" rel="stylesheet" type="text/css" />
+        <script src="js/mobiscroll.custom-2.5.2.min.js" type="text/javascript"></script>
+
+
+
+    </head>
+
 
 
     <pm:page id="All" title="Orders">
@@ -87,21 +102,31 @@
                     </pm:field>
 
                     <pm:field>
+
+
+                        <p:outputLabel value="Time of customer delivery: " /><br/>  
+                        <input name="dato" id="dato" class="i-txt" value="#{item.ordreTabell.levDato}" /> 
+                        <a href="#" id="clear" class="btn btn-blue"><span class="btn-i">Clear</span></a>
+                        <a href="#" id="show" class="btn btn-blue"><span class="btn-i">Show</span></a> 
                         <script>
                             $(function(){
-                                $('#date').mobiscroll().date({
+                                $('#dato').mobiscroll().date({
                                     invalid: { daysOfWeek: [0, 6], daysOfMonth: ['5/1', '12/24', '12/25'] },
-                                    theme: 'android',
-                                    lang: 'no',
+                                    theme: 'ios',
                                     display: 'bottom',
                                     mode: 'scroller',
                                     dateOrder: 'mmD ddyy'
-                                });   
-                                
+                                });    
+                                $('#show').click(function(){
+                                    $('#dato').mobiscroll('show'); 
+                                    return false;
+                                });
+                                $('#clear').click(function () {
+                                    $('#dato').val('');
+                                    return false;
+                                });
                             });
                         </script>
-                        <p:outputLabel value="Time of customer delivery: " /><br/>  
-                        <input value="#{item.ordreTabell.levDato}" id="date" /> 
                     </pm:field>
 
                     <p:commandButton value="Save" action="#{oversiktKokk.save()}" update=":listOrdersForm:ordreList" icon="check" />
