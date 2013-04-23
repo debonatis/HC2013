@@ -129,18 +129,23 @@ public class Bestilling implements Serializable {
         List<Selskaper> hjelp = selskaperFacade.findAll();
         List<SelskapKunde> hjelp3 = selskapKuneFacade.findAll();
         BrukerBehandling brukerInfo = new BrukerBehandling();
+        List<String> hjelp2 = new ArrayList<>();
 
-        String hjelp2[] = new String[hjelp.size() + 1];
-        int i = 0;
+        
+        
         for (Selskaper e : hjelp) {
             for (SelskapKunde se : hjelp3) {
                 if ((e.getSelskapnr().intValue() == se.getSelskapKundePK().getSelskapnr()) && (se.getSelskapKundePK().getBrukernavn().equalsIgnoreCase(brukerInfo.getUserData()))) {
-                    hjelp2[i] = e.getBrId();
+                    hjelp2.add(e.getBrId());
                 }
             }
-
         }
-        return hjelp2;
+
+            
+          String hjelp4[] = new String[hjelp2.size() + 1];
+          hjelp2.toArray(hjelp4);
+        
+        return hjelp4;
     }
 
     public void setSettAntallList(List<OrdreBestilling> settAntallList) {
@@ -207,7 +212,7 @@ public class Bestilling implements Serializable {
                 ordre.setLevAdresse(ob.getLeveringsAdresse());
                 ordre.setDatoEndret(new Date(System.currentTimeMillis()));
                 ordre.setBetaltstatus("Pending");
-                if (!ob.getSelskap().equalsIgnoreCase("")) {
+                if (!ob.getSelskap().isEmpty()) {
                     for (Selskaper s : Lselskaper) {
                         if (ob.getSelskap().equalsIgnoreCase(s.getBrId())) {
                             ordre.setSelskapnr(s.getSelskapnr());
