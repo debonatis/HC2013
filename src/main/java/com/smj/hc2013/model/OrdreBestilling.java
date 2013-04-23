@@ -16,7 +16,7 @@ public class OrdreBestilling {
     private int antall;
     private Date levDato;
     private String leveringsAdresse;
-    private String selskap;
+    private String selskap = "";
     
 
     public OrdreBestilling() {
