@@ -125,7 +125,9 @@
 
                                     <h:messages errorClass="error"/>  
 
-                                    <p:dataTable id="conTable" var="items" value="#{bestilling.settAntallList}">
+                                    <p:dataTable id="conTable" var="items" value="#{bestilling.settAntallList}" paginator="true" rows="10"  
+                                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                                 rowsPerPageTemplate="5,10,15">  
 
                                         <p:column headerText="Dish" sortBy="#{items.rett.navn}" filterBy="#{items.rett.navn}">  
                                             <h:outputText value="#{items.rett.navn}" />  
@@ -165,14 +167,16 @@
                             <p:graphicImage value="/design/ajaxloadingbar.gif" />  
                         </p:dialog>
                     </p:tab>  
-                    <p:tab id="tba2" title="Placed orders">
+                    <p:tab id="tba2" title="Placed orders waiting to be prosessed">
 
                         <p:growl id="growl6" showDetail="true" escape="false" /> 
 
 
                         <h:messages errorClass="error"/>  
 
-                        <p:dataTable id="lolTable" var="item" value="#{orderOverview.utListe}">
+                        <p:dataTable id="lolTable" var="item" value="#{orderOverview.utListe}" paginator="true" rows="10"  
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowsPerPageTemplate="5,10,15">  
 
                             <p:column headerText="Dish" sortBy="#{item.rett.navn}" filterBy="#{items.rett.navn}">  
                                 <h:outputText value="#{item.rett.navn}" />  
@@ -188,7 +192,8 @@
 
                             <p:column headerText="Time of delivery" sortBy="#{item.ordreTabell.levDato}" filterBy="#{item.ordreTabell.levDato}">  
                                 <h:outputText value="#{item.ordreTabell.levDato}" />  
-                            </p:column>   
+                            </p:column>                       
+
 
 
 

@@ -8,17 +8,58 @@ package com.smj.hc2013.jsfContCust;
  *
  * @author deb
  */
+import com.smj.hc2013.model.Bruker;
+import com.smj.hc2013.model.Ordre;
+import com.smj.hc2013.model.OrdreUtkjoring;
+import com.smj.hc2013.model.Ordretabell;
+import com.smj.hc2013.model.Retter;
+import com.smj.hc2013.model.Utkjoring;
+import com.smj.hc2013.session.BrukerFacade;
+import com.smj.hc2013.session.OrdreFacade;
+import com.smj.hc2013.session.OrdretabellFacade;
+import com.smj.hc2013.session.RetterFacade;
+import com.smj.hc2013.session.UtkjoringFacade;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.event.ItemSelectEvent;
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 
+@ManagedBean
+@RequestScoped
 public class Charts implements Serializable {
 
     private CartesianChartModel linearModelYear;
+    private List<OrdreUtkjoring> utListe = new ArrayList<>();
+    private List<Retter> retterL;
+    private List<Ordre> ordreL;
+    private List<Ordretabell> ordreTabellL;
+    private List<Bruker> brukerL;
+    private List<Utkjoring> utkjoringL;
+    @EJB
+    private RetterFacade retterFacade;
+    @EJB
+    private OrdretabellFacade ordretabellFacade;
+    @EJB
+    private OrdreFacade ordreFacade;
+    @EJB
+    private BrukerFacade brukerFacade;
+    @EJB
+    private UtkjoringFacade utkjoringFacade;
+    private Ordre ordre = new Ordre();
+    private Ordretabell ordreT = new Ordretabell();
+    private Bruker bruker = new Bruker();
+    private Retter rett = new Retter();
+    private Utkjoring utkjoring = new Utkjoring();
 
     public Charts() {
         createLinearModelYear();
-
     }
 
     public CartesianChartModel getLinearModel() {
@@ -28,26 +69,33 @@ public class Charts implements Serializable {
     private void createLinearModelYear() {
         linearModelYear = new CartesianChartModel();
 
-        LineChartSeries series1 = new LineChartSeries();
-        series1.setLabel("Series 1");
+        LineChartSeries boys = new LineChartSeries();
+        boys.setLabel("boys");
 
-        series1.set(3, 1);
-        series1.set(2, 1);
-        series1.set(3, 3);
-        series1.set(4, 6);
-        series1.set(5, 8);
+        boys.set(2004, 120);
+        boys.set(2005, 100);
+        boys.set(2006, 44);
+        boys.set(2007, 150);
+        boys.set(2008, 25);
 
-        LineChartSeries series2 = new LineChartSeries();
-        series2.setLabel("Series 2");
-        series2.setMarkerStyle("diamond");
+        LineChartSeries girls = new LineChartSeries();
+        girls.setLabel("Girls");
+        girls.setMarkerStyle("diamond");
 
-        series2.set(1, 6);
-        series2.set(2, 3);
-        series2.set(3, 2);
-        series2.set(4, 7);
-        series2.set(5, 9);
+        girls.set(2004, 52);
+        girls.set(2005, 60);
+        girls.set(2006, 110);
+        girls.set(2007, 135);
+        girls.set(2008, 120);
 
-        linearModelYear.addSeries(series1);
-        linearModelYear.addSeries(series2);
+        linearModelYear.addSeries(boys);
+        linearModelYear.addSeries(girls);
+    }
+
+    public void itemSelect(ItemSelectEvent event) {
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Item selected",
+                "Item Index: " + event.getItemIndex() + ", Series Index:" + event.getSeriesIndex());
+
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 }
