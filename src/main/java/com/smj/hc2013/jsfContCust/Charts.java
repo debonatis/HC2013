@@ -71,6 +71,8 @@ public class Charts implements Serializable {
 
         LineChartSeries boys = new LineChartSeries();
         boys.setLabel("boys");
+        
+        
 
         boys.set(2004, 120);
         boys.set(2005, 100);

@@ -173,6 +173,8 @@
 
 
                         <h:messages errorClass="error"/>  
+                        
+                        <p:poll interval="3" update="lolTable" />  
 
                         <p:dataTable id="lolTable" var="item" value="#{orderOverview.utListe}" paginator="true" rows="10"  
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
