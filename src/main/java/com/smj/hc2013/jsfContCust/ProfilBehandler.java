@@ -223,17 +223,17 @@ public class ProfilBehandler extends BrukerBehandling implements wisard {
             }
             bruker.setPostnummer(bosted.getPostnummer());
             brukerFacade.edit(bruker);
-            if (!selskaper.getBrId().equalsIgnoreCase("")) {
+            if (!(selskaper.getBrId() == null)) {
                 selskaperFacade.edit(selskaper);
                 selskapKunde = new SelskapKunde(bruker.getBrukernavn(), selskaper.getSelskapnr());
                 selskapKundeFacade.edit(selskapKunde);
 
             }
 
-            JsfUtil.addMessage("Welcome :" + bruker.getFornavn());
+            JsfUtil.addMessage("You have successfully edited your profile, " + bruker.getFornavn());
             prepareCreate();
         } catch (Exception e) {
-            JsfUtil.addMessage(ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured") + "This could be double registration or faulty registration inputs! Check your inputs");
+            JsfUtil.addMessage(ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured") + "This could be due to double registration or faulty registration inputs! Check your inputs");
 
         }
     }
