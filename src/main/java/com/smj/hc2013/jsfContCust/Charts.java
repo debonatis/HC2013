@@ -69,12 +69,7 @@ public class Charts implements Serializable {
     private Date fra;
     private Date tilU;
     private Date fraU;
-
-    public Charts() {
-        createLinearModel1();
-        createLinearModel2();
-
-    }
+   
 
     public Date getTilU() {
         return tilU;
@@ -92,8 +87,8 @@ public class Charts implements Serializable {
         this.fraU = fraU;
     }
 
-    @PostConstruct
-    public void init() {
+   @PostConstruct
+    private void init() {
         fra = new Date(2000, 1, 1);
         til = new Date(System.currentTimeMillis());
     }
@@ -114,9 +109,25 @@ public class Charts implements Serializable {
         this.fra = fra;
     }
 
-    public CartesianChartModel getLinearModel() {
+    public CartesianChartModel getLinearModelAll() {
+        createLinearModel1();
         return linearModelAll;
     }
+
+    public void setLinearModelAll(CartesianChartModel linearModelAll) {
+        this.linearModelAll = linearModelAll;
+    }
+
+    public CartesianChartModel getChartModelUser() {
+        createLinearModel2();
+        return chartModelUser;
+    }
+
+    public void setChartModelUser(CartesianChartModel chartModelUser) {
+        this.chartModelUser = chartModelUser;
+    }
+
+    
 
     private void createLinearModel1() {
         linearModelAll = new CartesianChartModel();
