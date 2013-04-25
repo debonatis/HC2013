@@ -209,7 +209,7 @@ public class Bestilling implements Serializable {
                 salg.setSalgsnummer(getUUID().toString());
                 salg.setSumSalg(getSumPris(ob.getAntall(), ob.getRett().getPris()));
                 salgFacade.create(salg);
-                ordre = new Ordre("simonD", salg.getSalgsnummer());
+                ordre = new Ordre("web", salg.getSalgsnummer());
                 ordre.setLevAdresse(ob.getLeveringsAdresse());
                 ordre.setDatoEndret(new Date(System.currentTimeMillis()));
                 ordre.setBetaltstatus("Pending");
@@ -222,7 +222,7 @@ public class Bestilling implements Serializable {
                 }
                 ordreFacade.create(ordre);
                 BrukerBehandling brukerInfo = new BrukerBehandling();
-                ordreT = new Ordretabell("simonD", salg.getSalgsnummer(), brukerInfo.getUserData());
+                ordreT = new Ordretabell("web", salg.getSalgsnummer(), brukerInfo.getUserData());
                 ordreT.setStatus("Pending");
                 ordreT.setRettnummer(ob.getRett().getRettnummer());
                 ordreT.setAntall(ob.getAntall());
@@ -244,7 +244,7 @@ public class Bestilling implements Serializable {
 
         }
 
-        selgere = selgereFacade.find("simonD");
+        selgere = selgereFacade.find("web");
         String antall = selgere.getAntSalg();
         int y = Integer.parseInt(antall);
         selgere.setAntSalgInt(y + i);
