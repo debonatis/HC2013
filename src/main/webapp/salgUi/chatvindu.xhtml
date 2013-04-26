@@ -10,58 +10,64 @@ and open the template in the editor.
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <p:growl id="growl" showDetail="true" />  
+    <ui:composition template="/template/tomTemplate.xhtml">
+        
+        <ui:define name="body">
 
-    <h:form id="form">  
+            <p:growl id="growl" showDetail="true" />  
 
-        <p:fieldset id="container" legend="HC chat" toggleable="true">  
+            <h:form id="form">  
 
-            <h:panelGroup rendered="#{chat.loggedIn}">  
+                <p:fieldset id="container" legend="HC chat" toggleable="true">  
 
-                <p:panelGrid columns="2" columnClasses="publicColumn,usersColumn" style="width:100%">  
-                    <p:outputPanel id="public" layout="block" styleClass="ui-corner-all ui-widget-content chatlogs"/>  
+                    <h:panelGroup rendered="#{chat.loggedIn}">  
 
-                    <p:dataList id="users" var="user" value="#{chatUsers.users}" styleClass="usersList">  
-                        <f:facet name="header">  
-                            Users  
-                        </f:facet> 
-                       
+                        <p:panelGrid columns="2" columnClasses="publicColumn,usersColumn" style="width:100%">  
+                            <p:outputPanel id="public" layout="block" styleClass="ui-corner-all ui-widget-content chatlogs"/>  
 
-                        <p:commandButton title="Chat" icon="ui-icon-comment" oncomplete="pChat.show()" update=":form:privateChatContainer">  
-                            <f:setPropertyActionListener value="#{user}" target="#{chat.privateUser}" />  
-                        </p:commandButton>  
-                          #{user.brukernavn}
-                    </p:dataList>  
-                </p:panelGrid>  
+                            <p:dataList id="users" var="user" value="#{chatUsers.users}" styleClass="usersList">  
+                                <f:facet name="header">  
+                                    Users  
+                                </f:facet> 
 
-                <p:separator />  
 
-                <p:inputText value="#{chat.globalMessage}" styleClass="messageInput" />  
-                <p:spacer width="5" />  
-                <p:commandButton value="Send" actionListener="#{chat.sendGlobal}" oncomplete="$('.messageInput').val('').focus()"/>  
-                <p:spacer width="5" />  
-                <p:commandButton value="Disconnect" actionListener="#{chat.disconnect}" global="false" update="container" />  
-            </h:panelGroup>  
+                                <p:commandButton title="Chat" icon="ui-icon-comment" oncomplete="pChat.show()" update=":form:privateChatContainer">  
+                                    <f:setPropertyActionListener value="#{user}" target="#{chat.privateUser}" />  
+                                </p:commandButton>  
+                                #{user.brukernavn}
+                            </p:dataList>  
+                        </p:panelGrid>  
 
-            <h:panelGroup rendered="#{not chat.loggedIn}" > 
-                
-                <p:commandButton value="Login" actionListener="#{chat.login}" update="container"   
-                                 icon="ui-icon-person" />  
-            </h:panelGroup>  
+                        <p:separator />  
 
-        </p:fieldset>  
+                        <p:inputText value="#{chat.globalMessage}" styleClass="messageInput" />  
+                        <p:spacer width="5" />  
+                        <p:commandButton value="Send" actionListener="#{chat.sendGlobal}" oncomplete="$('.messageInput').val('').focus()"/>  
+                        <p:spacer width="5" />  
+                        <p:commandButton value="Disconnect" actionListener="#{chat.disconnect}" global="false" update="container" />  
+                    </h:panelGroup>  
 
-        <p:dialog widgetVar="pChat" header="Private Chat" modal="true" showEffect="fade" hideEffect="fade">  
-            <h:panelGrid id="privateChatContainer" columns="2" columnClasses="vtop,vtop">  
-                <p:outputLabel for="pChatInput" value="To: #{chat.privateUser}" />  
-                <p:inputTextarea id="pChatInput" value="#{chat.privateMessage}" rows="5" cols="30" />  
+                    <h:panelGroup rendered="#{not chat.loggedIn}" > 
 
-                <p:spacer />  
-                <p:commandButton value="Send" actionListener="#{chat.sendPrivate}" oncomplete="pChat.hide()" />  
-            </h:panelGrid>  
-        </p:dialog>  
+                        <p:commandButton value="Login" actionListener="#{chat.login}" update="container"   
+                                         icon="ui-icon-person" />  
+                    </h:panelGroup>  
 
-    </h:form>  
+                </p:fieldset>  
+
+                <p:dialog widgetVar="pChat" header="Private Chat" modal="true" showEffect="fade" hideEffect="fade">  
+                    <h:panelGrid id="privateChatContainer" columns="2" columnClasses="vtop,vtop">  
+                        <p:outputLabel for="pChatInput" value="To: #{chat.privateUser}" />  
+                        <p:inputTextarea id="pChatInput" value="#{chat.privateMessage}" rows="5" cols="30" />  
+
+                        <p:spacer />  
+                        <p:commandButton value="Send" actionListener="#{chat.sendPrivate}" oncomplete="pChat.hide()" />  
+                    </h:panelGrid>  
+                </p:dialog>  
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
 
     <p:socket onMessage="handleMessage" channel="/HC" autoConnect="false" widgetVar="subscriber"/>  
 

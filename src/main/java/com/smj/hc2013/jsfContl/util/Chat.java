@@ -4,13 +4,13 @@
  */
 package com.smj.hc2013.jsfContl.util;
 
+import com.smj.hc2013.jsfContCust.BrukerBehandling;
 import com.smj.hc2013.model.Bruker;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
+import javax.inject.Inject;
 import org.primefaces.context.RequestContext;
 import org.primefaces.push.PushContext;
 import org.primefaces.push.PushContextFactory;
@@ -31,6 +31,7 @@ public class Chat {
     private boolean loggedIn;
     private String privateUser;
     private final static String CHANNEL = "/HC";
+    @Inject BrukerBehandling bb;
 
     public void setUsers(List<Bruker> users) {
         this.users = users;
@@ -85,17 +86,16 @@ public class Chat {
         pushContext.push(CHANNEL + privateUser, "[PM] " + username + ": " + privateMessage);
         privateMessage = null;
     }
-
-    public void login() {
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        Object forsporrselobject = context.getRequest();
-        HttpServletRequest foresporrsel = (HttpServletRequest) forsporrselobject;
+    @PostConstruct
+    public void login() {       
+        
         RequestContext requestContext = RequestContext.getCurrentInstance();
-        users.add(new Bruker(foresporrsel.getRemoteUser()));
-        username = foresporrsel.getRemoteUser();
+        users.add(new Bruker(bb.getUserData()));
+        username = bb.getUserData();
         pushContext.push(CHANNEL, username + " joined the channel.");
         requestContext.execute("subscriber.connect('/" + username + "')");
         loggedIn = true;
+        
 
     }
 
