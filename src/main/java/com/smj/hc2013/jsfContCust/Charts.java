@@ -27,8 +27,11 @@ import java.util.Map;
 import java.util.TreeMap;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.event.ItemSelectEvent;
 import org.primefaces.model.chart.BubbleChartModel;
 import org.primefaces.model.chart.BubbleChartSeries;
 import org.primefaces.model.chart.CartesianChartModel;
@@ -247,6 +250,12 @@ public class Charts implements Serializable {
         }
 
     }
+     public void itemSelect(ItemSelectEvent event) {  
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Item selected",  
+                        "Item Index: " + event.getItemIndex() + ", Series Index:" + event.getSeriesIndex());  
+  
+        FacesContext.getCurrentInstance().addMessage(null, msg);  
+    }  
 
     private String fixDate(Date e) throws ParseException {
         DateFormat df = new SimpleDateFormat("yyyy/MM/dd");

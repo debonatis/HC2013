@@ -19,11 +19,12 @@ and open the template in the editor.
     <p:growl id="growl" showDetail="true" />  
     <p:barChart value="#{charts.users}" legendPosition="ne"  id="chart4" zoom="true"
                 title="Total Sales per Customer/Frim" style="width:1100px;height:300px" > 
+        <p:ajax event="itemSelect" listener="#{charts.itemSelect}" update="growl" />
 
     </p:barChart> 
     <p:barChart value="#{charts.currentUser}" legendPosition="ne"  id="chart1" stacked="true" zoom="true"
                 title="Current employee sale/purchase chart" style="width:1100px;height:300px">
-
+<p:ajax event="itemSelect" listener="#{charts.itemSelect}" update="growl" />
 
     </p:barChart>
     <p:commandButton update="chart1 chart4" actionListener="#{charts.init()}" value="Refresh" icon="ui-icon-refresh"/>

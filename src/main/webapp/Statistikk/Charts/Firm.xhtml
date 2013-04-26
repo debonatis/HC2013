@@ -10,22 +10,27 @@ and open the template in the editor.
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:form>
-                    <p:outputLabel value="From:"  for="inlineCal"/>  
-                    <p:calendar value="#{charts.fra}" pattern="MM/dd/yyyy HH:mm" id="inlineCal"/>  
+        <h:panelGrid columns="4">
 
-                    <p:outputLabel value="To:"  for="inlineCal2"/>  
-                    <p:calendar value="#{charts.til}" pattern="MM/dd/yyyy HH:mm" id="inlineCal2" />
+        <p:outputLabel value="From:"  for="inlineCal"/>  
+        <p:calendar value="#{charts.fra}" pattern="MM/dd/yyyy HH:mm" id="inlineCal"/> 
 
-    <p:growl id="growl3" showDetail="true" />  
-    <p:lineChart value="#{charts.chartModelUser}" legendPosition="ne"  id="chart2" zoom="true"
-                 title="All Salesman sales per Day (kr)" style="width:1100px;height:300px" > 
+        <p:outputLabel value="To:"  for="inlineCal2"/>  
+        <p:calendar value="#{charts.til}" pattern="MM/dd/yyyy HH:mm" id="inlineCal2" />
+        </h:panelGrid>
 
+        <p:growl id="growl3" showDetail="true" />  
+        <p:lineChart value="#{charts.chartModelUser}" legendPosition="ne"  id="chart2" zoom="true"
+                     title="All Salesman sales per Day (kr)" style="width:1100px;height:300px" > 
 
-    </p:lineChart> 
-    <p:lineChart value="#{charts.linearModelAll}" legendPosition="ne"  id="chart3"
-                 title="Total sale per time unit (kr)" style="width:1100px;height:300px" zoom="true" >   
+            <p:ajax event="itemSelect" listener="#{charts.itemSelect}" update="growl3" />
+        </p:lineChart> 
+        <p:lineChart value="#{charts.linearModelAll}" legendPosition="ne"  id="chart3"
+                     title="Total sale per time unit (kr)" style="width:1100px;height:300px" zoom="true" > 
+            <p:ajax event="itemSelect" listener="#{charts.itemSelect}" update="growl3" />
 
-    </p:lineChart> 
-    <p:commandButton update="chart2 chart3" actionListener="#{charts.init()}" value="Refresh" icon="ui-icon-refresh"/>
-</h:form>
+        </p:lineChart> 
+        <p:commandButton update="chart2 chart3" actionListener="#{charts.init()}" value="Refresh" icon="ui-icon-refresh"/>
+
+    </h:form>
 </html>

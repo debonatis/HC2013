@@ -22,7 +22,7 @@ and open the template in the editor.
 
     <p:barChart value="#{charts.web}" legendPosition="ne"  id="chart5"
                 title="Total sales using page: " style="width:1100px;height:300px" zoom="true" >  
-
+<p:ajax event="itemSelect" listener="#{charts.itemSelect}" update="growl2" />
     </p:barChart> 
 
     <p:bubbleChart id="chart6" value="#{charts.bubbleModel}" xaxisLabel="Price" yaxisLabel="Sales"  

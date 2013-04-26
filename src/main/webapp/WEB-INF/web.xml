@@ -16,7 +16,10 @@
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>    
+  <listener>
+    <listener-class>com.smj.hc2013.jsfContl.util.BrukerTellerHelp</listener-class>
+  </listener>
     <session-config>
         <session-timeout>
             30
