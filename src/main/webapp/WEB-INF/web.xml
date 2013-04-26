@@ -16,10 +16,18 @@
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
-    </servlet-mapping>    
-  <listener>
-    <listener-class>com.smj.hc2013.jsfContl.util.BrukerTellerHelp</listener-class>
-  </listener>
+    </servlet-mapping> 
+    <servlet>
+        <servlet-name>Push Servlet</servlet-name>
+        <servlet-class>org.primefaces.push.PushServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Push Servlet</servlet-name>
+        <url-pattern>/primepush/*</url-pattern>
+    </servlet-mapping>   
+    <listener>
+        <listener-class>com.smj.hc2013.jsfContl.util.BrukerTellerHelp</listener-class>
+    </listener>
     <session-config>
         <session-timeout>
             30
@@ -59,7 +67,7 @@
             <url-pattern>/salg/*</url-pattern>
             <url-pattern>/faces/salgUi/*</url-pattern>
             <url-pattern>/salgUi/*</url-pattern>
-             <url-pattern>/faces/kokk/*</url-pattern>
+            <url-pattern>/faces/kokk/*</url-pattern>
             <url-pattern>/kokk/*</url-pattern>
             <url-pattern>/faces/mobileUi/*</url-pattern>
             <url-pattern>/mobileUi/*</url-pattern>
