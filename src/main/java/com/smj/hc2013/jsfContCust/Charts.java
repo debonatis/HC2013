@@ -55,7 +55,7 @@ public class Charts implements Serializable {
     
 
     public CartesianChartModel getWeb() {
-        createWebSales();
+        
         return web;
     }
 
@@ -65,7 +65,7 @@ public class Charts implements Serializable {
     
 
     public CartesianChartModel getCurrentUser() {
-        createCurrentUser();
+        
         return currentUser;
     }
 
@@ -74,7 +74,7 @@ public class Charts implements Serializable {
     }
 
     public CartesianChartModel getUsers() {
-        createUsers();
+       
         return users;
     }
 
@@ -86,6 +86,11 @@ public class Charts implements Serializable {
     public void init() { 
          t = ordretabellFacade.findAll();
          t = Collections.synchronizedList(t);
+         createCurrentUser();
+         createLinearModel1();
+         createLinearModel2();
+         createUsers();
+         createWebSales();
     }
 
     public Date getTil() {
@@ -105,7 +110,7 @@ public class Charts implements Serializable {
     }
 
     public CartesianChartModel getLinearModelAll() {
-        createLinearModel1();
+        
         return linearModelAll;
     }
 
@@ -114,7 +119,7 @@ public class Charts implements Serializable {
     }
 
     public CartesianChartModel getChartModelUser() {
-        createLinearModel2();
+       
         return chartModelUser;
     }
 
