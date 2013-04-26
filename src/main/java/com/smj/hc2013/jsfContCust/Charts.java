@@ -110,7 +110,7 @@ public class Charts implements Serializable {
         salg.setLabel("Sum slag per dato");
         for (Ordretabell ot : t) {
             if (!(ot.getLevDato() == null)) {
-                if (ot.getLevDato().after(fra) && ot.getLevDato().before(til) && ot.getStatus().equalsIgnoreCase("ok") && ot.getOrdretabellPK().getSelgerbrukernavn().equalsIgnoreCase(brukersjekk.getUserData())) {
+                if (ot.getLevDato().after(fra) && ot.getLevDato().before(til) && ot.getOrdretabellPK().getSelgerbrukernavn().equalsIgnoreCase(brukersjekk.getUserData())) {
                     salg.set(ot.getLevDato(), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
                 }
             }
@@ -149,7 +149,7 @@ public class Charts implements Serializable {
             salg.setLabel("Sales on " + b.getBrukernavn());
             for (Ordretabell ot : t) {
                 if (!(ot.getLevDato() == null)) {
-                    if (ot.getLevDato().after(fra) && ot.getLevDato().before(til) && ot.getStatus().equalsIgnoreCase("ok") && ot.getOrdretabellPK().getSelgerbrukernavn().equalsIgnoreCase(b.getBrukernavn())) {
+                    if (ot.getLevDato().after(fra) && ot.getLevDato().before(til) && ot.getOrdretabellPK().getSelgerbrukernavn().equalsIgnoreCase(b.getBrukernavn())) {
                         salg.set(ot.getLevDato(), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
                     }
                 }
