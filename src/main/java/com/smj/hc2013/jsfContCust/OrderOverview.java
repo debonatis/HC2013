@@ -4,11 +4,7 @@
  */
 package com.smj.hc2013.jsfContCust;
 
-import com.smj.hc2013.model.Bruker;
-import com.smj.hc2013.model.Ordre;
 import com.smj.hc2013.model.OrdreUtkjoring;
-import com.smj.hc2013.model.Ordretabell;
-import com.smj.hc2013.model.Retter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
