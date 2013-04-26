@@ -187,6 +187,56 @@
 
 
         </pm:view>
+        
+        <f:facet name="postinit">
+            <h:outputScript library="primefaces" name="push/push.js" />
+            <script type="text/javascript">
+                //<![CDATA[
+                    function handleMessage(data) {
+                        var chatContent = $(PrimeFaces.escapeClientId('chatForm:content'));
+                        chatContent.append(data + '<br />');
+
+                        
+                        chatContent.scrollTop(chatContent.height());
+                    }
+                //]]>
+            </script>
+        </f:facet>
+
+        
+        <pm:view id="mainChat" swatch="a">
+            <pm:header title="HC Chat">
+            </pm:header>
+
+            <pm:content>
+                
+                <p:socket onMessage="handleMessage" channel="/HC" widgetVar="subscriber"/>                
+                <p:growl  id="growl" />
+                
+                <h:form id="chatForm">
+                                                            
+                    <p:outputPanel id="container">
+                        <h:panelGroup rendered="#{chat.loggedIn}" >
+                            <p:outputPanel id="content" layout="block" style="width:100%;height:200px;overflow:auto"/>
+
+                            <p:separator />
+
+                            <p:inputText value="#{chat.globalMessage}" styleClass="messageInput" />
+                            <p:commandButton value="Send" actionListener="#{chat.sendGlobal}" 
+                                     oncomplete="$('.messageInput').val('')"/>
+                        </h:panelGroup>
+                    
+                        <h:panelGroup rendered="#{not chat.loggedIn}" >                          
+                            
+                            <p:commandButton value="Login" icon="refresh" update="container"
+                                              actionListener="#{chat.login}" />
+                        </h:panelGroup>                    </p:outputPanel>
+                            
+                </h:form>                                
+                
+            </pm:content>
+
+        </pm:view>
 
 
     </pm:page>
