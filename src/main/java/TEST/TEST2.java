@@ -59,7 +59,7 @@ public class TEST2 {
     public static void main(String[] args) {
        
         mick = new Date(System.currentTimeMillis());
-        System.out.println(mick.getSeconds());
+        System.out.println(mick.getTime()-2628000);
         
        
             

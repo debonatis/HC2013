@@ -21,11 +21,8 @@ import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import org.primefaces.event.ItemSelectEvent;
+import javax.faces.bean.SessionScoped;
 import org.primefaces.model.chart.BubbleChartModel;
 import org.primefaces.model.chart.BubbleChartSeries;
 import org.primefaces.model.chart.CartesianChartModel;
@@ -33,7 +30,7 @@ import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartSeries;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class Charts implements Serializable {
 
     private CartesianChartModel currentUser;
@@ -51,8 +48,9 @@ public class Charts implements Serializable {
     private SalgFacade salgFacade;
     @EJB
     private RetterFacade retterFacade;
+    private static final long maned = 2628000000L;
     private BrukerBehandling brukersjekk = new BrukerBehandling();
-    private Date fra = new Date(100, 1, 1);
+    private Date fra = new Date(System.currentTimeMillis()-maned);
     private Date til = new Date(System.currentTimeMillis());
 
     public BubbleChartModel getBubbleModel() {
@@ -93,13 +91,14 @@ public class Charts implements Serializable {
     @PostConstruct
     public void init() {
         t = ordretabellFacade.findAll();
-        t = Collections.synchronizedList(t);
+        t = Collections.synchronizedList(t);        
         createCurrentUser();
         createLinearModel1();
         createLinearModel2();
         createUsers();
         createWebSales();
         createBubbleModel();
+       
     }
 
     public Date getTil() {
@@ -142,7 +141,7 @@ public class Charts implements Serializable {
         totsalg.setLabel("Totals sales per day");
         for (Ordretabell ot : t) {
             if (!(ot.getLevDato() == null)) {
-                totsalg.set(ot.getLevDato().getDate(), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
+                totsalg.set(ot.getLevDato(), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
             }
         }
         linearModelAll.addSeries(totsalg);
@@ -176,13 +175,6 @@ public class Charts implements Serializable {
         users.addSeries(totsalgperCustomer);
     }
 
-    public void itemSelect(ItemSelectEvent event) {
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Item selected",
-                "Item Index: " + event.getItemIndex() + ", Series Index:" + event.getSeriesIndex());
-
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-
     private void createLinearModel2() {
         chartModelUser = new CartesianChartModel();
         List<Bruker> br = brukerFacade.findAll();
@@ -194,29 +186,32 @@ public class Charts implements Serializable {
             salg.setLabel("Sales on " + b.getBrukernavn());
             for (Ordretabell ot : t) {
                 if (!(ot.getLevDato() == null)) {
-                    if (ot.getLevDato().after(fra) && ot.getLevDato().before(til) && ot.getOrdretabellPK().getSelgerbrukernavn().equalsIgnoreCase(b.getBrukernavn())) {                        
-                        salg.set(ot.getLevDato().getMonth(), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
+                    if (ot.getLevDato().after(fra) && ot.getLevDato().before(til) && ot.getOrdretabellPK().getKundebrukernavn().equalsIgnoreCase(b.getBrukernavn())) {
+                        salg.set(ot.getLevDato(), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
                     }
                 }
             }
-
+            if(!salg.getData().isEmpty()){
             chartModelUser.addSeries(salg);
+            }
         }
 
     }
 
     private void createWebSales() {
         web = new CartesianChartModel();
+        LineChartSeries salg = new LineChartSeries();
+        salg.setLabel("Totale sales per date on on web site (kr)");
         for (Ordretabell ot : t) {
             if (!(ot.getLevDato() == null)) {
                 if (ot.getLevDato().after(fra) && ot.getLevDato().before(til) && ot.getOrdretabellPK().getSelgerbrukernavn().equalsIgnoreCase("web")) {
-                    LineChartSeries salg = new LineChartSeries();
-                    salg.setLabel("Totale sales per date on on web site (kr)");
+
                     salg.set(ot.getLevDato(), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
-                    web.addSeries(salg);
+
                 }
             }
         }
+        web.addSeries(salg);
 
     }
 
@@ -232,7 +227,12 @@ public class Charts implements Serializable {
                     antall = antall + ta.getAntall().intValue();
                 }
             }
-            bubbleModel.add(new BubbleChartSeries(re.getNavn(), re.getPris().intValue(), antall, ((re.getPris().intValue() * antall) / 1000)));
+            if(antall >= 1){
+                 bubbleModel.add(new BubbleChartSeries(re.getNavn(), re.getPris().intValue(), antall, ((re.getPris().intValue() * antall) / 1000)));
+            } else {
+                 bubbleModel.add(new BubbleChartSeries(re.getNavn(), re.getPris().intValue(), 0, 0));
+            }
+           
         }
     }
 }
