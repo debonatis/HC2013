@@ -20,11 +20,33 @@
     <servlet>
         <servlet-name>Push Servlet</servlet-name>
         <servlet-class>org.primefaces.push.PushServlet</servlet-class>
+        <init-param>
+            <param-name>org.atmosphere.cpr.AtmosphereInterceptor</param-name>
+            <param-value>org.atmosphere.client.TrackMessageSizeInterceptor</param-value>
+        </init-param>
+        <init-param>
+            <param-name>org.atmosphere.cpr.sessionSupport</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>org.atmosphere.cpr.broadcasterCacheClass</param-name>
+            <param-value>org.atmosphere.cache.SessionBroadcasterCache</param-value>
+        </init-param>
+        <init-param>
+            <param-name>org.primefaces.push.rules</param-name>
+            <param-value>my.custom.pushrule.fromsmithpost</param-value>
+        </init-param>
+        <init-param>
+            <param-name>org.atmosphere.disableOnStateEvent</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+        <async-supported>true</async-supported>
     </servlet>
     <servlet-mapping>
         <servlet-name>Push Servlet</servlet-name>
         <url-pattern>/primepush/*</url-pattern>
-    </servlet-mapping>   
+    </servlet-mapping>    
     <listener>
         <listener-class>com.smj.hc2013.jsfContl.util.BrukerTellerHelp</listener-class>
     </listener>

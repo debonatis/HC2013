@@ -85,6 +85,11 @@
             <version>1.7.5</version>
         </dependency>
         <dependency>
+            <groupId>it.reify</groupId>
+            <artifactId>basis-collections_2.10</artifactId>
+            <version>0.0</version>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>6.0</version>

@@ -11,7 +11,7 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template/tomTemplate.xhtml">
-        
+
         <ui:define name="body">
 
             <p:growl id="growl" showDetail="true" />  
@@ -25,7 +25,7 @@ and open the template in the editor.
                         <p:panelGrid columns="2" columnClasses="publicColumn,usersColumn" style="width:100%">  
                             <p:outputPanel id="public" layout="block" styleClass="ui-corner-all ui-widget-content chatlogs"/>  
 
-                            <p:dataList id="users" var="user" value="#{chatUsers.users}" styleClass="usersList">  
+                            <p:dataList id="users" var="user" value="#{chatList.users}" styleClass="usersList">  
                                 <f:facet name="header">  
                                     Users  
                                 </f:facet> 
@@ -34,7 +34,7 @@ and open the template in the editor.
                                 <p:commandButton title="Chat" icon="ui-icon-comment" oncomplete="pChat.show()" update=":form:privateChatContainer">  
                                     <f:setPropertyActionListener value="#{user}" target="#{chat.privateUser}" />  
                                 </p:commandButton>  
-                                #{user.brukernavn}
+                                #{user}
                             </p:dataList>  
                         </p:panelGrid>  
 
@@ -65,19 +65,20 @@ and open the template in the editor.
                     </h:panelGrid>  
                 </p:dialog>  
 
-            </h:form>
+            </h:form> 
+            <p:socket onMessage="handleMessage" channel="/HC" autoConnect="false" widgetVar="subscriber"/> <script type="text/javascript">  
+                function handleMessage(data) {  
+                    var chatContent = $(PrimeFaces.escapeClientId('form:public'));  
+                    chatContent.append(data + '<br />');  
+  
+                    //keep scroll  
+                    chatContent.scrollTop(chatContent.height());  
+                }  
+            </script>  
         </ui:define>
     </ui:composition>
 
-    <p:socket onMessage="handleMessage" channel="/HC" autoConnect="false" widgetVar="subscriber"/>  
+    
 
-    <script type="text/javascript">  
-        function handleMessage(data) {  
-            var chatContent = $(PrimeFaces.escapeClientId('form:public'));  
-            chatContent.append(data + '<br />');  
-  
-            //keep scroll  
-            chatContent.scrollTop(chatContent.height());  
-        }  
-    </script>  
+
 </html>
