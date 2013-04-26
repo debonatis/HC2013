@@ -31,36 +31,50 @@ and open the template in the editor.
 
 
                 <h:form>
-                    
-                     <p:growl id="growl" showDetail="true" />  
 
-                    <p:panelGrid columns="2">
-
+                    <p:tabView cache="true">
+                        <p:tab title="Stat user">
+                        <p:growl id="growl" showDetail="true" />  
                         <p:barChart value="#{charts.users}" legendPosition="ne"  id="chart4"
-                                    title="Total Sales per Customer" style="width:600px;height:210px" > 
+                                    title="Total Sales per Customer/Frim" style="width:600px;height:210px" > 
                             <p:ajax event="itemSelect" listener="#{charts.itemSelect(event)}" update="growl" /> 
                         </p:barChart> 
-                        <p:lineChart value="#{charts.currentUser}" legendPosition="ne"  id="chart1" stacked="true" fill="true"
+                        <p:barChart value="#{charts.currentUser}" legendPosition="ne"  id="chart1" stacked="true" fill="true"
                                      title="Current customer Chart" style="width:600px;height:210px">
-                              <p:ajax event="itemSelect" listener="#{charts.itemSelect(event)}" update="growl" /> 
+                            <p:ajax event="itemSelect" listener="#{charts.itemSelect(event)}" update="growl" /> 
 
-                        </p:lineChart> 
+                        </p:barChart>
+                        <p:commandButton update="chart1 chart4" actionListener="#{charts.init()}" value="Refresh" icon="ui-icon-refresh"/>
+                        </p:tab> 
+                        <p:tab title="Frim Stat">
                         <p:barChart value="#{charts.chartModelUser}" legendPosition="ne"  id="chart2"
                                     title="All customers Chart" style="width:600px;height:210px" > 
-                              <p:ajax event="itemSelect" listener="#{charts.itemSelect(event)}" update="growl" /> 
+                            <p:ajax event="itemSelect" listener="#{charts.itemSelect(event)}" update="growl" /> 
 
                         </p:barChart> 
                         <p:barChart value="#{charts.linearModelAll}" legendPosition="ne"  id="chart3"
                                     title="Total sales" style="width:600px;height:210px" >   
-                              <p:ajax event="itemSelect" listener="#{charts.itemSelect(event)}" update="growl" /> 
+                            <p:ajax event="itemSelect" listener="#{charts.itemSelect(event)}" update="growl" /> 
                         </p:barChart> 
+                        <p:commandButton update="chart2 chart3" actionListener="#{charts.init()}" value="Refresh" icon="ui-icon-refresh"/>
+                        </p:tab>
+                        <p:tab title="Dishes and Web">
+                    <p:growl id="growl2" showDetail="true" />    
+
+
                         <p:barChart value="#{charts.web}" legendPosition="ne"  id="chart5"
                                     title="Total sales" style="width:600px;height:210px" >  
-                             <p:ajax event="itemSelect" listener="#{charts.itemSelect(event)}" update="growl" /> 
+                            <p:ajax event="itemSelect" listener="#{charts.itemSelect(event)}" update="growl2" /> 
                         </p:barChart> 
 
-                    </p:panelGrid>
-                    <p:commandButton update="chart1 chart2 chart3 chart4 chart5" actionListener="#{charts.init()}" value="Refresh" icon="ui-icon-refresh"/>
+                        <p:bubbleChart id="chart6" value="#{charts.bubbleModel}" shadow="false" bubbleGradients="true" bubbleAlpha="0.8"  
+                                       title="Custom Bubble Chart" style="width:400px;height:300px" xaxisAngle="-50" yaxisAngle="50"/>
+                        <p:commandButton update="chart6 chart5" actionListener="#{charts.init()}" value="Refresh" icon="ui-icon-refresh"/>
+                        </p:tab>
+                    </p:tabView>
+
+
+                    
 
                 </h:form>
             </p:panel>
