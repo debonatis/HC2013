@@ -24,7 +24,7 @@ import javax.faces.bean.ManagedBean;
 public class logging extends BrukerTellerHelp{
     
     @EJB
-    private static BrukerFacade brukerF;
+    private BrukerFacade brukerF;
     private static List<Bruker> liste = Collections.synchronizedList(new ArrayList<Bruker>());
     private Bruker bruker;
 
@@ -37,7 +37,7 @@ public class logging extends BrukerTellerHelp{
     }
     
     
-    public static synchronized List<Bruker> getLoggedInUsers(){
+    public synchronized List<Bruker> getLoggedInUsers(){
         for(Bruker b:getBrukere()){
           Bruker f = brukerF.find(b);
             liste.add(f);

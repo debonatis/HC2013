@@ -86,8 +86,10 @@
                     </div>
 
                 </p:submenu>
+                
+                <p:submenu>
 
-                <p:dataTable id="lolTable" var="item" value="#{logging.brukere}">  
+                <p:dataTable id="lolTable" var="item" value="#{logging.loggedInUsers}" style="width:190px">  
 
                     <p:column headerText="Username" sortBy="#{item.brukernavn}" filterBy="#{item.brukernavn}">  
                         <h:outputText value="#{item.brukernavn}" />  
@@ -101,6 +103,7 @@
         </p:column>
 
                 </p:dataTable>
+                    </p:submenu>
                 <p:dialog header="User Detail" widgetVar="Dialog" resizable="false" id="Dlg"  
                           showEffect="fade" hideEffect="explode" modal="true">  
 

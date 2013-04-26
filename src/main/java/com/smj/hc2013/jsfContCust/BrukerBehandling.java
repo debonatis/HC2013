@@ -124,7 +124,7 @@ public class BrukerBehandling implements Serializable {
         }
         HttpServletRequest foresporrsel = (HttpServletRequest) forsporrselobject;
         BrukerTellerHelp instance = BrukerTellerHelp.getInstance(foresporrsel.getServletContext());
-        if(instance.getCount(foresporrsel.getRemoteAddr())> 1){
+        if(instance.getCount(foresporrsel.getRemoteAddr())> 3){
             foresporrsel.getSession().invalidate();
         }
         return (foresporrsel.getRemoteUser());
