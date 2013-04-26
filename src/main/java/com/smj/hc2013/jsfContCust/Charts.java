@@ -16,6 +16,7 @@ import com.smj.hc2013.session.OrdretabellFacade;
 import com.smj.hc2013.session.RetterFacade;
 import com.smj.hc2013.session.SalgFacade;
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
@@ -239,11 +240,9 @@ public class Charts implements Serializable {
 
     }
 
-    private Date fixDate(Date e) throws ParseException {
-
-
-        SimpleDateFormat dt1 = new SimpleDateFormat("yyyyy-mm-dd");
-        e = dt1.parse(dt1.format(e));
-        return e;
+    private String fixDate(Date e) throws ParseException {
+        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");        
+        String f = df.format(e);        
+        return f;
     }
 }
