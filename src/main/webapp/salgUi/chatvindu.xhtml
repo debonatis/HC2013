@@ -18,20 +18,21 @@ and open the template in the editor.
 
             <h:panelGroup rendered="#{chat.loggedIn}">  
 
-                <h:panelGrid columns="2" columnClasses="publicColumn,usersColumn" style="width:100%">  
+                <p:panelGrid columns="2" columnClasses="publicColumn,usersColumn" style="width:100%">  
                     <p:outputPanel id="public" layout="block" styleClass="ui-corner-all ui-widget-content chatlogs"/>  
 
                     <p:dataList id="users" var="user" value="#{chatUsers.users}" styleClass="usersList">  
                         <f:facet name="header">  
                             Users  
-                        </f:facet>  
+                        </f:facet> 
+                       
 
                         <p:commandButton title="Chat" icon="ui-icon-comment" oncomplete="pChat.show()" update=":form:privateChatContainer">  
                             <f:setPropertyActionListener value="#{user}" target="#{chat.privateUser}" />  
                         </p:commandButton>  
-                        #{user}  
+                          #{user.brukernavn}
                     </p:dataList>  
-                </h:panelGrid>  
+                </p:panelGrid>  
 
                 <p:separator />  
 
@@ -62,7 +63,7 @@ and open the template in the editor.
 
     </h:form>  
 
-    <p:socket onMessage="handleMessage" channel="/chat" autoConnect="false" widgetVar="subscriber"/>  
+    <p:socket onMessage="handleMessage" channel="/HC" autoConnect="false" widgetVar="subscriber"/>  
 
     <script type="text/javascript">  
         function handleMessage(data) {  

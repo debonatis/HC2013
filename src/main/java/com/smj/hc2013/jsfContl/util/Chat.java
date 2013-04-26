@@ -30,7 +30,7 @@ public class Chat {
     private String username;
     private boolean loggedIn;
     private String privateUser;
-    private final static String CHANNEL = "/HC/";
+    private final static String CHANNEL = "/HC";
 
     public void setUsers(List<Bruker> users) {
         this.users = users;
