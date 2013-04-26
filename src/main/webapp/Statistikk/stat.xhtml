@@ -67,8 +67,8 @@ and open the template in the editor.
                             <p:ajax event="itemSelect" listener="#{charts.itemSelect(event)}" update="growl2" /> 
                         </p:barChart> 
 
-                        <p:bubbleChart id="chart6" value="#{charts.bubbleModel}" shadow="false" bubbleGradients="true" bubbleAlpha="0.8"  
-                                       title="Custom Bubble Chart" style="width:400px;height:300px" xaxisAngle="-50" yaxisAngle="50"/>
+                    <p:bubbleChart id="chart6" value="#{charts.bubbleModel}" xaxisLabel="Price" yaxisLabel="Sales"  
+                title="Dish chart" style="width:400px;height:300px" />
                         <p:commandButton update="chart6 chart5" actionListener="#{charts.init()}" value="Refresh" icon="ui-icon-refresh"/>
                         </p:tab>
                     </p:tabView>

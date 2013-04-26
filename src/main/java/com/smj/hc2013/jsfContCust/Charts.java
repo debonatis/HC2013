@@ -137,10 +137,10 @@ public class Charts implements Serializable {
     }
 
     private void createLinearModel1() {
-        linearModelAll = new CartesianChartModel();      
+        linearModelAll = new CartesianChartModel();
         for (Ordretabell ot : t) {
-        LineChartSeries totsalg = new LineChartSeries();
-        totsalg.setLabel("Totals sales per day");
+            LineChartSeries totsalg = new LineChartSeries();
+            totsalg.setLabel("Totals sales per day");
             if (!(ot.getLevDato() == null)) {
                 totsalg.set(ot.getLevDato().getDate(), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
                 linearModelAll.addSeries(totsalg);
@@ -188,22 +188,24 @@ public class Charts implements Serializable {
     private void createLinearModel2() {
         chartModelUser = new CartesianChartModel();
         List<Bruker> br = brukerFacade.findAll();
+        ChartSeries salg = new LineChartSeries();
 
 
         for (Bruker b : br) {
-            ChartSeries salg = new ChartSeries();
-            salg.setLabel("Sales on " + b.getBrukernavn());
+            salg = new LineChartSeries();
             for (Ordretabell ot : t) {
                 if (!(ot.getLevDato() == null)) {
                     if (ot.getLevDato().after(fra) && ot.getLevDato().before(til) && ot.getOrdretabellPK().getSelgerbrukernavn().equalsIgnoreCase(b.getBrukernavn())) {
-                        salg.set((ot.getLevDato().getYear() + "-" + ot.getLevDato().getMonth()), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
+                        salg.setLabel("Sales on " + b.getBrukernavn());
+                        salg.set(ot.getLevDato().getMonth(), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
 
                     }
                 }
             }
-            chartModelUser.addSeries(salg);
 
+            chartModelUser.addSeries(salg);
         }
+
     }
 
     private void createWebSales() {
