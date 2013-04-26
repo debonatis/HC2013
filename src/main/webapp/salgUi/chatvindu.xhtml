@@ -22,10 +22,10 @@ and open the template in the editor.
 
                     <h:panelGroup rendered="#{chat.loggedIn}">  
 
-                        <p:panelGrid columns="2" columnClasses="publicColumn,usersColumn" style="width:100%">  
-                            <p:outputPanel id="public" layout="block" styleClass="ui-corner-all ui-widget-content chatlogs"/>  
+                        <p:panelGrid columns="2" columnClasses="publicColumn,usersColumn" style="width:600px; height: 500px">  
+                            <p:outputPanel id="public" layout="block" styleClass="ui-corner-all ui-widget-content chatlogs" style="width: 400px"/>  
 
-                            <p:dataList id="users" var="user" value="#{chatList.users}" styleClass="usersList">  
+                            <p:dataList id="users" var="user" value="#{chatList.users}" styleClass="usersList" style="width:200px; height: 490px">  
                                 <f:facet name="header">  
                                     Users  
                                 </f:facet> 
@@ -42,7 +42,7 @@ and open the template in the editor.
 
                         <p:inputText value="#{chat.globalMessage}" styleClass="messageInput" />  
                         <p:spacer width="5" />  
-                        <p:commandButton value="Send" actionListener="#{chat.sendGlobal}" oncomplete="$('.messageInput').val('').focus()"/>  
+                        <p:commandButton value="Send" update="public users" actionListener="#{chat.sendGlobal}" oncomplete="$('.messageInput').val('').focus()"/>  
                         <p:spacer width="5" />  
                         <p:commandButton value="Disconnect" actionListener="#{chat.disconnect}" global="false" update="container" />  
                     </h:panelGroup>  
@@ -55,7 +55,7 @@ and open the template in the editor.
 
                 </p:fieldset>  
 
-                <p:dialog widgetVar="pChat" header="Private Chat" modal="true" showEffect="fade" hideEffect="fade">  
+                <p:dialog widgetVar="pChat" header="Private Chat" modal="false" >  
                     <h:panelGrid id="privateChatContainer" columns="2" columnClasses="vtop,vtop">  
                         <p:outputLabel for="pChatInput" value="To: #{chat.privateUser}" />  
                         <p:inputTextarea id="pChatInput" value="#{chat.privateMessage}" rows="5" cols="30" />  

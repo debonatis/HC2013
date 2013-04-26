@@ -43,16 +43,12 @@
                             <p:separator />
 
                             <p:inputText value="#{chat.globalMessage}" styleClass="messageInput" />
-                            <p:commandButton value="Send" actionListener="#{chatView.sendGlobal}" 
+                            <p:commandButton value="Send" actionListener="#{chat.sendGlobal}" 
                                      oncomplete="$('.messageInput').val('')"/>
                         </h:panelGroup>
                     
-                        <h:panelGroup rendered="#{not chat.loggedIn}" >
-                            <p:inputText id="username" value="#{chat.username}" />
-                            <p:watermark for="username" value="Username" />
+                        <h:panelGroup rendered="#{not chat.loggedIn}" >                          
                             
-                            <p:separator />
-
                             <p:commandButton value="Login" icon="refresh" update="container"
                                               actionListener="#{chat.login}" />
                         </h:panelGroup>
