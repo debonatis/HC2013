@@ -22,16 +22,18 @@
             <ui:insert name="body"/>
         </div>  
         <div id="sideBar">
-            <h:form>
+            <h:form id="form">
                 <p:growl id="messages"/>
                 <p:menu>          
                     <p:submenu label="Navigations"> 
                         <p:menuitem value="Orders" outcome="/salgUi/bestilling" />
                         <p:menuitem value="Dishes" outcome="/salgUi/dishes" />
+
                     </p:submenu>  
                     <p:submenu label="Admin navigation" rendered="#{bruker.adminOK}">
                         <p:menuitem value="Dish registration" outcome="/retter/Create" /> 
                         <p:menuitem outcome="/kokk/kokk" value="Live Order List"/>
+                        <p:menuitem value="Stat" outcome="/Statistikk/stat" />
                     </p:submenu>
                     <p:submenu label="User navigation" rendered="#{bruker.brukerOK}">
                         <p:menuitem value="Dish registration" outcome="/retter/Create" /> 
@@ -45,6 +47,7 @@
                         <p:menuitem value="Dish registration" outcome="/retter/Create" /> 
                         <p:menuitem outcome="/kokk/kokk" value="Live Order List"/>
                         <p:menuitem outcome="/kunde/List" value="Show All Customer Items"/>
+                        <p:menuitem value="Stat" outcome="/Statistikk/stat" />
                     </p:submenu>
                 </p:menu> 
                 <p:tieredMenu style="width:180px" rendered="#{bruker.adminOK}">
@@ -69,20 +72,58 @@
                 </p:tieredMenu>
                 <p:submenu>
                     <div id="fb-root"></div>
-                            <script>(function(d, s, id) {
-                                    var js, fjs = d.getElementsByTagName(s)[0];
-                                    if (d.getElementById(id))
-                                        return;
-                                    js = d.createElement(s);
-                                    js.id = id;
-                                    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-                                    fjs.parentNode.insertBefore(js, fjs);
-                                }(document, 'script', 'facebook-jssdk'));</script>
+                    <script>(function(d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id))
+                            return;
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));</script>
                     <div class="fb-like" data-href="http://www.facebook.com/HealtycateringAs"
-                 data-send="true" data-layout="button_count" data-width="500" data-show-faces="true" data-font="arial">
-            </div>
-                   
+                         data-send="true" data-layout="button_count" data-width="500" data-show-faces="true" data-font="arial">
+                    </div>
+
                 </p:submenu>
+
+                <p:dataTable id="lolTable" var="item" value="#{logging.brukere}">  
+
+                    <p:column headerText="Username" sortBy="#{item.brukernavn}" filterBy="#{item.brukernavn}">  
+                        <h:outputText value="#{item.brukernavn}" />  
+                    </p:column>  
+
+                    
+                    <p:column style="width:4%">  
+                <p:commandButton id="selectButton" update=":form:lolTable" oncomplete="Dialog.show()" icon="ui-icon-search" title="View">  
+                    <f:setPropertyActionListener value="#{item}" target="#{logging.bruker}" />  
+            </p:commandButton>  
+        </p:column>
+
+                </p:dataTable>
+                <p:dialog header="User Detail" widgetVar="Dialog" resizable="false" id="Dlg"  
+                          showEffect="fade" hideEffect="explode" modal="true">  
+
+                    <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">                        
+
+                        <h:outputText value="tlf:" />  
+                        <h:outputText value="#{logging.bruker.telefon}" style="font-weight:bold"/>  
+
+                        <h:outputText value="email:" />  
+                        <h:outputText value="#{logging.bruker.email}" style="font-weight:bold"/>  
+
+
+                        <h:outputText value="Firstname:" />  
+                        <h:outputText value="#{logging.bruker.fornavn}" style="font-weight:bold"/>  
+
+                        <h:outputText value="Lastname:" />  
+                        <h:outputText value="#{logging.bruker.etternavn}" style="font-weight:bold"/>  
+
+                    </h:panelGrid>  
+
+                </p:dialog>  
+
+
             </h:form>                    
         </div>
         <ui:debug/>
