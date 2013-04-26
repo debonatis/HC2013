@@ -13,7 +13,7 @@ and open the template in the editor.
     <ui:composition template="/template/tomTemplate.xhtml">
 
         <ui:define name="body">
-
+            <h:body>
     <p:growl id="growl" showDetail="true" />  
 
     <h:form id="form">  
@@ -57,6 +57,7 @@ and open the template in the editor.
         </p:panel>              
 
     </h:form> 
+    </h:body>
     <p:dialog widgetVar="pChat" header="Private Chat" modal="false" >  
         <h:panelGrid id="privateChatContainer" columns="2" columnClasses="vtop,vtop">  
             <p:outputLabel for="pChatInput" value="To: #{chat.privateUser}" />  
