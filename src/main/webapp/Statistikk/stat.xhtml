@@ -15,7 +15,7 @@ and open the template in the editor.
         </ui:define>
         <ui:define name="body">
             <p:panel id="panel" header="Stat">  
-                <p:growl id="growl" showDetail="true" /> 
+
                 <h:form id="formen"> 
 
 
@@ -25,13 +25,32 @@ and open the template in the editor.
                     <p:outputLabel value="To:"  for="inlineCal2"/>  
                     <p:calendar value="#{charts.til}" pattern="MM/dd/yyyy HH:mm" id="inlineCal2" />
 
-
-                    <p:commandButton update="" value="Refresh" icon="ui-icon-refresh"/>
                 </h:form>
-                <p:barChart value="#{charts.chartModelUser}" legendPosition="e"  id="chart3"
-                            title="Customer Chart" style="width:600px;height:250px" widgetVar="chart2"> 
-                    <p:ajax event="itemSelect" listener="#{charts.itemSelect(event)}" update="growl" />
-                </p:barChart> 
+
+
+
+
+
+
+                <p:panelGrid columns="2">
+
+                    <p:barChart value="#{charts.users}" legendPosition="ne"  id="chart4"
+                                title="Total Sales per Customer" style="width:600px;height:250px" >                       
+                    </p:barChart> 
+                    <p:lineChart value="#{charts.currentUser}" legendPosition="ne"  id="chart1"
+                                title="Current customer Chart" style="width:600px;height:250px"> 
+
+                    </p:lineChart> 
+                    <p:barChart value="#{charts.chartModelUser}" legendPosition="ne"  id="chart2"
+                                title="All customers Chart" style="width:600px;height:250px" > 
+
+                    </p:barChart> 
+                    <p:barChart value="#{charts.linearModelAll}" legendPosition="ne"  id="chart3"
+                                title="Total sales" style="width:600px;height:250px" >                         
+                    </p:barChart> 
+
+                </p:panelGrid>
+                <p:commandButton update="" actionListener="#{charts.init()}" value="Refresh" icon="ui-icon-refresh"/>
 
 
             </p:panel>

@@ -4,15 +4,19 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    font-family: "Helvetica", "Arial", "Tahoma", "sans-serif";
+    font-family: "sans-serif";
     font-size: small;
-    line-height: 1.3em;
+    line-height: 1.3em;  
+    zoom: 0.9;
+    -moz-transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
 }
 #sideBar{
-   
-   
+
+
     background-position: 0% 0%;
-      
+
 
     position: fixed;
 
@@ -23,11 +27,11 @@ body {
 
 }
 #body{  
-       
+
     position: fixed;
     left: 25%;
     width: auto; 
-    
+
 
 }
 
@@ -75,3 +79,5 @@ body {
     height:300px;
     width:300px;
 }
+
+
