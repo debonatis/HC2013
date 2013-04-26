@@ -20,8 +20,11 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -147,6 +150,7 @@ public class Charts implements Serializable {
                 totsalg.set(fixDate(ot.getLevDato()), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
             }
         }
+        totsalg.setData(sortMapDates(totsalg.getData()));
         linearModelAll.addSeries(totsalg);
     }
 
@@ -163,7 +167,9 @@ public class Charts implements Serializable {
                 }
             }
         }
+        salg.setData(sortMapDates(salg.getData()));
         currentUser.addSeries(salg);
+
 
     }
 
@@ -195,6 +201,7 @@ public class Charts implements Serializable {
                 }
             }
             if (!salg.getData().isEmpty()) {
+                salg.setData(sortMapDates(salg.getData()));
                 chartModelUser.addSeries(salg);
             }
         }
@@ -214,6 +221,7 @@ public class Charts implements Serializable {
                 }
             }
         }
+        salg.setData(sortMapDates(salg.getData()));
         web.addSeries(salg);
 
     }
@@ -241,8 +249,30 @@ public class Charts implements Serializable {
     }
 
     private String fixDate(Date e) throws ParseException {
-        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");        
-        String f = df.format(e);        
+        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        String f = df.format(e);
         return f;
+    }
+
+    public static synchronized Map<Object, Number> sortMapDates(final Map<Object, Number> map) {
+        Comparator<Object> valueComparator = new Comparator<Object>() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+                Date o3 = new Date();
+                Date o4 = new Date();
+                try {
+                    o3 = df.parse((String) o1);
+                    o4 = df.parse((String) o2);
+                } catch (ParseException e) {
+                }
+                return o3.compareTo(o4);
+            }
+        };
+        Map<Object, Number> sortedByValues = new TreeMap<>(valueComparator);
+        sortedByValues.putAll(map);
+        return sortedByValues;
+
+
     }
 }

@@ -14,55 +14,18 @@ and open the template in the editor.
 
         </ui:define>
         <ui:define name="body">
-            <p:panel id="panel" header="Stat">  
-
-                <h:form id="formen"> 
-
-
-                    <p:outputLabel value="From:"  for="inlineCal"/>  
-                    <p:calendar value="#{charts.fra}" pattern="MM/dd/yyyy HH:mm" id="inlineCal"/>  
-
-                    <p:outputLabel value="To:"  for="inlineCal2"/>  
-                    <p:calendar value="#{charts.til}" pattern="MM/dd/yyyy HH:mm" id="inlineCal2" />
-
-                </h:form>               
-
-                    <p:tabView cache="false">
-                        <p:tab title="Stat user" >
-                             <ui:include src="/Statistikk/Charts/User.xhtml"/>
-                       
-                        </p:tab> 
-                        <p:tab title="Frim Stat">
-                        <p:lineChart value="#{charts.chartModelUser}" legendPosition="ne"  id="chart2" zoom="true"
-                                    title="All Salesman sales per Day (kr)" style="width:1100px;height:300px" > 
-                           
-
-                        </p:lineChart> 
-                            <p:lineChart value="#{charts.linearModelAll}" legendPosition="ne"  id="chart3"
-                                    title="Total sale per time unit (kr)" style="width:1100px;height:300px" zoom="true" >   
-                           
-                        </p:lineChart> 
-                        <p:commandButton update="chart2 chart3" actionListener="#{charts.init()}" value="Refresh" icon="ui-icon-refresh"/>
-                        </p:tab>
-                        <p:tab title="Dishes and Web">
-                    <p:growl id="growl2" showDetail="true" />    
-
-
-                        <p:barChart value="#{charts.web}" legendPosition="ne"  id="chart5"
-                                    title="Total sales using page: " style="width:1100px;height:300px" zoom="true" >  
-                           
-                        </p:barChart> 
-
-                    <p:bubbleChart id="chart6" value="#{charts.bubbleModel}" xaxisLabel="Price" yaxisLabel="Sales"  
-                title="Dish chart (Profitability per dish)" style="width:400px;height:300px" zoom="true" />
-                        <p:commandButton update="chart6 chart5" actionListener="#{charts.init()}" value="Refresh" icon="ui-icon-refresh"/>
-                        </p:tab>
-                    </p:tabView>
-
-
-                    
-
-                
+            <p:panel id="panel" header="Stat">                      
+                <p:tabView cache="false">
+                    <p:tab title="Stat user" >
+                        <ui:include src="/Statistikk/Charts/User.xhtml"/>
+                    </p:tab> 
+                    <p:tab title="Frim Stat">
+                        <ui:include src="/Statistikk/Charts/Firm.xhtml"/>
+                    </p:tab>
+                    <p:tab title="Dishes and Web">
+                        <ui:include src="/Statistikk/Charts/dishAndWeb.xhtml"/>
+                    </p:tab>
+                </p:tabView>            
             </p:panel>
         </ui:define>
     </ui:composition>

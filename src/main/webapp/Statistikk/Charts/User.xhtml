@@ -9,6 +9,12 @@ and open the template in the editor.
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
+    <h:form>
+                    <p:outputLabel value="From:"  for="inlineCal"/>  
+                    <p:calendar value="#{charts.fra}" pattern="MM/dd/yyyy HH:mm" id="inlineCal"/>  
+
+                    <p:outputLabel value="To:"  for="inlineCal2"/>  
+                    <p:calendar value="#{charts.til}" pattern="MM/dd/yyyy HH:mm" id="inlineCal2" />
 
     <p:growl id="growl" showDetail="true" />  
     <p:barChart value="#{charts.users}" legendPosition="ne"  id="chart4" zoom="true"
@@ -21,4 +27,5 @@ and open the template in the editor.
 
     </p:barChart>
     <p:commandButton update="chart1 chart4" actionListener="#{charts.init()}" value="Refresh" icon="ui-icon-refresh"/>
+    </h:form>
 </html>
