@@ -1,0 +1,57 @@
+<!DOCTYPE html>  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"  
+      xmlns:p="http://primefaces.org/ui">  
+
+
+    <ui:composition template="/template/tomTemplate.xhtml">
+
+        <ui:define name="body">
+
+            <h:body>  
+                <h:form> 
+                    <p:dataTable id="lolTable" var="item" value="#{logging.loggedInUsers}" style="width:190px">  
+
+                        <p:column headerText="Username" sortBy="#{item.brukernavn}" filterBy="#{item.brukernavn}">  
+                            <h:outputText value="#{item.brukernavn}" />  
+                        </p:column>  
+
+
+                        <p:column style="width:4%">  
+                            <p:commandButton id="selectButton" update=":form:lolTable" oncomplete="Dialog.show()" icon="ui-icon-search" title="View">  
+                                <f:setPropertyActionListener value="#{item}" target="#{logging.bruker}" />  
+                            </p:commandButton>  
+                        </p:column>
+
+                    </p:dataTable>
+
+
+                </h:form>  
+                <p:dialog header="User Detail" widgetVar="Dialog" resizable="false" id="Dlg"  
+                          showEffect="fade" hideEffect="explode" modal="true">  
+
+                    <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">                        
+
+                        <h:outputText value="tlf:" />  
+                        <h:outputText value="#{logging.bruker.telefon}" style="font-weight:bold"/>  
+
+                        <h:outputText value="email:" />  
+                        <h:outputText value="#{logging.bruker.email}" style="font-weight:bold"/>  
+
+
+                        <h:outputText value="Firstname:" />  
+                        <h:outputText value="#{logging.bruker.fornavn}" style="font-weight:bold"/>  
+
+                        <h:outputText value="Lastname:" />  
+                        <h:outputText value="#{logging.bruker.etternavn}" style="font-weight:bold"/>  
+
+                    </h:panelGrid>  
+
+                </p:dialog>  
+            </h:body> 
+        </ui:define>
+    </ui:composition>
+
+</html>  
