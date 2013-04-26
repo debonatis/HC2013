@@ -14,9 +14,11 @@ import com.smj.hc2013.session.BrukerFacade;
 import com.smj.hc2013.session.OrdretabellFacade;
 import com.smj.hc2013.session.SalgFacade;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -47,9 +49,9 @@ public class Charts implements Serializable {
     private Date fra = new Date(100, 1, 1);
     private Date til = new Date(System.currentTimeMillis());
 
-    public Charts() {
-        t = Collections.synchronizedList(ordretabellFacade.findAll());
-    }
+    
+     
+    
     
 
     public CartesianChartModel getWeb() {
@@ -80,9 +82,10 @@ public class Charts implements Serializable {
         this.users = users;
     }
     
-
-    public void init() {        
-         t = Collections.synchronizedList(ordretabellFacade.findAll());
+     @PostConstruct
+    public void init() { 
+         t = ordretabellFacade.findAll();
+         t = Collections.synchronizedList(t);
     }
 
     public Date getTil() {
