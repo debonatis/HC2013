@@ -9,19 +9,11 @@ package com.smj.hc2013.jsfContCust;
  * @author deb
  */
 import com.smj.hc2013.model.Bruker;
-import com.smj.hc2013.model.Ordre;
-import com.smj.hc2013.model.OrdreUtkjoring;
 import com.smj.hc2013.model.Ordretabell;
-import com.smj.hc2013.model.Retter;
-import com.smj.hc2013.model.Utkjoring;
 import com.smj.hc2013.session.BrukerFacade;
-import com.smj.hc2013.session.OrdreFacade;
 import com.smj.hc2013.session.OrdretabellFacade;
-import com.smj.hc2013.session.RetterFacade;
 import com.smj.hc2013.session.SalgFacade;
-import com.smj.hc2013.session.UtkjoringFacade;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -33,43 +25,25 @@ import javax.faces.context.FacesContext;
 import org.primefaces.event.ItemSelectEvent;
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
-import org.primefaces.model.chart.LineChartSeries;
 
 @ManagedBean
 @RequestScoped
 public class Charts implements Serializable {
 
+    private CartesianChartModel categoryModel;
     private CartesianChartModel linearModelAll;
     private CartesianChartModel chartModelUser;
-    private List<OrdreUtkjoring> utListe = new ArrayList<>();
-    private List<Retter> retterL;
-    private List<Ordre> ordreL;
-    private List<Ordretabell> ordreTabellL;
-    private List<Bruker> brukerL;
-    private List<Utkjoring> utkjoringL;
-    @EJB
-    private RetterFacade retterFacade;
     @EJB
     private OrdretabellFacade ordretabellFacade;
     @EJB
-    private OrdreFacade ordreFacade;
-    @EJB
     private BrukerFacade brukerFacade;
     @EJB
-    private UtkjoringFacade utkjoringFacade;
-    @EJB
     private SalgFacade salgFacade;
-    private Ordre ordre = new Ordre();
-    private Ordretabell ordreT = new Ordretabell();
-    private Bruker bruker = new Bruker();
-    private Retter rett = new Retter();
-    private Utkjoring utkjoring = new Utkjoring();
     private BrukerBehandling brukersjekk = new BrukerBehandling();
     private Date til;
     private Date fra;
     private Date tilU;
     private Date fraU;
-   
 
     public Date getTilU() {
         return tilU;
@@ -87,10 +61,12 @@ public class Charts implements Serializable {
         this.fraU = fraU;
     }
 
-   @PostConstruct
+    @PostConstruct
     private void init() {
         fra = new Date(2000, 1, 1);
         til = new Date(System.currentTimeMillis());
+        createLinearModel2();
+        createLinearModel1();
     }
 
     public Date getTil() {
@@ -110,7 +86,7 @@ public class Charts implements Serializable {
     }
 
     public CartesianChartModel getLinearModelAll() {
-        createLinearModel1();
+
         return linearModelAll;
     }
 
@@ -119,7 +95,7 @@ public class Charts implements Serializable {
     }
 
     public CartesianChartModel getChartModelUser() {
-        createLinearModel2();
+
         return chartModelUser;
     }
 
@@ -127,44 +103,33 @@ public class Charts implements Serializable {
         this.chartModelUser = chartModelUser;
     }
 
-    
-
     private void createLinearModel1() {
         linearModelAll = new CartesianChartModel();
-
-        LineChartSeries salg = new LineChartSeries();
+        List<Ordretabell> t = ordretabellFacade.findAll();
+        ChartSeries salg = new ChartSeries();
         salg.setLabel("Sum slag per dato");
-
-        for (Ordretabell ot : ordretabellFacade.findAll()) {
-            if (ot.getLevDato().after(fra) && ot.getLevDato().before(til) && ot.getStatus().equalsIgnoreCase("ok") && ot.getOrdretabellPK().getSelgerbrukernavn().equalsIgnoreCase(brukersjekk.getUserData())) {
-                salg.set(ot.getLevDato(), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
+        for (Ordretabell ot : t) {
+            if (!(ot.getLevDato() == null)) {
+                if (ot.getLevDato().after(fra) && ot.getLevDato().before(til) && ot.getStatus().equalsIgnoreCase("ok") && ot.getOrdretabellPK().getSelgerbrukernavn().equalsIgnoreCase(brukersjekk.getUserData())) {
+                    salg.set(ot.getLevDato(), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
+                }
             }
         }
-
-
-        LineChartSeries totsalg = new LineChartSeries();
+        ChartSeries totsalg = new ChartSeries();
         totsalg.setLabel("Totals sales");
-        totsalg.setMarkerStyle("diamond");
-
-
-        for (Ordretabell ot : ordretabellFacade.findAll()) {
-            salg.set(ot.getLevDato(), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
+        for (Ordretabell ot : t) {
+            if (!(ot.getLevDato() == null)) {
+                totsalg.set(ot.getLevDato(), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
+            }
         }
-
-        LineChartSeries totsalgCustomer = new LineChartSeries();
+        ChartSeries totsalgCustomer = new ChartSeries();
         totsalgCustomer.setLabel("Totals sales on Customer");
-        totsalgCustomer.setMarkerStyle("diamond");
-
-
-        for (Ordretabell ot : ordretabellFacade.findAll()) {
-            salg.set(ot.getOrdretabellPK().getKundebrukernavn(), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
+        for (Ordretabell ot : t) {
+            totsalgCustomer.set(ot.getOrdretabellPK().getKundebrukernavn(), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
         }
-
-
-
-
         linearModelAll.addSeries(salg);
         linearModelAll.addSeries(totsalg);
+        linearModelAll.addSeries(totsalgCustomer);
     }
 
     public void itemSelect(ItemSelectEvent event) {
@@ -176,34 +141,50 @@ public class Charts implements Serializable {
 
     private void createLinearModel2() {
         chartModelUser = new CartesianChartModel();
+        List<Bruker> br = brukerFacade.findAll();
+        List<Ordretabell> t = ordretabellFacade.findAll();
 
-        for (Bruker b : brukerFacade.findAll()) {
+        for (Bruker b : br) {
             ChartSeries salg = new ChartSeries();
-            salg.setLabel("Sales ");
-            for (Ordretabell ot : ordretabellFacade.findAll()) {
-                if (ot.getLevDato().after(fra) && ot.getLevDato().before(til) && ot.getStatus().equalsIgnoreCase("ok") && ot.getOrdretabellPK().getSelgerbrukernavn().equalsIgnoreCase(b.getBrukernavn())) {
-                    salg.set(ot.getLevDato(), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
+            salg.setLabel("Sales on " + b.getBrukernavn());
+            for (Ordretabell ot : t) {
+                if (!(ot.getLevDato() == null)) {
+                    if (ot.getLevDato().after(fra) && ot.getLevDato().before(til) && ot.getStatus().equalsIgnoreCase("ok") && ot.getOrdretabellPK().getSelgerbrukernavn().equalsIgnoreCase(b.getBrukernavn())) {
+                        salg.set(ot.getLevDato(), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
+                    }
                 }
             }
             chartModelUser.addSeries(salg);
         }
+    }
 
+    public CartesianChartModel getCategoryModel() {
+        createCategoryModel();
+        return categoryModel;
+    }
 
+    private void createCategoryModel() {
+        categoryModel = new CartesianChartModel();
 
+        ChartSeries boys = new ChartSeries();
+        boys.setLabel("Boys");
 
+        boys.set("2004", 120);
+        boys.set("2005", 100);
+        boys.set("2006", 44);
+        boys.set("2007", 150);
+        boys.set("2008", 25);
 
+        ChartSeries girls = new ChartSeries();
+        girls.setLabel("Girls");
 
+        girls.set("2004", 52);
+        girls.set("2005", 60);
+        girls.set("2006", 110);
+        girls.set("2007", 135);
+        girls.set("2008", 120);
 
-
-
-
-
-
-
-
-
-
-        
-
+        categoryModel.addSeries(boys);
+        categoryModel.addSeries(girls);
     }
 }

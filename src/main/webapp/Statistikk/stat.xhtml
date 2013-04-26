@@ -15,34 +15,25 @@ and open the template in the editor.
         </ui:define>
         <ui:define name="body">
             <p:panel id="panel" header="Stat">  
-                <h:form>
-                    <p:panelGrid columns="2">
-                        <p:outputLabel value="From:"  for="inlineCal"/>  
-                        <p:calendar value="#{charts.fra}" mode="inline" id="inlineCal"/> 
-                        <p:outputLabel value="To:"  for="inlineCal2"/>  
-                        <p:calendar value="#{charts.til}" mode="inline" id="inlineCal2"/>  
-                    </p:panelGrid>
-                    <p:commandButton update="chart2" value="Refresh" icon="ui-icon-refresh"/>
-                    <p:lineChart value="#{charts.linearModelAll}" legendPosition="e" zoom="true"  id="chart2"
-                                 title="Linear Chart" minY="0" maxY="10" style="width:500px;height:300px" widgetVar="chart"> 
-                        <p:ajax event="itemSelect" listener="#{charts.itemSelect(event)}" update="growl" />
-                    </p:lineChart>  
+                <p:growl id="growl" showDetail="true" /> 
+                <h:form id="formen"> 
 
-                    <p:commandButton type="button" value="Export" icon="ui-icon-extlink" onclick="exportChart()"/>  
 
-                    <p:dialog widgetVar="dlg" showEffect="fade" modal="true" header="Chart as an Image">  
-                        <p:outputPanel id="output" layout="block" style="width:500px;height:300px"/>  
-                    </p:dialog>  
-                    <script>
-                        function exportChart() {  
-                   
-                            $('#output').empty().append(chart.exportAsImage());  
+                    <p:outputLabel value="From:"  for="inlineCal"/>  
+                    <p:calendar value="#{charts.fra}" pattern="MM/dd/yyyy HH:mm" id="inlineCal"/>  
 
-                    
-                            dlg.show();  
-                        }  
-                    </script>
+                    <p:outputLabel value="To:"  for="inlineCal2"/>  
+                    <p:calendar value="#{charts.til}" pattern="MM/dd/yyyy HH:mm" id="inlineCal2" />
+
+
+                    <p:commandButton update="" value="Refresh" icon="ui-icon-refresh"/>
                 </h:form>
+                <p:barChart value="#{charts.chartModelUser}" legendPosition="e"  id="chart3"
+                            title="Customer Chart" style="width:600px;height:250px" widgetVar="chart2"> 
+                    <p:ajax event="itemSelect" listener="#{charts.itemSelect(event)}" update="growl" />
+                </p:barChart> 
+
+
             </p:panel>
         </ui:define>
     </ui:composition>
