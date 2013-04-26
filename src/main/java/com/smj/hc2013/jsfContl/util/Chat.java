@@ -6,7 +6,6 @@ package com.smj.hc2013.jsfContl.util;
 
 import com.smj.hc2013.jsfContCust.BrukerBehandling;
 import com.smj.hc2013.model.ChatList;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -88,9 +87,11 @@ public class Chat extends BrukerBehandling{
     }
 
     
-    public void login() {        
+    public void login() {
+        if(!liste.contains(getUserData())){
         liste.addUser(getUserData());        
         username = getUserData();
+        }
         pushContext.push(CHANNEL, username + " joined the channel.");
         RequestContext requestContext = RequestContext.getCurrentInstance();
         requestContext.execute("subscriber.connect('/" + username + "')");
