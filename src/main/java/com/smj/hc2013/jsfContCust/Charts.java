@@ -14,6 +14,7 @@ import com.smj.hc2013.session.BrukerFacade;
 import com.smj.hc2013.session.OrdretabellFacade;
 import com.smj.hc2013.session.SalgFacade;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -35,6 +36,7 @@ public class Charts implements Serializable {
     private CartesianChartModel chartModelUser;
     private CartesianChartModel users;
     private CartesianChartModel web;
+    private List<Ordretabell> t; 
     @EJB
     private OrdretabellFacade ordretabellFacade;
     @EJB
@@ -44,6 +46,10 @@ public class Charts implements Serializable {
     private BrukerBehandling brukersjekk = new BrukerBehandling();
     private Date fra = new Date(100, 1, 1);
     private Date til = new Date(System.currentTimeMillis());
+
+    public Charts() {
+        t = Collections.synchronizedList(ordretabellFacade.findAll());
+    }
     
 
     public CartesianChartModel getWeb() {
@@ -75,12 +81,8 @@ public class Charts implements Serializable {
     }
     
 
-    public void init() {
-        createCurrentUser();
-        createLinearModel1();
-        createLinearModel2();
-        createUsers();
-        createWebSales();
+    public void init() {        
+         t = Collections.synchronizedList(ordretabellFacade.findAll());
     }
 
     public Date getTil() {
@@ -119,13 +121,13 @@ public class Charts implements Serializable {
 
     private void createLinearModel1() {
         linearModelAll = new CartesianChartModel();
-        List<Ordretabell> t = ordretabellFacade.findAll();
+       
 
         LineChartSeries totsalg = new LineChartSeries();
         totsalg.setLabel("Totals sales per day");
         for (Ordretabell ot : t) {
             if (!(ot.getLevDato() == null)) {
-                totsalg.set((ot.getLevDato().getYear() + "-" + ot.getLevDato().getMonth()), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
+                totsalg.set(ot.getLevDato().getDate(), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
             }
         }
         linearModelAll.addSeries(totsalg);
@@ -134,13 +136,13 @@ public class Charts implements Serializable {
 
     private void createCurrentUser() {
         currentUser = new CartesianChartModel();
-        List<Ordretabell> t = ordretabellFacade.findAll();
+        
         LineChartSeries salg = new LineChartSeries();
         salg.setLabel("Totale sales per date on current salesman (kr)");
         for (Ordretabell ot : t) {
             if (!(ot.getLevDato() == null)) {
                 if (ot.getLevDato().after(fra) && ot.getLevDato().before(til) && ot.getOrdretabellPK().getSelgerbrukernavn().equalsIgnoreCase(brukersjekk.getUserData())) {
-                    salg.set((ot.getLevDato().getYear() + "-" + ot.getLevDato().getMonth()), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
+                    salg.set(ot.getLevDato().getDate(), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
                 }
             }
         }
@@ -149,7 +151,7 @@ public class Charts implements Serializable {
 
     private void createUsers() {
         users = new CartesianChartModel();
-        List<Ordretabell> t = ordretabellFacade.findAll();
+        
         ChartSeries totsalgperCustomer = new ChartSeries();
         totsalgperCustomer.setLabel("Totals sales on Customer");
         for (Ordretabell ot : t) {
@@ -168,7 +170,7 @@ public class Charts implements Serializable {
     private void createLinearModel2() {
         chartModelUser = new CartesianChartModel();
         List<Bruker> br = brukerFacade.findAll();
-        List<Ordretabell> t = ordretabellFacade.findAll();
+        
 
         for (Bruker b : br) {
             ChartSeries salg = new ChartSeries();
@@ -185,13 +187,13 @@ public class Charts implements Serializable {
     }
      private void createWebSales() {
         web = new CartesianChartModel();
-        List<Ordretabell> t = ordretabellFacade.findAll();
+        
         LineChartSeries salg = new LineChartSeries();
-        salg.setLabel("Totale sales per date on current salesman (kr)");
+        salg.setLabel("Totale sales per date on on web site (kr)");
         for (Ordretabell ot : t) {
             if (!(ot.getLevDato() == null)) {
                 if (ot.getLevDato().after(fra) && ot.getLevDato().before(til) && ot.getOrdretabellPK().getSelgerbrukernavn().equalsIgnoreCase("web")) {
-                    salg.set((ot.getLevDato().getYear() + "-" + ot.getLevDato().getMonth()), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
+                    salg.set(ot.getLevDato().getDate(), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
                 }
             }
         }
