@@ -30,32 +30,39 @@ and open the template in the editor.
 
 
 
+                <h:form>
+                    
+                     <p:growl id="growl" showDetail="true" />  
 
+                    <p:panelGrid columns="2">
 
-                <p:panelGrid columns="2">
+                        <p:barChart value="#{charts.users}" legendPosition="ne"  id="chart4"
+                                    title="Total Sales per Customer" style="width:600px;height:210px" > 
+                            <p:ajax event="itemSelect" listener="#{charts.itemSelect(event)}" update="growl" /> 
+                        </p:barChart> 
+                        <p:lineChart value="#{charts.currentUser}" legendPosition="ne"  id="chart1" stacked="true" fill="true"
+                                     title="Current customer Chart" style="width:600px;height:210px">
+                              <p:ajax event="itemSelect" listener="#{charts.itemSelect(event)}" update="growl" /> 
 
-                    <p:barChart value="#{charts.users}" legendPosition="ne"  id="chart4"
-                                title="Total Sales per Customer" style="width:600px;height:250px" >                       
-                    </p:barChart> 
-                    <p:lineChart value="#{charts.currentUser}" legendPosition="ne"  id="chart1"
-                                title="Current customer Chart" style="width:600px;height:250px"> 
+                        </p:lineChart> 
+                        <p:barChart value="#{charts.chartModelUser}" legendPosition="ne"  id="chart2"
+                                    title="All customers Chart" style="width:600px;height:210px" > 
+                              <p:ajax event="itemSelect" listener="#{charts.itemSelect(event)}" update="growl" /> 
 
-                    </p:lineChart> 
-                    <p:barChart value="#{charts.chartModelUser}" legendPosition="ne"  id="chart2"
-                                title="All customers Chart" style="width:600px;height:250px" > 
+                        </p:barChart> 
+                        <p:barChart value="#{charts.linearModelAll}" legendPosition="ne"  id="chart3"
+                                    title="Total sales" style="width:600px;height:210px" >   
+                              <p:ajax event="itemSelect" listener="#{charts.itemSelect(event)}" update="growl" /> 
+                        </p:barChart> 
+                        <p:barChart value="#{charts.web}" legendPosition="ne"  id="chart5"
+                                    title="Total sales" style="width:600px;height:210px" >  
+                             <p:ajax event="itemSelect" listener="#{charts.itemSelect(event)}" update="growl" /> 
+                        </p:barChart> 
 
-                    </p:barChart> 
-                    <p:barChart value="#{charts.linearModelAll}" legendPosition="ne"  id="chart3"
-                                title="Total sales" style="width:600px;height:250px" >                         
-                    </p:barChart> 
-                    <p:barChart value="#{charts.web}" legendPosition="ne"  id="chart5"
-                                title="Total sales" style="width:600px;height:250px" >                         
-                    </p:barChart> 
+                    </p:panelGrid>
+                    <p:commandButton update="chart1 chart2 chart3 chart4 chart5" actionListener="#{charts.init()}" value="Refresh" icon="ui-icon-refresh"/>
 
-                </p:panelGrid>
-                <p:commandButton update="chart1 chart2 chart3 chart4 chart5" actionListener="#{charts.init()}" value="Refresh" icon="ui-icon-refresh"/>
-
-
+                </h:form>
             </p:panel>
         </ui:define>
     </ui:composition>
