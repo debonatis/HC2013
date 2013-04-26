@@ -189,7 +189,7 @@ public class Charts implements Serializable {
             salg.setLabel("Sales on " + b.getBrukernavn());
             for (Ordretabell ot : t) {
                 if (!(ot.getLevDato() == null)) {
-                    if (ot.getLevDato().after(fra) && ot.getLevDato().before(til) && ot.getOrdretabellPK().getKundebrukernavn().equalsIgnoreCase(b.getBrukernavn())) {
+                    if (ot.getLevDato().after(fra) && ot.getLevDato().before(til) && ot.getOrdretabellPK().getSelgerbrukernavn().equalsIgnoreCase(b.getBrukernavn())) {
                         salg.set(fixDate(ot.getLevDato()), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
                     }
                 }

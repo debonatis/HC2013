@@ -29,21 +29,12 @@ and open the template in the editor.
 
                     <p:tabView cache="false">
                         <p:tab title="Stat user" >
-                        <p:growl id="growl" showDetail="true" />  
-                        <p:barChart value="#{charts.users}" legendPosition="ne"  id="chart4" zoom="true"
-                                    title="Total Sales per Customer/Frim" style="width:1100px;height:300px" > 
-                           
-                        </p:barChart> 
-                        <p:barChart value="#{charts.currentUser}" legendPosition="ne"  id="chart1" stacked="true" zoom="true"
-                                     title="Current customer Chart" style="width:1100px;height:300px">
-                            
-
-                        </p:barChart>
-                        <p:commandButton update="chart1 chart4" actionListener="#{charts.init()}" value="Refresh" icon="ui-icon-refresh"/>
+                             <ui:include src="/Statistikk/Charts/User.xhtml"/>
+                       
                         </p:tab> 
                         <p:tab title="Frim Stat">
                         <p:lineChart value="#{charts.chartModelUser}" legendPosition="ne"  id="chart2" zoom="true"
-                                    title="All customers Chart sales per month (kr)" style="width:1100px;height:300px" > 
+                                    title="All Salesman sales per Day (kr)" style="width:1100px;height:300px" > 
                            
 
                         </p:lineChart> 
@@ -58,12 +49,12 @@ and open the template in the editor.
 
 
                         <p:barChart value="#{charts.web}" legendPosition="ne"  id="chart5"
-                                    title="Total sales" style="width:1100px;height:300px" zoom="true" >  
+                                    title="Total sales using page: " style="width:1100px;height:300px" zoom="true" >  
                            
                         </p:barChart> 
 
                     <p:bubbleChart id="chart6" value="#{charts.bubbleModel}" xaxisLabel="Price" yaxisLabel="Sales"  
-                title="Dish chart" style="width:400px;height:300px" zoom="true" />
+                title="Dish chart (Profitability per dish)" style="width:400px;height:300px" zoom="true" />
                         <p:commandButton update="chart6 chart5" actionListener="#{charts.init()}" value="Refresh" icon="ui-icon-refresh"/>
                         </p:tab>
                     </p:tabView>
