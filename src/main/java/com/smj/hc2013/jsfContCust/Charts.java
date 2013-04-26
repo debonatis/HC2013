@@ -34,6 +34,7 @@ public class Charts implements Serializable {
     private CartesianChartModel linearModelAll;
     private CartesianChartModel chartModelUser;
     private CartesianChartModel users;
+    private CartesianChartModel web;
     @EJB
     private OrdretabellFacade ordretabellFacade;
     @EJB
@@ -43,8 +44,17 @@ public class Charts implements Serializable {
     private BrukerBehandling brukersjekk = new BrukerBehandling();
     private Date fra = new Date(100, 1, 1);
     private Date til = new Date(System.currentTimeMillis());
-    private Date tilU;
-    private Date fraU;
+    
+
+    public CartesianChartModel getWeb() {
+        createWebSales();
+        return web;
+    }
+
+    public void setWeb(CartesianChartModel web) {
+        this.web = web;
+    }
+    
 
     public CartesianChartModel getCurrentUser() {
         createCurrentUser();
@@ -63,28 +73,14 @@ public class Charts implements Serializable {
     public void setUsers(CartesianChartModel users) {
         this.users = users;
     }
-
-    public Date getTilU() {
-        return tilU;
-    }
-
-    public void setTilU(Date tilU) {
-        this.tilU = tilU;
-    }
-
-    public Date getFraU() {
-        return fraU;
-    }
-
-    public void setFraU(Date fraU) {
-        this.fraU = fraU;
-    }
+    
 
     public void init() {
         createCurrentUser();
         createLinearModel1();
         createLinearModel2();
         createUsers();
+        createWebSales();
     }
 
     public Date getTil() {
@@ -140,7 +136,7 @@ public class Charts implements Serializable {
         currentUser = new CartesianChartModel();
         List<Ordretabell> t = ordretabellFacade.findAll();
         LineChartSeries salg = new LineChartSeries();
-        salg.setLabel("Totale sale per date on current user (kr)");
+        salg.setLabel("Totale sales per date on current salesman (kr)");
         for (Ordretabell ot : t) {
             if (!(ot.getLevDato() == null)) {
                 if (ot.getLevDato().after(fra) && ot.getLevDato().before(til) && ot.getOrdretabellPK().getSelgerbrukernavn().equalsIgnoreCase(brukersjekk.getUserData())) {
@@ -186,5 +182,19 @@ public class Charts implements Serializable {
             }
             chartModelUser.addSeries(salg);
         }
+    }
+     private void createWebSales() {
+        web = new CartesianChartModel();
+        List<Ordretabell> t = ordretabellFacade.findAll();
+        LineChartSeries salg = new LineChartSeries();
+        salg.setLabel("Totale sales per date on current salesman (kr)");
+        for (Ordretabell ot : t) {
+            if (!(ot.getLevDato() == null)) {
+                if (ot.getLevDato().after(fra) && ot.getLevDato().before(til) && ot.getOrdretabellPK().getSelgerbrukernavn().equalsIgnoreCase("web")) {
+                    salg.set((ot.getLevDato().getYear() + "-" + ot.getLevDato().getMonth()), Integer.parseInt(salgFacade.find(ot.getOrdretabellPK().getSalgsnummer()).getSumSalg()));
+                }
+            }
+        }
+        web.addSeries(salg);
     }
 }

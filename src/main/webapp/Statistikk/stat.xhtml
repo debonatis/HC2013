@@ -48,9 +48,12 @@ and open the template in the editor.
                     <p:barChart value="#{charts.linearModelAll}" legendPosition="ne"  id="chart3"
                                 title="Total sales" style="width:600px;height:250px" >                         
                     </p:barChart> 
+                    <p:barChart value="#{charts.web}" legendPosition="ne"  id="chart5"
+                                title="Total sales" style="width:600px;height:250px" >                         
+                    </p:barChart> 
 
                 </p:panelGrid>
-                <p:commandButton update="" actionListener="#{charts.init()}" value="Refresh" icon="ui-icon-refresh"/>
+                <p:commandButton update="chart1 chart2 chart3 chart4 chart5" actionListener="#{charts.init()}" value="Refresh" icon="ui-icon-refresh"/>
 
 
             </p:panel>
