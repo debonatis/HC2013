@@ -5,9 +5,10 @@
 package com.smj.hc2013.jsfContl.util;
 
 import com.smj.hc2013.jsfContCust.BrukerBehandling;
-import java.util.List;
+import com.smj.hc2013.model.ChatList;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.primefaces.context.RequestContext;
 import org.primefaces.push.PushContext;
@@ -22,7 +23,8 @@ import org.primefaces.push.PushContextFactory;
 public class Chat extends BrukerBehandling{
 
     private final PushContext pushContext = PushContextFactory.getDefault().getPushContext();
-    private List<String> users;
+    @ManagedProperty(value = "#{chatUsers}")
+    private ChatList liste;
     private String privateMessage;
     private String globalMessage;
     private String username;
@@ -31,8 +33,8 @@ public class Chat extends BrukerBehandling{
     private final static String CHANNEL = "/HC";
     
 
-    public void setUsers(List<String> users) {
-        this.users = users;
+    public void setListe(ChatList users) {
+        this.liste = users;
     }
 
     public String getPrivateUser() {
@@ -87,7 +89,7 @@ public class Chat extends BrukerBehandling{
 
     @PostConstruct
     public void login() {        
-        users.add(getUserData());
+        liste.add(getUserData());        
         username = getUserData();
         pushContext.push(CHANNEL, username + " joined the channel.");
         RequestContext requestContext = RequestContext.getCurrentInstance();
@@ -98,7 +100,7 @@ public class Chat extends BrukerBehandling{
     }
 
     public void disconnect() {
-        users.remove(username);
+        liste.remove(username);
         RequestContext.getCurrentInstance().update("form:users");
         pushContext.push(CHANNEL, username + " left the channel.");
         loggedIn = false;
