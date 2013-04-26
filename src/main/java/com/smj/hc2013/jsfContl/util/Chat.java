@@ -23,7 +23,7 @@ import org.primefaces.push.PushContextFactory;
 public class Chat extends BrukerBehandling{
 
     private final PushContext pushContext = PushContextFactory.getDefault().getPushContext();
-    @ManagedProperty(value = "#{chatUsers}")
+    @ManagedProperty(value = "#{chatList}")
     private ChatList liste;
     private String privateMessage;
     private String globalMessage;
@@ -87,9 +87,9 @@ public class Chat extends BrukerBehandling{
         privateMessage = null;
     }
 
-    @PostConstruct
+    
     public void login() {        
-        liste.add(getUserData());        
+        liste.addUser(getUserData());        
         username = getUserData();
         pushContext.push(CHANNEL, username + " joined the channel.");
         RequestContext requestContext = RequestContext.getCurrentInstance();
@@ -100,7 +100,7 @@ public class Chat extends BrukerBehandling{
     }
 
     public void disconnect() {
-        liste.remove(username);
+        liste.removeUser(username);
         RequestContext.getCurrentInstance().update("form:users");
         pushContext.push(CHANNEL, username + " left the channel.");
         loggedIn = false;

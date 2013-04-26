@@ -48,13 +48,13 @@
                         </h:panelGroup>
                     
                         <h:panelGroup rendered="#{not chat.loggedIn}" >
-                            <p:inputText id="username" value="#{chatView.username}" />
+                            <p:inputText id="username" value="#{chat.username}" />
                             <p:watermark for="username" value="Username" />
                             
                             <p:separator />
 
                             <p:commandButton value="Login" icon="refresh" update="container"
-                                              actionListener="#{chatView.login}" />
+                                              actionListener="#{chat.login}" />
                         </h:panelGroup>
                     </p:outputPanel>
                             
