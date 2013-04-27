@@ -45,7 +45,7 @@ public class Timer implements Serializable {
     private String brukernavn;
     @Size(max = 10)
     @Column(name = "arbeidsTimer")
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(javax.persistence.TemporalType.TIME)
     private Date arbeidsTimer;
 
     public Timer() {
