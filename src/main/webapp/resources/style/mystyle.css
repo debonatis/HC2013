@@ -79,5 +79,44 @@ body {
     height:300px;
     width:300px;
 }
+.messageInput {
+    width:400px;
+}
+
+.publicColumn {
+    width:80%;
+}
+
+.usersColumn {
+    width:20%;
+}
+
+.vtop {
+    vertical-align: top;
+}
+
+.chatlogs {
+    height:200px;
+    overflow:auto;
+    padding: 0.5em 1em 0.5em 0.5em;
+}
+
+.usersList {
+    height:200px;
+    overflow:auto;
+}
+
+.usersList ul {
+    list-style-type: none;
+    padding-left:10px;
+}
+
+.usersList ul li {
+    margin-bottom: 2px;
+}
+
+.usersList .ui-button-text {
+    padding:0;
+}
 
 

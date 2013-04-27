@@ -13,7 +13,7 @@ and open the template in the editor.
 
     <ui:composition template="/template/tomTemplate.xhtml">
 
-        <ui:define name="body">
+        <ui:define name="body">            
             <h:body>
                 <p:growl id="growl" showDetail="true" />  
 
@@ -24,20 +24,27 @@ and open the template in the editor.
 
                         <h:panelGroup rendered="#{chat.loggedIn}">  
 
-                            <p:panelGrid columns="2" columnClasses="publicColumn,usersColumn" style="width:600px; height: 500px">  
-                                <p:outputPanel id="public" layout="block" styleClass="ui-corner-all ui-widget-content chatlogs" style="width: 400px"/>  
+                            <p:panelGrid columns="2" columnClasses="publicColumn,usersColumn" style="width:100%">  
+                                <p:outputPanel id="public" layout="block" styleClass="ui-corner-all ui-widget-content chatlogs"/>  
 
-                                <p:dataList id="users" var="user" value="#{chatList.users}" styleClass="usersList" style="width:200px; height: 490px">  
+                                <p:dataList id="users" var="user" value="#{chatList.users}" styleClass="usersList">  
                                     <f:facet name="header">  
                                         Users  
                                     </f:facet> 
 
 
-                                    <p:commandButton title="Chat" icon="ui-icon-comment" oncomplete="pChat.show()" update=":privateChatContainer">  
+                                    <p:commandButton title="Chat" icon="ui-icon-comment" oncomplete="pChat.show();" update=":form:privateChatContainer">  
                                         <f:setPropertyActionListener value="#{user}" target="#{chat.privateUser}" />  
                                     </p:commandButton>  
                                     #{user}
-                                </p:dataList>  
+                                </p:dataList> 
+                                <p:dialog widgetVar="pChat" header="Private Chat" modal="false" dynamic="true" >  
+                                    <p:panel id="privateChatContainer" >  
+                                        <p:outputLabel for="pChatInput" value="To: #{chat.privateUser}" />  
+                                        <p:inputTextarea id="pChatInput" value="#{chat.privateMessage}"/>                     
+                                        <p:commandButton value="Send" actionListener="#{chat.sendPrivate}" oncomplete="pChat.hide()" />  
+                                    </p:panel>  
+                                </p:dialog>  
                             </p:panelGrid>  
 
                             <p:separator />  
@@ -56,20 +63,12 @@ and open the template in the editor.
                         </h:panelGroup>  
 
                     </p:panel> 
-                     <p:poll interval="3"   
-             update="users" />
+                    <p:poll interval="3"   
+                            update="users" />
 
                 </h:form> 
             </h:body>
-            <p:dialog widgetVar="pChat" header="Private Chat" modal="false" >  
-                <h:panelGrid id="privateChatContainer" columns="2" columnClasses="vtop,vtop">  
-                    <p:outputLabel for="pChatInput" value="To: #{chat.privateUser}" />  
-                    <p:inputTextarea id="pChatInput" value="#{chat.privateMessage}" rows="5" cols="30" />  
 
-                    <p:spacer />  
-                    <p:commandButton value="Send" actionListener="#{chat.sendPrivate}" oncomplete="pChat.hide()" />  
-                </h:panelGrid>  
-            </p:dialog>  
             <p:socket onMessage="handleMessage" channel="/HC" autoConnect="false" widgetVar="subscriber"/> <script type="text/javascript">  
                 function handleMessage(data) {  
                     var chatContent = $(PrimeFaces.escapeClientId('form:public'));  
@@ -79,7 +78,7 @@ and open the template in the editor.
                     chatContent.scrollTop(chatContent.height());  
                 }  
             </script>  
-            
+
         </ui:define>
     </ui:composition>
 

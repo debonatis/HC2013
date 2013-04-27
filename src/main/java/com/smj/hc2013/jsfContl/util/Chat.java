@@ -29,7 +29,7 @@ public class Chat extends BrukerBehandling{
     private String username;
     private boolean loggedIn;
     private String privateUser;
-    private final static String CHANNEL = "/HC";
+    private final static String CHANNEL = "/HC/";
     
 
     public void setListe(ChatList users) {
