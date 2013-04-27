@@ -118,5 +118,13 @@ body {
 .usersList .ui-button-text {
     padding:0;
 }
+.ui-dialog .ui-dialog-content {
+    position: relative;
+    border: 0;
+    padding: .5em 1em;
+    background: none;
+    overflow: auto;
+    zoom: 1;
+}
 
 

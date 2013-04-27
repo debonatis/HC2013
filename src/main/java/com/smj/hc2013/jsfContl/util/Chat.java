@@ -19,7 +19,7 @@ import org.primefaces.push.PushContextFactory;
  */
 @ManagedBean
 @SessionScoped
-public class Chat extends BrukerBehandling{
+public class Chat extends BrukerBehandling {
 
     private final PushContext pushContext = PushContextFactory.getDefault().getPushContext();
     @ManagedProperty(value = "#{chatList}")
@@ -30,7 +30,6 @@ public class Chat extends BrukerBehandling{
     private boolean loggedIn;
     private String privateUser;
     private final static String CHANNEL = "/HC/";
-    
 
     public void setListe(ChatList users) {
         this.liste = users;
@@ -85,14 +84,14 @@ public class Chat extends BrukerBehandling{
         pushContext.push(CHANNEL + privateUser, "[PM] " + username + ": " + privateMessage);
         privateMessage = null;
     }
-
-    
+   
     public void login() {
-        if(!liste.contains(getUserData())){
-        liste.addUser(getUserData());        
-        username = getUserData();
+        String navn = getUserData();
+        if (!liste.contains(navn)) {
+            liste.addUser(navn);
         }
-        pushContext.push(CHANNEL, username + " joined the channel.");
+        setUsername(navn);
+        pushContext.push(CHANNEL + "*", username + " joined the channel.");
         RequestContext requestContext = RequestContext.getCurrentInstance();
         requestContext.execute("subscriber.connect('/" + username + "')");
         loggedIn = true;
@@ -103,7 +102,7 @@ public class Chat extends BrukerBehandling{
     public void disconnect() {
         liste.removeUser(username);
         RequestContext.getCurrentInstance().update("form:users");
-        pushContext.push(CHANNEL, username + " left the channel.");
+        pushContext.push(CHANNEL + "*", username + " left the channel.");
         loggedIn = false;
         username = null;
     }

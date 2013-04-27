@@ -38,7 +38,8 @@ and open the template in the editor.
                                     </p:commandButton>  
                                     #{user}
                                 </p:dataList> 
-                                <p:dialog widgetVar="pChat" header="Private Chat" modal="false" dynamic="true" >  
+                                <p:dialog widgetVar="pChat" header="Private Chat" modal="false" dynamic="true" style="width: auto;
+                                          height: auto;" appendToBody="true" >  
                                     <p:panel id="privateChatContainer" >  
                                         <p:outputLabel for="pChatInput" value="To: #{chat.privateUser}" />  
                                         <p:inputTextarea id="pChatInput" value="#{chat.privateMessage}"/>                     
@@ -54,7 +55,7 @@ and open the template in the editor.
                             <p:commandButton value="Send" actionListener="#{chat.sendGlobal}" oncomplete="$('.messageInput').val('').focus()"/>  
                             <p:spacer width="5" />  
                             <p:commandButton value="Disconnect" actionListener="#{chat.disconnect}" global="false" update="container" />  
-                        </h:panelGroup>  
+                        </h:panelGroup>
 
                         <h:panelGroup rendered="#{not chat.loggedIn}" > 
 
@@ -69,7 +70,8 @@ and open the template in the editor.
                 </h:form> 
             </h:body>
 
-            <p:socket onMessage="handleMessage" channel="/HC" autoConnect="false" widgetVar="subscriber"/> <script type="text/javascript">  
+            <p:socket onMessage="handleMessage" channel="/HC/" autoConnect="false" widgetVar="subscriber"/> 
+            <script type="text/javascript">  
                 function handleMessage(data) {  
                     var chatContent = $(PrimeFaces.escapeClientId('form:public'));  
                     chatContent.append(data + '<br />');  

@@ -58,7 +58,9 @@
 
 
 
-                                    <p:dialog modal="false"  header="Choices" widgetVar="rettDialog" >  
+                                    <p:dialog modal="false"  header="Choices" widgetVar="rettDialog" style="width: auto;
+                                              height: auto
+                                              ">  
                                         <p:panel id="displayRetter" style="width: 500px; height: 500px">  
                                             <h:outputText value="Items picked: " style="font-weight:bold"/><br/>  
                                             <p:dataTable value="#{bestilling.settAntallList}" var="sr">  
@@ -173,7 +175,7 @@
 
 
                         <h:messages errorClass="error"/>  
-                        
+
                         <p:poll interval="3" update="lolTable" />  
 
                         <p:dataTable id="lolTable" var="item" value="#{orderOverview.utListe}" paginator="true" rows="10"  

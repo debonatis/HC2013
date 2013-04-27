@@ -7,8 +7,6 @@
         contentType="text/html"
         renderKitId="PRIMEFACES_MOBILE">
 
-    <head></head>
-
 
     <pm:page id="All" title="All you need at HC">
         <f:facet name="postinit"> 
@@ -205,7 +203,7 @@
 
             <pm:content>
 
-                <p:socket onMessage="handleMessage" channel="/HC" widgetVar="subscriber"/>                
+                <p:socket onMessage="handleMessage" channel="/HC/" widgetVar="subscriber"/>                
                 <p:growl  id="growl" />
 
                 <h:form id="chatForm">

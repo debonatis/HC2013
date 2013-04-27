@@ -6,7 +6,7 @@
         xmlns:pm="http://primefaces.org/mobile"
         contentType="text/html"
     renderKitId="PRIMEFACES_MOBILE">
-    <head></head>
+   
 
 
     <pm:page title="Chat">        
@@ -33,7 +33,7 @@
 
             <pm:content>
                 
-                <p:socket onMessage="handleMessage" channel="/HC" widgetVar="subscriber"/>                
+                <p:socket onMessage="handleMessage" channel="/HC/" widgetVar="subscriber"/>                
                 <p:growl  id="growl" />
                 
                 <h:form id="chatForm">
