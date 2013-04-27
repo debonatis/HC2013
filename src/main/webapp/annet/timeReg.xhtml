@@ -20,6 +20,7 @@
                         <h:outputText value="Time picker" /> 
                         <p:calendar value="#{logging.stop}" pattern="HH:mm" timeOnly="true" />
                     </p:panelGrid>
+                    <p:commandButton value="Send" action="#{logging.regWorkHours()}"/>
                     <h:panelGroup rendered="#{bruker.adminOK}">
                         <p:dataTable id="lolTable" var="item" value="#{logging.loggedInUsers}" style="width:190px">  
 

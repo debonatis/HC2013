@@ -9,6 +9,7 @@ import com.smj.hc2013.model.Bruker;
 import com.smj.hc2013.model.Timer;
 import com.smj.hc2013.session.BrukerFacade;
 import com.smj.hc2013.session.TimerFacade;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -59,11 +60,11 @@ public class logging extends BrukerBehandling{
         
     }  
     public void regWorkHours(){
-        Date time = new Date(stop.getTime()- start.getTime());
+        Time mick = new Time(getStop().getTime());
         timeO = new Timer();
         timeO.setTimeId(new Date(System.currentTimeMillis()));
-        timeO.setBrukernavn(null);
-        timeO.setArbeidsTimer(time);
+        timeO.setBrukernavn(getBruker().getBrukernavn());
+        timeO.setArbeidsTimer(mick);
         timerF.create(timeO);
     }
     
