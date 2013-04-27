@@ -64,7 +64,7 @@ public class logging extends BrukerBehandling{
         timeO = new Timer();
         timeO.setTimeId(getStart());
         timeO.setBrukernavn(getBruker().getBrukernavn());
-        timeO.setArbeidsTimer(getStop());
+        timeO.setArbeidsTimer(new Time(getStop().getTime()));
         timerF.create(timeO);
     }
     
