@@ -19,19 +19,7 @@
     </servlet-mapping> 
     <servlet>
         <servlet-name>Push Servlet</servlet-name>
-        <servlet-class>org.primefaces.push.PushServlet</servlet-class>
-        <init-param>
-            <param-name>org.atmosphere.cpr.broadcasterCacheClass</param-name>
-            <param-value>org.atmosphere.cache.HeaderBroadcasterCache</param-value>
-        </init-param>
-        <init-param>
-            <param-name>org.atmosphere.cpr.broadcasterClass</param-name>
-            <param-value>org.atmosphere.cpr.DefaultBroadcaster</param-value>
-        </init-param>
-        <init-param>
-            <param-name>org.atmosphere.cpr.broadcastFilterClasses</param-name>
-            <param-value>org.atmosphere.client.TrackMessageSizeFilter</param-value>
-        </init-param>
+        <servlet-class>org.primefaces.push.PushServlet</servlet-class>        
         <init-param>
             <param-name>org.atmosphere.cpr.sessionSupport</param-name>
             <param-value>true</param-value>
