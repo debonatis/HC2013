@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template/loginOkTemplate.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTimerTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTimerLabel_timeId}"/>
+                    <h:outputText value="#{timerController.selected.timeId}" title="#{bundle.ViewTimerTitle_timeId}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTimerLabel_brukernavn}"/>
+                    <h:outputText value="#{timerController.selected.brukernavn}" title="#{bundle.ViewTimerTitle_brukernavn}"/>
+                    <h:outputText value="#{bundle.ViewTimerLabel_arbeidsTimer}"/>
+                    <h:outputText value="#{timerController.selected.arbeidsTimer}" title="#{bundle.ViewTimerTitle_arbeidsTimer}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{timerController.destroyAndView}" value="#{bundle.ViewTimerDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTimerEditLink}"/>
+                <br />
+                <h:commandLink action="#{timerController.prepareCreate}" value="#{bundle.ViewTimerCreateLink}" />
+                <br />
+                <h:commandLink action="#{timerController.prepareList}" value="#{bundle.ViewTimerShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTimerIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
