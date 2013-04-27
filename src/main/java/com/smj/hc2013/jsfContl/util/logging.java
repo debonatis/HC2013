@@ -60,11 +60,11 @@ public class logging extends BrukerBehandling{
         
     }  
     public void regWorkHours(){
-        Time mick = new Time(getStop().getTime());
+       
         timeO = new Timer();
-        timeO.setTimeId(new Date(System.currentTimeMillis()));
+        timeO.setTimeId(getStart());
         timeO.setBrukernavn(getBruker().getBrukernavn());
-        timeO.setArbeidsTimer(mick);
+        timeO.setArbeidsTimer(getStop());
         timerF.create(timeO);
     }
     
