@@ -27,13 +27,13 @@ import javax.faces.bean.ManagedBean;
 @ManagedBean
 @ApplicationScoped
 @DeclareRoles({"Admin"})
-public class logging extends BrukerBehandling{
-    
+public class logging extends BrukerBehandling {
+
     @EJB
     private BrukerFacade brukerF;
     @EJB
     private TimerFacade timerF;
-    private  List<Timer> liste = Collections.synchronizedList(new ArrayList<Timer>());
+    private List<Timer> liste = Collections.synchronizedList(new ArrayList<Timer>());
     private Bruker bruker;
     private Timer timeO;
     private Date start;
@@ -55,30 +55,26 @@ public class logging extends BrukerBehandling{
         this.stop = stop;
     }
 
-    public Bruker getBruker() {        
-      bruker =  brukerF.find(getUserData());
+    public Bruker getBruker() {
+        bruker = brukerF.find(getUserData());
         return bruker;
-        
-    }  
-    public void regWorkHours(){
-       
+
+    }
+
+    public void regWorkHours() {
+
         timeO = new Timer();
         timeO.setTimeId(getStart());
-        timeO.setBrukernavn(getBruker().getBrukernavn());   
+        timeO.setBrukernavn(getBruker().getBrukernavn());
         Calendar cal = Calendar.getInstance();
-
-cal.set(Calendar.HOUR_OF_DAY, getStop().getHours());
-cal.set(Calendar.MINUTE, getStop().getMinutes());
-
-
+        cal.set(Calendar.HOUR_OF_DAY, getStop().getHours());
+        cal.set(Calendar.MINUTE, getStop().getMinutes());
         timeO.setArbeidsTimer(new Date(cal.getTimeInMillis()));
         timerF.create(timeO);
     }
-    
-    
-    public synchronized List<Timer> getLoggedInUsers(){ 
+
+    public synchronized List<Timer> getLoggedInUsers() {
         liste = timerF.findAll();
         return liste;
     }
-    
 }
