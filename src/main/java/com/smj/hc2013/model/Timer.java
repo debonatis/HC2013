@@ -35,6 +35,7 @@ public class Timer implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @NotNull
     @Basic(optional = false)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     @Column(name = "timeId")
