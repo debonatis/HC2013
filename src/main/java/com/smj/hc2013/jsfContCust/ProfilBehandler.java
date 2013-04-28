@@ -79,80 +79,157 @@ public class ProfilBehandler extends BrukerBehandling implements wisard {
     private SelskapKunde selskapKunde = new SelskapKunde();
     private String type = "";
 
+    /**
+     *
+     * @return
+     */
     public Bruker getBruker() {
         return bruker;
     }
 
+    /**
+     *
+     * @param bruker
+     */
     public void setBruker(Bruker bruker) {
         this.bruker = bruker;
     }
 
+    /**
+     *
+     * @return
+     */
     public Rolle getRollen() {
         return rollen;
     }
 
+    /**
+     *
+     * @param rolle
+     */
     public void setRollen(Rolle rolle) {
         this.rollen = rolle;
     }
 
+    /**
+     *
+     * @return
+     */
     public Bosted getBosted() {
         return bosted;
     }
 
+    /**
+     *
+     * @param bosted
+     */
     public void setBosted(Bosted bosted) {
         this.bosted = bosted;
     }
 
+    /**
+     *
+     * @return
+     */
     public Kunde getKunde() {
         return kunde;
     }
 
+    /**
+     *
+     * @param kunde
+     */
     public void setKunde(Kunde kunde) {
         this.kunde = kunde;
     }
 
+    /**
+     *
+     * @return
+     */
     public Selgere getSelgere() {
         return selgere;
     }
 
+    /**
+     *
+     * @param selgere
+     */
     public void setSelgere(Selgere selgere) {
         this.selgere = selgere;
     }
 
+    /**
+     *
+     * @return
+     */
     public Annet getAnnet() {
         return annet;
     }
 
+    /**
+     *
+     * @param annet
+     */
     public void setAnnet(Annet annet) {
         this.annet = annet;
     }
 
+    /**
+     *
+     * @return
+     */
     public Sjoforer getSjofor() {
         return sjofor;
     }
 
+    /**
+     *
+     * @param sjofor
+     */
     public void setSjofor(Sjoforer sjofor) {
         this.sjofor = sjofor;
     }
 
+    /**
+     *
+     * @return
+     */
     public Administrator getAdmin() {
         return admin;
     }
 
+    /**
+     *
+     * @param admin
+     */
     public void setAdmin(Administrator admin) {
         this.admin = admin;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Object getUser() {
         return bruker;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isSkip() {
         return skip;
     }
 
+    /**
+     *
+     * @param event
+     * @return
+     */
     @Override
     public String onFlowProcess(FlowEvent event) {
         logger.log(Level.INFO, "Current wizard step:{0}", event.getOldStep());
@@ -166,6 +243,10 @@ public class ProfilBehandler extends BrukerBehandling implements wisard {
         }
     }
 
+    /**
+     *
+     * @throws IOException
+     */
     @PostConstruct
     public void init() throws IOException {
         String brukernavn = getUserData();
@@ -214,6 +295,10 @@ public class ProfilBehandler extends BrukerBehandling implements wisard {
 
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     @Override
     public void save(ActionEvent actionEvent) {
         try {
@@ -238,11 +323,19 @@ public class ProfilBehandler extends BrukerBehandling implements wisard {
         }
     }
 
+    /**
+     *
+     * @param skip
+     */
     @Override
     public void setSkip(boolean skip) {
         this.skip = skip;
     }
 
+    /**
+     *
+     * @param user
+     */
     @Override
     public void setUser(Object user) {
         this.bruker = (Bruker) user;

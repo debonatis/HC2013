@@ -90,6 +90,9 @@ public class Bestilling implements Serializable {
     private final static String FILNAVN = "Oversikt.pdf";
     private boolean MailVe = false;
 
+    /**
+     *
+     */
     public Bestilling() {
         selskaper = new Selskaper();
         selskapKunde = new SelskapKunde();
@@ -101,6 +104,9 @@ public class Bestilling implements Serializable {
 
     }
 
+    /**
+     *
+     */
     public void prepareCreate() {
         selskaper = new Selskaper();
         selskapKunde = new SelskapKunde();
@@ -112,18 +118,34 @@ public class Bestilling implements Serializable {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public Ordre getOrdre() {
         return ordre;
     }
 
+    /**
+     *
+     * @param ordre
+     */
     public void setOrdre(Ordre ordre) {
         this.ordre = ordre;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<OrdreBestilling> getSettAntallList() {
         return settAntallList;
     }
 
+    /**
+     *
+     * @return
+     */
     public String[] getBridList() {
 
         List<Selskaper> hjelp = selskaperFacade.findAll();
@@ -145,22 +167,42 @@ public class Bestilling implements Serializable {
         return hjelp2.toArray(new String[]{});
     }
 
+    /**
+     *
+     * @param settAntallList
+     */
     public void setSettAntallList(List<OrdreBestilling> settAntallList) {
         this.settAntallList = settAntallList;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Retter> getRetter() {
         return retter;
     }
 
+    /**
+     *
+     * @param retter
+     */
     public void setRetter(List<Retter> retter) {
         this.retter = retter;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Retter> getMaal() {
         return maal;
     }
 
+    /**
+     *
+     * @param maal
+     */
     public void setMaal(List<Retter> maal) {
         this.maal = maal;
     }
@@ -169,6 +211,9 @@ public class Bestilling implements Serializable {
         retter = retterFacade.findAll();
     }
 
+    /**
+     *
+     */
     @PostConstruct
     public void init() {
         oppdaterRetterList();
@@ -177,14 +222,29 @@ public class Bestilling implements Serializable {
         settAntallList = new LinkedList<OrdreBestilling>();
     }
 
+    /**
+     *
+     * @return
+     */
     public DualListModel<Retter> getRetterPick() {
         return retterPick;
     }
 
+    /**
+     *
+     * @param retterPick
+     */
     public void setRetterPick(DualListModel<Retter> retterPick) {
         this.retterPick = retterPick;
     }
 
+    /**
+     *
+     * @param <T>
+     * @param objectToCheck
+     * @param defaultValue
+     * @return
+     */
     public static <T> T byttHvisNull(T objectToCheck, T defaultValue) {
         return objectToCheck == null ? defaultValue : objectToCheck;
     }
@@ -196,6 +256,10 @@ public class Bestilling implements Serializable {
         return hjelp;
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     public void savePick() throws Exception {
         int i = 0;
         try {
@@ -261,26 +325,51 @@ public class Bestilling implements Serializable {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isSkip() {
         return skip;
     }
 
+    /**
+     *
+     * @param skip
+     */
     public void setSkip(boolean skip) {
         this.skip = skip;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isMailVe() {
         return MailVe;
     }
 
+    /**
+     *
+     * @param MailVe
+     */
     public void setMailVe(boolean MailVe) {
         this.MailVe = MailVe;
     }
 
+    /**
+     *
+     * @param item
+     */
     public void removeFromsetAntalle(OrdreBestilling item) {
         settAntallList.remove(item);
     }
 
+    /**
+     *
+     * @param event
+     * @return
+     */
     public String onFlowProcess(FlowEvent event) {
         logger.info("Current wizard step:" + event.getOldStep());
         logger.info("Next step:" + event.getNewStep());
@@ -294,6 +383,10 @@ public class Bestilling implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param event
+     */
     public void onTransfer(TransferEvent event) {
         StringBuilder builder = new StringBuilder();
         Integer nPK = 0;
@@ -334,11 +427,19 @@ public class Bestilling implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
+    /**
+     *
+     * @return
+     */
     public UUID getUUID() {
         UUID idOne = UUID.randomUUID();
         return idOne;
     }
 
+    /**
+     *
+     * @return
+     */
     public StreamedContent getFile() {
 
 

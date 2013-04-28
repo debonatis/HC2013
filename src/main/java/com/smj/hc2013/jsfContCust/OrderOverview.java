@@ -20,6 +20,10 @@ public class OrderOverview extends OversiktKokk {
 
     BrukerBehandling bruker = new BrukerBehandling();
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<OrdreUtkjoring> getUtListe() {
         List<OrdreUtkjoring> ordreL = new ArrayList<>();

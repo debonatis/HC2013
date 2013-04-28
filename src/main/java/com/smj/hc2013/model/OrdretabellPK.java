@@ -33,35 +33,68 @@ public class OrdretabellPK implements Serializable {
     @Column(name = "kundebrukernavn")
     private String kundebrukernavn;
 
+    /**
+     *
+     */
     public OrdretabellPK() {
     }
 
+    /**
+     *
+     * @param selgerbrukernavn
+     * @param salgsnummer
+     * @param kundebrukernavn
+     */
     public OrdretabellPK(String selgerbrukernavn, String salgsnummer, String kundebrukernavn) {
         this.selgerbrukernavn = selgerbrukernavn;
         this.salgsnummer = salgsnummer;
         this.kundebrukernavn = kundebrukernavn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSelgerbrukernavn() {
         return selgerbrukernavn;
     }
 
+    /**
+     *
+     * @param selgerbrukernavn
+     */
     public void setSelgerbrukernavn(String selgerbrukernavn) {
         this.selgerbrukernavn = selgerbrukernavn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSalgsnummer() {
         return salgsnummer;
     }
 
+    /**
+     *
+     * @param salgsnummer
+     */
     public void setSalgsnummer(String salgsnummer) {
         this.salgsnummer = salgsnummer;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getKundebrukernavn() {
         return kundebrukernavn;
     }
 
+    /**
+     *
+     * @param kundebrukernavn
+     */
     public void setKundebrukernavn(String kundebrukernavn) {
         this.kundebrukernavn = kundebrukernavn;
     }

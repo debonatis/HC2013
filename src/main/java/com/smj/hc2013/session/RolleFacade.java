@@ -18,11 +18,18 @@ public class RolleFacade extends AbstractFacade<Rolle> {
     @PersistenceContext(unitName = "com.smj_HC2013_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public RolleFacade() {
         super(Rolle.class);
     }

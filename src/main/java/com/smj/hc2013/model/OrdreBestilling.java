@@ -21,52 +21,100 @@ public class OrdreBestilling {
     private String selskap = "";
     
 
+    /**
+     *
+     */
     public OrdreBestilling() {
     }
 
+    /**
+     *
+     * @param rett
+     * @param antall
+     */
     public OrdreBestilling(Retter rett, int antall) {
         this.rett = rett;
         this.antall = antall;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getLevDato() {
         return levDato;
     }
 
+    /**
+     *
+     * @param levDato
+     */
     public void setLevDato(Date levDato) {
         this.levDato = levDato;
     }
     
     
 
+    /**
+     *
+     * @return
+     */
     public Retter getRett() {
         return rett;
     }
 
+    /**
+     *
+     * @param rett
+     */
     public void setRett(Retter rett) {
         this.rett = rett;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getAntall() {
         return antall;
     }
 
+    /**
+     *
+     * @param antall
+     */
     public void setAntall(int antall) {
         this.antall = antall;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLeveringsAdresse() {
         return leveringsAdresse;
     }
 
+    /**
+     *
+     * @param leveringsAdresse
+     */
     public void setLeveringsAdresse(String leveringsAdresse) {
         this.leveringsAdresse = leveringsAdresse;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSelskap() {
         return selskap;
     }
 
+    /**
+     *
+     * @param selskap
+     */
     public void setSelskap(String selskap) {
         this.selskap = selskap;
     }

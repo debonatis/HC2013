@@ -28,26 +28,50 @@ public class OrdrePK implements Serializable {
     @Column(name = "salgsnummer")
     private String salgsnummer;
 
+    /**
+     *
+     */
     public OrdrePK() {
     }
 
+    /**
+     *
+     * @param brukernavn
+     * @param salgsnummer
+     */
     public OrdrePK(String brukernavn, String salgsnummer) {
         this.brukernavn = brukernavn;
         this.salgsnummer = salgsnummer;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBrukernavn() {
         return brukernavn;
     }
 
+    /**
+     *
+     * @param brukernavn
+     */
     public void setBrukernavn(String brukernavn) {
         this.brukernavn = brukernavn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSalgsnummer() {
         return salgsnummer;
     }
 
+    /**
+     *
+     * @param salgsnummer
+     */
     public void setSalgsnummer(String salgsnummer) {
         this.salgsnummer = salgsnummer;
     }

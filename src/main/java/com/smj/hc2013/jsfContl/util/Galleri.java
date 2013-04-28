@@ -15,6 +15,10 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
 
+/**
+ *
+ * @author deb
+ */
 @SessionScoped
 @Named("galleria")
 public class Galleri {
@@ -33,6 +37,9 @@ public class Galleri {
         "Dæsken så godt", 
         "Fale godt ja", "lol", "lol"};
 
+    /**
+     *
+     */
     @PostConstruct
     public void init(){
         images = new ArrayList<GalleriaDish>();
@@ -42,6 +49,10 @@ public class Galleri {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public List<GalleriaDish> getImages() {
         return images;
     }

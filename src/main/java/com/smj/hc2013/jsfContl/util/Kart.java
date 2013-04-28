@@ -21,6 +21,9 @@ public class Kart {
 
     private MapModel kart;
 
+    /**
+     *
+     */
     public Kart() {
         kart = new DefaultMapModel();
         LatLng coord1 = new LatLng(63.430515, 10.395053);
@@ -28,6 +31,10 @@ public class Kart {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public MapModel getKart() {
         return kart;
     }

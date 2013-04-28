@@ -28,22 +28,41 @@ public class ForgotPassword extends JavaMail implements Serializable {
     @EJB
     private BrukerFacade brukerFacade;
 
+    /**
+     *
+     * @return
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     *
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     */
     public void apply() {
 
         try {

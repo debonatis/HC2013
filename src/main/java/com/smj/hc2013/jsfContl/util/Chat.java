@@ -31,60 +31,113 @@ public class Chat extends BrukerBehandling {
     private String privateUser;
     private final static String CHANNEL = "/HC/";
 
+    /**
+     *
+     * @param users
+     */
     public void setListe(ChatList users) {
         this.liste = users;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPrivateUser() {
         return privateUser;
     }
 
+    /**
+     *
+     * @param privateUser
+     */
     public void setPrivateUser(String privateUser) {
         this.privateUser = privateUser;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getGlobalMessage() {
         return globalMessage;
     }
 
+    /**
+     *
+     * @param globalMessage
+     */
     public void setGlobalMessage(String globalMessage) {
         this.globalMessage = globalMessage;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPrivateMessage() {
         return privateMessage;
     }
 
+    /**
+     *
+     * @param privateMessage
+     */
     public void setPrivateMessage(String privateMessage) {
         this.privateMessage = privateMessage;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     *
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isLoggedIn() {
         return loggedIn;
     }
 
+    /**
+     *
+     * @param loggedIn
+     */
     public void setLoggedIn(boolean loggedIn) {
         this.loggedIn = loggedIn;
     }
 
+    /**
+     *
+     */
     public void sendGlobal() {
         pushContext.push(CHANNEL + "*", username + ": " + globalMessage);
         globalMessage = null;
     }
 
+    /**
+     *
+     */
     public void sendPrivate() {
         pushContext.push(CHANNEL + privateUser, "[PM] " + username + ": " + privateMessage);
         privateMessage = null;
     }
    
+    /**
+     *
+     */
     public void login() {
         String navn = getUserData();
         if (!liste.contains(navn)) {
@@ -99,6 +152,9 @@ public class Chat extends BrukerBehandling {
 
     }
 
+    /**
+     *
+     */
     public void disconnect() {
         liste.removeUser(username);
         RequestContext.getCurrentInstance().update("form:users");

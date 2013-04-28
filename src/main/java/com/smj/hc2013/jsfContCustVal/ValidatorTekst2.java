@@ -13,6 +13,13 @@ import javax.faces.validator.*;
 @FacesValidator("validatorTekst2")
 public class ValidatorTekst2 implements Validator {
 
+    /**
+     *
+     * @param facesContext
+     * @param uIComponent
+     * @param object
+     * @throws ValidatorException
+     */
     @Override
     public void validate(FacesContext facesContext, UIComponent uIComponent, Object object) throws ValidatorException {
         boolean PassordSjekkOK;

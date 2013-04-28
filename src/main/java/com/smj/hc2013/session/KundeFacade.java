@@ -18,11 +18,18 @@ public class KundeFacade extends AbstractFacade<Kunde> {
     @PersistenceContext(unitName = "com.smj_HC2013_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public KundeFacade() {
         super(Kunde.class);
     }

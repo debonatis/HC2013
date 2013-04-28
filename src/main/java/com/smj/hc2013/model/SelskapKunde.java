@@ -25,24 +25,47 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "SelskapKunde.findBySelskapnr", query = "SELECT s FROM SelskapKunde s WHERE s.selskapKundePK.selskapnr = :selskapnr")})
 public class SelskapKunde implements Serializable {
     private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
     @EmbeddedId
     protected SelskapKundePK selskapKundePK;
 
+    /**
+     *
+     */
     public SelskapKunde() {
     }
 
+    /**
+     *
+     * @param selskapKundePK
+     */
     public SelskapKunde(SelskapKundePK selskapKundePK) {
         this.selskapKundePK = selskapKundePK;
     }
 
+    /**
+     *
+     * @param brukernavn
+     * @param selskapnr
+     */
     public SelskapKunde(String brukernavn, int selskapnr) {
         this.selskapKundePK = new SelskapKundePK(brukernavn, selskapnr);
     }
 
+    /**
+     *
+     * @return
+     */
     public SelskapKundePK getSelskapKundePK() {
         return selskapKundePK;
     }
 
+    /**
+     *
+     * @param selskapKundePK
+     */
     public void setSelskapKundePK(SelskapKundePK selskapKundePK) {
         this.selskapKundePK = selskapKundePK;
     }

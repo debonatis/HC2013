@@ -39,25 +39,48 @@ public class Salg implements Serializable {
     @Column(name = "sumSalg")
     private String sumSalg;
 
+    /**
+     *
+     */
     public Salg() {
     }
 
+    /**
+     *
+     * @param salgsnummer
+     */
     public Salg(String salgsnummer) {
         this.salgsnummer = salgsnummer;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSalgsnummer() {
         return salgsnummer;
     }
 
+    /**
+     *
+     * @param salgsnummer
+     */
     public void setSalgsnummer(String salgsnummer) {
         this.salgsnummer = salgsnummer;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSumSalg() {
         return sumSalg;
     }
 
+    /**
+     *
+     * @param sumSalg
+     */
     public void setSumSalg(String sumSalg) {
         this.sumSalg = sumSalg;
     }

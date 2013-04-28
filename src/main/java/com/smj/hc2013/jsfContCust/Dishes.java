@@ -25,6 +25,10 @@ public class Dishes implements Serializable {
     private RetterFacade rettF;
     private List<Retter> rettL;
 
+    /**
+     *
+     * @return
+     */
     public Retter getSelected() {
         return selected;
     }
@@ -34,16 +38,28 @@ public class Dishes implements Serializable {
         rettL = rettF.findAll();
     }
 
+    /**
+     *
+     * @param selected
+     */
     public void setSelected(Retter selected) {
         this.selected = selected;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Retter> getRettL() {
         oppdaterRetterList();
        
         return rettL;
     }
 
+    /**
+     *
+     * @param rettL
+     */
     public void setRettL(List<Retter> rettL) {
         this.rettL = rettL;
     }

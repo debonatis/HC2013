@@ -41,30 +41,58 @@ public class Sjoforer implements Serializable {
     @Column(name = "Forekortklasse")
     private String forekortklasse;
 
+    /**
+     *
+     */
     public Sjoforer() {
     }
 
+    /**
+     *
+     * @param brukernavn
+     */
     public Sjoforer(String brukernavn) {
         this.brukernavn = brukernavn;
     }
 
+    /**
+     *
+     * @param brukernavn
+     * @param forekortklasse
+     */
     public Sjoforer(String brukernavn, String forekortklasse) {
         this.brukernavn = brukernavn;
         this.forekortklasse = forekortklasse;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBrukernavn() {
         return brukernavn;
     }
 
+    /**
+     *
+     * @param brukernavn
+     */
     public void setBrukernavn(String brukernavn) {
         this.brukernavn = brukernavn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getForekortklasse() {
         return forekortklasse;
     }
 
+    /**
+     *
+     * @param forekortklasse
+     */
     public void setForekortklasse(String forekortklasse) {
         this.forekortklasse = forekortklasse;
     }

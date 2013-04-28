@@ -51,37 +51,72 @@ public class Timer implements Serializable {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date arbeidsTimer;
 
+    /**
+     *
+     */
     public Timer() {
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdNr() {
         return idNr;
     }
 
+    /**
+     *
+     * @param idNr
+     */
     public void setIdNr(Integer idNr) {
         this.idNr = idNr;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getTimeId() {
         return timeId;
     }
 
+    /**
+     *
+     * @param timeId
+     */
     public void setTimeId(Date timeId) {
         this.timeId = timeId;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBrukernavn() {
         return brukernavn;
     }
 
+    /**
+     *
+     * @param brukernavn
+     */
     public void setBrukernavn(String brukernavn) {
         this.brukernavn = brukernavn;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getArbeidsTimer() {
         return arbeidsTimer;
     }
 
+    /**
+     *
+     * @param arbeidsTimer
+     */
     public void setArbeidsTimer(Date arbeidsTimer) {
         this.arbeidsTimer = arbeidsTimer;
     }

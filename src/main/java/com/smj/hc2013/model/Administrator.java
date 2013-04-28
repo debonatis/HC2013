@@ -35,17 +35,32 @@ public class Administrator implements Serializable {
     @Column(name = "brukernavn")
     private String brukernavn;
 
+    /**
+     *
+     */
     public Administrator() {
     }
 
+    /**
+     *
+     * @param brukernavn
+     */
     public Administrator(String brukernavn) {
         this.brukernavn = brukernavn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBrukernavn() {
         return brukernavn;
     }
 
+    /**
+     *
+     * @param brukernavn
+     */
     public void setBrukernavn(String brukernavn) {
         this.brukernavn = brukernavn;
     }

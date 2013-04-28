@@ -20,6 +20,12 @@ import java.util.List;
  */
 public class PdfMaker {
     
+    /**
+     *
+     * @param d
+     * @param filnavn
+     * @param path
+     */
     public static void makePdf(List<OrdreBestilling> d, String filnavn, String path){
     
     Document document = new Document();

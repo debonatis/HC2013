@@ -40,30 +40,58 @@ public class Bosted implements Serializable {
     @Column(name = "poststed")
     private String poststed;
 
+    /**
+     *
+     */
     public Bosted() {
     }
 
+    /**
+     *
+     * @param postnummer
+     */
     public Bosted(Integer postnummer) {
         this.postnummer = postnummer;
     }
 
+    /**
+     *
+     * @param postnummer
+     * @param poststed
+     */
     public Bosted(Integer postnummer, String poststed) {
         this.postnummer = postnummer;
         this.poststed = poststed;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getPostnummer() {
         return postnummer;
     }
 
+    /**
+     *
+     * @param postnummer
+     */
     public void setPostnummer(Integer postnummer) {
         this.postnummer = postnummer;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPoststed() {
         return poststed;
     }
 
+    /**
+     *
+     * @param poststed
+     */
     public void setPoststed(String poststed) {
         this.poststed = poststed;
     }

@@ -18,11 +18,18 @@ public class OrdreFacade extends AbstractFacade<Ordre> {
     @PersistenceContext(unitName = "com.smj_HC2013_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public OrdreFacade() {
         super(Ordre.class);
     }

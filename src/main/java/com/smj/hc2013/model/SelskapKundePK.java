@@ -27,26 +27,50 @@ public class SelskapKundePK implements Serializable {
     @Column(name = "selskapnr")
     private int selskapnr;
 
+    /**
+     *
+     */
     public SelskapKundePK() {
     }
 
+    /**
+     *
+     * @param brukernavn
+     * @param selskapnr
+     */
     public SelskapKundePK(String brukernavn, int selskapnr) {
         this.brukernavn = brukernavn;
         this.selskapnr = selskapnr;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBrukernavn() {
         return brukernavn;
     }
 
+    /**
+     *
+     * @param brukernavn
+     */
     public void setBrukernavn(String brukernavn) {
         this.brukernavn = brukernavn;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getSelskapnr() {
         return selskapnr;
     }
 
+    /**
+     *
+     * @param selskapnr
+     */
     public void setSelskapnr(int selskapnr) {
         this.selskapnr = selskapnr;
     }

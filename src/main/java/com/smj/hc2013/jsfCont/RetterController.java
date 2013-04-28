@@ -26,6 +26,10 @@ import javax.faces.model.SelectItem;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.FlowEvent;
 
+/**
+ *
+ * @author deb
+ */
 @ManagedBean(name = "retterController")
 @SessionScoped
 public class RetterController implements Serializable {
@@ -39,17 +43,32 @@ public class RetterController implements Serializable {
     private static final Logger logger = Logger.getLogger(RetterController.class.getName());
     private boolean skip;
 
+    /**
+     *
+     */
     public RetterController() {
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isSkip() {
         return skip;
     }
 
+    /**
+     *
+     * @param skip
+     */
     public void setSkip(boolean skip) {
         this.skip = skip;
     }
 
+    /**
+     *
+     * @return
+     */
     public Retter getSelected() {
         if (current == null) {
             current = new Retter();
@@ -62,6 +81,10 @@ public class RetterController implements Serializable {
         return ejbFacade;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isBeskrivelse() {
         if (getSelected().getBeskrivelse().isEmpty()) {
             return false;
@@ -69,6 +92,10 @@ public class RetterController implements Serializable {
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     public PaginationHelper getPagination() {
         if (pagination == null) {
             pagination = new PaginationHelper(10) {
@@ -86,23 +113,39 @@ public class RetterController implements Serializable {
         return pagination;
     }
 
+    /**
+     *
+     * @return
+     */
     public String prepareList() {
         recreateModel();
         return "List";
     }
 
+    /**
+     *
+     * @return
+     */
     public String prepareView() {
         current = (Retter) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
+    /**
+     *
+     * @return
+     */
     public String prepareCreate() {
         current = new Retter();
         selectedItemIndex = -1;
         return "Create";
     }
 
+    /**
+     *
+     * @return
+     */
     public String create() {
         try {
             getFacade().create(current);
@@ -114,12 +157,20 @@ public class RetterController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String prepareEdit() {
         current = (Retter) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
 
+    /**
+     *
+     * @return
+     */
     public String update() {
         try {
             getFacade().edit(current);
@@ -131,6 +182,10 @@ public class RetterController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String destroy() {
         current = (Retter) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
@@ -140,6 +195,10 @@ public class RetterController implements Serializable {
         return "List";
     }
 
+    /**
+     *
+     * @return
+     */
     public String destroyAndView() {
         performDestroy();
         recreateModel();
@@ -177,6 +236,10 @@ public class RetterController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public DataModel getItems() {
         if (items == null) {
             items = getPagination().createPageDataModel();
@@ -192,26 +255,47 @@ public class RetterController implements Serializable {
         pagination = null;
     }
 
+    /**
+     *
+     * @return
+     */
     public String next() {
         getPagination().nextPage();
         recreateModel();
         return "List";
     }
 
+    /**
+     *
+     * @return
+     */
     public String previous() {
         getPagination().previousPage();
         recreateModel();
         return "List";
     }
 
+    /**
+     *
+     * @return
+     */
     public SelectItem[] getItemsAvailableSelectMany() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), false);
     }
 
+    /**
+     *
+     * @return
+     */
     public SelectItem[] getItemsAvailableSelectOne() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
+    /**
+     *
+     * @param event
+     * @return
+     */
     public String onFlowProcess(FlowEvent event) {
         logger.info("Current wizard step:" + event.getOldStep());
         logger.info("Next step:" + event.getNewStep());
@@ -224,6 +308,10 @@ public class RetterController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param event
+     */
     public void handleFileUpload(FileUploadEvent event) {
         
        
@@ -261,9 +349,19 @@ public class RetterController implements Serializable {
         }
     }
 
+    /**
+     *
+     */
     @FacesConverter(forClass = Retter.class, value="retterControllerConverter")
     public static class RetterControllerConverter implements Converter {
 
+        /**
+         *
+         * @param facesContext
+         * @param component
+         * @param value
+         * @return
+         */
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
@@ -273,7 +371,12 @@ public class RetterController implements Serializable {
             return controller.ejbFacade.find(getKey(value));
         }
 
-       public  java.lang.String getKey(String value) {
+        /**
+         *
+         * @param value
+         * @return
+         */
+        public  java.lang.String getKey(String value) {
             java.lang.String key;
             key = value;
             return key;
@@ -285,6 +388,13 @@ public class RetterController implements Serializable {
             return sb.toString();
         }
 
+        /**
+         *
+         * @param facesContext
+         * @param component
+         * @param object
+         * @return
+         */
         public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
             if (object == null) {
                 return null;

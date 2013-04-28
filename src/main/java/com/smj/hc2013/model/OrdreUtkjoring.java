@@ -18,10 +18,18 @@ public class OrdreUtkjoring {
     private Retter rett = new Retter();
     private Utkjoring utkojring = new Utkjoring();
 
+    /**
+     *
+     * @return
+     */
     public Utkjoring getUtkojring() {
         return utkojring;
     }
 
+    /**
+     *
+     * @param utkojring
+     */
     public void setUtkojring(Utkjoring utkojring) {
         this.utkojring = utkojring;
     }
@@ -65,34 +73,66 @@ public class OrdreUtkjoring {
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     public Ordretabell getOrdreTabell() {
         return ordreTabell;
     }
 
+    /**
+     *
+     * @param ordreTabell
+     */
     public void setOrdreTabell(Ordretabell ordreTabell) {
         this.ordreTabell = ordreTabell;
     }
 
+    /**
+     *
+     * @return
+     */
     public Ordre getOrdre() {
         return ordre;
     }
 
+    /**
+     *
+     * @param ordre
+     */
     public void setOrdre(Ordre ordre) {
         this.ordre = ordre;
     }
 
+    /**
+     *
+     * @return
+     */
     public Bruker getBruker() {
         return bruker;
     }
 
+    /**
+     *
+     * @param bruker
+     */
     public void setBruker(Bruker bruker) {
         this.bruker = bruker;
     }
 
+    /**
+     *
+     * @return
+     */
     public Retter getRett() {
         return rett;
     }
 
+    /**
+     *
+     * @param rett
+     */
     public void setRett(Retter rett) {
         this.rett = rett;
     }

@@ -51,49 +51,96 @@ public class Selgere implements Serializable {
     @Column(name = "timer")
     private String timer;
 
+    /**
+     *
+     */
     public Selgere() {
     }
 
+    /**
+     *
+     * @param brukernavn
+     */
     public Selgere(String brukernavn) {
         this.brukernavn = brukernavn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBrukernavn() {
         return brukernavn;
     }
 
+    /**
+     *
+     * @param brukernavn
+     */
     public void setBrukernavn(String brukernavn) {
         this.brukernavn = brukernavn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSalgPerManed() {
         return salgPerManed;
     }
 
+    /**
+     *
+     * @param salgPerManed
+     */
     public void setSalgPerManed(String salgPerManed) {
         this.salgPerManed = salgPerManed;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getOpparbeidetProvisjon() {
         return opparbeidetProvisjon;
     }
 
+    /**
+     *
+     * @param opparbeidetProvisjon
+     */
     public void setOpparbeidetProvisjon(String opparbeidetProvisjon) {
         this.opparbeidetProvisjon = opparbeidetProvisjon;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAntSalg() {
         return antSalg;
     }
 
+    /**
+     *
+     * @param antSalg
+     */
     public void setAntSalg(String antSalg) {
         this.antSalg = antSalg;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTimer() {
         return timer;
     }
 
+    /**
+     *
+     * @param timer
+     */
     public void setTimer(String timer) {
         this.timer = timer;
     }
@@ -123,6 +170,10 @@ public class Selgere implements Serializable {
         return "com.smj.hc2013.model.Selgere[ brukernavn=" + brukernavn + " ]";
     }
 
+    /**
+     *
+     * @param i
+     */
     public void setAntSalgInt(int i) {
         this.antSalg = ((Integer) i).toString(); 
     }

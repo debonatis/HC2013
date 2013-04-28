@@ -56,6 +56,10 @@ public class TEST2 {
     private static Date mick;
 
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
        
         mick = new Date(System.currentTimeMillis());
@@ -66,14 +70,25 @@ public class TEST2 {
        
     }
     
-     public static  OrdreUtkjoring getSetter() {
+     /**
+     *
+     * @return
+     */
+    public static  OrdreUtkjoring getSetter() {
         return setter;
     }
 
+    /**
+     *
+     * @param setter
+     */
     public  void  setSetter(OrdreUtkjoring setter) {
         TEST2.setter = setter;
     }
     
+    /**
+     *
+     */
     public static void init2(){
          brukerL = brukerFacade.findAll();
         ordreL = ordreFacade.findAll();
@@ -108,6 +123,9 @@ public class TEST2 {
     }
 
     
+    /**
+     *
+     */
     public void init() {
         brukerL = brukerFacade.findAll();
         ordreL = ordreFacade.findAll();

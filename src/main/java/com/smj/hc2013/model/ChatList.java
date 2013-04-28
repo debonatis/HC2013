@@ -20,27 +20,51 @@ public class ChatList{
     
     private List<String> users;
     
+    /**
+     *
+     */
     @PostConstruct
     public void init() {
         this.users = new ArrayList<>();
     }
 
+    /**
+     *
+     * @return
+     */
     public List<String> getUsers() {
         return users;
     }
 
+    /**
+     *
+     * @param users
+     */
     public void setUsers(List<String> users) {
         this.users = users;
     }
     
+    /**
+     *
+     * @param user
+     */
     public void addUser(String user) {
         this.users.add(user);
     }
     
+    /**
+     *
+     * @param user
+     */
     public void removeUser(String user) {
         this.users.remove(user);
     }
     
+    /**
+     *
+     * @param user
+     * @return
+     */
     public boolean contains(String user) {
         return this.users.contains(user);
     }

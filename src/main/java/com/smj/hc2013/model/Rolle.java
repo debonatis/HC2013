@@ -41,30 +41,58 @@ public class Rolle implements Serializable {
     @Column(name = "rollen")
     private String rollen;
 
+    /**
+     *
+     */
     public Rolle() {
     }
 
+    /**
+     *
+     * @param brukernavn
+     */
     public Rolle(String brukernavn) {
         this.brukernavn = brukernavn;
     }
 
+    /**
+     *
+     * @param brukernavn
+     * @param rollen
+     */
     public Rolle(String brukernavn, String rollen) {
         this.brukernavn = brukernavn;
         this.rollen = rollen;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBrukernavn() {
         return brukernavn;
     }
 
+    /**
+     *
+     * @param brukernavn
+     */
     public void setBrukernavn(String brukernavn) {
         this.brukernavn = brukernavn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getRollen() {
         return rollen;
     }
 
+    /**
+     *
+     * @param rollen
+     */
     public void setRollen(String rollen) {
         this.rollen = rollen;
     }

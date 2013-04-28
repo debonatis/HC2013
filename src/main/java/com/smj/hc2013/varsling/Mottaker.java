@@ -10,5 +10,10 @@ package com.smj.hc2013.varsling;
  */
 public interface Mottaker {
 
+    /**
+     *
+     * @param entity
+     * @param entityName
+     */
     public void update(Object entity, String entityName);
 }

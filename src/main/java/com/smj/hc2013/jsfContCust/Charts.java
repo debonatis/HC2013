@@ -38,6 +38,10 @@ import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartSeries;
 
+/**
+ *
+ * @author deb
+ */
 @ManagedBean
 @SessionScoped
 public class Charts implements Serializable {
@@ -62,41 +66,77 @@ public class Charts implements Serializable {
     private Date fra = new Date(System.currentTimeMillis() - maned);
     private Date til = new Date(System.currentTimeMillis());
 
+    /**
+     *
+     * @return
+     */
     public BubbleChartModel getBubbleModel() {
         return bubbleModel;
     }
 
+    /**
+     *
+     * @param bubbleModel
+     */
     public void setBubbleModel(BubbleChartModel bubbleModel) {
         this.bubbleModel = bubbleModel;
     }
 
+    /**
+     *
+     * @return
+     */
     public CartesianChartModel getWeb() {
 
         return web;
     }
 
+    /**
+     *
+     * @param web
+     */
     public void setWeb(CartesianChartModel web) {
         this.web = web;
     }
 
+    /**
+     *
+     * @return
+     */
     public CartesianChartModel getCurrentUser() {
 
         return currentUser;
     }
 
+    /**
+     *
+     * @param currentUser
+     */
     public void setCurrentUser(CartesianChartModel currentUser) {
         this.currentUser = currentUser;
     }
 
+    /**
+     *
+     * @return
+     */
     public CartesianChartModel getUsers() {
 
         return users;
     }
 
+    /**
+     *
+     * @param users
+     */
     public void setUsers(CartesianChartModel users) {
         this.users = users;
     }
 
+    /**
+     *
+     * @throws ParseException
+     */
     @PostConstruct
     public void init() throws ParseException {
         t = ordretabellFacade.findAll();
@@ -110,36 +150,68 @@ public class Charts implements Serializable {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getTil() {
         return til;
     }
 
+    /**
+     *
+     * @param til
+     */
     public void setTil(Date til) {
         this.til = til;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getFra() {
         return fra;
     }
 
+    /**
+     *
+     * @param fra
+     */
     public void setFra(Date fra) {
         this.fra = fra;
     }
 
+    /**
+     *
+     * @return
+     */
     public CartesianChartModel getLinearModelAll() {
 
         return linearModelAll;
     }
 
+    /**
+     *
+     * @param linearModelAll
+     */
     public void setLinearModelAll(CartesianChartModel linearModelAll) {
         this.linearModelAll = linearModelAll;
     }
 
+    /**
+     *
+     * @return
+     */
     public CartesianChartModel getChartModelUser() {
 
         return chartModelUser;
     }
 
+    /**
+     *
+     * @param chartModelUser
+     */
     public void setChartModelUser(CartesianChartModel chartModelUser) {
         this.chartModelUser = chartModelUser;
     }
@@ -250,7 +322,11 @@ public class Charts implements Serializable {
         }
 
     }
-     public void itemSelect(ItemSelectEvent event) {  
+     /**
+     *
+     * @param event
+     */
+    public void itemSelect(ItemSelectEvent event) {  
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Item selected",  
                         "Item Index: " + event.getItemIndex() + ", Series Index:" + event.getSeriesIndex());  
   
@@ -263,6 +339,11 @@ public class Charts implements Serializable {
         return f;
     }
 
+    /**
+     *
+     * @param map
+     * @return
+     */
     public static synchronized Map<Object, Number> sortMapDates(final Map<Object, Number> map) {
         Comparator<Object> valueComparator = new Comparator<Object>() {
             @Override

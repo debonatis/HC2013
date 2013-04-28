@@ -10,9 +10,22 @@ package com.smj.hc2013.varsling;
  */
 public interface Varsler {
 
+    /**
+     *
+     * @param o
+     */
     public void registerVarsler(Mottaker o);
 
+    /**
+     *
+     * @param o
+     */
     public void removeVarsler(Mottaker o);
 
+    /**
+     *
+     * @param entity
+     * @param entityName
+     */
     public void notifyVarslerMottaker(Object entity, String entityName);
 }

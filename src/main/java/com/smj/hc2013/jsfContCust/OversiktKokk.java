@@ -60,29 +60,52 @@ public class OversiktKokk implements DataTableInt {
     
     
 
+    /**
+     *
+     * @return
+     */
     public int getBilnr() {
         return bilnr;
     }
 
+    /**
+     *
+     * @param bilnr
+     */
     public void setBilnr(int bilnr) {
         this.bilnr = bilnr;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public OrdreUtkjoring getSelected() {
         return selected;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public OrdreUtkjoring getSetter() {
         return setter;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<OrdreUtkjoring> getUtListe() {
         return utListe;
     }
 
+    /**
+     *
+     */
     @PostConstruct
     @Override
     public void init() {
@@ -128,6 +151,9 @@ public class OversiktKokk implements DataTableInt {
 
     }
 
+    /**
+     *
+     */
     @Override
     public void save() {
          brukerFacade.edit(selected.getBruker());
@@ -143,16 +169,28 @@ public class OversiktKokk implements DataTableInt {
         init();
     }
 
+    /**
+     *
+     * @param selected
+     */
     @Override
     public void setSelected(OrdreUtkjoring selected) {
         this.selected = selected;
     }
 
+    /**
+     *
+     * @param setter
+     */
     @Override
     public void setSetter(OrdreUtkjoring setter) {
         this.setter = setter;
     }
 
+    /**
+     *
+     * @param utListe
+     */
     @Override
     public void setUtListe(List<OrdreUtkjoring> utListe) {
         this.utListe = utListe;

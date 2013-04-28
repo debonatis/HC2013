@@ -74,13 +74,30 @@ public class Bruker implements Serializable {
     @Column(name = "postnummer")
     private Integer postnummer;
 
+    /**
+     *
+     */
     public Bruker() {
     }
 
+    /**
+     *
+     * @param brukernavn
+     */
     public Bruker(String brukernavn) {
         this.brukernavn = brukernavn;
     }
 
+    /**
+     *
+     * @param brukernavn
+     * @param passord
+     * @param fornavn
+     * @param etternavn
+     * @param adresse
+     * @param email
+     * @param telefon
+     */
     public Bruker(String brukernavn, String passord, String fornavn, String etternavn, String adresse, String email, int telefon) {
         this.brukernavn = brukernavn;
         this.passord = passord;
@@ -91,66 +108,130 @@ public class Bruker implements Serializable {
         this.telefon = telefon;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBrukernavn() {
         return brukernavn;
     }
 
+    /**
+     *
+     * @param brukernavn
+     */
     public void setBrukernavn(String brukernavn) {
         this.brukernavn = brukernavn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassord() {
         return passord;
     }
 
+    /**
+     *
+     * @param passord
+     */
     public void setPassord(String passord) {
         this.passord = passord;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFornavn() {
         return fornavn;
     }
 
+    /**
+     *
+     * @param fornavn
+     */
     public void setFornavn(String fornavn) {
         this.fornavn = fornavn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEtternavn() {
         return etternavn;
     }
 
+    /**
+     *
+     * @param etternavn
+     */
     public void setEtternavn(String etternavn) {
         this.etternavn = etternavn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAdresse() {
         return adresse;
     }
 
+    /**
+     *
+     * @param adresse
+     */
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getTelefon() {
         return telefon;
     }
 
+    /**
+     *
+     * @param telefon
+     */
     public void setTelefon(int telefon) {
         this.telefon = telefon;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getPostnummer() {
         return postnummer;
     }
 
+    /**
+     *
+     * @param postnummer
+     */
     public void setPostnummer(Integer postnummer) {
         this.postnummer = postnummer;
     }

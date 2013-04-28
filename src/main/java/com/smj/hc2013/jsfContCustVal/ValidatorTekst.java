@@ -16,6 +16,13 @@ import javax.faces.validator.*;
 @FacesValidator("validatorTekst")
 public class ValidatorTekst implements Validator {
 
+    /**
+     *
+     * @param facesContext
+     * @param uIComponent
+     * @param object
+     * @throws ValidatorException
+     */
     @Override
     public void validate(FacesContext facesContext, UIComponent uIComponent, Object object) throws ValidatorException {
         UIInput passwordComponent = (UIInput) uIComponent.getAttributes().get("passwordComponent");

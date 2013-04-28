@@ -28,6 +28,14 @@ public class JavaMail {
         return (Session) c.lookup("java:comp/env/mail/Peering");
     }
 
+    /**
+     *
+     * @param email
+     * @param subject
+     * @param body
+     * @throws NamingException
+     * @throws MessagingException
+     */
     public void sendMail1(String email, String subject, String body) throws NamingException, MessagingException {
         Session mailpeering = getMailpeering();
         MimeMessage message = new MimeMessage(mailpeering);

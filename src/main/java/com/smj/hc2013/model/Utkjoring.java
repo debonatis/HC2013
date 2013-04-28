@@ -30,35 +30,68 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Utkjoring.findByUtkorinKogstatus", query = "SELECT u FROM Utkjoring u WHERE u.utkorinKogstatus = :utkorinKogstatus")})
 public class Utkjoring implements Serializable {
     private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
     @EmbeddedId
     protected UtkjoringPK utkjoringPK;
     @Size(max = 10)
     @Column(name = "utkorinKogstatus")
     private String utkorinKogstatus;
 
+    /**
+     *
+     */
     public Utkjoring() {
     }
 
+    /**
+     *
+     * @param utkjoringPK
+     */
     public Utkjoring(UtkjoringPK utkjoringPK) {
         this.utkjoringPK = utkjoringPK;
     }
 
+    /**
+     *
+     * @param brukernavn
+     * @param salgsnummer
+     * @param bilnr
+     * @param sjoforBrukernavn
+     */
     public Utkjoring(String brukernavn, String salgsnummer, int bilnr, String sjoforBrukernavn) {
         this.utkjoringPK = new UtkjoringPK(brukernavn, salgsnummer, bilnr, sjoforBrukernavn);
     }
 
+    /**
+     *
+     * @return
+     */
     public UtkjoringPK getUtkjoringPK() {
         return utkjoringPK;
     }
 
+    /**
+     *
+     * @param utkjoringPK
+     */
     public void setUtkjoringPK(UtkjoringPK utkjoringPK) {
         this.utkjoringPK = utkjoringPK;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUtkorinKogstatus() {
         return utkorinKogstatus;
     }
 
+    /**
+     *
+     * @param utkorinKogstatus
+     */
     public void setUtkorinKogstatus(String utkorinKogstatus) {
         this.utkorinKogstatus = utkorinKogstatus;
     }

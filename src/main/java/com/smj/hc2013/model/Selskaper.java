@@ -47,49 +47,96 @@ public class Selskaper implements Serializable {
     @Column(name = "adresse")
     private String adresse;
 
+    /**
+     *
+     */
     public Selskaper() {
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBrId() {
         return BrId;
     }
 
+    /**
+     *
+     * @param BrId
+     */
     public void setBrId(String BrId) {
         this.BrId = BrId;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAdresse() {
         return adresse;
     }
 
+    /**
+     *
+     * @param adresse
+     */
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
 
+    /**
+     *
+     * @param selskapnr
+     */
     public Selskaper(Integer selskapnr) {
         this.selskapnr = selskapnr;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getSelskapnr() {
         return selskapnr;
     }
 
+    /**
+     *
+     * @param selskapnr
+     */
     public void setSelskapnr(Integer selskapnr) {
         this.selskapnr = selskapnr;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getAvslag() {
         return avslag;
     }
 
+    /**
+     *
+     * @param avslag
+     */
     public void setAvslag(Integer avslag) {
         this.avslag = avslag;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getAkkumulertSalg() {
         return akkumulertSalg;
     }
 
+    /**
+     *
+     * @param akkumulertSalg
+     */
     public void setAkkumulertSalg(Integer akkumulertSalg) {
         this.akkumulertSalg = akkumulertSalg;
     }

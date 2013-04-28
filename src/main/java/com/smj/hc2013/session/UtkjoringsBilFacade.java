@@ -18,11 +18,18 @@ public class UtkjoringsBilFacade extends AbstractFacade<UtkjoringsBil> {
     @PersistenceContext(unitName = "com.smj_HC2013_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public UtkjoringsBilFacade() {
         super(UtkjoringsBil.class);
     }

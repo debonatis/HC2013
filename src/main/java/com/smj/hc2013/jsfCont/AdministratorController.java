@@ -1,10 +1,9 @@
 package com.smj.hc2013.jsfCont;
 
-import com.smj.hc2013.model.Administrator;
 import com.smj.hc2013.jsfContl.util.JsfUtil;
 import com.smj.hc2013.jsfContl.util.PaginationHelper;
+import com.smj.hc2013.model.Administrator;
 import com.smj.hc2013.session.AdministratorFacade;
-
 import java.io.Serializable;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
@@ -18,6 +17,10 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
+/**
+ *
+ * @author deb
+ */
 @ManagedBean(name = "administratorController")
 @SessionScoped
 public class AdministratorController implements Serializable {
@@ -29,9 +32,17 @@ public class AdministratorController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
+    /**
+     *
+     */
     public AdministratorController() {
     }
 
+    /**
+     *Returns the selected object of type ?
+     * 
+     * @return
+     */
     public Administrator getSelected() {
         if (current == null) {
             current = new Administrator();
@@ -44,6 +55,11 @@ public class AdministratorController implements Serializable {
         return ejbFacade;
     }
 
+    /**
+     * Returns fragmts of a Database TableList due to heavy rendering load it list is big.
+     *
+     * @return
+     */
     public PaginationHelper getPagination() {
         if (pagination == null) {
             pagination = new PaginationHelper(10) {
@@ -61,23 +77,39 @@ public class AdministratorController implements Serializable {
         return pagination;
     }
 
+    /**
+     * Refreshes the item list
+     * @return
+     */
     public String prepareList() {
         recreateModel();
         return "List";
     }
 
+    /**
+     * Prepares list for late view.
+     * @return 
+     */
     public String prepareView() {
         current = (Administrator) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
+    /**
+     * Makes a new empty object of type ? before create
+     * @return
+     */
     public String prepareCreate() {
         current = new Administrator();
         selectedItemIndex = -1;
         return "Create";
     }
 
+    /**
+     * Stores the plotted object to Database
+     * @return
+     */
     public String create() {
         try {
             getFacade().create(current);
@@ -89,12 +121,20 @@ public class AdministratorController implements Serializable {
         }
     }
 
+    /**
+     * Set Current object to the selected in itemlist 
+     * @return
+     */
     public String prepareEdit() {
         current = (Administrator) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
 
+    /**
+     * Runs the edit in Database
+     * @return
+     */
     public String update() {
         try {
             getFacade().edit(current);
@@ -106,6 +146,10 @@ public class AdministratorController implements Serializable {
         }
     }
 
+    /**
+     * Deletes a desired object in Database
+     * @return
+     */
     public String destroy() {
         current = (Administrator) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
@@ -115,6 +159,10 @@ public class AdministratorController implements Serializable {
         return "List";
     }
 
+    /**
+     * Deletes a desired object in Database and refreshes the list
+     * @return
+     */
     public String destroyAndView() {
         performDestroy();
         recreateModel();
@@ -152,6 +200,10 @@ public class AdministratorController implements Serializable {
         }
     }
 
+    /**
+     * 
+     * @return List with items of Object type ?
+     */
     public DataModel getItems() {
         if (items == null) {
             items = getPagination().createPageDataModel();
@@ -167,29 +219,55 @@ public class AdministratorController implements Serializable {
         pagination = null;
     }
 
+    /**
+     * 
+     * @return Next fragment of the list
+     */
     public String next() {
         getPagination().nextPage();
         recreateModel();
         return "List";
     }
 
+    /**
+     *
+     * @return Previous fragment of the list
+     */
     public String previous() {
         getPagination().previousPage();
         recreateModel();
         return "List";
     }
 
+    /**
+     * Used in the Pagination method
+     * @return
+     */
     public SelectItem[] getItemsAvailableSelectMany() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), false);
     }
 
+    /**
+     * Used in the Pagination method
+     * @return
+     */
     public SelectItem[] getItemsAvailableSelectOne() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
+    /**
+     *
+     */
     @FacesConverter(forClass = Administrator.class)
     public static class AdministratorControllerConverter implements Converter {
 
+        /**
+         * Converts the String reference of an object to objcect
+         * @param facesContext
+         * @param component
+         * @param value
+         * @return Object
+         */
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
@@ -211,6 +289,13 @@ public class AdministratorController implements Serializable {
             return sb.toString();
         }
 
+        /**
+         * Makes a string Object refrense of an object
+         * @param facesContext
+         * @param component
+         * @param object
+         * @return String
+         */
         public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
             if (object == null) {
                 return null;

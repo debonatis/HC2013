@@ -37,9 +37,19 @@ public class UtkjoringPK implements Serializable {
     @Column(name = "sjoforBrukernavn")
     private String sjoforBrukernavn;
 
+    /**
+     *
+     */
     public UtkjoringPK() {
     }
 
+    /**
+     *
+     * @param brukernavn
+     * @param salgsnummer
+     * @param bilnr
+     * @param sjoforBrukernavn
+     */
     public UtkjoringPK(String brukernavn, String salgsnummer, int bilnr, String sjoforBrukernavn) {
         this.brukernavn = brukernavn;
         this.salgsnummer = salgsnummer;
@@ -47,34 +57,66 @@ public class UtkjoringPK implements Serializable {
         this.sjoforBrukernavn = sjoforBrukernavn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBrukernavn() {
         return brukernavn;
     }
 
+    /**
+     *
+     * @param brukernavn
+     */
     public void setBrukernavn(String brukernavn) {
         this.brukernavn = brukernavn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSalgsnummer() {
         return salgsnummer;
     }
 
+    /**
+     *
+     * @param salgsnummer
+     */
     public void setSalgsnummer(String salgsnummer) {
         this.salgsnummer = salgsnummer;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getBilnr() {
         return bilnr;
     }
 
+    /**
+     *
+     * @param bilnr
+     */
     public void setBilnr(int bilnr) {
         this.bilnr = bilnr;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSjoforBrukernavn() {
         return sjoforBrukernavn;
     }
 
+    /**
+     *
+     * @param sjoforBrukernavn
+     */
     public void setSjoforBrukernavn(String sjoforBrukernavn) {
         this.sjoforBrukernavn = sjoforBrukernavn;
     }

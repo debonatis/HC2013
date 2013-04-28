@@ -40,6 +40,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Ordretabell implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
     @EmbeddedId
     protected OrdretabellPK ordretabellPK;
     @Basic(optional = false)
@@ -58,61 +61,120 @@ public class Ordretabell implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date levDato;
 
+    /**
+     *
+     */
     public Ordretabell() {
     }
 
+    /**
+     *
+     * @param ordretabellPK
+     */
     public Ordretabell(OrdretabellPK ordretabellPK) {
         this.ordretabellPK = ordretabellPK;
     }
 
+    /**
+     *
+     * @param ordretabellPK
+     * @param rettnummer
+     * @param status
+     */
     public Ordretabell(OrdretabellPK ordretabellPK, String rettnummer, String status) {
         this.ordretabellPK = ordretabellPK;
         this.rettnummer = rettnummer;
         this.status = status;
     }
 
+    /**
+     *
+     * @param selgerbrukernavn
+     * @param salgsnummer
+     * @param kundebrukernavn
+     */
     public Ordretabell(String selgerbrukernavn, String salgsnummer, String kundebrukernavn) {
         this.ordretabellPK = new OrdretabellPK(selgerbrukernavn, salgsnummer, kundebrukernavn);
     }
 
+    /**
+     *
+     * @return
+     */
     public OrdretabellPK getOrdretabellPK() {
         return ordretabellPK;
     }
 
+    /**
+     *
+     * @param ordretabellPK
+     */
     public void setOrdretabellPK(OrdretabellPK ordretabellPK) {
         this.ordretabellPK = ordretabellPK;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getLevDato() {
         return levDato;
     }
 
+    /**
+     *
+     * @param levDato
+     */
     public void setLevDato(Date levDato) {
         this.levDato = levDato;
     }
     
     
 
+    /**
+     *
+     * @return
+     */
     public Integer getAntall() {
         return antall;
     }
 
+    /**
+     *
+     * @param antall
+     */
     public void setAntall(Integer antall) {
         this.antall = antall;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getRettnummer() {
         return rettnummer;
     }
 
+    /**
+     *
+     * @param rettnummer
+     */
     public void setRettnummer(String rettnummer) {
         this.rettnummer = rettnummer;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getStatus() {
         return status;
     }
 
+    /**
+     *
+     * @param status
+     */
     public void setStatus(String status) {
         this.status = status;
     }

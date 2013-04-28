@@ -38,25 +38,48 @@ public class Kunde implements Serializable {
     @Column(name = "avslag")
     private Integer avslag;
 
+    /**
+     *
+     */
     public Kunde() {
     }
 
+    /**
+     *
+     * @param brukernavn
+     */
     public Kunde(String brukernavn) {
         this.brukernavn = brukernavn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBrukernavn() {
         return brukernavn;
     }
 
+    /**
+     *
+     * @param brukernavn
+     */
     public void setBrukernavn(String brukernavn) {
         this.brukernavn = brukernavn;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getAvslag() {
         return avslag;
     }
 
+    /**
+     *
+     * @param avslag
+     */
     public void setAvslag(Integer avslag) {
         this.avslag = avslag;
     }

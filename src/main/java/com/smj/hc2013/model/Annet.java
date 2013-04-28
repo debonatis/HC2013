@@ -39,25 +39,48 @@ public class Annet implements Serializable {
     @Column(name = "fastlonn")
     private String fastlonn;
 
+    /**
+     *
+     */
     public Annet() {
     }
 
+    /**
+     *
+     * @param brukernavn
+     */
     public Annet(String brukernavn) {
         this.brukernavn = brukernavn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBrukernavn() {
         return brukernavn;
     }
 
+    /**
+     *
+     * @param brukernavn
+     */
     public void setBrukernavn(String brukernavn) {
         this.brukernavn = brukernavn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFastlonn() {
         return fastlonn;
     }
 
+    /**
+     *
+     * @param fastlonn
+     */
     public void setFastlonn(String fastlonn) {
         this.fastlonn = fastlonn;
     }

@@ -35,28 +35,51 @@ public class logging extends BrukerBehandling {
     private Date start;
     private Date stop;
 
+    /**
+     *
+     * @return
+     */
     public Date getStart() {
         return start;
     }
 
+    /**
+     *
+     * @param start
+     */
     public void setStart(Date start) {
         this.start = start;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getStop() {
         return stop;
     }
 
+    /**
+     *
+     * @param stop
+     */
     public void setStop(Date stop) {
         this.stop = stop;
     }
 
+    /**
+     *
+     * @return
+     */
     public Bruker getBruker() {
         bruker = brukerF.find(getUserData());
         return bruker;
 
     }
 
+    /**
+     *
+     */
     public void regWorkHours() {
 
         timeO = new Timer();
@@ -66,6 +89,10 @@ public class logging extends BrukerBehandling {
         timerF.create(timeO);
     }
 
+    /**
+     *
+     * @return
+     */
     public synchronized List<Timer> getLoggedInUsers() {
         liste = timerF.findAll();
         return liste;

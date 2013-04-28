@@ -80,81 +80,145 @@ public class Registrering implements RegMethod {
 
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Kunde getKunde() {
         return kunde;
     }
 
+    /**
+     *
+     * @param kunde
+     */
     @Override
     public void setKunde(Object kunde) {
         this.kunde = (Kunde) kunde;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Selskaper getSelskaper() {
         return selskaper;
     }
 
+    /**
+     *
+     * @param selskaper
+     */
     @Override
     public void setSelskaper(Object selskaper) {
         this.selskaper = (Selskaper) selskaper;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public SelskapKunde getSelskapKunde() {
         return selskapKunde;
     }
 
+    /**
+     *
+     * @param selskapKunde
+     */
     @Override
     public void setSelskapKunde(Object selskapKunde) {
         this.selskapKunde = (SelskapKunde) selskapKunde;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Salg getSalg() {
         return salg;
     }
 
+    /**
+     *
+     * @param salg
+     */
     @Override
     public void setSalg(Object salg) {
         this.salg = (Salg) salg;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Selgere getSelgere() {
         return selgere;
     }
 
+    /**
+     *
+     * @param selgere
+     */
     @Override
     public void setSelgere(Object selgere) {
         this.selgere = (Selgere) selgere;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Bruker getBruker() {
         return bruker;
     }
 
+    /**
+     *
+     * @param bruker
+     */
     @Override
     public void setBruker(Object bruker) {
         this.bruker = (Bruker) bruker;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Rolle getRolle() {
         return rolle;
     }
 
+    /**
+     *
+     * @param rolle
+     */
     @Override
     public void setRolle(Object rolle) {
         this.rolle = (Rolle) rolle;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Bosted getBosted() {
         return bosted;
     }
 
+    /**
+     *
+     * @param bosted
+     */
     @Override
     public void setBosted(Object bosted) {
         this.bosted = (Bosted) bosted;
@@ -170,6 +234,9 @@ public class Registrering implements RegMethod {
 
     }
 
+    /**
+     *
+     */
     @Override
     public void save() {
 
@@ -217,16 +284,29 @@ public class Registrering implements RegMethod {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isSkip() {
         return skip;
     }
 
+    /**
+     *
+     * @param skip
+     */
     @Override
     public void setSkip(boolean skip) {
         this.skip = skip;
     }
 
+    /**
+     *
+     * @param event
+     * @return
+     */
     @Override
     public String onFlowProcess(FlowEvent event) {
         logger.log(Level.INFO, "Current wizard step:{0}", event.getOldStep());

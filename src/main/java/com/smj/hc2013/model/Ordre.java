@@ -37,6 +37,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Ordre implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
     @EmbeddedId
     protected OrdrePK ordrePK;
     @Column(name = "datoEndret")
@@ -57,69 +60,137 @@ public class Ordre implements Serializable {
     @Column(name = "levAdresse")
     private String levAdresse;
 
+    /**
+     *
+     * @return
+     */
     public String getLevAdresse() {
         return levAdresse;
     }
 
+    /**
+     *
+     * @param levAdresse
+     */
     public void setLevAdresse(String levAdresse) {
         this.levAdresse = levAdresse;
     }
 
+    /**
+     *
+     */
     public Ordre() {
     }
 
+    /**
+     *
+     * @param ordrePK
+     */
     public Ordre(OrdrePK ordrePK) {
         this.ordrePK = ordrePK;
     }
 
+    /**
+     *
+     * @param brukernavn
+     * @param salgsnummer
+     */
     public Ordre(String brukernavn, String salgsnummer) {
         this.ordrePK = new OrdrePK(brukernavn, salgsnummer);
     }
 
+    /**
+     *
+     * @return
+     */
     public OrdrePK getOrdrePK() {
         return ordrePK;
     }
 
+    /**
+     *
+     * @param ordrePK
+     */
     public void setOrdrePK(OrdrePK ordrePK) {
         this.ordrePK = ordrePK;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDatoEndret() {
         return datoEndret;
     }
 
+    /**
+     *
+     * @param datoEndret
+     */
     public void setDatoEndret(Date datoEndret) {
         this.datoEndret = datoEndret;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDatoLevert() {
         return datoLevert;
     }
 
+    /**
+     *
+     * @param datoLevert
+     */
     public void setDatoLevert(Date datoLevert) {
         this.datoLevert = datoLevert;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getBekreftet() {
         return bekreftet;
     }
 
+    /**
+     *
+     * @param bekreftet
+     */
     public void setBekreftet(Date bekreftet) {
         this.bekreftet = bekreftet;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBetaltstatus() {
         return betaltstatus;
     }
 
+    /**
+     *
+     * @param betaltstatus
+     */
     public void setBetaltstatus(String betaltstatus) {
         this.betaltstatus = betaltstatus;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getSelskapnr() {
         return selskapnr;
     }
 
+    /**
+     *
+     * @param selskapnr
+     */
     public void setSelskapnr(Integer selskapnr) {
         this.selskapnr = selskapnr;
     }

@@ -18,11 +18,18 @@ public class OrdretabellFacade extends AbstractFacade<Ordretabell> {
     @PersistenceContext(unitName = "com.smj_HC2013_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public OrdretabellFacade() {
         super(Ordretabell.class);
     }

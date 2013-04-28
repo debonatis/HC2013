@@ -18,11 +18,18 @@ public class UtkjoringFacade extends AbstractFacade<Utkjoring> {
     @PersistenceContext(unitName = "com.smj_HC2013_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public UtkjoringFacade() {
         super(Utkjoring.class);
     }

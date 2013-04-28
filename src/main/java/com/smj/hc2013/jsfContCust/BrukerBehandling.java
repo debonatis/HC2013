@@ -35,71 +35,135 @@ public class BrukerBehandling implements Serializable {
     private boolean kokkOK;
     private boolean customerOK;
 
+    /**
+     *
+     * @param brukerOK
+     */
     public void setBrukerOK(boolean brukerOK) {
         this.brukerOK = brukerOK;
     }
 
+    /**
+     *
+     * @param kokkOK
+     */
     public void setKokkOK(boolean kokkOK) {
         this.kokkOK = kokkOK;
     }
 
+    /**
+     *
+     * @param customerOK
+     */
     public void setCustomerOK(boolean customerOK) {
         this.customerOK = customerOK;
     }
 
+    /**
+     *
+     * @param salgOK
+     */
     public void setSalgOK(boolean salgOK) {
         this.salgOK = salgOK;
     }
 
+    /**
+     *
+     * @param sjoforOK
+     */
     public void setSjoforOK(boolean sjoforOK) {
         this.sjoforOK = sjoforOK;
     }
     private boolean salgOK;
     private boolean sjoforOK;
 
+    /**
+     *
+     * @throws IOException
+     */
     public void logout() throws IOException {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         externalContext.invalidateSession();
         externalContext.redirect(externalContext.getRequestContextPath() + "/faces/index.xhtml");
     }
 
+    /**
+     *
+     * @param rolle
+     */
     public void setRolle(String rolle) {
         this.rolle = rolle;
     }
 
+    /**
+     *
+     * @param userData
+     */
     public void setUserData(String userData) {
         this.userData = userData;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isAdminOK() {
         this.adminOK = (getRolle().equals("admin")) ? true : false;
         return adminOK;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isBrukerOK() {
         return (getRolle().equals("bruker")) ? true : false;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isKokkOK() {
         return (getRolle().equals("kokk")) ? true : false;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isSalgOK() {
         return (getRolle().equals("salg")) ? true : false;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isCustomerOK() {
         return (getRolle().equals("customer")) ? true : false;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isSjoforOK() {
         return (getRolle().equals("sjofor")) ? true : false;
     }
 
+    /**
+     *
+     * @param adminOK
+     */
     public void setAdminOK(boolean adminOK) {
         this.adminOK = adminOK;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getRolle() {
         for (String r : roller) {
             if (isInRole(r)) {
@@ -113,6 +177,10 @@ public class BrukerBehandling implements Serializable {
         return "NO ROLE, logging you out!";
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUserData() {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         Object forsporrselobject = context.getRequest();
@@ -125,10 +193,18 @@ public class BrukerBehandling implements Serializable {
         return (foresporrsel.getRemoteUser());
     }
 
+    /**
+     *
+     * @return
+     */
     public String reg() {
         return "/faces/login/registrering?faces-redirect=true";
     }
 
+    /**
+     *
+     * @return
+     */
     public String logout2() {
         String result = "/faces/login/index?faces-redirect=true";
 
@@ -146,6 +222,11 @@ public class BrukerBehandling implements Serializable {
         return result;
     }
 
+    /**
+     *
+     * @param k
+     * @return
+     */
     public boolean isInRole(String k) {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         Object forsporrselobject = context.getRequest();

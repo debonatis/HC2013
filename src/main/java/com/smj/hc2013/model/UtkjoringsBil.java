@@ -48,39 +48,76 @@ public class UtkjoringsBil implements Serializable {
     @Column(name = "status")
     private String status;
 
+    /**
+     *
+     */
     public UtkjoringsBil() {
     }
 
+    /**
+     *
+     * @param bilnr
+     */
     public UtkjoringsBil(Integer bilnr) {
         this.bilnr = bilnr;
     }
 
+    /**
+     *
+     * @param bilnr
+     * @param regnummer
+     * @param status
+     */
     public UtkjoringsBil(Integer bilnr, String regnummer, String status) {
         this.bilnr = bilnr;
         this.regnummer = regnummer;
         this.status = status;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getBilnr() {
         return bilnr;
     }
 
+    /**
+     *
+     * @param bilnr
+     */
     public void setBilnr(Integer bilnr) {
         this.bilnr = bilnr;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getRegnummer() {
         return regnummer;
     }
 
+    /**
+     *
+     * @param regnummer
+     */
     public void setRegnummer(String regnummer) {
         this.regnummer = regnummer;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getStatus() {
         return status;
     }
 
+    /**
+     *
+     * @param status
+     */
     public void setStatus(String status) {
         this.status = status;
     }

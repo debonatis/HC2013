@@ -63,78 +63,154 @@ public class Retter implements Serializable {
     @Column(name = "fil")
     private String fil;
 
+    /**
+     *
+     */
     public Retter() {
     }
 
+    /**
+     *
+     * @param rettnummer
+     */
     public Retter(String rettnummer) {
         this.rettnummer = rettnummer;
     }
 
+    /**
+     *
+     * @param rettnummer
+     * @param navn
+     */
     public Retter(String rettnummer, String navn) {
         this.rettnummer = rettnummer;
         this.navn = navn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFil() {
         return fil;
     }
 
+    /**
+     *
+     * @param fil
+     */
     public void setFil(String fil) {
         this.fil = fil;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getRettnummer() {
         return rettnummer;
     }
 
+    /**
+     *
+     * @param rettnummer
+     */
     public void setRettnummer(String rettnummer) {
         this.rettnummer = rettnummer;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNavn() {
         return navn;
     }
 
+    /**
+     *
+     * @param navn
+     */
     public void setNavn(String navn) {
         this.navn = navn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBeskrivelse() {
         return beskrivelse;
     }
 
+    /**
+     *
+     * @param beskrivelse
+     */
     public void setBeskrivelse(String beskrivelse) {
         this.beskrivelse = beskrivelse;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getIngredienser() {
         return ingredienser;
     }
 
+    /**
+     *
+     * @param ingredienser
+     */
     public void setIngredienser(String ingredienser) {
         this.ingredienser = ingredienser;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getKalorier() {
         return kalorier;
     }
 
+    /**
+     *
+     * @param kalorier
+     */
     public void setKalorier(Integer kalorier) {
         this.kalorier = kalorier;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getVekt() {
         return vekt;
     }
 
+    /**
+     *
+     * @param vekt
+     */
     public void setVekt(Integer vekt) {
         this.vekt = vekt;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getPris() {
         return pris;
     }
 
+    /**
+     *
+     * @param pris
+     */
     public void setPris(Integer pris) {
         this.pris = pris;
     }

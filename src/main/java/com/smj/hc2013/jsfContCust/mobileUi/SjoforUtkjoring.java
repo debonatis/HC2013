@@ -56,16 +56,27 @@ public class SjoforUtkjoring implements DataTableInt {
     private Retter rett = new Retter();
     private Utkjoring utkjoring = new Utkjoring();
 
+    /**
+     *
+     * @return
+     */
     @Override
     public OrdreUtkjoring getSetter() {
         return setter;
     }
 
+    /**
+     *
+     * @param setter
+     */
     @Override
     public void setSetter(OrdreUtkjoring setter) {
         this.setter = setter;
     }
 
+    /**
+     *
+     */
     @PostConstruct
     @Override
     public void init() {
@@ -114,26 +125,45 @@ public class SjoforUtkjoring implements DataTableInt {
 
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<OrdreUtkjoring> getUtListe() {
         return utListe;
     }
 
+    /**
+     *
+     * @param utListe
+     */
     @Override
     public void setUtListe(List<OrdreUtkjoring> utListe) {
         this.utListe = utListe;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public OrdreUtkjoring getSelected() {
         return selected;
     }
 
+    /**
+     *
+     * @param selected
+     */
     @Override
     public void setSelected(OrdreUtkjoring selected) {
         this.selected = selected;
     }
 
+    /**
+     *
+     */
     @Override
     public void save() {
 

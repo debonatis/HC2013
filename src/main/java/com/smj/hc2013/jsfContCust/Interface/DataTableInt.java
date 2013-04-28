@@ -14,21 +14,51 @@ import javax.annotation.PostConstruct;
  */
 public interface DataTableInt {
 
+    /**
+     *
+     * @return
+     */
     OrdreUtkjoring getSelected();
 
+    /**
+     *
+     * @return
+     */
     OrdreUtkjoring getSetter();
 
+    /**
+     *
+     * @return
+     */
     List<OrdreUtkjoring> getUtListe();
 
+    /**
+     *
+     */
     @PostConstruct
     void init();
 
+    /**
+     *
+     */
     void save();
 
+    /**
+     *
+     * @param selected
+     */
     void setSelected(OrdreUtkjoring selected);
 
+    /**
+     *
+     * @param setter
+     */
     void setSetter(OrdreUtkjoring setter);
 
+    /**
+     *
+     * @param utListe
+     */
     void setUtListe(List<OrdreUtkjoring> utListe);
     
 }
