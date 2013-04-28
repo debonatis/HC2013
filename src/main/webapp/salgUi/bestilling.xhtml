@@ -59,22 +59,21 @@
 
 
                                     <p:dialog modal="false"  header="Choices" widgetVar="rettDialog" style="width: auto;
-                                              height: auto
-                                              ">  
-                                        <p:panel id="displayRetter" style="width: 500px; height: 500px">  
+                                              height: auto" appendToBody="true">  
+                                        <p:panel id="displayRetter">  
                                             <h:outputText value="Items picked: " style="font-weight:bold"/><br/>  
                                             <p:dataTable value="#{bestilling.settAntallList}" var="sr">  
-                                                <p:column>  
+                                                <p:column headerText="Name:"> 
                                                     #{sr.rett.navn}  
                                                 </p:column> 
-                                                <p:column>  
+                                                <p:column headerText="Description:">
                                                     #{sr.rett.beskrivelse}  
                                                 </p:column> 
-                                                <p:column>  
+                                                <p:column headerText="Ingredients:"> 
                                                     #{sr.rett.ingredienser}  
                                                 </p:column> 
-                                                <p:column>  
-                                                    #{sr.rett.kalorier}  
+                                                <p:column headerText="Calories:">  
+                                                   #{sr.rett.kalorier}  
                                                 </p:column> 
                                             </p:dataTable> 
 
