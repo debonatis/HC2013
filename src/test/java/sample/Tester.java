@@ -22,20 +22,20 @@ public class Tester {
 // Skønner ikke helt hvordan jeg skal bruke dette sammen JSF og Glassfish servern.
 // Tenker da på lage tester som gir mening.
     
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-    
+//    @BeforeClass
+//    public static void setUpClass() throws Exception {
+//    }
+//
+//    @AfterClass
+//    public static void tearDownClass() throws Exception {
+//    }
+//
+//    @Before
+//    public void setUp() throws Exception {
+//    }
+//
+//    @After
+//    public void tearDown() throws Exception {
+//    }
+//    
 }
