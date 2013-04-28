@@ -13,18 +13,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import javax.annotation.security.DeclareRoles;
 import javax.ejb.EJB;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author deb
  */
 @ManagedBean
-@ApplicationScoped
-@DeclareRoles({"Admin"})
+@SessionScoped
 public class logging extends BrukerBehandling {
 
     @EJB
@@ -62,9 +60,9 @@ public class logging extends BrukerBehandling {
     public void regWorkHours() {
 
         timeO = new Timer();
-        timeO.setTimeId(getStart());
         timeO.setBrukernavn(getBruker().getBrukernavn());
-        timeO.setArbeidsTimer(getStop());
+//        timeO.setTimeId(getStart());        
+//        timeO.setArbeidsTimer(getStop());
         timerF.create(timeO);
     }
 

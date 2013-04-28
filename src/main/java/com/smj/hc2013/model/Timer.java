@@ -30,22 +30,19 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Timer.findAll", query = "SELECT a FROM Timer a"),
     @NamedQuery(name = "Timer.TimeId", query = "SELECT a FROM Timer a WHERE a.timeId = :timeId"),
     @NamedQuery(name = "Timer.Brukernavn", query = "SELECT a FROM Timer a WHERE a.brukernavn = :brukernavn"),
-@NamedQuery(name = "Timer.ArbeidsTimer", query = "SELECT a FROM Timer a WHERE a.arbeidsTimer = :arbeidsTimer")})
+    @NamedQuery(name = "Timer.ArbeidsTimer", query = "SELECT a FROM Timer a WHERE a.arbeidsTimer = :arbeidsTimer")})
 public class Timer implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @NotNull
-    @Basic(optional = false)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     @Column(name = "timeId")
     private Date timeId;
-    @NotNull
+    @Id
+    @Basic(optional = false)    
     @Size(min = 1, max = 30)
     @Column(name = "brukernavn")
-    private String brukernavn;
-    @Size(max = 10)
-    @Column(name = "arbeidsTimer")   
+    private String brukernavn;    
+    @Column(name = "arbeidsTimer")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date arbeidsTimer;
 
@@ -110,5 +107,4 @@ public class Timer implements Serializable {
     public String toString() {
         return "Timer{" + "timeId=" + timeId + ", brukernavn=" + brukernavn + ", arbeidsTimer=" + arbeidsTimer + '}';
     }
-    
 }
