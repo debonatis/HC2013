@@ -25,7 +25,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 /**
- *
+ *Getter and setters are not defined
  * @author deb
  */
 @ManagedBean
@@ -75,7 +75,7 @@ public class SjoforUtkjoring implements DataTableInt {
     }
 
     /**
-     *
+     * Populates the list of driver items
      */
     @PostConstruct
     @Override
@@ -162,7 +162,7 @@ public class SjoforUtkjoring implements DataTableInt {
     }
 
     /**
-     *
+     * persist dirver actions and deliverys to Database
      */
     @Override
     public void save() {

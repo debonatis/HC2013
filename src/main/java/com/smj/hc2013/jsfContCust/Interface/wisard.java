@@ -4,12 +4,11 @@
  */
 package com.smj.hc2013.jsfContCust.Interface;
 
-import com.smj.hc2013.model.Bruker;
 import java.awt.event.ActionEvent;
 import org.primefaces.event.FlowEvent;
 
 /**
- *
+ *Inteface made for easy beanclass configuring
  * @param <T> 
  * @author deb
  */

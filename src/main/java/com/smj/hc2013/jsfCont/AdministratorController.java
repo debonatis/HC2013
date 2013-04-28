@@ -41,7 +41,7 @@ public class AdministratorController implements Serializable {
     /**
      *Returns the selected object of type ?
      * 
-     * @return
+     * @return Object of type ?
      */
     public Administrator getSelected() {
         if (current == null) {

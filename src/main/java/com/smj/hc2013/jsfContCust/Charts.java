@@ -39,7 +39,7 @@ import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartSeries;
 
 /**
- *
+ *Getter and setters are not described
  * @author deb
  */
 @ManagedBean
@@ -84,7 +84,7 @@ public class Charts implements Serializable {
 
     /**
      *
-     * @return
+     * @return 
      */
     public CartesianChartModel getWeb() {
 
@@ -134,7 +134,7 @@ public class Charts implements Serializable {
     }
 
     /**
-     *
+     * populates the chart models
      * @throws ParseException
      */
     @PostConstruct
@@ -323,7 +323,7 @@ public class Charts implements Serializable {
 
     }
      /**
-     *
+     * Generates a info dialog to the user containig what has selected
      * @param event
      */
     public void itemSelect(ItemSelectEvent event) {  
@@ -340,7 +340,7 @@ public class Charts implements Serializable {
     }
 
     /**
-     *
+     * Sorts Chartdata after date
      * @param map
      * @return
      */

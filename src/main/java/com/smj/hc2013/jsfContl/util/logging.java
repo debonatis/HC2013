@@ -18,7 +18,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 /**
- *
+ *Getters and setters are not described
  * @author deb
  */
 @ManagedBean
@@ -78,7 +78,7 @@ public class logging extends BrukerBehandling {
     }
 
     /**
-     *
+     * Perist working hours in Database
      */
     public void regWorkHours() {
 
@@ -90,7 +90,7 @@ public class logging extends BrukerBehandling {
     }
 
     /**
-     *
+     * Populates list
      * @return
      */
     public synchronized List<Timer> getLoggedInUsers() {

@@ -9,7 +9,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 /**
- *
+ * Inteface made for easy beanclass configuring
  * @author deb
  */
 public interface DataTableInt {

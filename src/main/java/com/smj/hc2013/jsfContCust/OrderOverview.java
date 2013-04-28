@@ -11,7 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 /**
- *
+ *Getter and setters are not described
  * @author deb
  */
 @ManagedBean
@@ -21,8 +21,8 @@ public class OrderOverview extends OversiktKokk {
     BrukerBehandling bruker = new BrukerBehandling();
 
     /**
-     *
-     * @return
+     * returns list of users
+     * @return list
      */
     @Override
     public List<OrdreUtkjoring> getUtListe() {

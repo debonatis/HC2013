@@ -48,7 +48,7 @@ import org.primefaces.model.DualListModel;
 import org.primefaces.model.StreamedContent;
 
 /**
- *
+ *Getter and setters are not described
  * @author deb
  */
 @ManagedBean
@@ -91,7 +91,7 @@ public class Bestilling implements Serializable {
     private boolean MailVe = false;
 
     /**
-     *
+     * init of Entity Objects
      */
     public Bestilling() {
         selskaper = new Selskaper();
@@ -105,7 +105,7 @@ public class Bestilling implements Serializable {
     }
 
     /**
-     *
+     *init of Entity Objects
      */
     public void prepareCreate() {
         selskaper = new Selskaper();
@@ -120,7 +120,7 @@ public class Bestilling implements Serializable {
 
     /**
      *
-     * @return
+     * @return Object selected
      */
     public Ordre getOrdre() {
         return ordre;
@@ -144,7 +144,7 @@ public class Bestilling implements Serializable {
 
     /**
      *
-     * @return
+     * @return List of firms
      */
     public String[] getBridList() {
 
@@ -257,7 +257,7 @@ public class Bestilling implements Serializable {
     }
 
     /**
-     *
+     * saves the pick in Database
      * @throws Exception
      */
     public void savePick() throws Exception {
@@ -358,7 +358,7 @@ public class Bestilling implements Serializable {
     }
 
     /**
-     *
+     * removes selected item
      * @param item
      */
     public void removeFromsetAntalle(OrdreBestilling item) {
@@ -366,7 +366,7 @@ public class Bestilling implements Serializable {
     }
 
     /**
-     *
+     * Gives information to logger about wich step in wizard
      * @param event
      * @return
      */
@@ -384,7 +384,7 @@ public class Bestilling implements Serializable {
     }
 
     /**
-     *
+     * updates the list on transer in picklist
      * @param event
      */
     public void onTransfer(TransferEvent event) {
@@ -428,8 +428,8 @@ public class Bestilling implements Serializable {
     }
 
     /**
-     *
-     * @return
+     * 
+     * @return saleId
      */
     public UUID getUUID() {
         UUID idOne = UUID.randomUUID();
@@ -437,8 +437,8 @@ public class Bestilling implements Serializable {
     }
 
     /**
-     *
-     * @return
+     * makes and send pdf contanig purchases
+     * @return Pdf file in end result
      */
     public StreamedContent getFile() {
 

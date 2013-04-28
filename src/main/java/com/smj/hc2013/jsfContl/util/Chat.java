@@ -14,7 +14,7 @@ import org.primefaces.push.PushContext;
 import org.primefaces.push.PushContextFactory;
 
 /**
- *
+ *Getter and setters are not described
  * @author deb
  */
 @ManagedBean
@@ -120,7 +120,7 @@ public class Chat extends BrukerBehandling {
     }
 
     /**
-     *
+     * send a global message to chat window
      */
     public void sendGlobal() {
         pushContext.push(CHANNEL + "*", username + ": " + globalMessage);
@@ -128,7 +128,7 @@ public class Chat extends BrukerBehandling {
     }
 
     /**
-     *
+     * send a global message to chat window
      */
     public void sendPrivate() {
         pushContext.push(CHANNEL + privateUser, "[PM] " + username + ": " + privateMessage);
@@ -136,7 +136,7 @@ public class Chat extends BrukerBehandling {
     }
    
     /**
-     *
+     * populates the list with given user
      */
     public void login() {
         String navn = getUserData();
@@ -153,7 +153,7 @@ public class Chat extends BrukerBehandling {
     }
 
     /**
-     *
+     * disconnects the user from chat session
      */
     public void disconnect() {
         liste.removeUser(username);

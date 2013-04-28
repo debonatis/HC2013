@@ -29,7 +29,7 @@ public class JavaMail {
     }
 
     /**
-     *
+     * sends mail
      * @param email
      * @param subject
      * @param body

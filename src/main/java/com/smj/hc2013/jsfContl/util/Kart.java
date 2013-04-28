@@ -12,7 +12,7 @@ import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
 
 /**
- *
+ *Getters and setters are not described
  * @author deb
  */
 @ManagedBean
@@ -22,7 +22,7 @@ public class Kart {
     private MapModel kart;
 
     /**
-     *
+     * puts a marker in the map canvas
      */
     public Kart() {
         kart = new DefaultMapModel();

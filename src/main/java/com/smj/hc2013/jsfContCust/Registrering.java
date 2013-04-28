@@ -33,7 +33,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.event.FlowEvent;
 
 /**
- *
+ * Getter and setters are not described
  * @author deb
  */
 @ManagedBean(name = "registrering")
@@ -235,7 +235,7 @@ public class Registrering implements RegMethod {
     }
 
     /**
-     *
+     * percist user data in database
      */
     @Override
     public void save() {
@@ -303,9 +303,9 @@ public class Registrering implements RegMethod {
     }
 
     /**
-     *
+     * 
      * @param event
-     * @return
+     * @return returns given wisard step
      */
     @Override
     public String onFlowProcess(FlowEvent event) {

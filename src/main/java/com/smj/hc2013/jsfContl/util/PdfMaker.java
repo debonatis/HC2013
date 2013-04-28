@@ -15,13 +15,13 @@ import java.io.FileOutputStream;
 import java.util.List;
 
 /**
- *
+ *Getters and setters are not described
  * @author deb
  */
 public class PdfMaker {
     
     /**
-     *
+     * Generates a pdf file for download
      * @param d
      * @param filnavn
      * @param path

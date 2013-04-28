@@ -4,19 +4,11 @@
  */
 package com.smj.hc2013.jsfContCust.Interface;
 
-import com.smj.hc2013.model.Bosted;
-import com.smj.hc2013.model.Bruker;
-import com.smj.hc2013.model.Kunde;
-import com.smj.hc2013.model.Rolle;
-import com.smj.hc2013.model.Salg;
-import com.smj.hc2013.model.Selgere;
-import com.smj.hc2013.model.SelskapKunde;
-import com.smj.hc2013.model.Selskaper;
 import java.io.Serializable;
 import org.primefaces.event.FlowEvent;
 
 /**
- *
+ * Inteface made for easy beanclass configuring
  * @param <T> 
  * @author deb
  */

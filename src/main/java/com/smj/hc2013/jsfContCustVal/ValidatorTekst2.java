@@ -14,7 +14,7 @@ import javax.faces.validator.*;
 public class ValidatorTekst2 implements Validator {
 
     /**
-     *
+     * checks if the password meets a given requirment
      * @param facesContext
      * @param uIComponent
      * @param object

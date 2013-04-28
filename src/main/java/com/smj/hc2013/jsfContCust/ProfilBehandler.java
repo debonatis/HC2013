@@ -38,7 +38,7 @@ import javax.faces.bean.ViewScoped;
 import org.primefaces.event.FlowEvent;
 
 /**
- *
+ * Getter and setters are not described
  * @author deb
  */
 @ManagedBean
@@ -226,9 +226,9 @@ public class ProfilBehandler extends BrukerBehandling implements wisard {
     }
 
     /**
-     *
+     * show the wizard step live
      * @param event
-     * @return
+     * @return the given step in wizrad
      */
     @Override
     public String onFlowProcess(FlowEvent event) {
@@ -244,7 +244,7 @@ public class ProfilBehandler extends BrukerBehandling implements wisard {
     }
 
     /**
-     *
+     * populates the inputs with user's own information
      * @throws IOException
      */
     @PostConstruct
@@ -296,7 +296,7 @@ public class ProfilBehandler extends BrukerBehandling implements wisard {
     }
 
     /**
-     *
+     * percist the changes in the database
      * @param actionEvent
      */
     @Override

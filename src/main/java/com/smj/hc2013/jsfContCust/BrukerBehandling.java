@@ -18,7 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- *
+ *Getter and setters are not described
  * @author deb
  */
 @ManagedBean(name = "bruker")
@@ -36,7 +36,7 @@ public class BrukerBehandling implements Serializable {
     private boolean customerOK;
 
     /**
-     *
+     * Check off role
      * @param brukerOK
      */
     public void setBrukerOK(boolean brukerOK) {
@@ -44,7 +44,7 @@ public class BrukerBehandling implements Serializable {
     }
 
     /**
-     *
+     * Check off role
      * @param kokkOK
      */
     public void setKokkOK(boolean kokkOK) {
@@ -52,7 +52,7 @@ public class BrukerBehandling implements Serializable {
     }
 
     /**
-     *
+     *Check off role
      * @param customerOK
      */
     public void setCustomerOK(boolean customerOK) {
@@ -60,7 +60,7 @@ public class BrukerBehandling implements Serializable {
     }
 
     /**
-     *
+     *Check off role
      * @param salgOK
      */
     public void setSalgOK(boolean salgOK) {
@@ -68,7 +68,7 @@ public class BrukerBehandling implements Serializable {
     }
 
     /**
-     *
+     *Check off role
      * @param sjoforOK
      */
     public void setSjoforOK(boolean sjoforOK) {
@@ -78,7 +78,7 @@ public class BrukerBehandling implements Serializable {
     private boolean sjoforOK;
 
     /**
-     *
+     * Invalidates "this" session
      * @throws IOException
      */
     public void logout() throws IOException {
@@ -104,7 +104,7 @@ public class BrukerBehandling implements Serializable {
     }
 
     /**
-     *
+     *Check off role
      * @return
      */
     public boolean isAdminOK() {
@@ -113,7 +113,7 @@ public class BrukerBehandling implements Serializable {
     }
 
     /**
-     *
+     *Check off role
      * @return
      */
     public boolean isBrukerOK() {
@@ -121,7 +121,7 @@ public class BrukerBehandling implements Serializable {
     }
 
     /**
-     *
+     *Check off role
      * @return
      */
     public boolean isKokkOK() {
@@ -129,7 +129,7 @@ public class BrukerBehandling implements Serializable {
     }
 
     /**
-     *
+     *Check off role
      * @return
      */
     public boolean isSalgOK() {
@@ -137,7 +137,7 @@ public class BrukerBehandling implements Serializable {
     }
 
     /**
-     *
+     *Check off role
      * @return
      */
     public boolean isCustomerOK() {
@@ -145,7 +145,7 @@ public class BrukerBehandling implements Serializable {
     }
 
     /**
-     *
+     *Check off role
      * @return
      */
     public boolean isSjoforOK() {
@@ -153,7 +153,7 @@ public class BrukerBehandling implements Serializable {
     }
 
     /**
-     *
+     *Check off role
      * @param adminOK
      */
     public void setAdminOK(boolean adminOK) {
@@ -162,7 +162,7 @@ public class BrukerBehandling implements Serializable {
 
     /**
      *
-     * @return
+     * @return the given role of the user
      */
     public String getRolle() {
         for (String r : roller) {
@@ -179,7 +179,7 @@ public class BrukerBehandling implements Serializable {
 
     /**
      *
-     * @return
+     * @return the name of the user
      */
     public String getUserData() {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
@@ -194,7 +194,7 @@ public class BrukerBehandling implements Serializable {
     }
 
     /**
-     *
+     * redirests to registration site
      * @return
      */
     public String reg() {
@@ -202,7 +202,7 @@ public class BrukerBehandling implements Serializable {
     }
 
     /**
-     *
+     * invalidates the session 
      * @return
      */
     public String logout2() {
@@ -223,9 +223,9 @@ public class BrukerBehandling implements Serializable {
     }
 
     /**
-     *
-     * @param k
-     * @return
+     * 
+     * @param rolle
+     * @return  true or false if user has role or not
      */
     public boolean isInRole(String k) {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();

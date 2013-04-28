@@ -16,7 +16,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 /**
- *
+ *Getter and setters are not described
  * @author Martin
  */
 @ManagedBean(name = "forgotPassword")
@@ -61,7 +61,7 @@ public class ForgotPassword extends JavaMail implements Serializable {
     }
 
     /**
-     *
+     * sends password to user if email address is in user table
      */
     public void apply() {
 

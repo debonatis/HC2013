@@ -38,7 +38,7 @@ public class Galleri {
         "Fale godt ja", "lol", "lol"};
 
     /**
-     *
+     *Populates the galleri with pictures
      */
     @PostConstruct
     public void init(){

@@ -25,7 +25,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 /**
- *
+ *Getter and setters are not described
  * @author deb
  */
 @ManagedBean
@@ -104,7 +104,7 @@ public class OversiktKokk implements DataTableInt {
     }
 
     /**
-     *
+     * populating the item list
      */
     @PostConstruct
     @Override
@@ -152,7 +152,7 @@ public class OversiktKokk implements DataTableInt {
     }
 
     /**
-     *
+     * percist the items in list to Database
      */
     @Override
     public void save() {

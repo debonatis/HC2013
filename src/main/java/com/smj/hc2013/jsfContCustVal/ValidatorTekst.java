@@ -17,7 +17,7 @@ import javax.faces.validator.*;
 public class ValidatorTekst implements Validator {
 
     /**
-     *
+     * validates to input fields
      * @param facesContext
      * @param uIComponent
      * @param object
