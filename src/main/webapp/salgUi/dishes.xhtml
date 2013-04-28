@@ -14,7 +14,7 @@ and open the template in the editor.
             <h:outputText value="#{bundle.CreateRetterTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form id="form">  
+            <h:form id="form2">  
                 <p:dataGrid var="retter" value="#{dishes.rettL}" columns="3"  
                             rows="12" paginator="true"  
                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
@@ -26,7 +26,7 @@ and open the template in the editor.
 
                             <h:outputText value="Pris: #{retter.pris}kr" />  
 
-                            <p:commandLink update=":form:rettDetail" oncomplete="rettDialog.show()" title="View Detail">  
+                            <p:commandLink update=":form2:rettDetail" oncomplete="rettDialog.show()" title="View Detail">  
                                 <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />   
                                 <f:setPropertyActionListener value="#{retter}"   
                                                              target="#{dishes.selected}" />  
@@ -35,7 +35,7 @@ and open the template in the editor.
                     </p:panel>  
 
                 </p:dataGrid>  
-                <p:dialog header="retterDetail" widgetVar="rettDialog" modal="false">  
+                <p:dialog header="retterDetail" widgetVar="rettDialog" modal="false" appendToBody="true">  
                     <p:outputPanel id="rettDetail" style="text-align:center;" layout="block">  
 
                         <p:graphicImage value="/resources/images/#{dishes.selected.fil}" width="100" height="100"/>  
