@@ -19,7 +19,11 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>Push Servlet</servlet-name>
-        <servlet-class>org.primefaces.push.PushServlet</servlet-class>        
+        <servlet-class>org.primefaces.push.PushServlet</servlet-class>
+        <init-param>
+            <param-name>org.atmosphere.cpr.sessionSupport</param-name>
+            <param-value>true</param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
         <async-supported>true</async-supported>
     </servlet>
@@ -177,7 +181,7 @@
         <location>/faces/login/ikkelogin.xhtml</location>
     </error-page>
     <resource-ref>
-        <res-ref-name>mail/peering</res-ref-name>
+        <res-ref-name>mail/Peering</res-ref-name>
         <res-type>javax.mail.Session</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>

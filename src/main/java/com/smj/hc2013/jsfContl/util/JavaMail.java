@@ -25,7 +25,7 @@ public class JavaMail {
 
     private Session getMailpeering() throws NamingException {
         Context c = new InitialContext();
-        return (Session) c.lookup("java:comp/env/mail/peering");
+        return (Session) c.lookup("java:comp/env/mail/Peering");
     }
 
     public void sendMail1(String email, String subject, String body) throws NamingException, MessagingException {
