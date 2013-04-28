@@ -31,7 +31,9 @@
                                 <h:outputText value="#{item.timeId}" />  
                             </p:column>  
                             <p:column headerText="Username" sortBy="#{item.arbeidsTimer}" filterBy="#{item.arbeidsTimer}">  
-                                <h:outputText value="#{item.arbeidsTimer}" />  
+                                <h:outputText value="#{item.arbeidsTimer}" >
+                                    <f:convertDateTime pattern="HH:mm" />
+                                </h:outputText>  
                             </p:column>                         
 
                         </p:dataTable>

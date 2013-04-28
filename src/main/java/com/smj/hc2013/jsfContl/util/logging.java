@@ -11,6 +11,7 @@ import com.smj.hc2013.session.BrukerFacade;
 import com.smj.hc2013.session.TimerFacade;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -63,8 +64,14 @@ public class logging extends BrukerBehandling{
        
         timeO = new Timer();
         timeO.setTimeId(getStart());
-        timeO.setBrukernavn(getBruker().getBrukernavn());
-        timeO.setArbeidsTimer(new Time(getStop().getTime()));
+        timeO.setBrukernavn(getBruker().getBrukernavn());   
+        Calendar cal = Calendar.getInstance();
+
+cal.set(Calendar.HOUR_OF_DAY, getStop().getHours());
+cal.set(Calendar.MINUTE, getStop().getMinutes());
+
+
+        timeO.setArbeidsTimer(new Date(cal.getTimeInMillis()));
         timerF.create(timeO);
     }
     
