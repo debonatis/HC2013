@@ -27,10 +27,10 @@
                             <p:column headerText="Username" sortBy="#{item.brukernavn}" filterBy="#{item.brukernavn}">  
                                 <h:outputText value="#{item.brukernavn}" />  
                             </p:column>  
-                            <p:column headerText="Username" sortBy="#{item.timeId}" filterBy="#{item.timeId}">  
+                            <p:column headerText="Day and start of work" sortBy="#{item.timeId}" filterBy="#{item.timeId}">  
                                 <h:outputText value="#{item.timeId}" />  
                             </p:column>  
-                            <p:column headerText="Username" sortBy="#{item.arbeidsTimer}" filterBy="#{item.arbeidsTimer}">  
+                            <p:column headerText="Hours" sortBy="#{item.arbeidsTimer}" filterBy="#{item.arbeidsTimer}">  
                                 <h:outputText value="#{item.arbeidsTimer}" >
                                     <f:convertDateTime pattern="HH:mm" />
                                 </h:outputText>  
