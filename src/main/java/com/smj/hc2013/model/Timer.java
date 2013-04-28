@@ -10,12 +10,13 @@ import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -30,15 +31,19 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Timer.findAll", query = "SELECT a FROM Timer a"),
     @NamedQuery(name = "Timer.TimeId", query = "SELECT a FROM Timer a WHERE a.timeId = :timeId"),
     @NamedQuery(name = "Timer.Brukernavn", query = "SELECT a FROM Timer a WHERE a.brukernavn = :brukernavn"),
-    @NamedQuery(name = "Timer.ArbeidsTimer", query = "SELECT a FROM Timer a WHERE a.arbeidsTimer = :arbeidsTimer")})
+    @NamedQuery(name = "Timer.ArbeidsTimer", query = "SELECT a FROM Timer a WHERE a.arbeidsTimer = :arbeidsTimer"), 
+    @NamedQuery(name = "Timer.IdNr", query = "SELECT a FROM Timer a WHERE a.idNr = :idNr")})
 public class Timer implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "idNr")
+    private Integer idNr;
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     @Column(name = "timeId")
-    private Date timeId;
-    @Id
-    @Basic(optional = false)    
+    private Date timeId;      
     @Size(min = 1, max = 30)
     @Column(name = "brukernavn")
     private String brukernavn;    
@@ -47,6 +52,14 @@ public class Timer implements Serializable {
     private Date arbeidsTimer;
 
     public Timer() {
+    }
+
+    public Integer getIdNr() {
+        return idNr;
+    }
+
+    public void setIdNr(Integer idNr) {
+        this.idNr = idNr;
     }
 
     public Date getTimeId() {
