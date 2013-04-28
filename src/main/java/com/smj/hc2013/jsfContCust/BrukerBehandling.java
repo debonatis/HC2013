@@ -4,7 +4,6 @@ package com.smj.hc2013.jsfContCust;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-import com.smj.hc2013.jsfContl.util.BrukerTellerHelp;
 import com.smj.hc2013.jsfContl.util.JsfUtil;
 import java.io.IOException;
 import java.io.Serializable;
@@ -122,11 +121,7 @@ public class BrukerBehandling implements Serializable {
             logger.log(Level.SEVERE, "Det forespurte objektet er av type {0}", forsporrselobject.getClass());
 
         }
-        HttpServletRequest foresporrsel = (HttpServletRequest) forsporrselobject;
-        BrukerTellerHelp instance = BrukerTellerHelp.getInstance(foresporrsel.getServletContext());
-        if(instance.getCount(foresporrsel.getRemoteAddr())> 3){
-            foresporrsel.getSession().invalidate();
-        }
+        HttpServletRequest foresporrsel = (HttpServletRequest) forsporrselobject;       
         return (foresporrsel.getRemoteUser());
     }
 

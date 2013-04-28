@@ -30,10 +30,7 @@
     <servlet-mapping>
         <servlet-name>Push Servlet</servlet-name>
         <url-pattern>/primepush/*</url-pattern>
-    </servlet-mapping>
-    <listener>
-        <listener-class>com.smj.hc2013.jsfContl.util.BrukerTellerHelp</listener-class>
-    </listener>
+    </servlet-mapping>   
     <session-config>
         <session-timeout>
             30
