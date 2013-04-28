@@ -16,21 +16,21 @@
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
-    </servlet-mapping> 
+    </servlet-mapping>
     <servlet>
         <servlet-name>Push Servlet</servlet-name>
-        <servlet-class>org.primefaces.push.PushServlet</servlet-class>        
+        <servlet-class>org.primefaces.push.PushServlet</servlet-class>
         <init-param>
             <param-name>org.atmosphere.cpr.sessionSupport</param-name>
             <param-value>true</param-value>
-        </init-param>        
+        </init-param>
         <load-on-startup>1</load-on-startup>
-        <async-supported>true</async-supported>        
+        <async-supported>true</async-supported>
     </servlet>
     <servlet-mapping>
         <servlet-name>Push Servlet</servlet-name>
         <url-pattern>/primepush/*</url-pattern>
-    </servlet-mapping>    
+    </servlet-mapping>
     <listener>
         <listener-class>com.smj.hc2013.jsfContl.util.BrukerTellerHelp</listener-class>
     </listener>
@@ -179,5 +179,11 @@
     <error-page>
         <error-code>403</error-code>
         <location>/faces/login/ikkelogin.xhtml</location>
-    </error-page>   
+    </error-page>
+    <resource-ref>
+        <res-ref-name>mail/peering</res-ref-name>
+        <res-type>javax.mail.Session</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>
 </web-app>

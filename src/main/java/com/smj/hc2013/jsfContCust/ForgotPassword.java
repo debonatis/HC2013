@@ -57,7 +57,7 @@ public class ForgotPassword extends JavaMail implements Serializable {
                 }
             }
             if (sjekk) {
-                sendMail(br, "Here is your password, " + br.getFornavn() + "", br);
+                sendMail1(br.getEmail(), "Here is your password, " + br.getFornavn() + "", "Du får huske det til senere da!");
                 FacesMessage msg = new FacesMessage();
                 msg.setSeverity(FacesMessage.SEVERITY_INFO);
                 msg.setSummary("Success");

@@ -5,7 +5,6 @@
 package com.smj.hc2013.model;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Basic;
@@ -46,7 +45,8 @@ public class Timer implements Serializable {
     private String brukernavn;
     @Size(max = 10)
     @Column(name = "arbeidsTimer")   
-    private Time arbeidsTimer;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date arbeidsTimer;
 
     public Timer() {
     }
@@ -67,11 +67,11 @@ public class Timer implements Serializable {
         this.brukernavn = brukernavn;
     }
 
-    public Time getArbeidsTimer() {
+    public Date getArbeidsTimer() {
         return arbeidsTimer;
     }
 
-    public void setArbeidsTimer(Time arbeidsTimer) {
+    public void setArbeidsTimer(Date arbeidsTimer) {
         this.arbeidsTimer = arbeidsTimer;
     }
 
